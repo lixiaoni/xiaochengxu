@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "小云店",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "mes": "../../../../assembly/tips/tips",
+    "login": "../../login/login/login",
+    "no": "../indexEmpty/indexEmpty"
+  }
+}

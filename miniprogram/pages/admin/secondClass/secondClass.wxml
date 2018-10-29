@@ -1,0 +1,7 @@
+<view class='shop-cont'>
+  <view class='shop-size'>已选定<text>{{name}}</text></view>
+  <view wx:for='{{dataList}}' wx:key='{{index}}'>
+     <navigator url='../thirdClass/thirdClass?code={{item.categoryCode}}&name={{item.name}}&pName={{name}}'>{{item.name}}</navigator>
+  </view>
+</view>
+

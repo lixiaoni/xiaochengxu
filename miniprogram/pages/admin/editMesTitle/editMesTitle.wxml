@@ -1,0 +1,5 @@
+<view class="sendmessage">
+  <input class="chat-input" type="emoji" placeholder=""   value='保存'/>
+  <input style='display:none' type="" bindinput="" confirm-type="done" placeholder="" />
+</view>
+

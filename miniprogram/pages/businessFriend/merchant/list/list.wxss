@@ -1,0 +1,4 @@
+@import '../../wholesaler/wholesaler';
+.weui_cells>image{
+  width: 45rpx;top: 30rpx;
+}

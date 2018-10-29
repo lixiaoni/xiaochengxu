@@ -1,0 +1,5 @@
+@import '../shopClass/shopClass';
+.shop-cont>view view {right: 40rpx;}
+.weui-img{width: 35rpx;height: 35rpx;float: right;margin-top:6rpx;}
+.shop-cont-c{margin-bottom: 20rpx;padding-top: 20rpx;}
+.page{height: 100%;overflow-y: scroll}

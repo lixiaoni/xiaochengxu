@@ -1,0 +1,25 @@
+<view class='bf-all'>需要发送验证申请,等待对方通过</view>
+<view class='bf-cont'>
+  <view class='bf-weui add-bf-weui'>
+    <view class="weui_cells">
+      <input placeholder=''  bindinput="searchBtn" value='{{value}}'></input>
+      <view class='weui-view'>
+        <image  mode="widthFix"  bindtap='emptyVal' src="/image/ser.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <view class="weui_cells new-weui">
+      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{logo}}?x-oss-process=style/logo"></image></view>
+      <text>{{name}}</text>
+      <view class='nbf-font'><image  mode="widthFix" src="{{baseUrl}}{{mallLogo}}"></image>{{mallName}}</view>
+    </view>
+  </view>
+  <view class='invi-i'><image  mode="widthFix" src="/image/icon.png"></image>申请成功后，您即可以批发价购买该供应商店铺的商品</view>
+</view>
+<view class='add-bottom'>
+  <view bindtap='goBack'>取消</view>
+  <view bindtap='invita'>申请</view>
+</view>

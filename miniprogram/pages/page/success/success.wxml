@@ -1,0 +1,6 @@
+<view class='su-back'>
+  <image src="/image/suc.png"></image>
+  <view>支付成功</view>
+  <button bindtap='addWrite'>完成</button>
+  <view class='sc-font'  bindtap='urlHome'>返回首页</view>
+</view>

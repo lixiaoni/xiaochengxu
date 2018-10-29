@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "申请小云店",
+  "usingComponents": {
+    "spec": "../../../../assembly/specifications/spec",
+    "mes": "../../../../assembly/tips/tips"
+  }
+}

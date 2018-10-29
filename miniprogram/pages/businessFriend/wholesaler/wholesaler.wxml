@@ -1,0 +1,34 @@
+ <view class="goods-ser">
+    <input placeholder="输入小云店名、手机号、备注名"   bindinput='changeValue'   value="{{value}}"/>
+    <image class="home-ser"  src="/image/search1.png"></image>
+    <view class='home-img' bindtap='searchBtn' >
+        筛选
+    </view>
+  </view>
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <navigator class="weui_cells" url="../addWholesaler/addWholesaler">
+      <image  mode="widthFix" src="/image/w1.png"></image>
+      <text class="bf-font">添加供应商 </text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='bf-all'>全部供应商</view>
+<scroll-view scroll-y="true" style="height:100%;">
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <navigator class="weui_cells" wx:for='{{detailList}}' wx:key='{{index}}' url="../information/information?status=2&send={{item.send}}&accept={{item.storeId}}&remark={{item.remark}}&name={{item.storeName}}&logo={{item.storeLogo}}">
+      <image  mode="widthFix" src="{{baseUrl}}{{item.storeLogo}}?x-oss-process=style/logo"></image>
+      <text>{{item.remark==null?item.storeName:item.remark}}</text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/11.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='allData'>{{totalCount}}位供应商</view>
+</scroll-view>
+

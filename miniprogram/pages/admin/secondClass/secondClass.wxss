@@ -1,0 +1,10 @@
+@import '../firstClass/firstClass';
+.shop-cont>view {
+  border-top:2rpx solid #F1F1F1;border-bottom: 0;
+}
+.shop-cont .shop-size {
+  border-bottom: 0; margin-bottom:20rpx;padding-top:20rpx;padding-bottom:30rpx;border-top: 0;
+}
+.shop-cont text{
+  margin-left: 10rpx;color: #CCAA77;
+}

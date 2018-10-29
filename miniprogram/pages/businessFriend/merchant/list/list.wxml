@@ -1,0 +1,31 @@
+ <view class="goods-ser">
+    <input placeholder="输入进货商名称、手机号、备注名"   bindinput='changeValue'   value="{{value}}"/>
+    <image class="home-ser"  src="/image/search1.png"></image>
+    <view class='home-img' bindtap='searchBtn' >
+        搜索
+    </view>
+  </view>
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <navigator class="weui_cells" url="../addMerchant/addMerchant">
+      <image  mode="widthFix" src="/image/w1.png"></image>
+      <text class="bf-font">添加进货商 </text>
+      <view class='weui-view' style='top:10rpx'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='bf-all'>全部进货商</view>
+<scroll-view scroll-y="true" style="height:100%;">
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <navigator class="weui_cells" wx:for='{{detailList}}' wx:key='{{index}}' url="../reach/reach?status=2&send={{item.send}}&accept={{item.purchaserUserId}}&remark={{item.remark}}">
+      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.headPic}}?x-oss-process=style/logo"></image></view>
+      <text>{{item.remark==null || item.remark==''?item.nickName:item.remark}}</text>
+    </navigator>
+  </view>
+</view>
+<view class='allData'>{{totalCount}}位批发商</view>
+</scroll-view>
+

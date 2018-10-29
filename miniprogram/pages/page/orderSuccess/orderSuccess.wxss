@@ -1,0 +1,56 @@
+/* pages/page/orderSuccess/orderSuccess.wxss */
+page{
+  background: #fff;
+}
+.box{
+  padding: 60rpx 50rpx 20rpx;
+}
+.flex-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title-text{
+  font-size: 30rpx;
+}
+.blod{
+  font-weight: 600;
+}
+.money{
+  font-size: 60rpx;
+  color: #ccaa77;
+  font-weight: 600;
+  margin: 30rpx 0 60rpx;
+}
+
+.tip{
+  font-size: 26rpx;
+  color: #666;
+}
+.sure{
+  margin: 60rpx 0 50rpx;
+  width: 100%;
+  background: #ccaa77;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.msg-box{
+  margin-top: 60rpx;
+  border-top: 1rpx solid #eee;
+  padding:50rpx 20rpx 0;
+}
+
+.item-box{
+  display: flex;
+  margin: 20rpx 0;
+  font-size: 26rpx;
+}
+.item-title{
+  flex: 0 0 180rpx;
+  color: #666;
+}
+.item-msg{
+  flex: 1;
+}

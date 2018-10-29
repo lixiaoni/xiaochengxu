@@ -1,0 +1,7 @@
+<view class='home-em'>
+   <view class="cart-no-data">
+          <view class='nocar'><image src="/image/svg.png"></image></view>
+          <view>还未访问过小云店</view>
+          <navigator class='miniDetails' target="miniProgram" open-type="navigate" app-id="wx6241529c7dc70d51" path="pages/mall/newest/newest" extra-data="" version="trial">去逛逛百荣世贸</navigator>
+        </view>
+</view>

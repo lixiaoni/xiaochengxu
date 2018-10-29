@@ -1,0 +1,7 @@
+@import '../updateMes/updateMes';
+.page__hd1{
+  height: auto;
+}
+.page__hd1 .weui-cell1::before{
+  border-top: 0
+}

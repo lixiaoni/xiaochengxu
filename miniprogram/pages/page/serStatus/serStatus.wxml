@@ -1,0 +1,40 @@
+<view class="main">
+    <view class="search-box">
+        <input class="search-input" value="{{value}}" auto-focus='ture' placeholder-class='pre-input' placeholder='请输入商品关键词'   bindinput="searchInput" />
+        <image class="home-ser-new"  src="/image/search.png"></image>
+        <view class='serCont' bindtap="searchBtn" wx:if="{{!closeCont}}">搜索</view>
+        <image class="home-ser-new ser-font" bindtap='emptyInput' wx:if="{{closeCont}}" src="/image/ser.png"></image>
+    </view>
+    <view class="result" wx:if="{{showResult}}">
+        <view class="result-box" wx:if="{{result.length > 0}}">
+          <scroll-view  scroll-y="true" style="height:100%">
+            <view class="result-list" wx:for="{{result}}" wx:key="index">
+                <navigator url="../../page/goodsDetails/goodsDetails?goodsId={{item.id}}">
+                    <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+                    <view class="result-text">
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="result-text" style='color:#666'>
+                        <text>零售 <text style='color:#CCAA77'>￥{{item.sellPrice}}</text></text>
+                    </view>
+                </navigator>
+            </view>
+            <view class='nomore'>没有更多了</view>
+            </scroll-view>
+        </view>
+        <view class="result-null" wx:if="{{result.length==0}}">
+            <view class="null-tips">搜索结果为空！</view>
+        </view>
+    </view>
+    <view class="init-page" wx:else>
+        <view wx:if="{{history.length > 0}}">
+          <image  bindtap="removeAll"  src="/image/rev.png"></image>
+            <view class="title">
+                <text>历史搜索</text>
+            </view>
+            <view class="tags">
+                <view wx:for="{{history}}" wx:key="index" ><text  bindtap="keywordHandle" data-name="{{item}}"  data-id='{{index}}'>{{item}}</text></view>
+            </view>
+        </view>
+    </view>
+</view>

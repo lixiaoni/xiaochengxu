@@ -1,0 +1,146 @@
+.cf-button button{
+  font-weight: 600;
+}
+.od-status{
+  background: #fff;
+  font-size: 28rpx;
+  overflow: hidden;
+}
+.od-status .od-view{
+  display: inline-block;
+  width: 20%;text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+}
+.od-status view.active{
+  color: #CCAA77;
+}
+.od-status .od-view view{
+  height: 4rpx;
+  width: 90rpx;
+  position: absolute;
+  bottom: 0;
+  background: #CCAA77;
+  left: 50%;
+  display:none;
+  margin-left:-45rpx;
+}
+.od-status view.active view{
+  display: block
+}
+.cart-list .cart-thumb{
+  left: 30rpx;
+  text-align: center;
+  line-height: 150rpx;
+}
+/* 图 */
+.goods-icon{
+  max-width: 150rpx;
+  max-height: 150rpx;
+  display: inline;
+}
+.c-title{
+  border-bottom: 0;font-weight: bold;
+}
+.cart-list{
+  padding-left: 200rpx;
+  margin-left: 0;
+  background: #F6F6F6;
+  border-bottom: 10rpx solid #fff;
+}
+.c-title .itimg{
+ width: 35rpx;
+ height: 35rpx;
+ margin-top:0rpx;
+}
+.c-title text {
+  color: #CCAA77;
+  font-size: 28rpx;
+  font-weight: normal;
+}
+.c-title .o-close {
+  color: #999;
+}
+.cf-button{
+  background: #fff;
+  height: 120rpx;
+  position: relative;
+  padding:40rpx 30rpx;
+}
+.cf-button view{
+  font-size: 26rpx;
+  margin-bottom: 30rpx;
+  text-align: right;
+  color: #999;
+}
+.cf-button .or-font1{
+  color:#000;
+}
+.cf-button .or-font2{
+  margin-left: 20rpx;
+}
+.cf-button .or-font3{
+  color:#CCAA77;
+}
+.cf-button button{
+  /* width: 135rpx; */
+  width:auto;
+  padding:0 20rpx;
+  height: 55rpx;
+  margin-left: 15rpx;
+  float: right;
+  line-height:50rpx;
+  color: #999;
+  margin-top: 10rpx;
+  border:2rpx solid #D8D8D8;
+  background: #fff;
+  font-size: 24rpx;
+}
+.cf-button .or-time{
+  position: absolute;
+  left: 20rpx;
+  color: #333;
+  font-size: 28rpx;
+  bottom:0rpx;
+}
+.or-time text{
+  color: #CCAA77;
+  margin-left: 10rpx;
+}
+.cf-button button.or-active{
+ background: #CCAA77;
+ color: #fff;
+ border:2rpx solid #CCAA77;
+}
+.ct-title {
+  color: #333;
+}
+.or-no{
+  color: #BBBBBB;
+  text-align: center;
+  margin:40rpx 0;
+  font-size: 28rpx;
+}
+.inputActive .home-ser-new{
+  left:22%;
+  z-index: 100;
+}
+.order-zt{
+  color: #CCAA77;font-weight: normal;
+  border:2rpx solid #CCAA77;
+  font-size: 24rpx;padding:3rpx 12rpx;
+  position: relative;margin-left: 20rpx;
+}
+.mes-tel{
+  color: #CCAA77;font-weight:normal;
+  border-bottom: 2rpx solid #CCAA77;
+  min-width:265rpx;margin:0 auto;padding-top: 10rpx;display:inline-block;
+}
+.mes-tel1{
+  color: #CCAA77;font-weight:normal;font-size: 60rpx;border-top: 2rpx solid #F0F0F0;
+  width: 500rpx;margin:0 auto;margin-top: 30rpx;padding:10rpx 0;
+}
+.mes-text{
+  color: #999;font-size: 24rpx;font-weight:normal;margin-bottom: 70rpx;
+}

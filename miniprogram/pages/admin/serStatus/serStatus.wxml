@@ -1,0 +1,66 @@
+<view class="main">
+    <view class="search-box">
+        <input class="search-input" value="{{value}}" auto-focus='ture' placeholder-class='pre-input' placeholder='请输入商品关键词'   bindinput="searchInput" />
+        <image class="home-ser-new"  src="/image/search.png"></image>
+        <view class='serCont' bindtap="searchBtn" wx:if="{{!closeCont}}">搜索</view>
+        <image class="home-ser-new ser-font" bindtap='emptyInput' wx:if="{{closeCont}}" src="/image/ser.png"></image>
+    </view>
+    <view class="result" wx:if="{{showResult}}">
+     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{result}}" wx:key="">
+    <view class='content st-cont'  data-index="{{index}}">
+      <view class='column'>
+       <image class="editGoods"   bindtap='editGoods'  data-id='{{item.id}}' src="/image/mallr.png"></image>
+       <image class="cart-thumb" src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+       <view  class='st-d-t'>{{item.name}}</view> 
+       <view class='st-details'>
+          <view class='st-d-status'>
+            <view><text>零售:</text><text class='st-mom'>￥{{item.sellPrice}}</text></view>
+            <!-- <view>供货：400</view><view>零售：400</view> -->
+            <view>库存：{{item.stockNum}}<image class='warn' wx:if='{{item.stockNum<10}}' src="/image/warn.png"></image></view>
+          </view>
+          <view class='not' wx:if='{{item.stockNum<10}}'><view class='triangle_border_up'></view>该商品库存不足 请及时补货</view>
+        </view>
+      </view>
+      <view class='st-bottom'>
+          <view><button open-type="share" data-name='{{item.name}}' data-img='{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small' data-id='{{item.id}}'>转发</button></view>
+          <view bindtap='lookGoodsDetails'  data-id='{{item.id}}'>预览</view>
+          <view wx:if='{{item.status==0}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='changeStatus'>上架</view>
+          <view wx:if='{{item.status==1}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='upStatus'>下架</view>
+          <view wx:if='{{item.status==2}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='upStatus'>上架</view>
+          <view wx:if='{{item.status==4}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='upStatus'>上架</view>
+        </view>
+      </view>
+      <view class="del" catchtap="del" data-index="{{index}}" data-id='{{item.id}}'>删除</view>
+  </view>
+        <!-- <view class="result-box" wx:if="{{result.length > 0}}">
+          <scroll-view  scroll-y="true" style="height:100%">
+            <view class="result-list" wx:for="{{result}}" wx:key="index">
+                <navigator url="../../page/goodsDetails/goodsDetails?goodsId={{item.id}}">
+                    <image src="{{baseUrl}}{{item.mainImgUrl}}"></image>
+                    <view class="result-text">
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="result-text">
+                        <text>￥ {{item.marketPrice}}</text>
+                    </view>
+                </navigator>
+            </view>
+            <view class='nomore'>没有更多了</view>
+            </scroll-view>
+        </view> -->
+        <view class="result-null" wx:if="{{result.length==0}}">
+            <view class="null-tips">搜索结果为空！</view>
+        </view>
+    </view>
+    <view class="init-page" wx:else>
+        <view wx:if="{{history.length > 0}}">
+          <image  bindtap="removeAll"  src="/image/rev.png"></image>
+            <view class="title">
+                <text>历史搜索</text>
+            </view>
+            <view class="tags">
+                <view wx:for="{{history}}" wx:key="index" ><text  bindtap="keywordHandle" data-name="{{item}}"  data-id='{{index}}'>{{item}}</text></view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,4 @@
+@import '../status/status';
+.result{
+  padding-left: 0;
+}

@@ -1,0 +1,68 @@
+<!-- 设置备注 -->
+<spec
+  show="{{addSpec}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>设置备注</view>
+  <input placeholder-class='spec-class'  bindinput='watchInput' value='{{value}}'  class='spec-input'  placeholder='请输入文字，最多15个字' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm'>确定</view>
+</spec>
+<view class='bf-cont'>
+  <view class='bf-weui'>
+    <view class="weui_cells new-weui">
+      <view class='bf-img'><image  mode="aspectFill" src="/image/wytjimg.png"></image></view>
+      <text>戴俪名珠宝</text><text>（战略合作）</text>
+      <view class='nbf-font'><image  mode="widthFix" src="/image/dp.png"></image>百荣世贸</view>
+      <view class='nbf-font'>小云店名称：戴俪名珠宝店</view>
+    </view>
+  </view>
+  <!-- <view class='data-cont'>
+   <view><text>iKaren 珠宝店：</text><view>我方为有实力的供应商，符合贵公司主营范围，真诚地期望与您合作</view></view>
+   <view><text>iKaren 珠宝店：</text><view>好的，期待您的合作！</view></view>
+  </view> -->
+</view>
+<view class='bf-cont'>
+  <view class='bf-weui add-bf-weui' bindtap='setName'>
+    <view class="weui_cells">
+      <text class="bf-font">设置备注 </text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='bf-cont info-cont'>
+  <view class='in-cont'>
+   <text>主营范围</text><view>购物</view>
+  </view>
+  <view class='in-cont'>
+   <text>所在地址</text><view>北京市东城区永定门外大街101号 </view>
+  </view>
+   <view class='in-cont'>
+   <text>所属商城</text><view>北京市百荣世贸</view>
+  </view>
+  <view class='in-cont'>
+   <text>楼层区域</text><view>二期 F5 B区 5210 </view>
+  </view>
+  <view class='in-cont'>
+   <text>小云店</text>
+   <view>
+    <view class='in-more-img'><image  mode="widthFix" src="/image/userphoto.png"></image></view>
+    <view class='in-more-img'><image  mode="widthFix" src="/image/userphoto.png"></image></view>
+    <view class='in-more-img'><image  mode="widthFix" src="/image/userphoto.png"></image></view>
+    <view class='in-img'><image  mode="widthFix" src="/image/icl.png"></image></view>
+   </view>
+  </view>
+  <view class='in-cont'>
+   <text>手机号</text><view>956788954786<view class='in-cont-img'><image  mode="widthFix" src="/image/tel1.png"></image></view></view>
+  </view>
+  <view class='in-cont'>
+   <text>微信号</text><view>956788954786</view>
+  </view>
+  <view class='in-cont'>
+    <text>更多经营信息</text>
+    <view class='in-img'><image  mode="widthFix" src="/image/icl.png"></image></view>
+  </view>
+</view>
+<button class='bf-btn' bindtap='pass'>通过验证</button>
+<button class='bf-btn' bindtap='pass'>去进货</button>

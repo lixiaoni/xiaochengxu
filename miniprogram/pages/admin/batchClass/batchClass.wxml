@@ -1,0 +1,24 @@
+<view class='bt-cont' wx:if="{{hasList}}">
+  <view class='st-cont' wx:for="{{datas}}" wx:key="{{index}}">
+  <icon type="success"  wx:if="{{item.selected}}" color="#CCAA77" data-index="{{index}}"   bindtap="selectList"/>
+  <icon wx:else type="circle"  data-index="{{index}}" bindtap="selectList"/>
+    <image  src="{{item.image}}"></image>
+    <view class='st-details'>
+      <view class='st-d-t'>{{item.title}}</view>
+      <view class='st-d-status'>
+        <view><text>批发:</text><text class='st-mom'>￥{{item.priceP}}</text></view>
+        <view><text>零售:</text><text class='st-mom'>￥{{item.priceL}}</text></view>
+        <view>库存：{{item.num}}</view><view>引用：{{item.yy}}</view>
+        <view>进货：{{item.jh}}</view><view>销量：{{item.xl}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='bt-bottom'>
+    <view>
+    <icon type="success"  wx:if="{{allSelected}}" color="#CCAA77" data-index="{{index}}"   bindtap="selectAll"/>
+    <icon wx:else type="circle"  data-index="{{index}}" bindtap="selectAll"/>全选
+    </view>
+    <view>删除</view>
+    <view>分类至</view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "地址管理",
+  "usingComponents": {
+    "mes": "../../../../assembly/tips/tips",
+    "login": "../../login/login/login"
+  }
+}

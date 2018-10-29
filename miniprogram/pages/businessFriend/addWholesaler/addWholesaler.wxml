@@ -1,0 +1,12 @@
+ <view class="goods-ser">
+    <input placeholder="输入小云店名、手机号"  bindconfirm='searchBtn'    value="{{value}}"/>
+    <image class="home-ser"  src="/image/search1.png"></image>
+  </view>
+<view class='bf-cont' bindtap="click">
+  <view class='bf-weui add-bf-weui'>
+    <view class="weui_cells">
+      <image  mode="widthFix" src="/image/w4.png"></image>
+      <text class="bf-font">扫一扫 </text>
+    </view>
+  </view>
+</view>

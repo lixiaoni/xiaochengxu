@@ -1,0 +1,21 @@
+<view class='page'>
+  <view class='page__bd'>
+      <navigator class='weui-cell weui-cell_access' url='../updataPwd/updataPwd'>
+        <view class='weui-cell__bd'>
+          修改密码
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+      <navigator class='weui-cell weui-cell_access' url='../help/help'>
+        <view class='weui-cell__bd'>
+           帮助与反馈
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+  </view>
+  <button wx:if="{{token}}" bindtap='quit' class='aw-but'>退出登录</button>
+</view>

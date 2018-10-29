@@ -1,0 +1,44 @@
+<view class='page'>
+  <view class='page__bd'>
+      <navigator class='weui-cell' url='' >
+        <view class='weui-cell__bd'>
+           注册、登录、绑定
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='' >
+        <view class='weui-cell__bd'>
+           互动规则
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='' >
+        <view class='weui-cell__bd'>
+           订单问题
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='' >
+        <view class='weui-cell__bd'>
+           结算支付
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+      <navigator class='weui-cell' url='' >
+        <view class='weui-cell__bd'>
+           售后服务
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+  </view>
+</view>

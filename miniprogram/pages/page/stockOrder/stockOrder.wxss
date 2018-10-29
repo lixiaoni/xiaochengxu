@@ -1,0 +1,5 @@
+@import '../../role/order/order';
+@import '../../role/common/common';
+.td{
+  overflow: hidden;
+}

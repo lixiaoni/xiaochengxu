@@ -1,0 +1,62 @@
+<view class='wd-pic'>
+  <view class='weui-cell'>
+    <view class='weui-cell__bd' bindtap='changeIcon'>
+      <text>用户头像</text>
+      <image class='pic' src="{{user.headPic?baseUrl+user.headPic+'?x-oss-process=style/logo':'/image/42.png'}}"></image>
+    </view>
+    <view class='weui-img'>
+      <image src="/image/icl.png"></image>
+    </view>
+  </view>
+</view>
+<view class='page_bd'>
+  <view class='weui-back'>
+    <navigator class='weui-cell' url='../update/update?name={{user.nickName}}&type=name'>
+      <view class='weui-cell__bd'>
+        用户昵称
+        <text>{{user.nickName}}</text>
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd' bindtap='updataSex'>
+        性别
+        <text wx:if="{{user.gender==0 || !user.gender}}">保密</text>
+        <text wx:else>{{user.gender==1?"男":"女"}}</text>
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </view>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd'>
+        <picker class='picker' mode="date" value="{{user.birthday}}" start="1900-01-01" end="2017-09-01" bindchange="bindDateChange">
+          出生日期
+          <text>{{user.birthday}}</text>
+        </picker>
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </view>
+
+    <navigator class='weui-cell' url='../update/update?name={{user.weixinNumber}}&type=wx'>
+      <view class='weui-cell__bd' bindtap='changeWx'>
+        微信号
+        <text>{{user.weixinNumber}}</text>
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+
+  </view>
+</view>
+<view class='showHide' hidden='{{show}}'>
+  <view class='sh-cont'>
+    <view wx:for='{{sexData}}' wx:key="index" data-text="{{item.val}}" bindtap='choseSex'>{{item.sex}}</view>
+    <view bindtap='closeShow'>取消</view>
+  </view>
+</view>

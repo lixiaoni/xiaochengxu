@@ -1,0 +1,7 @@
+<view class='shop-cont'>
+  <view class='shop-size'>已选定 {{pName}} ><text>{{name}}</text></view>
+  <view wx:for='{{dataList}}' wx:key='{{index}}'  bindtap='classFun'>
+    {{item.name}}
+  </view>
+</view>
+

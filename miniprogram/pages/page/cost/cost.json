@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "邮费设置",
+  "usingComponents": {
+    "login": "../../login/login/login"
+  }
+}

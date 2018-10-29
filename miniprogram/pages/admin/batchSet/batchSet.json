@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "起批设置",
+  "usingComponents": {
+    "spec": "../../../../assembly/specifications/spec"
+  }
+}

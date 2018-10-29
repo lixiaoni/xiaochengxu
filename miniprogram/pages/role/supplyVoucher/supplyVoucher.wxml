@@ -1,0 +1,20 @@
+<view class='box'>
+  <textarea bindinput='input' class='textarea' placeholder="请输入凭证描述..."></textarea>
+  
+  <view class='add-voucher' wx:if='{{url}}'>
+    <image bindtap='showImg' data-url="{{base+url}}" class='user-img' mode='aspectFit' src='{{base+url}}'></image>
+  </view>
+  <view  wx:else class='add-voucher' bindtap='choseImg'>
+    <image class='add-img' src='/image/add3.png'></image>
+  </view>
+  <view class='tip-box'>
+    <text class='tip-font'>请上传清晰的支付凭证图片，工作人员审核凭证，请耐心等待</text>
+  </view>
+  <!-- 支付方式 -->
+  <view class='pay-type'>
+    <text>支付方式：</text>
+    <text>其他支付方式</text>
+  </view>
+
+  <button bindtap='upload' class='sure'>确认提交</button>
+</view>

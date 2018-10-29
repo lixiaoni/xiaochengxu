@@ -1,0 +1,20 @@
+@import '../merchantInfo/merchantInfo';
+.in-cont .weui-view{
+  width:30rpx;top: 40rpx;right: 30rpx;
+}
+.picker{
+  color: #333;font-size:28rpx;position: relative;z-index: 100;min-width:400rpx;height:50rpx;
+}
+.in-cont text{
+  top: 32rpx;
+}
+.in-cont  .picker text{
+  position: relative;left: 0;top: 0;
+}
+.in-cont .weui-view{
+  top: 39rpx;
+}
+.sh-cont view:nth-child(3){
+  border-bottom-left-radius:10rpx;
+  border-bottom-right-radius:10rpx;
+}

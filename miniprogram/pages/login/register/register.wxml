@@ -1,0 +1,49 @@
+<import src='../login/login.wxml'/>
+    
+    <login-component id='login' inner-text="Some text"></login-component>
+
+    <view class='reg-box'>
+    <view class='login-title-box'>
+        <text class='login-title-text'>注册</text>
+      </view>
+
+      <view class='text-sm login-tip-box'>欢迎您来到小云店</view>
+
+      <view class='login-box'>
+        <view class='flex-box'>
+          <image src='/image/telephone.png' class='login-icon'></image>
+          <input type='number' value='{{telephone}}' placeholder-class='pre-input' placeholder='请输入手机号' bindinput='savePhone'></input>
+        </view>
+        <!-- <text class='text-yellow'>自动获取</text> -->
+      </view>
+      <view class='padding-box'></view>
+        <view class='flex-box' style='height:100rpx;'>
+          <view class='code-box'>
+            <image src='/image/v-code.png' class='login-icon'></image>
+            <input type='number' value='{{verificationCode}}' placeholder-class='pre-input' placeholder='请输入验证码' bindinput='saveCode'></input>
+          </view>
+          <button disabled='{{disabled}}' bindtap='getCode' class='text-yellow get-code' plain='true'>{{buttonTimer}}</button>
+        </view>
+
+      <view class='padding-box'></view>
+
+        <view class='login-box'>
+        <view class='flex-box'>
+          <image src='/image/lock.png' class='login-icon'></image>
+          <input type='text' password='{{ifhide}}' value='{{password}}' placeholder-class='pre-input' placeholder='请输入密码' bindinput='savePass'></input>
+          
+        </view>
+        <image class='pass-img' src='{{see}}' bindtap='showHide'></image>
+      </view>
+      
+      <view class='tip-text'>{{tip}}</view>
+
+      <view class='btn {{btnID}} register-btn'  bindtap='register'>立即注册</view>
+
+      <view class='to-login text-xs text-yellow'></view>
+      <!-- <view class='to-login text-xs text-yellow' bindtap='showPage'>我已有账号，<text  style='font-weight:600;'>立即登录</text></view> -->
+
+      <view class='text-sm user-agreement flex-box' style="justify-content:center;">注册后即完成阅读并同意<navigator class='text-yellow text-underline' url=""     hover-class="navigator-hover">《用户协议》 </navigator>
+      </view>
+    
+    </view>

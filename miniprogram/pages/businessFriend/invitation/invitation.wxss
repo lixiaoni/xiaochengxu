@@ -1,0 +1,25 @@
+@import '../information/information';
+.invi-i{
+  font-size: 28rpx;color: #888;position: relative;padding-left: 50rpx;padding-bottom: 30rpx;
+}
+.invi-i image{
+  width: 35rpx;position: absolute;top: 5rpx;left:5rpx;
+}
+.bf-all{
+  margin-top: 10rpx;
+}
+input{
+  height: 120rpx;line-height: 120rpx;
+}
+.weui-view{
+  z-index: 1000
+}
+textarea {
+  height: 100rpx;padding-top: 20rpx;
+}
+.add-bf-weui1 .weui_cells{
+  line-height: 40rpx;
+}
+.add-bf-weui1 .weui-view{
+  top: 43rpx;
+}

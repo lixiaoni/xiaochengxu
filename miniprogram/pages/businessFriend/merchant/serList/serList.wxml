@@ -1,0 +1,28 @@
+<view class='bf-imput'>
+   <view class="goods-ser">
+    <input placeholder="输入进货商名称、手机号"   bindconfirm="searchBtn"   value="{{value}}"/>
+    <image class="home-ser"  src="/image/search.png"></image>
+    <view class='home-img'>
+      <image  src="/image/ser.png"></image>
+    </view>
+  </view>
+</view>
+<view class='bf-all'>搜索结果</view>
+<view class='bf-cont'>
+  <scroll-view scroll-y="true" style="height:100%;">
+  <view class='bf-weui'>
+    <!-- <navigator wx:for='{{detailList}}' wx:key='{{index}}' class="weui_cells"  url="../merchantInfo/merchantInfo?status=0&send={{storeId}}&accept={{item.userId}}&remark=&greet=&name={{item.nickName}}&logo={{baseUrl}}{{item.headPic}}&phone={{item.mobile}}">
+      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.headPic}}?x-oss-process=style/logo "></image></view>
+      <text><text></text>{{item.nickName}} </text>
+      <view class='nbf-font'>手机号：{{item.mobile}}</view>
+    </navigator> -->
+    <view wx:for='{{detailList}}' wx:key='{{index}}' class="weui_cells">
+      <view class='v'  bindtap='clickSer' data-accept='{{item.userId}}' data-name='{{item.nickName}}' data-logo='{{baseUrl}}{{item.headPic}}' data-phone='{{item.mobile}}'></view>
+      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.headPic}}?x-oss-process=style/logo "></image></view>
+      <text><text></text>{{item.nickName}} </text>
+      <view class='nbf-font'>手机号：{{item.mobile}}</view>
+    </view> 
+  </view>
+  </scroll-view>
+</view>
+

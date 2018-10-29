@@ -1,0 +1,109 @@
+<view class='order-box'>
+  <view class='price-box'>
+    <image class='logo' src='/image/youlife.png'></image>
+    <view>
+      <text class="com">新购-优生活小云店</text>
+    </view>
+    <view>
+      <text class="price">￥5680.00</text>
+    </view>
+  </view>
+
+  <view class='order-title'>
+    <view>
+      <text class='store-name'>小云店商城专业版</text>
+      <text class='store-type'>新批零</text>
+    </view>
+    <text class='youyou'>已付款</text>
+  </view>
+
+  <view class='msg-box'>
+
+    <view class='msg-item'>
+      <text class='msg-title'>服务时间</text>
+      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceTerm}}</text>
+    </view>
+
+    <view class='msg-item'>
+      <text class='msg-title'>开始时间</text>
+      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateBegin}}</text>
+    </view>
+
+    <view class='msg-item'>
+      <text class='msg-title'>结束时间</text>
+      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateEnd}}</text>
+    </view>
+
+    <view class='msg-item'>
+      <text class='msg-title'>电话号码</text>
+      <text class="msg-content">{{mag.userInfoVO.mobile}}</text>
+    </view>
+
+    <view class='msg-item'>
+      <text class='msg-title'>服务状态</text>
+      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceStatus==1?"已开通":"未开通"}}</text>
+    </view>
+
+    <view class='msg-item'>
+      <text class='msg-title'>剩余时间</text>
+      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.surplusDay}} 天</text>
+    </view>
+
+  </view>
+
+</view>
+
+<view class='order-box'>
+
+  <view>
+    <view class='msg-item'>
+      <text class='msg-title'>订单号</text>
+      <text class="msg-content">{{msg.orderNumber}}</text>
+    </view>
+    <view class='msg-item'>
+      <text class='msg-title'>交易单号</text>
+      <text class="msg-content">{{}}</text>
+    </view>
+    <view class='msg-item'>
+      <text class='msg-title'>下单时间</text>
+      <text class="msg-content">{{msg.createDate}}</text>
+    </view>
+    <view class='msg-item'>
+      <text class='msg-title'>付款时间</text>
+      <text class="msg-content">{{msg.payDate}}</text>
+    </view>
+  </view>
+
+  <view class='border'></view>
+
+  <view class="invoiceBox">
+    <view class='msg-item'>
+      <text class='msg-title'>发票信息</text>
+      <text class="msg-content">{{msg.receiptInfo.invoiceCategory}}</text>
+    </view>
+    <view class='msg-item'>
+      <text class='msg-title'>公司名称</text>
+      <text class="msg-content">{{msg.receiptInfo.invoiceTitle}}</text>
+    </view>
+    <view class='msg-item'>
+      <text class='msg-title'>纳税人识别号</text>
+      <text class="msg-content">{{msg.receiptInfo.identificationNumber}}</text>
+    </view>
+  </view>
+
+</view>
+
+<view class='order-box'>
+  <view class='pay-item'>
+    <text class='msg-title'>支付方式</text>
+    <text class="msg-content">其他支付方式</text>
+  </view>
+  <view class='pay-item'>
+    <text class='msg-title'>优惠码支付</text>
+    <text class="msg-content">￥{{msg.yunStoreGoodsOrderInfo.preferentialPrice}}</text>
+  </view>
+  <view class='pay-item' style='padding:0;'>
+    <text class='msg-title'>实付金额</text>
+    <text class="msg-content gold">￥{{msg.payAmount}}</text>
+  </view>
+</view>

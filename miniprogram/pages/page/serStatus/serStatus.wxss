@@ -1,0 +1,4 @@
+/* pages/serStatus/serStatus.wxss */
+.ser-font{
+  left: 88%;
+}

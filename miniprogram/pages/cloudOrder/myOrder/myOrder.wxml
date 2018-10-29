@@ -1,0 +1,47 @@
+<view class='order-box' wx:if="{{msg}}">
+  <view class='order-title'>
+    <view>
+      <text class='store-name'>小云店商城专业版</text>
+      <text class='store-type'>新批零</text>
+    </view>
+    <text class='youyou'>已付款</text>
+  </view>
+
+  <view class='price-box'>
+    <view class='tip-font'>
+      <text>新购</text>
+      <text class='line'></text>
+      <text>订单金额</text>
+    </view>
+    <view>
+      <text class="price">￥{{msg.payAmount}}</text>
+    </view>
+  </view>
+
+  <navigator url='../orderDetail/orderDetail?num={{msg.orderNumber}}'>
+  <view class='bb'>
+    <view class='msg-box'>
+      <view class='msg-item'>
+        <text class='msg-title'>服务时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceTerm}}</text>
+      </view>
+      <view class='msg-item'>
+        <text class='msg-title'>开始时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateBegin}}</text>
+      </view>
+      <view class='msg-item'>
+        <text class='msg-title'>结束时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateEnd}}</text>
+      </view>
+      <view class='msg-item'>
+        <text class='msg-title'>下单时间</text>
+        <text class="msg-content">{{msg.createDate}}</text>
+      </view>
+    </view>
+    <image class='more' src='/image/mallr.png'></image>
+  </view>
+  </navigator>
+
+</view>
+
+<view class='company'>优生活技术支持</view>

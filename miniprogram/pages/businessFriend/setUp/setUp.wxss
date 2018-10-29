@@ -1,0 +1,4 @@
+@import '../../admin/batchSet/batchSet';
+.shop-cont view.nView{
+  padding-bottom: 0;
+}

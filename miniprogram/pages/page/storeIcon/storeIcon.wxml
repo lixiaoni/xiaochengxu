@@ -1,0 +1,9 @@
+<view class='erm-cont' style='padding:100rpx;'>
+  <view class='erm-img'><image wx:if='{{urlCode}}'  mode="widthFix" src="{{baseUrl}}{{urlCode}}?x-oss-process=style/qrcode"></image></view>
+  <view style='margin-top:0;'>分享小程序，获取更多流量吧</view>
+</view>
+<view class='bottom-box' style='font-weight:100;'>
+  <view class='bottom-item' bindtap='saveImg'><image  src="/image/downimg.png"></image>保存至相册</view>
+  <view class='line'></view>
+  <button class='bottom-item' open-type="share"><image  src="/image/fenxiang.png"></image>推广给朋友</button>
+</view>

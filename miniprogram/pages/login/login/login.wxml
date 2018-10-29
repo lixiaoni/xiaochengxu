@@ -1,0 +1,98 @@
+<!--pages/lpgin/login.wxml-->
+<view class='login' hidden='{{!pageShow}}'>
+  
+  <view class='login-model'>
+    <!--忘记密码  -->
+    <view wx:if="{{forget == true}}">
+
+      <view class='login-title-box'>
+        <text class='login-title-text'>忘记密码</text>
+      </view>
+      
+
+      <view class='login-box'>
+        <view class='flex-box'>
+          <image src='/image/telephone.png' class='login-icon'></image>
+          <input type='number' value='{{telephone}}'  placeholder-class='pre-input' placeholder='请输入手机号' bindinput='savePhone'></input>
+        </view>
+      </view>
+
+
+      <view class='flex-box' style='padding-top:30rpx;'>
+          <view class='code-box'>
+            <image src='/image/v-code.png' class='login-icon'></image>
+            <input type='number' value='{{verificationCode}}' placeholder-class='pre-input' placeholder='请输入验证码' bindinput='saveCode'></input>
+          </view>
+          <button disabled='{{disabled}}' bindtap='getCode' class='text-yellow get-code'  plain='true'>{{buttonTimer}}</button>
+        </view>  
+
+
+      <view class='login-box' style='padding-top: 30rpx;'>
+        <view class='flex-box'>
+          <image src='/image/lock.png' class='login-icon'></image>
+          <input type='text' password='{{ifhide}}' value='{{password}}' placeholder='请输入新密码' bindinput='savePass'></input>
+        </view>
+        <image class='pass-img' src='{{see}}' bindtap='showHide'></image>
+      </view>
+        
+        <view class='padding-box'></view>
+        <view class='padding-box'></view>
+        <view class='padding-box'></view>
+        
+        <view class='btn loginBtnAc' bindtap='creatNewPassword'>确定</view>
+
+    </view>
+    <!-- 登录 -->
+    <block wx:else>
+      <view class='login-title-box'>
+        <text wx:if="{{loginType=='code'}}" class='login-title-text'>快捷登录</text>
+        <text wx:else class='login-title-text'>账号登录</text>
+        <text wx:if="{{loginType=='code'}}" class='text-yellow text-underline' bindtap='changeLoginType'>账号登录</text>
+        <text wx:else class='text-yellow text-underline' bindtap='changeLoginType'>快捷登录</text>
+      </view>
+
+      <view class='text-sm login-tip-box'>成为进货商即可享受批发价</view>
+      <!-- 输入部分 -->
+      <view class='login-box'>
+        <view class='flex-box'>
+          <image src='/image/telephone.png' class='login-icon'></image>
+          <input type='number' value='{{telephone}}' placeholder='请输入手机号' bindinput='savePhone'></input>
+        </view>
+        <!-- <text class='text-yellow'>自动获取</text> -->
+      </view>
+
+      <block wx:if="{{loginType=='code'}}">
+        <view class='flex-box' style='padding-top:30rpx;'>
+          <view class='code-box'>
+            <image src='/image/v-code.png' class='login-icon'></image>
+            <input type='number' value='{{verificationCode}}' placeholder='请输入验证码' bindinput='saveCode'></input>
+          </view>
+          <button disabled='{{disabled}}' bindtap='getCode' class='text-yellow get-code'  plain='true'>{{buttonTimer}}</button>
+        </view>
+      </block>
+
+      <view wx:else class='login-box' style='padding-top:30rpx;height:100rpx;'>
+        <view class='flex-box'>
+          <image src='/image/lock.png' class='login-icon'></image>
+          <input type='text' password='{{ifhide}}' value='{{password}}' placeholder='请输入密码' bindinput='savePass'></input>
+        </view>
+        <image class='pass-img' src='{{see}}' bindtap='showHide'></image>
+      </view>
+
+      <view class='flex-box login-register'>
+        <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator>
+        <text bindtap='forgetPass' wx:if="{{loginType=='pass'}}" style='color: #8c8c8c;'>忘记密码</text>
+      </view>
+      
+      <view class='btn {{btnID}}' bindtap='login'>登录</view>
+
+      <view class='text-sm user-agreement flex-box' style="justify-content:center;">登录后即完成阅读并同意<navigator class='text-yellow text-underline' url=""     hover-class="navigator-hover">《用户协议》 </navigator>
+      </view>
+    
+    
+  
+  </block>
+
+  <image src='/image/login-close.png' class='close-btn' bindtap='closePage'></image>
+  </view>
+</view>

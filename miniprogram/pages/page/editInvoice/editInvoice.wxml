@@ -1,0 +1,18 @@
+<view class='page__hd page__hd1'>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd'>
+        是否提供发票
+      </view>
+      <view  class='weui-img' bindtap='emptyVal'><switch color="#CCAA77" checked='{{switch1Change}}' bindchange="switch1Change"/></view>
+    </view>
+      <view  hidden='{{show}}' class='weui-cell {{index>0?"weui-cell1":""}}' wx:for='{{data}}' wx:key='index'>
+        <view class='weui-cell__bd'>
+          {{item.name}}
+        </view>
+        <view  class='weui-img' bindtap='emptyVal'>
+          <icon type="success" color="#CCAA77" data-index="{{index}}" data-name='{{item.name}}' wx:if="{{item.selected}}" class="cart-pro-select" bindtap="selectList"/>
+      <icon type="circle" color="#CCAA77" data-index="{{index}}" data-name='{{item.name}}' wx:else class="cart-pro-select" bindtap="selectList"/>
+        </view>
+      </view>
+  </view>
+  <button bindtap='updateMes' class='aw-but'>确定</button>

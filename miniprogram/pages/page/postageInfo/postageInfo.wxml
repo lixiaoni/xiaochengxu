@@ -1,0 +1,9 @@
+
+<view class='shop-cont shop-cont1'>
+  <view>
+      邮费到付<switch color="#CCAA77" checked='{{switch1Change}}' data-index="1"  bindchange="switch1Change"/>
+  </view>
+  <view>
+      全场包邮<switch color="#CCAA77" checked='{{!switch1Change}}' data-index="0" bindchange="switch1Change"/>
+  </view>
+</view>

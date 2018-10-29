@@ -1,0 +1,2 @@
+@import '../../businessFriend/merchant/setUp/setUp';
+.shop-cont>view{height: 90rpx;padding-top: 10rpx;}

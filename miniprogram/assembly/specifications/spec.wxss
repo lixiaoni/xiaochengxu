@@ -1,0 +1,7 @@
+@import '../close/close';
+.modal-dialog{
+  height: auto;padding-bottom: 50rpx;
+}
+.slot {
+  width: 550rpx;
+}

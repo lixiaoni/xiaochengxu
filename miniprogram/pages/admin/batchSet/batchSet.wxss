@@ -1,0 +1,14 @@
+@import '../spec/spec.wxss';
+@import '../class/class.wxss';
+.shop-cont{font-size: 32rpx;}
+.shop-cont view{padding-top: 0}
+.shop-cont switch{float: right;margin-top: 0rpx;margin-right: -10rpx;}
+.shop-cont .nView image{width: 35rpx;height: 35rpx;position: absolute;left:0rpx;top: 5rpx;}
+.shop-cont view.nView{font-size: 28rpx;color: #888888;position: relative;padding-left: 50rpx;padding-bottom: 40rpx;}
+.shop-cont1{margin-bottom: 0}
+.shop-cont .setnum{padding-bottom: 0;border-top: 2rpx solid #EEEEEE;padding-top: 25rpx;}
+.shop-cont>view view{border:0;top:25rpx;right:5rpx;}
+.shop-cont1 view:nth-child(3){padding-bottom: 0;}
+.weui-img{margin-top: 7rpx;}
+.spec-title {margin-bottom: 50rpx;}
+.spec-title view{font-size: 26rpx;color: #888888;font-weight: normal;padding-top: 10rpx;}

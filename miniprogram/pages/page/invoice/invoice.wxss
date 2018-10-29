@@ -1,0 +1,44 @@
+.invoice{
+  background: #fff;
+  border-radius: 8rpx;
+  margin: 40rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.invoice .in-title{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 30rpx;
+  color: #333;
+  position: relative;
+  font-size: 28rpx;
+}
+button,.button-hover{
+  color: #fff;
+  font-size:30rpx;
+  background: #CCAA77;
+  margin:0 70rpx;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+.invoice view icon{
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+}
+.in-input{
+  padding-bottom:10rpx;
+}
+.in-input input{
+  color: #333;
+  font-size: 24rpx;
+  height: 70rpx;
+  border:2rpx solid #EDEDED;
+  border-radius: 4rpx;
+  margin:20rpx 40rpx;
+  padding-left: 30rpx;
+}
+text{
+  color: #999;
+  font-size: 24rpx;
+  margin-left: 40rpx;
+}

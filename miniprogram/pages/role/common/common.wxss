@@ -1,0 +1,19 @@
+.c-title {
+  border-bottom: 2rpx solid #EEEEEE;
+}
+.cart-list{
+  background: none;
+}
+.ct-title {
+  width: 500rpx;
+}
+.heji{
+  font-size: 26rpx;color: #999;position: absolute;right: 30rpx;bottom:30rpx;
+}
+
+.cf-button .or-font3 {
+  font-weight: bold;
+}
+.or-last{
+  margin-bottom: 20rpx;
+}

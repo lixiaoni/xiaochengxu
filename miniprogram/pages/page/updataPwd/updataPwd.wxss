@@ -1,0 +1,15 @@
+@import '../set/set.wxss';
+.input-box{
+  display: flex;
+  align-items: center;
+  height: 100rpx;  
+  padding:0 35rpx;
+  font-size:30rpx;
+}
+.input-box input{
+  font-size:28rpx;
+  padding-top:2rpx;
+}
+.input-box>view{
+  width: 170rpx;
+}

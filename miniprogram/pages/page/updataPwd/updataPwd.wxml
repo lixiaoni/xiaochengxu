@@ -1,0 +1,17 @@
+<view class='page__bd'>
+  <view class='input-box'>
+    <view>登录密码</view>
+    <input bindinput='watchInput' data-type='old' password='true' placeholder='请输入原密码'></input>
+  </view>
+</view>
+<view class='page__bd'>
+  <view class='input-box'>
+    <view>设置密码</view>
+    <input bindinput='watchInput' data-type='new' password='true' placeholder='请设置新密码'></input>
+  </view>
+  <view class='input-box'>
+    <view>重置密码</view>
+    <input bindinput='watchInput' data-type='re' password='true' placeholder='请再次输入'></input>
+  </view>
+</view>
+<button bindtap='sure' class='aw-but'>完成</button>

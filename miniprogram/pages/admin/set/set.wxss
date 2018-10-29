@@ -1,0 +1,32 @@
+@import '../firstClass/firstClass';
+@import '../addGoods/addGoods';
+.shop-cont .s-title image{
+  height: 40rpx;width: 40rpx;vertical-align: middle;margin-right:20rpx;margin-left: 25rpx;
+}
+.shop-cont>view view{
+  top:0; font-size:30rpx;
+}
+.shop-cont .s-title{
+  font-size: 30rpx;
+}
+.shop-cont>view{
+ padding-top: 0;height: 100rpx;line-height: 100rpx;margin-left: 0;
+}
+.shop-cont>view view {
+  display: inline-block;text-align: center;position: relative;width: 49%;border:0;
+}
+.shop-cont>view:last-child{
+  border-bottom: 0;
+}
+.pal-class{
+  color: #CCAA77;
+}
+.shop-cont>view view:nth-child(2){
+  border-left: 2rpx solid #E5E5E5;color: #333;font-size: 30rpx;
+}
+.shop-cont>view view:nth-child(3){
+ color: #333;font-size: 30rpx;
+}
+.shop-cont{
+  margin-bottom: 20rpx;
+}

@@ -1,0 +1,19 @@
+<view class="weui-cell">
+  <view class="weui-cell__hd">
+    <image hidden='{{!hasUser}}' mode='aspectFit' class='user-headPic' src='{{user.headPic?baseUrl+user.headPic+"?x-oss-process=style/goods-small":"/image/42.png"}}'></image>
+  </view>
+  <view class="weui-cell__name">
+    {{user.nickName}}
+    <image wx:if="{{user.gender==1}}" src='/image/man.png'></image>
+    <image wx:if="{{user.gender==2}}" src='/image/ermR.png'></image>
+  </view>
+</view>
+<view class='erm-cont' style='padding:0;'>
+  <view class='erm-img'><image style='height:540rpx;' wx:if="{{user}}" src="{{baseUrl+user.qrcode}}?x-oss-process=style/qrcode"></image></view>
+  <view style='margin-top:0;'>扫一扫二维码图案，加我商友</view>
+</view>
+<view class='bottom-box' style='font-weight:100;'>
+  <button class='bottom-item' bindtap='saveImg'><image  src="/image/downimg.png"></image>保存至相册</button>
+  <view class='line'></view>
+  <button class='bottom-item' open-type="share"><image  src="/image/fenxiang.png"></image>推广给朋友</button>
+</view>

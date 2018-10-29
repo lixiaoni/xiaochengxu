@@ -1,0 +1,36 @@
+<!-- 起批 -->
+<spec
+  show="{{together}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>起批件数<view>设置后，所有上架商品起批量自动同步</view></view>
+  <input placeholder-class='spec-class' type='number'  bindinput='watchInput' value='{{value}}'  class='spec-input'  placeholder='请输入起批数量' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm'>确定</view>
+</spec>
+<!-- 混批 -->
+<spec
+  show="{{batch}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>混批金额<view>一次性下单金额高于设置金额，即享批发价</view></view>
+  <input placeholder-class='spec-class'   bindinput='watchInput1' value='{{value1}}'  class='spec-input'  placeholder='请输入混批金额' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm1'>确定</view>
+</spec>
+<view class='shop-cont shop-cont1'>
+  <view>
+      起批量<switch color="#CCAA77" checked='{{!switch1Change}}' bindchange="switch1Change"/>
+  </view>
+  <view class='setnum' hidden='{{switch1Change}}' bindtap='togetherFun'>
+    起批件数<view>{{value}}<image class='weui-img' src="/image/icl.png"></image></view>
+  </view>
+  <view class='nView'><image src="/image/bac.png"></image>进货商下单时受每件商品起批量的限制</view>
+</view>
+<view class='shop-cont'>
+  <view>
+      混批<switch color="#CCAA77" checked='{{!switch2Change}}' bindchange="switch2Change"/>
+  </view>
+  <view class='setnum'  hidden='{{switch2Change}}' bindtap='batchFun'>
+    混批金额<view><text wx:if='{{value1!=""}}'>￥</text>{{value1}}<image class='weui-img' src="/image/icl.png"></image></view>
+  </view>
+  <view class='nView'><image src="/image/bac.png"></image>进货商只要一次性采购总金额达到或高于混批金 额，即可享受批发价</view>
+</view>

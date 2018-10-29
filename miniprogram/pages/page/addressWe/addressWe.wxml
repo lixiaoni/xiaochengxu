@@ -1,0 +1,36 @@
+<login id="login"></login>
+<!-- 删除 -->
+<mes
+  show="{{show1}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view>
+  <text>确认删除？</text>
+  <button bindtap='confirm'>确定</button>
+</view>
+</mes>
+<view wx:if="{{list.length>0}}">
+  <view class='aw-cont'>
+    <view class='aw-list' wx:for="{{list}}" wx:key="{{index}}" >
+      <view data-index='{{index}}' bindtap="selectAdd" style='padding-top:0rpx;'>
+        <view>{{item.userName}} <text>{{item.userPhone}}</text></view>
+        <view class='two-view'>{{item.province}} {{item.city}} {{item.county}} {{item.detailAddress}}</view>
+      </view>
+      <view class='aw-edit'>
+        <icon wx:if="{{item.isDefault}}" data-code='0' type="success" size='17' data-id='{{item.id}}' color="#CCAA77" data-index="{{index}}" bindtap="selectList"/>
+        <icon wx:else  type="circle" size='17' data-code='1'  data-index="{{index}}" data-id='{{item.id}}' bindtap="selectList"/>
+        设置默认
+        <view class='aw-view'>
+          <image  src="/image/edit.png" bindtap="editList" data-id='{{item.id}}'></image><view bindtap="editList" data-id='{{item.id}}'>编辑</view>
+          <image   src="/image/remove.png" data-index="{{index}}" bindtap="deleteList" data-id='{{item.id}}' ></image><view data-index="{{index}}" bindtap="deleteList" data-id='{{item.id}}'>删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='aw-but' bindtap='newAddress'><image  src="/image/add1.png"></image>新建地址</button>
+</view>
+<view class='aw-no' wx:else>
+  <image  src="/image/nono.png"></image>
+  <view>您还没有添加收货地址哦！</view>
+  <button  bindtap='newAddress'>新建地址</button>
+</view>

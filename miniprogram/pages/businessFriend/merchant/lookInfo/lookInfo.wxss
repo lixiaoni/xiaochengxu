@@ -1,0 +1,10 @@
+@import '../merchantInfo/merchantInfo';
+.lk-img{
+  position: absolute;right: 30rpx;top: 100rpx;width: 40rpx;height: 40rpx;z-index: 100;
+}
+.lk-img image{
+ width: 25rpx;
+}
+.weui_cells>image{
+  position: unset;width: 40rpx;height: 40rpx;margin-left: 10rpx;vertical-align: middle;margin-top: -2rpx;
+}

@@ -1,0 +1,9 @@
+<view   class="modal-mask {{show ? 'show':'hide'}}"></view>
+<view  class="modal-dialog {{show ? 'show':'hide'}}">
+  <view class="modal-content">
+    <view class="modal-title"><image src="/image/clo12.png"  bindtap='cancel'></image></view>
+      <view class='mes-m'>
+        <slot></slot>
+      </view>
+  </view>
+</view>

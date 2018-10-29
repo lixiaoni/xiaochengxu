@@ -1,0 +1,4 @@
+@import '../../invitation/invitation';
+.bf-img image{
+  border-radius: 50%;
+}

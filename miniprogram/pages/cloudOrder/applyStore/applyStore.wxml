@@ -1,0 +1,100 @@
+<!-- 弹窗 -->
+<spec show="{{modal}}" class='nide'>
+  <view class='spec-title'>恭喜您申请成功</view>
+  <view class='spec-tip'>欢迎加入小云店大家庭</view>
+  <view class='upload-box'>
+    <view class='add-voucher' wx:if='{{url}}'>
+      <image bindtap='showImg' class='user-img' mode='aspectFit' src='{{url}}'></image>
+    </view>
+    <image wx:else bindtap='choseImg' class='upload-icon' src='/image/uploadStore.png'></image>
+    <text class='up-text'>上传小云店LOGO</text>
+  </view>
+
+  <view class='stroe-name'>小云店名称（必填）：</view>
+  <view class='input-box'>
+    <input value='{{name}}' maxlength='15' bindinput='watchInput' data-type='name' type='text'></input>
+    <text>{{nameNum}}/15</text>
+  </view>
+  <button bindtap='open' class='open-btn'>开启我的小云店</button>
+</spec>
+<!-- 主营范围 -->
+<view class='business' wx:if='{{rangeModal}}'>
+  <view class='bus-box'>
+    <view class='chose-title'>选择主营范围，</view>
+    <view class='chose-title'>让顾客发现您的小云店</view>
+    <text class='c-tip'>根据顾客感兴趣的类目，可快速找到您的店铺</text>
+
+    <scroll-view class='c-item-box' scroll-y='true'>
+      <block wx:for="{{item}}" wx:key="{{index}}">
+        <text class='c-item {{item.checked?"c-item-ac":""}}' data-index='{{index}}' bindtap='pcikMe'>{{item.title}}</text>
+      </block>
+    </scroll-view>
+    <view class='chose-text'>{{itemNum}}/4</view>
+    <button bindtap='sureRange' class='sure-area'>确定</button>
+  </view>
+</view>
+
+<!-- 第二步 -->
+<view class='view-box'>
+  <view class='title-box'>
+    <view class='com-title'>周大福珠宝专卖店</view>
+    <text class='com-tip'>小云店ID：1239127391729387</text>
+  </view>
+  <view class='item-box padding-left padding-right'>
+    <text>从事业态</text>
+    <text>购物</text>
+  </view>
+
+  <view class='item-box padding-left' bindtap='showModal' data-type='range'>
+    <text>选择经营范围</text>
+    <image class='more' src='/image/icl.png'></image>
+  </view>
+</view>
+
+<view class='view-box'>
+  <view class='item-box padding-right'>
+    <view class="flex-center">
+      <image class='floor' src='/image/lou.png'></image>
+      <text>所属商城</text>
+    </view>
+
+    <view class="flex-center">
+      <image class='logo' src='/image/dp.png'></image>
+      <text>百荣世贸</text>
+    </view>
+
+  </view>
+
+  <view class='item-box' bindtap='showModal' data-type='floor'>
+    <view class="flex-center">
+      <image class='floor' src='/image/lou.png'></image>
+      <text>楼层区域</text>
+    </view>
+    <image class='more' src='/image/icl.png'></image>
+  </view>
+
+  <view class='item-box padding-left'>
+    <text>店铺号</text>
+    <image class='more' src='/image/icl.png'></image>
+  </view>
+</view>
+
+<button bindtap='next' class='next-step'>下一步</button>
+
+<view class='business' wx:if='{{floorModal}}'>
+  <view class='picker-box'>
+    <view class='picker-title'>选择楼层区域</view>
+    <picker-view value="[0,0,0]" class='picker' indicator-class="chosewola" bindchange="choseFloor">
+      <picker-view-column class='picker-border'>
+        <view wx:for="{{years}}" wx:key="{{index}}">{{item}}年</view>
+      </picker-view-column>
+      <picker-view-column class='picker-border'>
+        <view wx:for="{{months}}" wx:key="{{index}}">{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{days}}" wx:key="{{index}}">{{item}}日</view>
+      </picker-view-column>
+    </picker-view>
+    <view bindtap='sureFloor' class='picker-sure'>确认</view>
+  </view>
+</view>

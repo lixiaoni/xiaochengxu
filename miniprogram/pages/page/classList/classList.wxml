@@ -1,0 +1,26 @@
+<view>
+  <view class="result result-box" wx:if="{{result.length > 0}}">
+    <view class="result-list" wx:for="{{result}}" wx:key="index">
+      <navigator url="../goodsDetails/goodsDetails?goodsId={{item.id}}">
+        <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+        <view class="result-text">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="result-text result-text1">
+          零售
+          <text>￥ {{item.sellPrice}}</text>
+        </view>
+
+      </navigator>
+    </view>
+    <view class='nomore'>没有更多了</view>
+  </view>
+  <view class="result-null" wx:else>
+    <view class="nomore">
+      <view>
+        <image src="/image/nohome.png"></image>
+      </view>
+      暂时还没有商品哦
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+@import '../list/list';
+.du-title{
+  background: #fff;padding: 30rpx 0;
+}
+.du-title view{
+  width: 33.3%;display: inline-block;font-size: 28rpx;text-align: center;
+}
+.du-title view image{
+  width: 30rpx;height: 30rpx;vertical-align: middle;margin-top: -2rpx;
+}
+.du-title view.on{
+  color: #CFA272;
+}
+.de-right{
+  color: #999;float: right;margin-right: 20rpx;
+}

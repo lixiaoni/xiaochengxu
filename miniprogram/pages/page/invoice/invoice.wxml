@@ -1,0 +1,24 @@
+<view class='invoice'>
+  <view class='in-title' wx:for="{{dataInvoice}}" wx:if='{{index<3 && item.show}}' wx:key="{{index}}">{{item.title}}
+    <icon type="success" color="#CCAA77" data-index="{{index}}" wx:if="{{item.selected}}" class="cart-pro-select" bindtap="selectList"/>
+    <icon type="circle" color="#CCAA77" data-index="{{index}}" wx:else class="cart-pro-select" bindtap="selectList"/>
+  </view>
+   <view class='in-input {{aniStyle?"slideup":"slidedown"}}' hidden='{{ordinary}}'>
+    <input value="{{invoice.invoiceTitle}}" bindinput='watchInput' data-type='invoiceTitle'  placeholder='请输入公司发票抬头'></input>
+    <input value="{{invoice.identificationNumber}}" bindinput='watchInput' data-type='identificationNumber' placeholder='请输入纳税人识别号'></input>
+  </view>
+  <view class='in-title' wx:for="{{dataInvoice}}" wx:if='{{index>2 && item.show}}' wx:key="{{index}}">{{item.title}}
+    <icon type="success" color="#CCAA77" data-index="{{index}}" wx:if="{{item.selected}}" class="cart-pro-select" bindtap="selectList"/>
+    <icon type="circle" color="#CCAA77" data-index="{{index}}" wx:else class="cart-pro-select" bindtap="selectList"/>
+  </view>
+  <view class='in-input {{aniStyle?"slideup":"slidedown"}}' hidden='{{com}}'>
+    <input value="{{invoice.invoiceTitle}}" bindinput='watchInput' data-type='invoiceTitle' placeholder='请输入公司发票抬头'></input>
+    <input value="{{invoice.identificationNumber}}" bindinput='watchInput' data-type='identificationNumber' placeholder='请输入纳税人识别号'></input>
+    <input value="{{invoice.registeredAddress}}" bindinput='watchInput' data-type='registeredAddress'   placeholder='请输入注册地址'></input>
+    <input value="{{invoice.registererMobile}}" bindinput='watchInput' data-type='registererMobile'   placeholder='请输入注册电话号码'></input>
+    <input value="{{invoice.depositBank}}" bindinput='watchInput' data-type='depositBank'   placeholder='请输入开户银行'></input>
+    <input value="{{invoice.depositBankNumber}}" bindinput='watchInput' data-type='depositBankNumber'   placeholder='请输入开户账号'></input>
+  </view>
+</view>
+<text hidden='{{com}}'>注：请准确填写发票信息，以免影响您报销</text>
+<button bindtap='addWrite'>确定</button>

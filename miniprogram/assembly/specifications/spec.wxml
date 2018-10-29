@@ -1,0 +1,7 @@
+<view   class="modal-mask {{show ? 'show':'hide'}}"></view>
+<view  class="modal-dialog {{show ? 'show':'hide'}}">
+  <view class="modal-content">
+    <view class="modal-title"></view>
+      <view class='slot'><slot></slot></view>
+  </view>
+</view>

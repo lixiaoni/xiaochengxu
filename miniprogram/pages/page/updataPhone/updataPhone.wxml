@@ -1,0 +1,16 @@
+<view class='page'>
+  <view class='page__bd'>
+      <view class='weui-cell weui-cell_access'>
+        <view class='weui-cell__bd'>
+           手机号<input placeholder='请输入新的手机号'></input>
+        </view>
+      </view>
+      <view class='weui-cell weui-cell_access'>
+        <view class='weui-cell__bd'>
+           验证码<input placeholder='请输入验证码'></input>
+        </view>
+        <view class='getCode'>获取验证码</view>
+      </view>
+  </view>
+  <button class='aw-but'>提交</button>
+</view>

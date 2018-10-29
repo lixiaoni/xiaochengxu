@@ -1,0 +1,87 @@
+<!-- 删除模板-->
+<mes
+  show="{{show1}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view>
+  <text>确认删除？</text>
+  <button bindtap='confirmDetele'>确定</button>
+</view>
+</mes>
+<!-- 删除规格-->
+<mes
+  show="{{contentShow}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view>
+  <text>确认删除？</text>
+  <button bindtap='contentDetele'>确定</button>
+</view>
+</mes>
+<!-- 新建规格 -->
+<spec
+  show="{{addSpec}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>新建规格</view>
+  <input placeholder-class='spec-class'  bindinput='watchInput' value='{{value}}'  class='spec-input'  placeholder='请输入文字，最多15个字' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm'>确定</view>
+</spec>
+<!-- 新建规格属性-->
+<spec
+  show="{{addSpecAttc}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>保存为规格模板</view>
+  <input placeholder-class='spec-class'  value='{{value}}'  bindinput='watchInput' class='spec-input'  placeholder='请输入文字，最多6个字' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm1'>确定</view>
+</spec>
+<!-- 更新规格模板 -->
+<spec
+  show="{{updateSpec}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>更新规格模板</view>
+  <input placeholder-class='spec-class'  bindinput='watchInput' value='{{value}}'  class='spec-input'  placeholder='请输入文字，最多6个字' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm2'>确定</view>
+</spec>
+ <!-- 编辑规格 -->
+<spec
+  show="{{editSpec}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+  <view class='spec-title'>编辑规格</view>
+  <input placeholder-class='spec-class'  bindinput='watchInput' value='{{valueEdit}}'  class='spec-input'  placeholder='请输入文字，最多6个字' />
+  <view class='spec-view' bindtap='cancel'>取消</view><view  class="spec-view spec-view-ac {{watchInput?'spec-view-active':''}}" bindtap='confirm3'>确定</view>
+</spec>
+<view>
+  <view class='spec-status'>
+    <view wx:for='{{templateCont}}' data-current="{{index}}" data-id='{{item.id}}' data-templateName='{{item.templateName}}' bindtap='clickTab' class='{{index==currentTab?"active":""}}' wx:key='{{index}}'>{{item.templateName}}</view>
+  </view>
+</view>
+<swiper current="{{currentTab}}" duration="300">
+    <swiper-item  catchtouchmove="stopTouchMove" wx:for='{{templateCont}}' wx:key='{{index}}' wx:for-item="cont">
+      <view class='sp-cont' wx:for='{{cont.specificationTemplateContentVOList}}' wx:for-item="list" wx:key='{{index}}'>
+        <view class="sp-color">{{list.specName}}<image class='img' wx:if='{{index==1}}' bindtap='upTop'  src="/image/ups.png"></image><image src="/image/editSpec.png" data-name="{{list.specName}}" data-id="{{list.id}}"   bindtap='editName'></image></view>
+        <view class='sp-button'  wx:if='{{index==0}}'>
+          <view wx:for='{{list.specValueList}}'wx:key='{{index}}' class="{{arrIndex[index].selected?'act':''}}" data-name='{{list.specName}}' data-current="{{index}}" data-code='{{index}}{{list.id}}' data-switchI='0' data-nameChi='{{item}}'  data-id='{{list.id}}'  touchend='touchend'   bindlongtap="longTap"  bindtap='swichNav'>{{item}}<text data-index='{{index}}' data-name='{{list.specName}}' data-id='{{list.id}}' hidden='{{longTap[index].selected}}'  bindtap='removeTemp' >删除</text><image hidden='{{longTap[index].selected}}'  src="/image/downs.png"></image></view>
+          <view class='active'  bindtap='addSpec'  data-id="{{list.id}}"  data-name="{{list.specName}}">+</view>
+        </view>
+         <view class='sp-button'  wx:if='{{index==1}}'>
+          <view wx:for='{{list.specValueList}}'wx:key='{{index}}' class="{{arrIndex1[index].selected?'act':''}}" data-name='{{list.specName}}' data-current="{{index}}" data-code='{{index}}{{list.id}}' data-switchI='1' data-nameChi='{{item}}'  data-id='{{list.id}}' touchend='touchend'  bindtap='swichNav'>{{item}}<text data-index='{{index}}' data-name='{{list.specName}}' data-id='{{list.id}}' hidden='{{longTap1[index].selected}}'  bindtap='removeTemp1' >删除</text><image hidden='{{longTap1[index].selected}}'  src="/image/downs.png"></image></view>
+          <view class='active'  bindtap='addSpec'  data-id="{{list.id}}"  data-name="{{list.specName}}">+</view>
+        </view>
+      </view>
+      <view class='sp-add' wx:if='{{cont.specificationTemplateContentVOList.length<2}}'   bindtap='addAttrc'><image src="/image/add3.png"></image>添加规格<view class='spec-mes' hidden='true'>最多创建6个规格模板哦！</view></view>
+      <view class='sp-add sp-add1'   wx:for='{{cont.specificationTemplateContentVOList}}' wx:if='{{index+1==cont.specificationTemplateContentVOList.length && cont.specificationTemplateContentVOList.length==2}}' wx:key='{{index}}'  data-id="{{item.id}}" bindtap='deleteTemplateContentId'><image src="/image/rev.png"></image>删除规格</view>
+    </swiper-item>
+</swiper>
+  <view class='add-bottom' wx:if="{{currentTab==0}}">
+    <view bindtap='saveTemplate'>保存为模板</view>
+    <view bindtap='goback'>确定</view>
+  </view>
+ <view class='add-bottom add-bottom1'  wx:if="{{currentTab!=0}}">
+  <view bindtap='updateTemplate'>更新模板</view>
+  <view bindtap='unsetSpec'>删除模板</view>
+  <view bindtap='goback'>确定</view>
+</view>

@@ -1,0 +1,6 @@
+@import '../order/order';
+@import '../common/common';
+.c-title image{
+  height: 40rpx;
+  width: 40rpx;
+}

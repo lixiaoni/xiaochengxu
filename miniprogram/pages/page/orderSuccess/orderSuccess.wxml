@@ -1,0 +1,58 @@
+<view class='box'>
+  <view class='flex-box'>
+    <text class='title-text blod' wx:if="{{admin==3}}">进货单金额</text>
+    <text class='title-text blod' wx:else>订单金额</text>
+    <view class='money'>￥{{user.orderAmount}}</view>
+    <view class='tip'>您的{{dan}}已提交成功，请及时上传支付凭证</view>
+    <button bindtap='toDetail' class='sure'>查看{{dan}}</button>
+    <navigator url='../../role/supplyVoucher/supplyVoucher?num={{num}}'>
+      <view class='title-text'>上传支付凭证</view>
+    </navigator>
+  </view>
+  <view class='msg-box'>
+    <view class='title-text'>与商家联系付款</view>
+    <view class='item-box'>
+      <view class='item-title'>当前状态</view>
+      <view class='item-msg'>提交成功</view>
+    </view>
+
+    <view class='item-box'>
+      <view class='item-title'>支付方式</view>
+      <view class='item-msg'>其他支付方式</view>
+    </view>
+
+    <view class='item-box'>
+      <view class='item-title'>商户全称</view>
+      <view class='item-msg'>{{user.storeInfo.storeName?user.storeInfo.storeName:""}}</view>
+    </view>
+
+    <!-- <view class='item-box'>
+      <view class='item-title'>联系人名称</view>
+      <view class='item-msg'></view>
+    </view> -->
+
+    <view class='item-box'>
+      <view class='item-title'>客服电话</view>
+      <view class='item-msg'>{{user.storeInfo.servicePhone?user.storeInfo.servicePhone:""}}</view>
+    </view>
+
+    <view class='item-box'>
+      <view class='item-title'>营业时间</view>
+      <view class='item-msg'>{{user.storeInfo.openingTime?user.storeInfo.openingTime:""}}</view>
+    </view>
+
+    <view class='item-box'>
+      <view class='item-title'>客服微信</view>
+      <view class='item-msg' bindtap='coypWx'>{{user.storeInfo.wechatNumber?user.storeInfo.wechatNumber:""}}</view>
+    </view>
+
+    <!-- <view class='item-box'>
+      <view class='item-title'>QQ</view>
+      <view class='item-msg'></view>
+    </view> -->
+    <view class='item-box'>
+      <view class='item-title'>说明</view>
+      <view class='item-msg'>在淡季可能会暂时缺货，但是下单后会尽快补上；若长时间未回复，请拨打手机号码</view>
+    </view>
+  </view>
+</view> 

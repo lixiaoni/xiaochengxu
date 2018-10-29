@@ -1,0 +1,8 @@
+@import '../mewWholesaler/mewWholesaler';
+.add-bf-weui .weui_cells {
+  height: 120rpx;line-height: 120rpx;padding-top:0;
+}
+
+.bf-weui .weui_cells{
+  font-size: 30rpx;
+}

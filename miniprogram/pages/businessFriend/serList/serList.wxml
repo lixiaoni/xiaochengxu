@@ -1,0 +1,23 @@
+
+<view class='bf-imput'>
+   <view class="goods-ser">
+    <input placeholder="输入小云店名、手机号"   bindconfirm="searchBtn"   value="{{value}}"/>
+    <image class="home-ser"  src="/image/search.png"></image>
+    <view class='home-img'>
+      <image bindtap='removeVal' src="/image/ser.png"></image>
+    </view>
+  </view>
+</view>
+<view class='bf-all'>搜索结果</view>
+<view class='bf-cont' wx:if='{{detailList.length>0}}'>
+  <scroll-view scroll-y="true" style="height:100%;">
+  <view class='bf-weui'>
+    <view wx:for='{{detailList}}' wx:key='{{index}}' class="weui_cells">
+      <view class='v' bindtap='getMes' data-accept='{{item.storeId}}' data-name='{{item.name}}' data-logo='{{item.logo}}'></view>
+      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image></view>
+      <text><text></text>{{item.name}} </text>
+      <view class='nbf-font'>手机号：{{item.mobile}}</view>
+    </view>
+  </view>
+  </scroll-view>
+</view>

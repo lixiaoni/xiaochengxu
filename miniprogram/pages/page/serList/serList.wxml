@@ -1,0 +1,19 @@
+<view>
+  <view class="result result-box" wx:if="{{result.length > 0}}">
+    <view class="result-list" wx:for="{{result}}" wx:key="index">
+      <navigator url="../goodsDetails/goodsDetails">
+        <image src="{{item.mainImgUrl}}"></image>
+        <view class="result-text">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="result-text">
+          <text>￥ {{item.marketPrice}}</text>
+        </view>
+      </navigator>
+    </view>
+    <view class='nomore'>没有更多了</view>
+  </view>
+  <view class="result-null" wx:else>
+    <view class="nomore">搜索结果为空！</view> 
+  </view>
+</view>

@@ -1,0 +1,20 @@
+@import '../invoice/invoice.wxss';
+.su-back{
+  height: 100%;
+  background: #fff;
+  color: #666;
+  font-size: 36rpx;
+  text-align: center;
+}
+.sc-font{
+  font-size: 30rpx;
+  color: #999;
+}
+.su-back image{
+  width: 169rpx;
+  height: 146rpx;
+  margin: 100rpx 0 20rpx 40rpx;
+}
+.su-back  button{
+  margin-top: 200rpx;
+}

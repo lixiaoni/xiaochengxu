@@ -1,0 +1,38 @@
+@import '../shopClass/shopClass';
+.shop-cont{
+  padding:0; 
+}
+.shop-cont .shop-size{
+  font-size: 50rpx;
+}
+.shop-cont>view {
+  height: 70rpx;padding-top: 27rpx;
+}
+.swiper{
+  height: 100%;overflow: scroll
+}
+.shop-cont1{
+  margin-bottom: 20rpx;padding-top: 20rpx;
+}
+.shop-cont1 .shop-size{
+  margin-bottom: 50rpx;
+}
+.shop-cont>view{
+  border-bottom: 2rpx solid #F1F1F1;margin-left: 30rpx;
+}
+.shop-cont1>view{
+  padding-top:0;border-bottom:0;
+}
+navigator{
+  height: 70rpx;padding-top: 10rpx;
+}
+
+.shop-cont2>view {
+  border-top:2rpx solid #F1F1F1;border-bottom: 0;
+}
+.shop-cont .shop-size {
+  border-bottom: 0; margin-bottom:20rpx;padding-top:20rpx;padding-bottom:20rpx;border-top: 0;
+}
+.shop-cont2 text{
+  margin-left: 10rpx;color: #CCAA77;
+}

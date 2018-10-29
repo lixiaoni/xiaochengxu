@@ -1,0 +1,13 @@
+<login id="login"></login>
+<view class='shop-cont shop-cont1'>
+  <view>
+      需要验证才可加我为商友<switch color="#CCAA77" checked='{{switch1Change}}' data-index="1"  bindchange="switch1Change"/>
+  </view>
+  <view class='nView'><image src="/image/bac.png"></image>供应商需要验证，通过后才可达成商友合作</view>
+</view>
+<view class='shop-cont'>
+  <view>
+      允许任何人加我为商友<switch color="#CCAA77" checked='{{!switch1Change}}' data-index="0" bindchange="switch1Change"/>
+  </view>
+  <view class='nView'><image src="/image/bac.png"></image>供应商无需验证，直接达成商友合作</view>
+</view>

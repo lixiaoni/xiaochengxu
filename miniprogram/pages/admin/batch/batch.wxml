@@ -1,0 +1,42 @@
+<login-component id='login' inner-text="Some text"></login-component>
+<view class='st-title'>
+  <view class="{{currentTab==0 ? 'active' : ''}}" data-current="0" data-index='1' bindtap="swichNav">出售中<view></view></view>
+  <view class="{{currentTab==1 ? 'active' : ''}}" data-current="1" data-index='0' bindtap="swichNav">仓库中<view></view></view>
+  <view class="{{currentTab==2 ? 'active' : ''}}" data-current="2" data-index='4' bindtap="swichNav">已售完<view></view></view>
+</view>
+<view class='bt-cont' wx:if="{{datas.length>0}}">
+  <view class='bt-title'>已选定{{numSle}}项</view>
+  <scroll-view scroll-y="true" style="height:100%;" bindscrolltolower="bindDownLoad">
+    <view class='st-cont' wx:for="{{datas}}" wx:key="{{index}}">
+    <icon type="success"  wx:if="{{item.selected}}" color="#CCAA77" data-index="{{index}}"  data-id='{{item.id}}' bindtap="selectList"/>
+    <icon wx:else type="circle"  data-index="{{index}}" data-id='{{item.id}}' bindtap="selectList"/>
+      <image class='cart-thumb '  src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+      <view class='st-details'>
+        <view class='st-d-t'>{{item.name}}</view>
+        <view class='st-d-status'>
+          <view><text>零售：</text><text class='st-mom'>￥{{item.sellPrice}}</text></view>
+          <!-- <view>供货：122</view><view>零售：144</view> -->
+          <view><text>库存：</text>{{item.stockNum}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+ <view class="result-null" wx:else>
+    <view class="nomore">暂无商品</view> 
+  </view>
+<view class='add-bottom' wx:if='{{showBottom}}'>
+  <view bindtap='addClass'>
+    <icon wx:if="{{selectAllStatus}}" type="success" size="20" color="#CCAA77" class='iconall'  bindtap="selectAll"/>
+    <icon wx:else type="circle" class='iconall' size="20" bindtap="selectAll"/>
+  全选</view>
+  <view bindtap='addClass'>分类至</view>
+</view>
+<view class='add-bottom add-bottom-bc' wx:if='{{!showBottom}}'>
+  <view bindtap='addClass'>
+    <icon wx:if="{{selectAllStatus}}" type="success" size="20" color="#CCAA77" class='iconall'  bindtap="selectAll"/>
+    <icon wx:else type="circle" class='iconall' size="20" bindtap="selectAll"/>
+  全选</view>
+  <view><text wx:if='{{goodsStatus==1}}' bindtap='upStatus'>下架</text><text wx:if='{{goodsStatus==0}}' bindtap='changeStatus'>上架</text><text wx:if='{{goodsStatus==2}}'></text></view>
+  <view bindtap='addClass'>分类至</view>
+</view>

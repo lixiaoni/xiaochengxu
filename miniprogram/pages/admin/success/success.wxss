@@ -1,0 +1,13 @@
+@import '../class/class.wxss';
+.shop-cont{font-size: 30rpx;padding:0;}
+.shop-cont>view view{border:0;color: #999;top: 28rpx;right: 60rpx;}
+.shop-cont>view{height: 100rpx;line-height: 100rpx;padding:0;padding-right: 25rpx;margin-left: 25rpx;}
+.shop-cont>view:last-child{border-top: 2rpx solid #F2F2F2;}
+.weui-img{margin-top: 32rpx;}
+.su-cont{background: #fff;text-align: center;padding-top: 40rpx;padding-bottom: 80rpx;}
+.su-cont image{width: 170rpx;margin-bottom: 40rpx;}
+.su-cont .f-view{margin-bottom: 60rpx;}
+.su-icon{color: #666;font-size: 28rpx;padding:20rpx 0 0 40rpx;}
+.su-icon image{width: 30rpx;height: 30rpx;vertical-align: middle;margin-right: 10rpx;}
+.go-list{margin-top: 40rpx;font-size: 30rpx;color: #ccaa77;border:2rpx solid #ccaa77;width: 320rpx;height: 80rpx;
+text-align: center;line-height: 80rpx;margin:0 auto;border-radius:10rpx;}

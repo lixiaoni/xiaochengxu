@@ -1,0 +1,25 @@
+/* pages/register/register.wxss */
+@import '../login/login.wxss';
+/* #login{
+  position: fixed;
+  top: 0;
+  left: 0;
+} */
+.reg-box{
+  padding:50rpx;
+}
+.to-login{
+  display: flex;
+  justify-content: center;
+  padding-bottom:50rpx;
+}
+.register-btn{
+  margin:40rpx 0 50rpx;
+}
+.tip-text{
+  color:#e76262;
+  text-align: center;
+  font-size: 24rpx;
+  height:30rpx;
+  margin-top:60rpx;
+}

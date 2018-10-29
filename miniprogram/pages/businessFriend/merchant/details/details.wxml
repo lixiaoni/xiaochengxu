@@ -1,0 +1,47 @@
+<view class='bf-cont info-cont'>
+  <view class='in-cont'>
+   <text>姓名</text><view><input value='{{name}}' bindinput='changeValue' data-name='name' placeholder='请输入客户真实姓名'></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>备注名</text><view><input placeholder='请输入备注名' bindinput='changeValue' data-name='nickName' value='{{nickName}}'></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>性别</text><view bindtap='updataSex'><input placeholder='请输入手机号' disabled="true" value="{{sex}}"></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>客户描述</text><view><input placeholder='记录更多有价值的客户信息' bindinput='changeValue' data-name='note'  value='{{note}}'></input></view>
+  </view>
+</view>
+<view class='bf-cont info-cont'>
+  <view class='in-cont'>
+   <text>手机号</text><view><input  placeholder='请输入手机号' bindinput='changeValue' data-name='phone' value='{{phone}}'></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>微信号</text><view><input placeholder='请输入微信号'  bindinput='changeValue' data-name='wechart' value='{{wechart}}'></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>生日</text><view><input placeholder='请选择日期' bindinput='changeValue' data-name='birthday' value='{{birthday}}'></input></view>
+  </view>
+  <view class='in-cont'>
+   <text>选择地区</text><view>
+   <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker">
+       {{region[0]}}<text wx:if='{{showCity}}'>、</text>{{region[1]}}<text wx:if='{{showCity}}'>、</text>{{region[2]}}
+    </view>
+  </picker>
+   </view>
+   <view class='weui-view'>
+      <image  mode="widthFix" src="/image/icl.png"></image>
+   </view>
+  </view>
+  <view class='in-cont'>
+   <text>收货地址</text><view><input value='{{detailAddress}}'  bindinput='changeValue' data-name='detailAddress' placeholder='请输入详细地址'></input></view>
+  </view>
+</view>
+<view class='re-bottom' bindtap='addDetails'>确定</view>
+  <view class='showHide' hidden='{{show}}'>
+    <view class='sh-cont'>
+      <view wx:for='{{sexData}}'  wx:key="index"  data-text="{{item}}" bindtap='choseSex'>{{item.sex}}</view>
+      <view bindtap='closeShow'>取消</view>
+    </view>
+  </view>

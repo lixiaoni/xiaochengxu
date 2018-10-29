@@ -1,0 +1,5 @@
+@import '../orderDetails/orderDetails';
+@import '../common/common';
+.table{
+  margin-bottom: 0;
+}

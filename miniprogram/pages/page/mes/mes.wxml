@@ -1,0 +1,84 @@
+<view class='mes-cont'>
+  <navigator class='new-e' url='../mesEdit/mesEdit' wx:if='{{limitShow==2}}'><image src="/image/edit1.png"></image></navigator>
+  <view class="ym_jpstorename">
+  <view class="ym_jpstorelogo">
+      <image class="store-logo" wx:if='{{storeMes!=""}}' src="{{baseUrl}}{{storeMes.logo}}?x-oss-process=style/logo" ></image>
+    </view>
+    {{storeMes.name}}
+  </view>
+  <view class="ym_jpstoredesc" wx:if='{{description!=""}}'>
+    <text class="leftyh">“</text>{{description}}<text class="rightyh">”</text>
+  </view>
+</view>
+<view class="weui_cells new-weui">
+    <view>
+      <text>运营数据</text>
+    </view>
+    <view class='new-view'><view>{{countData.goodsNum}}</view>商品总量</view>
+    <view class='new-view'><view>{{countData.goodsNew}}</view>30天上新</view>
+    <view class='new-view'><view>{{countData.saleNum}}</view>30天销量</view>
+</view>
+<view class="weui_cells">
+    <image  src="/image/labelico.png"></image>
+    <text class="store-address">小云店认证 </text>
+    <view class='weui-xian weui-xian1'></view>
+</view>
+<view class='weui-time wt-font'>
+  <view><image  wx:if='{{floor!=""}}' src=" {{baseUrl}}{{floor.mallLogo}}"></image> {{floor.mallName}}</view>
+  <view>该商家已通过北京百荣世贸商城认证</view>
+</view>
+<view class="weui_cells">
+    <view>
+      <image  src="/image/positionico.png"></image>
+      <text>{{storeMes.address}}</text>
+    </view>
+    <view>
+      <image  src="/image/lou.png"></image>
+      <text> 所属商城</text>
+      <view class='new-left'>
+       {{floor.mallName}}
+      </view>
+    </view>
+    <view>
+      <image  src="/image/lou.png"></image>
+      <text> 楼层区域</text>
+      <view class='new-left'>
+         {{floor.balcony}}{{floor.floor}}{{floor.area}}
+      </view>
+    </view>
+</view>
+<view class="weui_cells" bindtap='urlHome'>
+    <image  src="/image/12.png"></image>
+    <text class="store-address">小云店 </text>
+    <view class='weui-view'>
+      <image class='img' src="/image/icl.png"></image>
+    </view>
+   <view class='weui-xian weui-xian1'></view>
+   <view class='up-new-img'>
+    <image wx:for='{{storeGoods}}' wx:key='{{index}}'  src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+   </view>
+</view>
+<navigator class="weui_cells"  wx:if='{{limitShow==3}}'  url='/pages/page/stockOrder/stockOrder'>
+    <image  src="/image/12.png"></image>
+    <text class="store-address">采购记录 </text>
+    <view class='weui-view'>
+      <text class='new-text'></text><image class='img' src="/image/icl.png"></image>
+    </view>
+</navigator>
+<navigator class="weui_cells"  url="../storeIcon/storeIcon">
+    <image  src="/image/mes12.png"></image>
+    <text class="store-address">商家信息 </text>
+    <view class='weui-view'>
+      <image class='m-img' src="/image/xcx.png"></image><image class='img' src="/image/icl.png"></image>
+    </view>
+   <view class='weui-xian weui-xian1'></view>
+</navigator>
+<view class='weui-time wt-font1'>
+  <view>营业时间<text>{{storeMes.openingTime==null?'':storeMes.openingTime}}</text></view>
+  <view>客服电话<text>{{storeMes.servicePhone==null?'':storeMes.servicePhone}}</text><view class='mes-tel'><image src="/image/tel1.png"  bindtap="calling"></image></view></view>
+  <view>客服微信<text>{{storeMes.wechatNumber==null?'':storeMes.wechatNumber}}</text></view>
+  <view>公众号<text></text></view>
+</view>
+<!-- <view class='weui-one-bottom'>
+  √ {{storeMes.collectionNum}} 已关注
+</view> -->

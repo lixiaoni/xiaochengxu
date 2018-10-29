@@ -1,0 +1,47 @@
+.cart-list .cart-count-box{
+    width: 340rpx;
+    height:70rpx;
+    line-height: 1.3;
+    background: #FAFAFA;
+    border:1rpx solid #ECECEC;
+    border-radius:10rpx;
+}
+.cart-list .cart-count-box text{
+    display: inline-block;
+    text-align: center;
+}
+.cart-count-down,.cart-count-add{
+    font-size: 50rpx;
+    width: 70rpx;
+    height: 100%;
+}
+.cart-count-add{
+  border-left: 1rpx solid #ECECEC;
+  position: relative;
+  float: right;
+}
+.cart-count-add image,.reduce-icon{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top:15rpx;
+  right:12rpx;
+}
+.cart-count-down{
+  border-right: 1rpx solid #ECECEC;
+  position: relative;
+}
+.ct-xian{
+  width: 30rpx;
+  height: 4rpx;
+  background: #666;
+  margin-bottom:10rpx;
+}
+.ct-xian1{
+  background: #E0E0E0;
+}
+.cart-count-num{
+    width: 190rpx;
+    font-weight: normal;
+    font-size: 35rpx;
+}

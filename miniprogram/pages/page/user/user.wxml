@@ -1,0 +1,86 @@
+<view hidden='{{indexEmpty}}'>
+  <no></no>
+</view>
+<login id="login"></login>
+
+<view class='u-title'>
+
+  <view class='u-t-cont'>
+    <navigator url='../derm/derm' class='init-page'>
+      <image hidden='{{!hasUser}}' src='/image/er.png'></image>
+    </navigator>
+    <view class='u-t-ewmico'>
+      <navigator url='{{hasUser?"../userDetails/userDetails":""}}'>
+        <image hidden='{{!hasUser}}' mode='aspectFit' class='user-headPic' src='{{user.headPic?baseUrl+user.headPic+"?x-oss-process=style/logo  ":"/image/42.png"}}'></image>
+        <view hidden='{{hasUser}}'>
+          <open-data class='user-headPic' type="userAvatarUrl"></open-data>
+        </view>
+      </navigator>
+
+    </view>
+
+    <view class='u-pic'>
+      <view hidden='{{!hasUser}}' wx:if="{{user.nickName}}">{{user.nickName}}</view>
+      <view hidden='{{hasUser}}'>
+        <open-data type="userNickName"></open-data>
+      </view>
+
+      <button wx:if='{{user}}'>已绑定手机</button>
+      <button wx:else bindtap='showLogin'>绑定手机</button>
+    </view>
+  </view>
+</view>
+<view class='u-order'>
+  <navigator class='u-o-div' url='../order/order'>
+    <image src='/image/order.png'></image>
+    <view>我的订单</view>
+  </navigator>
+  <block wx:if='{{limitShow==3}}'>
+    <navigator class='u-o-div' url='../stockOrder/stockOrder'>
+      <image src='/image/supplyOrder.png'></image>
+      <view>进货单</view>
+    </navigator>
+  </block>
+
+  <navigator hidden='{{limitShow==2}}' class='u-o-div' url='../../businessFriend/index/index'>
+    <image src='/image/firend.png'></image>
+    <view>我的商友</view>
+  </navigator>
+
+</view>
+<view class='page_bd'>
+  <view class='weui-back'>
+    <navigator class='weui-cell weui-cell_access' url='../addressWe/addressWe'>
+      <image src='/image/u1.png' class='user-img'></image>
+      <view class='weui-cell__bd'>
+        地址管理
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+    <navigator class='weui-cell weui-cell_access' url='../set/set'>
+      <image src='/image/u3.png' class='user-img'></image>
+      <view class='weui-cell__bd'>
+        设置
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='page_bd page_hd1' wx:if='{{limitShow==2}}'>
+  <view class='weui-back'>
+    <navigator class='weui-cell weui-cell_access' url='../workIndex/workIndex'>
+      <image src='/image/u4.png' class='user-img'></image>
+      <view class='weui-cell__bd'>
+        <!-- 申请小云店 -->
+        小云店工作台
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>

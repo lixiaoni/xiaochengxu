@@ -1,0 +1,8 @@
+@import '../com/com.wxss';
+@import '../batch/batch.wxss';
+.bt-bottom view{
+  width: 33.1%
+}
+.bt-bottom view:nth-child(3){
+  border-right: 0;
+}

@@ -1,0 +1,25 @@
+<view class='page'>
+<view class='my-top-line'></view>
+   <view class='page__hd page__hd1'>
+    <navigator class='weui-cell weui-cell_access' url='../classList/classList?name=全部商品&allCode=0'>
+      <view class='weui-cell__bd'>
+        <view class='my-info'>全部商品</view>
+      </view>
+      <view class='weui-img'>
+       <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view> 
+  <view class='page__bd'>
+    <view class=''>
+      <navigator class='weui-cell weui-cell_access' url='../classList/classList?name={{item.name}}&code={{item.customCategoryCode}}' wx:for="{{list}}" wx:key="{{index}}" wx:if='{{item.customCategoryCode!=0}}'>
+        <view class='weui-cell__bd'>
+           {{item.name}}<view class='num-v'>{{item.count}}件</view>
+        </view>
+        <view class='weui-img'>
+         <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

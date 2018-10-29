@@ -1,0 +1,23 @@
+<view>
+  <view class="search-box">
+        <input class="search-input" placeholder="搜索" value="{{value}}"  bindblur="blurInputEvent" />
+        <image class="home-ser-new"  src="/image/search.png"></image>
+  </view>
+  <view class="result result-box" wx:if="{{result.length > 0}}">
+    <view class="result-list" wx:for="{{result}}" wx:key="index">
+      <navigator url="">
+        <image src="{{item.thumb}}"></image>
+        <view class="result-text">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="result-text">
+          <text>￥ {{item.price}}</text>
+        </view>
+      </navigator>
+    </view>
+    <view class='nomore'>没有更多了</view>
+  </view>
+  <view class="result-null" wx:else>
+    <view class="nomore">Oh~~ 搜索结果为空！</view> 
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "云享品管理",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "login-component": "../../login/login/login",
+    "mes": "../../../../assembly/tips/tips"
+  }
+}

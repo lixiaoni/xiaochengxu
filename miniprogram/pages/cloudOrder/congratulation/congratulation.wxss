@@ -1,0 +1,85 @@
+/* pages/cloudOrder/congratulation/congratulation.wxss */
+
+.box {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 5px;
+  margin: 20rpx;
+}
+
+.top-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-title {
+  font-size: 46rpx;
+  font-weight: 600;
+}
+
+.id-tip {
+  color: #666;
+  font-size: 25rpx;
+}
+
+.congra {
+  font-size: 36rpx;
+}
+
+.toStore {
+  width: 600rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  background: #ca7;
+  margin: 60rpx 0 40rpx;
+}
+
+.footer-box {
+  background: #fff;
+  border-radius: 5px;
+  margin: 20rpx;
+  padding-bottom: 30rpx;
+}
+
+.f-title {
+  padding: 40rpx 60rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+.f-item {
+  padding: 0 30rpx 20rpx 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  .cute {
+    width: 546rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 37rpx 0;
+    font-size: 27rpx;
+    color: #333;
+  }
+
+.success-icon {
+  width: 144rpx;
+  height: 211rpx;
+  margin: 60rpx 0 20rpx;
+}
+
+.s-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.more {
+  width: 35rpx;
+  height: 35rpx;
+}

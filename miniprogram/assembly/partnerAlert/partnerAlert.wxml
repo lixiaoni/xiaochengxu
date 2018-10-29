@@ -1,0 +1,14 @@
+<view class='success-module' wx:if="{{pageShow == true}}">
+  <view class='success-module-box'>
+    <view class='close-box'><image bindtap='hidePage' class='close-img' src='/image/close.png'></image></view>
+    <view class='img-box'>
+      <image class='b-img' src='{{pageData.imagesrc}}'></image>
+    </view>
+    <view class='congratulation-text'>{{pageData.congratulationText}}</view>
+    <view class='discounts'>{{pageData.tip}}</view>
+    <view class='next-button-box'>
+      <view class='next-button'>{{pageData.button}}</view>
+    </view>
+    <view class='act-text'>{{pageData.act}}</view>
+  </view>
+</view>

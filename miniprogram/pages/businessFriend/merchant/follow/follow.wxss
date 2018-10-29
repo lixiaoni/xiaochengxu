@@ -1,0 +1,9 @@
+@import '../list/list';
+.goods-ser{
+  position:fixed;
+  width:100%;
+  z-index:1000;
+}
+scroll-view{
+  margin-top:80rpx;
+}

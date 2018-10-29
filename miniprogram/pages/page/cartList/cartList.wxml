@@ -1,0 +1,114 @@
+<login id="login"></login>
+<view class="main" bindtap='rightList' >
+    <view class='cf-cont'  wx:if="{{hasList}}" >
+      <view class='c-title'  wx:for="{{storeMes}}" wx:key="{{index}}">
+        <image src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image> {{item.storeName}}<image class='itimg' src="/image/icl.png"></image> 
+      </view>
+      <!--编辑  -->
+      <view>
+          <view class="cart-box">
+                <scroll-view style='overflow:scroll' scroll-y="true" style="height:100%;" bindscrolltolower="bindDownLoad">
+        <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{detailList}}" wx:key="index">
+          <view class='content st-cont'  data-index="{{index}}">
+ <view class="cart-list">
+                  <!-- <view class='cart-xian-new'></view> -->
+                  <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+                  <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
+                  <navigator url="../goodsDetails/goodsDetails?goodsId={{item.goodsId}}"><image class="cart-thumb" src="{{baseUrl}}{{item.mainUrl}}?x-oss-process=style/goods-small"></image></navigator>
+                  <view class='ct-text ct-text1' wx:if='{{limitShow!=3 && item.shoppingCartSkuList!=null}}'>￥{{item.shoppingCartSkuList[0].sellPrice}}</view>
+                  <view style='width:335rpx' class='ct-title ct-title1'>{{item.goodsName}}
+                   
+                  </view>
+                  <view class="cart-pro-name cart-pro-name1"  wx:if="{{item.shoppingCartSkuList.length==1}}" wx:for="{{item.shoppingCartSkuList}}" bindtap='showAlert' data-name="one" data-gid='{{item.goodsId}}' wx:for-item="record"  wx:key="{{index}}">规格：{{record.skuName}}<image class='down' src="/image/down.png"></image></view>
+                   <view  wx:if='{{limitShow==3 && item.shoppingCartSkuList.length>1 && storeNum>0}}' class='man-j'>满<text>{{item.saleBatchNum}}</text>起批<text wx:if='{{item.saleBatchNum-item.num>0 && !item.enjoyPrice}}' style='color:#333;'> 还差<text style='color:#CCAA77'>{{item.saleBatchNum-item.num}}</text>件</text></view>
+                   <view class="cart-pro-name cart-pro-name1 cart-pro-name2" data-name="more"  data-index="{{index}}" wx:if="{{item.shoppingCartSkuList.length>1}}"  bindtap='showAlert'>修改规格/数量<image class='down' src="/image/down.png"></image></view>
+                  <view class="table"  wx:if="{{item.shoppingCartSkuList.length>1}}" >
+                     <view class="tr"  wx:if='{{limitShow!=3}}'>
+                          <view class="th">规格</view>
+                          <view class="th">数量</view>
+                          <view class="th">零售价</view>
+                      </view>
+                      <view class="tr"  wx:if='{{limitShow!=3}}' wx:for="{{item.shoppingCartSkuList}}" wx:key="{{index}}" wx:for-item="record">
+                          <view class="td">{{record.skuName}}</view>
+                          <view class="td">{{record.num}}件</view>
+                          <view class="td">￥{{record.sellPrice}}</view>
+                      </view>
+                  </view>
+                  <view class='allNumShow' wx:if="{{item.shoppingCartSkuList.length>1}}">共<text>{{item.num}}</text>件商品 合计:￥<text>{{item.enjoyPrice?item.allGoodsPf:item.allGoodsAmount}}</text></view>
+                  <view class="cc-coun-new" wx:if="{{item.shoppingCartSkuList.length==1}}">
+                    <view bindtap="minusCount" data-obj="{{obj}}"  data-index="{{index}}">-</view>
+                    <view class='cc-add'>{{item.num}}</view>
+                    <view bindtap="addCount" data-index="{{index}}">+</view>
+                  </view>
+                   <view class="cc-coun-new" wx:if="{{item.shoppingCartSkuList==null}}"  wx:for-item="record">
+                    <view bindtap="minusCountNew" data-obj="{{obj}}"  data-index="{{index}}">-</view>
+                    <view class='cc-add'>{{item.num}}</view>
+                    <view bindtap="addCountNew" data-index="{{index}}">+</view>
+                  </view>
+                </view>
+          </view>
+          <view class="del" bindtap="deleteList" data-id='{{item.goodsId}}' data-index="{{index}}">
+            <view>删除</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>  
+    </view>  
+    </view>  
+    <view class='cf-cont'>
+      <view class="c-title c-title1 hide{{lostList?'show':''}}" wx:if="{{lostcarts.length>0}}">
+        <image src="/image/ic2.png"></image> 失效宝贝  <text bindtap="emptyAll">全部清空</text>
+      </view>
+      <view>
+          <view class="cart-box">
+          <view  wx:for="{{lostcarts}}" wx:key="{{index}}">
+             <view class="cart-list">
+                  <image class='noimg' src="/image/no.png"></image>
+                  <image class='posimg' src="/image/alert.png"></image>
+                  <navigator ><image class="cart-thumb" src="{{baseUrl}}{{item.mainUrl}}?x-oss-process=style/goods-small"></image></navigator>
+                  <text class='ct-text'>￥{{item.sellPrice}}</text>
+                  <view   style='width:365rpx' class='ct-title ct-t-title'>{{item.goodsName}}</view>
+              </view>
+              <view class="table" wx:if="{{item.shoppingCartSkuList.length>0}}">
+                      <view class="tr">
+                          <view class="th">规格</view>
+                          <view class="th">数量</view>
+                          <view class="th">零售价</view>
+                      </view>
+                      <view class="tr"  wx:for="{{item.shoppingCartSkuList}}" wx:key="{{index}}">
+                          <view class="td">{{item.skuName}}</view>
+                          <view class="td">2件</view>
+                          <view class="td">￥{{item.sellPrice}}</view>
+                      </view>
+                </view>
+            </view>
+          </view>
+          <view class='bot-back'></view>
+      </view>
+    </view>
+    <view  wx:if="{{hasList}}">
+      <view class="cart-footer">
+        <icon wx:if="{{selectAllStatus}}" type="success" color="#CCAA77" class="total-select" bindtap="selectAll"/>
+        <icon wx:else type="circle" color="#A5A5A5" class="total-select" bindtap="selectAll"/>
+        <view class='order-all'>
+          合计：<text>￥{{total1}}</text>
+          <view>(不含运费)</view>
+        </view>
+        <view class="order-icon" bindtap='creatOrder'>
+           结算
+        </view>
+        <text>全选</text>
+      </view>
+    </view>
+</view>
+  <view  hidden='{{indexEmpty}}'>
+    <no></no>
+  </view>
+    <view hidden='{{allEmpty}}'>
+        <view class="cart-no-data">
+          <view class='nocar'><image src="/image/nocar.png"></image></view>
+          {{limitShow==3?'进货车':'购物车'}}还是空的哦
+          <view>去挑几件吧</view>
+          <button bindtap='urlHome'>去逛逛</button>
+        </view>
+    </view>

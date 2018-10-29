@@ -1,0 +1,14 @@
+<view class='page__hd page__hd1'>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd'>
+        邮费到付
+      </view>
+      <view  class='weui-img'><switch color="#CCAA77" checked='{{switch1Change}}' data-index="1"  bindchange="switch1Change"/></view>
+    </view>
+    <view class='weui-cell weui-cell1'>
+      <view class='weui-cell__bd'>
+        全场包邮
+      </view>
+      <view  class='weui-img'><switch color="#CCAA77" checked='{{!switch1Change}}' data-index="0" bindchange="switch1Change"/></view>
+    </view>
+  </view>

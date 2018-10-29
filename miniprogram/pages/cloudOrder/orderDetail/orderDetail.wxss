@@ -1,0 +1,78 @@
+/* pages/cloudOrder/orderDetail/orderDetail.wxss */
+.order-box{
+  margin: 20rpx;
+  padding: 50rpx;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.price-box{
+  text-align: center;
+  padding: 10rpx 0 95rpx;
+  border-bottom: 1px solid #eee;
+}
+.com{
+  font-size: 26rpx;
+}
+.price{
+  font-size: 35rpx;
+}
+.logo{
+  height: 70rpx;
+  width: 70rpx;
+}
+
+
+.order-title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50rpx 0;
+}
+.store-name{
+  font-size: 34rpx;
+  font-weight: 600;
+  padding-right: 40rpx;
+}
+.store-type{
+  color: #ccaa77;
+  font-size:24rpx;
+  border: 1rpx solid #ccaa77;
+  padding: 8rpx;
+}
+.youyou{
+  color: #ccaa77;
+  font-size:26rpx;
+  font-weight: 600;  
+}
+
+.msg-item{
+  display: flex;
+  font-size: 26rpx;
+  padding-bottom: 50rpx;
+}
+.msg-title{
+  flex: 0 0 140rpx;
+  color: #797979; 
+}
+.invoiceBox .msg-title{
+ flex: 0 0 180rpx;
+}
+.msg-content{
+  font-weight: 600;
+}
+.border{
+  border-bottom:1px solid #eee;
+  margin: 0 0 50rpx;
+}
+
+.pay-item{
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  padding-bottom: 50rpx;
+}
+
+.gold{
+  color: #ccaa77;
+}

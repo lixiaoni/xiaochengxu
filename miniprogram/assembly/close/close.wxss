@@ -1,0 +1,21 @@
+@import '../tips/tips';
+.modal-dialog {
+  width: 636rpx;
+  height: 770rpx;
+  background: #fff;
+}
+.clo{
+  border-bottom: 2rpx solid #EBEBEB;
+  padding-top:60rpx;padding-bottom: 50rpx;
+  width: 500rpx;margin:0 auto;
+}
+.slot{
+  color: #333333;
+  font-size: 36rpx;
+  text-align: left;
+  width:500rpx;font-weight: normal;
+  margin: 0 auto;padding-bottom: 20rpx;
+}
+.slot icon{
+  margin-top: -8rpx;margin-right: 8rpx;
+}

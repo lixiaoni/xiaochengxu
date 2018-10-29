@@ -1,0 +1,46 @@
+<view class='bf-cont bf-cont1'>
+  <view class='bf-title'>用户统计</view>
+  <text>高价值客户交易行为数据</text>
+  <view class='bt-view'>
+    <navigator url='../follow/follow'><view>{{followUsers}}</view>关注用户</navigator>
+    <navigator url='../dealUser/dealUser'><view>{{buyUsers}}</view>成交客户</navigator>
+    <navigator url='../dealCus/dealCus'><view>{{buyPurchasers}}</view>成交进货商</navigator>
+  </view>
+</view>
+<view class='bf-cont bf-cont2'>
+  <view class='me-title'><view></view>进货商管理</view>
+  <view class='bt-view'>
+    <view><navigator class="weui_cells" url='../list/list'><view>{{purchaserNumber}}</view>进货商总数</navigator></view>
+    <view><navigator class="weui_cells"  url='../newMerchant/newMerchant'><view>{{waitVerify}}</view>待验证</navigator></view>
+    <view><navigator class="weui_cells"  url='../newMerchant/newMerchant'><view>{{waitPass}}</view>等待通过</navigator></view>
+  </view>
+  <button class='bf-btn' bindtap='addWholesaler'>添加进货商</button>
+  <view class='bf-weui'>
+    <navigator class="weui_cells"  url='../newMerchant/newMerchant'>
+      <image  mode="widthFix" src="/image/w1.png"></image>
+      <text >新增的进货商 </text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </navigator>
+    <navigator class="weui_cells" url='../list/list'>
+      <image  mode="widthFix" src="/image/w2.png"></image>
+      <text>进货商管理 </text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </navigator>
+    <navigator class="weui_cells" url='../setUp/setUp'>
+      <image  mode="widthFix" src="/image/w3.png"></image>
+      <text>商友权限设置 </text>
+      <view class='weui-view'>
+        <image  mode="widthFix" src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class='bottom_M'>
+  <navigator  open-type='redirect' url='../../../page/workIndex/workIndex'><image  src="/image/12.png"></image><view>工作台</view></navigator>
+  <navigator><image  src="/image/admin1.png"></image><view   class='active'>商友录</view></navigator>
+  <navigator open-type='redirect'  url='../../../page/userM/userM'><image  src="/image/w11.png"></image><view>我的</view></navigator>
+</view>

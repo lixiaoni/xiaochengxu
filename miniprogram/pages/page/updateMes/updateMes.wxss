@@ -1,0 +1,21 @@
+@import '../set/set.wxss';
+.weui-cell__bd input,textarea{
+  font-size: 34rpx;color: #333;
+}
+.page__hd1{
+  margin:20rpx;border-radius: 10rpx;
+}
+.weui-cell__bd input,textarea{
+  position: unset;width: 100%;
+}
+.weui-img image{
+  width: 35rpx;height: 35rpx;
+}
+.count{
+  color: #999;font-size: 30rpx;text-align: right;padding-right: 50rpx;
+}
+.page__hd2,.page__hd2 .weui-cell{
+  height: auto;padding-top: 15rpx;
+}
+
+

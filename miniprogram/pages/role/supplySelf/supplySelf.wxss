@@ -1,0 +1,5 @@
+@import '../orderSelf/orderSelf';
+@import '../common/common';
+.table{
+  margin-bottom: 0;
+}

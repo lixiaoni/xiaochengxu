@@ -1,0 +1,50 @@
+/* pages/role/supplyVoucher/supplyVoucher.wxss */
+page{
+  background: #fff;
+}
+.box{
+  padding: 50rpx;
+}
+.textarea{
+  height: 108rpx;
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
+}
+.add-voucher{
+  width: 200rpx;
+  height: 200rpx;
+  background: #f6f6f6;
+  text-align: center;
+  line-height: 281rpx;
+}
+.add-img{
+  width: 100rpx;
+  height:100rpx;
+}
+.user-img{
+  max-width: 200rpx;
+  max-height: 200rpx;
+}
+.tip-font{
+  font-size: 26rpx;
+  color:#aaa;
+}
+.tip-box{
+  margin-top:20rpx;
+}
+.pay-type{
+  border-top: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  margin: 160rpx 0 120rpx;
+  padding: 35rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+.sure{
+  background: #ccaa77;
+  color: white;
+  font-size:30rpx;
+  font-weight: 600;
+  line-height: 100rpx;
+  height: 100rpx;
+}

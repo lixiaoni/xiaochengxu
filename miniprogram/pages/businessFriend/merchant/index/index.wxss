@@ -1,0 +1,13 @@
+@import '../../index/index';
+.bf-cont1{
+  padding-bottom: 40rpx;
+}
+.me-title{
+  font-size: 32rpx;font-weight: bold;padding:30rpx 0 0 40rpx;position: relative;
+}
+.me-title view{
+  position: absolute;height: 30rpx;width: 4rpx;background: #CFA272;left:15rpx;top: 40rpx;
+}
+.bf-cont2{
+  margin-bottom:150rpx;
+}

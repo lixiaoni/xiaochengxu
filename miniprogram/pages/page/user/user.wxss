@@ -1,0 +1,115 @@
+/* pages/user/user.wxss */
+.user-headPic{
+  overflow:hidden;
+  display:block;
+  border-radius: 50%;
+  max-width: 200rpx;
+  max-height:200rpx;
+}
+.u-title{
+  background:#fff;
+  margin-top: -2rpx;
+  text-align: center;
+}
+.u-t-con{
+  position: relative;
+}
+.u-t-ewmico{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius:50%;
+  margin: 40rpx auto 30rpx;
+}
+.u-pic{
+  color: #333;
+  font-size: 32rpx;
+  text-align: center;
+  padding-bottom: 40rpx;
+}
+.u-pic button{
+  color: #CEAD7D;
+  height: 60rpx;
+  padding:0;
+  background: #fff;
+  font-size: 24rpx;
+  width: 160rpx;
+  border:2rpx solid #EEE3D2
+}
+.u-pic view{
+  margin-bottom:30rpx;
+}
+.weui-img{
+  font-size: 28rpx;
+  color: #C79359;
+}
+.weui-img image{
+  width:24rpx;
+  height: 29rpx;
+  margin-top:0rpx;
+  vertical-align: middle;
+  margin-left: 6rpx;
+  margin-right: 10rpx;
+}
+.weui-cell__bd{
+  font-size: 30rpx;
+  color: #333;
+}
+.page_hd1{
+  background:#fff;
+  height: 105rpx;
+  margin-top:20rpx;
+}
+.weui-cell{
+  padding:0 35rpx;
+  height: 105rpx;
+}
+.user-img{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right:30rpx;
+}
+.user-img1{
+  height:47rpx;
+  top: 31rpx;
+}
+.my-info{
+  width: 200rpx;
+  display: inline-block
+}
+.page_bd .weui-cell{
+  margin-left:40rpx;
+}
+.u-order{
+  height: 165rpx;
+  background: #fff;
+  margin-top: 10rpx;
+  margin-bottom:10rpx;
+  text-align: center
+}
+.u-o-div{
+  width: 33%;
+  color: #333;
+  font-size: 30rpx;
+  display:inline-block;
+}
+.weui-back{
+  background: #fff;
+}
+.u-o-div image{
+  width: 55rpx;
+  height: 55rpx;
+  margin-top:30rpx;
+}
+.kf_button{
+  position: absolute;
+  width: 100%;
+  height:100rpx;
+  opacity: 0;
+  background:#fff;
+  z-index: 10;
+}
+
+.init-page image{
+  height: 50rpx;
+  width: 50rpx;
+} 
