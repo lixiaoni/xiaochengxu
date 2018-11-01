@@ -213,7 +213,9 @@ Page({
   onShow: function () {
     app.pageRequest.pageData.pageNum = 0
     this.setData({
-      datas: []
+      datas: [],
+      setCode: [],
+      numSle: 0
     })
     var _this = this
     _this.classCode()

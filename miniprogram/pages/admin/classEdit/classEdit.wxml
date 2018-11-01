@@ -1,5 +1,5 @@
 <view class='shop-cont'>
-  <view class='shop-size'>已选定两项</view>
+  <view class='shop-size'>已选定{{numSle}}项</view>
   <view wx:for='{{list}}' wx:key='{{index}}' wx:if="{{item.customCategoryCode!=0}}">
      <icon wx:if="{{item.selected}}" data-index="{{index}}" type="success" size="28" color="#CCAA77" bindtap="selectList"/>
      <icon wx:else data-index="{{index}}" type="circle" size="28" bindtap="selectList"/>
