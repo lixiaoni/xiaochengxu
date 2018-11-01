@@ -16,14 +16,12 @@
   height: 340rpx;line-height: 340rpx;border-bottom-right-radius: 10rpx;border-top-right-radius: 10rpx;
 }
 .st-d-status {
-  margin-top: 10rpx;
+  margin-top:0rpx;
 }
 .st-details{
   position: relative;
 }
-.st-d-status view{
-  margin-bottom: 0;
-}
+
 .st-bottom view:last-child{
   border-right: 0;
 }
@@ -100,7 +98,10 @@ page{
   width: 100%
 }
 .st-d-status view{
-  width: 35%
+  margin-bottom: 0;line-height:1.5;width: 35%
+}
+.st-d-status view:first-child{
+  width: 100%;
 }
 .st-all{
   padding-top: 50rpx;
@@ -110,4 +111,20 @@ scroll-view{
 }
 .babt{
   position: absolute;top: 0;height: 250rpx;z-index: 100;width: 100%;
+}
+.new-ser{
+  position: absolute;right:20rpx;border-radius: 10rpx;border:2rpx solid #DDDDDD;width:170rpx;
+  background:#fff;z-index:11;font-size: 28rpx;text-align: center;
+}
+.new-ser>view:first-child{
+  border-top: 0;
+}
+.new-ser>view{
+  height: 75rpx;line-height: 75rpx;border-top: 2rpx solid #ddd;
+}
+.new-ser view image,.new-ser>view view{
+  position: absolute;width:25rpx;height: 25rpx;left:60%;top: -18rpx;z-index:13
+}
+.new-ser>view view{
+  background: #fff;height:4rpx;top:-2rpx;z-index:12;width: 20rpx;margin-left:3rpx;
 }

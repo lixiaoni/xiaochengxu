@@ -15,8 +15,7 @@ function getIdentity(_this) {
             _this.getUser()
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner,
-            isPurchaser = obj.isPurchaser
+          var isStoreOwner = obj.isStoreOwner
           if (isStoreOwner) {
             wx.setStorageSync("admin", 2)
             _this.setData({
@@ -24,22 +23,7 @@ function getIdentity(_this) {
             }, function () {
               _this.getUser()
             })
-          }
-          if (isPurchaser) {
-            wx.setStorageSync("admin", 3)
-            wx.setTabBarItem({
-              index: 1,
-              text: '进货车',
-              iconPath: '/image/22.png',
-              selectedIconPath: '/image/21.png'
-            })
-            _this.setData({
-              limitShow: 3,
-            }, function () {
-              _this.getUser()
-            })
-          }
-          if (!isPurchaser && !isStoreOwner) {
+          }else{
             wx.setStorageSync("admin", 1)
             _this.setData({
               limitShow: 1

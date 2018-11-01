@@ -44,11 +44,19 @@
   <input placeholder='输入商品名称' value="{{value}}" bindinput='changeValue' />
     <image class="home-ser"  src="/image/search.png"></image>
     <view class='home-img'>
-      <view bindtap='blurInputEvent'>
+      <!-- <view bindtap='blurInputEvent'>
         筛选
+      </view> -->
+      <view>
+        搜索
       </view>
     </view>
 </view>
+<!-- <view class='new-ser'>
+  <view><image  src="/image/sy.png"></image><view></view>全部商品</view>
+  <view>引用商品</view>
+  <view>自建商品</view>
+</view> -->
 <view class='st-title'>
   <view class="{{currentTab==0 ? 'active' : ''}}" data-current="0" data-index='1' bindtap="swichNav">出售中<view></view></view>
   <view class="{{currentTab==1 ? 'active' : ''}}" data-current="1" data-index='0' bindtap="swichNav">仓库中<view></view></view>
@@ -62,16 +70,18 @@
 </view>
 <scroll-view style='overflow:scroll' scroll-y="true" style="height:100%;" bindscrolltolower="bindDownLoad">
   <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{detailList}}" wx:key="">
-    <view class='babt'   bindtap='editGoods'  data-id='{{item.id}}'></view>
+    <!-- <view class='babt'   bindtap='editGoods'  data-id='{{item.id}}'></view> -->
     <view class='content st-cont'  data-index="{{index}}">
         <view class='column' >
         <image class="editGoods"  src="/image/mallr.png"></image>
         <image class="cart-thumb" src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+        <view class='user-v'>引用</view>
         <view  class='st-d-t'>{{item.name}}</view> 
         <view class='st-details'>
             <view class='st-d-status'>
               <view><text>零售：</text><text class='st-mom'>￥{{item.sellPrice}}</text></view>
               <!-- <view>供货：400</view><view>零售：400</view> -->
+              <view><text>销量：</text>{{item.stockNum}}</view><view><text>成本：</text>{{item.stockNum}}</view>
               <view><text>库存：</text>{{item.stockNum}}<image class='warn' wx:if='{{item.stockNum<10}}' src="/image/warn.png"></image></view>
             </view>
             <view class='not' wx:if='{{item.stockNum<10}}'><view class='triangle_border_up'></view>该商品库存不足 请及时补货</view>
@@ -90,7 +100,14 @@
       <view class="del" catchtap="del" data-index="{{index}}" data-id='{{item.id}}'>删除</view>
   </view>
   <view class='st-all' wx:if='{{detailList.length>0}}'>{{detailList.length}}件商品</view>
-  <view class='st-all' wx:if='{{detailList.length==0}}'>暂无商品</view>
+  <view class='st-all' wx:if='{{detailList.length==0}}'>
+     <view class="nomore">
+      <view>
+        <image src="/image/nohome.png"></image>
+      </view>
+      暂时还没有商品哦！
+    </view>
+  </view>
 </scroll-view>
 <view class='st-bottom st-bottom1'>
     <view><navigator url="../addGoods/addGoods">添加商品</navigator></view>

@@ -7,7 +7,7 @@
   </view>
 </mes>
 <view class="goods-ser">
-  <navigator url="../../page/serStatus/serStatus">
+  <navigator url="../../page/serStatus/serStatus" style='width:85%'>
     <input placeholder="搜索店铺内商品" placeholder-class='pre-input' disabled='disabled' bindconfirm="searchBtn" value="{{value}}" />
   </navigator>
   <image class="home-ser" src="/image/search1.png"></image>
@@ -32,7 +32,7 @@
     </view>
     <view class="ym_sydtdmgzs">
       <view class="store_name">{{store.storeName}}
-        <view>{{store.storeNature}}</view>
+         <view>{{store.storeNature==1?'新批零':'新零售'}}</view>
         <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit1.png" />
       </view>
       <image class='logoimg' src="{{baseUrl}}{{store.mallLogo}}" />

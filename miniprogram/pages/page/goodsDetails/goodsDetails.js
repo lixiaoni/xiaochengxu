@@ -13,33 +13,16 @@ function getIdentity(_this,goodsId,isTrue) {
             limitShow: 1
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner,
-            isPurchaser = obj.isPurchaser
+          var isStoreOwner = obj.isStoreOwner
           if (isStoreOwner) {
-            wx.setStorage({
-              key: 'admin',
-              data: 2, //1yon 2店主  3批发商
-            })
+            wx.setStorageSync("admin", 2)
             _this.setData({
               limitShow: 2
             })
-          }
-          if (isPurchaser) {
-            wx.setStorage({
-              key: 'admin',
-              data: 1,
-            })
+          }else{
+            wx.setStorageSync("admin", 1)
             _this.setData({
               limitShow: 1,
-            })
-          }
-          if (!isPurchaser && !isStoreOwner) {
-            wx.setStorage({
-              key: 'admin',
-              data: 1,
-            })
-            _this.setData({
-              limitShow: 1
             })
           }
         }

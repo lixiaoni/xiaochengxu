@@ -1,15 +1,15 @@
 <view class='shop-cont'>
   <view class='shop-size'>已选定两项</view>
   <view wx:for='{{list}}' wx:key='{{index}}' wx:if="{{item.customCategoryCode!=0}}">
-     <icon wx:if="{{item.selected}}" data-index="{{index}}" type="success" size="22" color="#CCAA77" bindtap="selectList"/>
-     <icon wx:else data-index="{{index}}" type="circle" size="22" bindtap="selectList"/>
+     <icon wx:if="{{item.selected}}" data-index="{{index}}" type="success" size="28" color="#CCAA77" bindtap="selectList"/>
+     <icon wx:else data-index="{{index}}" type="circle" size="28" bindtap="selectList"/>
      {{item.name}}<view>{{item.count}}件</view>
   </view>
 </view>
 <view class='add-bottom'>
   <view bindtap='addClass'>
-    <icon wx:if="{{selectAllStatus}}" type="success" size="22" color="#CCAA77" class='iconall'  bindtap="selectAll"/>
-    <icon wx:else type="circle" class='iconall' size="22" bindtap="selectAll"/>
+    <icon wx:if="{{selectAllStatus}}" type="success" size="28" color="#CCAA77" class='iconall'  bindtap="selectAll"/>
+    <icon wx:else type="circle" class='iconall' size="28" bindtap="selectAll"/>
   全选</view>
   <view bindtap='removeFun'>删除</view>
 </view>

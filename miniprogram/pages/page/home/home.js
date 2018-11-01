@@ -12,21 +12,13 @@ function getIdentity(_this) {
             limitShow: 1
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner,
-            isPurchaser = obj.isPurchaser
+          var isStoreOwner = obj.isStoreOwner
           if (isStoreOwner) {
             wx.setStorageSync("admin", 2)
             _this.setData({
               limitShow: 2
             })
-          }
-          if (isPurchaser) {
-            wx.setStorageSync("admin", 1)
-            _this.setData({
-              limitShow: 1
-            })
-          }
-          if (!isPurchaser && !isStoreOwner) {
+          }else{
             wx.setStorageSync("admin", 1)
             _this.setData({
               limitShow: 1

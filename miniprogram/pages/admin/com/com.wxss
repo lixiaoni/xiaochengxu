@@ -81,20 +81,22 @@
   padding-top: 30rpx;width: 65%;
   background:#fff;border-radius: 10rpx;
 }
-.st-cont image.cart-thumb{
+.st-cont image.cart-thumb,.st-cont .user-v{
   height: 180rpx;
   width: 180rpx;
   left:30rpx;
   border:2rpx solid #EDEDED;
   position: absolute;
 }
+.st-cont .user-v{
+  width: 110rpx;height: 50rpx;color: #fff;background: #CCAA77;text-align: center;line-height: 50rpx;border:0;top: 178rpx;
+}
 .st-d-status{
   margin-top: 20rpx;
 }
 .st-d-status view{
   width: 50%;
-  display: inline-block;
-  color: #888;
+  color: #888;float: left;
   margin-bottom: 6rpx;
   font-size: 24rpx;
 }
@@ -216,7 +218,7 @@
   position: absolute;width: 40rpx;height: 30rpx;top: -27rpx;
 }
 .list-view{
-  border-top:2rpx solid #EDEDED;margin-top:66rpx;
+  border-top:2rpx solid #EDEDED;margin-top:55rpx;
 }
 .list-view>view{
   display: inline-block;width: 33%;color: #666;font-size: 28rpx;text-align: center;height: 90rpx;line-height: 90rpx;position: relative
