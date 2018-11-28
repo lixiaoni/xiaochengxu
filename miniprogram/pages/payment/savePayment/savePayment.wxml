@@ -1,0 +1,24 @@
+<view wx:if="{{hasImg}}" class='modal {{show?"dblock":"dnone"}}'>
+<view class='box'>
+  <view style="text-align:right;" bindtap='close'>
+    <image src="/image/close.png" class='closeIcon'></image>  
+  </view>
+  <view class='title'>保存付款二维码</view>
+  <view class='name-box'>
+    <image src='{{head?head+"?x-oss-process=style/logo":"/image/42.png"}}' class='store-icon'></image>
+    <view>
+      <view class='store-title'>{{comName}}</view>
+      <view class='wx-code'>微信号：{{wx}}</view>
+    </view>
+  </view>   
+  <view class='shopping-car'>您购买了：{{goodsName}}...等{{goodsNum}}件商品</view> 
+  <text class='price'>￥{{myprice}}</text>
+  <image class='QRcode' src='{{paymentUrl?paymentUrl:""}}'></image>
+  <view class='tip'>保存到手机，微信扫描付款码完成支付</view>
+  <view bindtap='save' class='save-btn'>保存付款码</view>
+</view>
+
+<canvas canvas-id="my" style="width: 375px;height: 667px;position:fixed;top:10000px;"></canvas>
+
+</view>
+

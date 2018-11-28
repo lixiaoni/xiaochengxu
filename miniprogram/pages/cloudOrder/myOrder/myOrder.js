@@ -1,4 +1,5 @@
 // pages/cloudOrder/myOrder/myOrder.js
+const app = getApp();
 Page({
 
   /**
@@ -7,24 +8,44 @@ Page({
   data: {
   },
 
-  getData(){
-    app.getRequest("/api/ystore/order").then(res=>{
+  getData() {
+    console.log(wx.getStorageInfoSync("access_token"));
+    let wo = wx.getStorageSync("access_token");
+    if(!wo){
       wx.showToast({
-        title: res.message,
+        title: '请先登录',
         icon:'none'
       })
-      if(res.success){
+      return
+    }
+    wx.request({
+      url: 'https://dev-mall.youlife.me/api/yunstore/order/user/page/orderstatus/all',
+      header:{
+        Authorization: "bearer "+wo
+      },
+      success: (res)=>{
         this.setData({
-          msg:res.obj
+          list: res.data.obj.result
         })
       }
     })
+    // app.http.getRequest("/api/yunstore/order/user/page/orderstatus/all").then(res => {
+    //   // wx.showToast({
+    //   //   title: res.message,
+    //   //   icon:'none'
+    //   // })
+    //   if (res.success) {
+    //     this.setData({
+    //       msg: res.obj.result
+    //     })
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getData()
   },
 
   /**

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "小云店分类"
+  "navigationBarTitleText": "小云店分类",
+  "usingComponents": {
+    "no": "../indexEmpty/indexEmpty"
+  }
 }

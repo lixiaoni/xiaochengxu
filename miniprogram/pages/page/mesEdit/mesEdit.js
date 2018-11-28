@@ -8,7 +8,7 @@ Page({
   data: {
     showHide: true,
     countData: '',
-    floor: '',
+    floorInfo:null,
     storeMes: '',
     storeGoods: [],
     baseUrl: app.globalData.imageUrl,
@@ -49,6 +49,7 @@ Page({
       if (url) {
         Api.uploadLogoImg(url)
           .then(res => {
+            app.globalData.switchStore = true
             wx.showToast({
               title: res.message,
               icon: 'none',
@@ -77,11 +78,21 @@ Page({
     var _this = this
     Api.storeIdInfo()
       .then(res => {
-        var obj = res.obj
+        var obj = res.obj,
+          storeMes = obj.store[0].store
+        var floorInfo = Api.isFloorInfo(obj.floor)
         _this.setData({
           countData: obj.countData,
-          floor: obj.floor.floorInfo,
+          floorInfo: floorInfo,
           storeMes: obj.store[0].store,
+          openingTime: storeMes.openingTime == null? '' : storeMes.openingTime,
+          servicePhone: storeMes.servicePhone == null || storeMes.servicePhone == "null"? '' : storeMes.servicePhone,
+          wechatNumber: storeMes.wechatNumber == null || storeMes.wechatNumber == "null"? '' : storeMes.wechatNumber,
+          wechatPublicAccount: storeMes.wechatPublicAccount == null || storeMes.wechatPublicAccount == "null"? '' : storeMes.wechatPublicAccount,
+          address: storeMes.address == null || storeMes.address == "null"? '' : storeMes.address, 
+          province: storeMes.province == null || storeMes.province == "null"? '' : storeMes.province,
+          city: storeMes.city == null || storeMes.city == "null"? '' : storeMes.city,
+          county: storeMes.county == null || storeMes.county == "null"? '' : storeMes.county,
           storeGoods: obj.store[0].goodsList,
           logo: obj.store[0].store.logo
         })
@@ -99,7 +110,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    var limitShow = wx.getStorageSync("admin")
+    // wx.navigateTo({
+    //   url: '../mes/mes?code=' + limitShow,
+    // })
   },
 
   /**

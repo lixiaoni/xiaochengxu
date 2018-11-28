@@ -9,8 +9,4 @@
       邮费设置<view>{{postageInfo==null?'货到付款':postageInfo}}</view>
       <image class='weui-img' src="/image/icl.png"></image>
   </view>
-   <view bindtap='setFun'>
-      统一设置起批量<view>去设置</view>
-      <image class='weui-img' src="/image/icl.png"></image>
-  </view>
 </view>

@@ -3,18 +3,21 @@
   <view class="ym_jpstorelogo">
      <image  bindtap='editFun'  wx:if='{{storeMes!=""}}'  class="store-logo" src="{{baseUrl}}{{logo}}?x-oss-process=style/logo" ></image>
     </view>
-    <navigator url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types=小云店名称'>{{storeMes.name}}</navigator>
+    <view url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types=小云店名称'>{{storeMes.name}}</view>
     <!-- <image class='xyd' src="/image/edit2.png"></image> -->
     <!-- <navigator url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types=小云店名称'><text> 店铺号 {{storeMes.id}}</text></navigator> -->
   </view>
-  <navigator url='../updateMes/updateMes?name=description&value={{storeMes.description}}&types=小云店简介' class="ym_jpstoredesc">
+  <navigator  wx:if='{{storeMes.description!=null}}' url='../updateMes/updateMes?name=description&value={{storeMes.description}}&types=小云店简介' class="ym_jpstoredesc">
     <text class="leftyh">“</text>{{storeMes.description}}<text class="rightyh">”</text>
+  </navigator>
+  <navigator  wx:if='{{storeMes.description==null}}' url='../updateMes/updateMes?name=description&value=&types=小云店简介' class="ym_jpstoredesc">
+    <text class="leftyh">“</text> <text class="rightyh">”</text>
   </navigator>
 </view>
 <view class="weui_cells">
-    <navigator url='../editStoreAddress/editStoreAddress?address={{storeMes.address}}&province={{storeMes.province}}&city={{storeMes.city}}&county={{storeMes.county}}'>
+    <navigator url='../editStoreAddress/editStoreAddress?address={{address}}&province={{province}}&city={{city}}&county={{county}}'>
       <image  src="/image/positionico.png"></image>
-      <text>{{storeMes.address}}</text>
+      <text>{{address}}</text>
       <view class='weui-view'>
       <image class='img' src="/image/icl.png"></image>
     </view>
@@ -22,15 +25,15 @@
     <view>
       <image  src="/image/lou.png"></image>
       <text> 所属商城</text>
-      <view class='new-left' style='padding-right:20rpx'>
-       {{floor.mallName}}
+      <view class='new-left' wx:if='{{floorInfo!=null}}' style='padding-right:20rpx'>
+       {{floorInfo.mallName}}
       </view>
     </view>
     <view>
       <image  src="/image/lou.png"></image>
       <text>  楼层区域</text>
-      <view class='new-left' style='padding-right:20rpx'>
-        {{floor.balcony}}{{floor.floor}}{{floor.area}}
+       <view class='new-left'  wx:if='{{floorInfo!=null}}'>
+         {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}
       </view>
     </view>
 </view>
@@ -57,10 +60,10 @@
    <view class='weui-xian weui-xian1'></view>
 </navigator>
 <view class='weui-time'>
-  <navigator url='../updateMes/updateMes?name=openingTime&value={{storeMes.openingTime}}&types=营业时间'>营业时间<text>{{storeMes.openingTime==null?'':storeMes.openingTime}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
-  <navigator url='../updateMes/updateMes?name=servicePhone&value={{storeMes.servicePhone}}&types=客服电话'>客服电话<text>{{storeMes.servicePhone==null?'':storeMes.servicePhone}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
-  <navigator  url='../updateMes/updateMes?name=wechatNumber&value={{storeMes.wechatNumber}}&types=客服微信'>客服微信<text>{{storeMes.wechatNumber==null?'':storeMes.wechatNumber}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
-  <navigator  url='../updateMes/updateMes?name=wechatPublicAccount&value={{storeMes.wechatPublicAccount}}&types=公众号'>公众号<text>{{storeMes.wechatPublicAccount==null?'':storeMes.wechatPublicAccount}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
+  <navigator url='../updateMes/updateMes?name=openingTime&value={{openingTime}}&types=营业时间'>营业时间<text>{{openingTime}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
+  <navigator url='../updateMes/updateMes?name=servicePhone&value={{servicePhone}}&types=客服电话'>客服电话<text>{{servicePhone}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
+  <navigator  url='../updateMes/updateMes?name=wechatNumber&value={{wechatNumber}}&types=客服微信'>客服微信<text>{{wechatNumber}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
+  <navigator  url='../updateMes/updateMes?name=wechatPublicAccount&value={{wechatPublicAccount}}&types=公众号'>公众号<text>{{wechatPublicAccount}}</text><view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
 </view>
 <view class="weui_cells">
     <image  src="/image/mes12.png"></image>
@@ -68,6 +71,7 @@
    <view class='weui-xian weui-xian1'></view>
 </view>
 <view class='weui-time'>
+<navigator url='../../payment/uploadPayment/uploadPayment'>付款码<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
   <navigator url='../editInvoice/editInvoice?code={{storeMes.isReceipt}}&name={{storeMes.receiptInfo}}'>发票设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
   <navigator url='../postageInfo/postageInfo?code={{storeMes.postageInfo}}'>邮费设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
 </view>

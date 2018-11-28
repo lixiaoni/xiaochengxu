@@ -17,37 +17,56 @@ Page({
        var userId=res.result
         if (userId != "*") {
           var userId = userId.split("user_")[1]
-          Api.getStoreDetails({ userId: userId })
-            .then(res => {
-              var obj=res.obj
-              if (Api.isEmpty(obj)){
-                var isBizFriend = obj.isBizFriend
-                if (isBizFriend){
-                  var status=2
-                }else{
-                  Api.showToast("未找到此供应商！")
-                  return
+          if (Api.isEmpty(userId)){
+            Api.showPurchaser({ userId: userId })
+              .then(res => {
+                var obj = res.obj,
+                  status = obj.status
+                if (status) {
+                  if (status == 3) {
+                    status == 0
+                  }
+                  wx.navigateTo({
+                    url: '../information/information?status=' + status + '&send=&accept=' + obj.storeId_ + '&remark= &name=&logo=',
+                  })
                 }
-                wx.navigateTo({
-                  url: '../information/information?status='+status+'&send=&accept=' + obj.storeId + '&remark=&logo=&name=',
-                })
-              }else{
-                Api.showToast("未找到此供应商！")
-              }
-              
-            })
+              })
+              .catch(res => {
+                var data = res.data
+                if (data.code) {
+                  var code = data.code
+                  if (code == "006") {
+                    that.setData({
+                      isStoreOwner: true
+                    })
+                  } else if (code == "005") {
+                    that.setData({
+                      isNotStore: true
+                    })
+                  }
+                }
+              })
+          } else {
+            Api.showToast("未获取信息！")
+          }
         } else {
           Api.showToast("未获取信息！")
         }
       },
       fail: (res) => {
-        Api.showToast("失败")
+        // Api.showToast("失败")
       },
       complete: (res) => {
       }
     })
-  }
-  ,
+  },
+  // 关闭
+  closeTip: function () {
+    this.setData({
+      isStoreOwner: false,
+      isNotStore: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -72,7 +91,6 @@ Page({
     })
   },
   onShow: function () {
-   
   },
   /**
    * 生命周期函数--监听页面隐藏

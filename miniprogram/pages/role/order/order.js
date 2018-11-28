@@ -61,15 +61,31 @@ Page({
     expressageCom:"",
     expressageCode: ""
   },
-
+  initListType(type) {
+    let list = this.data.nav;
+    let currentIndex = 2;
+    list.forEach((i, index) => {
+      if (i == type) {
+        currentIndex = index
+      }
+    })
+    this.setData({
+      navindex: currentIndex,
+      whitch: type,
+      showList: []
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.setData({
-      storeId: wx.getStorageSync("storeId"),   //列表请求
+      storeId: API.getThisStoreId(),   //列表请求
       baseUrl: app.globalData.imageUrl      //图片
     })
+    if (options.navType) {
+      this.initListType(options.navType)
+    }
   },
   //查看凭证
   seeVoucher(e){
@@ -99,14 +115,31 @@ Page({
     let type = e.currentTarget.dataset.type;
     let key = "";
     switch (type) {
-      case "change": key = 'changeMoney'; break;
+      case "change": 
+        key = 'changeMoney';
+        let nowMoney = Number(e.detail.value),
+          order = Number(this.data.thisOrderMoney),
+            moneyIcon = "-";
+        if (nowMoney > order){
+          moneyIcon = "+" 
+        }
+        this.setData({
+          moneyIcon: moneyIcon
+        })
+        break;
       case "goodCode" : key = "getGoodCode";break;
       case "exCom": key = "expressageCom";break;
       case "exCode": key = "expressageCode"; break;
     }
 
+    let val = e.detail.value
+    if (key =="changeMoney"){
+      this.setData({
+        showChangeMoney: Number(val).toFixed(2)
+      })
+    }
     this.setData({
-      [key]: e.detail.value
+      [key]: val
     })
   },
   showModal(e){
@@ -118,7 +151,10 @@ Page({
         obj = {
           changeModal: true,
           changeNum: num,
-          changeMoney: ""
+          changeMoney: 0,
+          showChangeMoney:0,
+          moneyIcon:"-",
+          thisOrderMoney: e.currentTarget.dataset.change
         }; break;
       case "goodCode": 
         obj = {
@@ -174,7 +210,7 @@ Page({
   sureChange(){
     let num = this.data.changeNum;
     let money = this.data.changeMoney;
-    if (!money || money < 0){
+    if (!money || money <= 0){
       wx.showToast({
         title: '请输入金额',
         icon: 'none'

@@ -6,12 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dan:"订单"
+    dan:"订单",
+    paymentModal:true,
+    baseUrl: app.globalData.imageUrl,
+    orderSuccessHiddenBtn:false,
   },
   getData() {
     app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {
       this.setData({
         user: res.obj,
+        price: res.obj.orderAmount.toFixed(2)        
       })
     })
   },

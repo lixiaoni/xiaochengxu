@@ -11,6 +11,7 @@
     <icon type="success" size="28"  wx:if="{{item.selected}}" color="#CCAA77" data-index="{{index}}"  data-id='{{item.id}}' bindtap="selectList"/>
     <icon wx:else type="circle" size="28" data-index="{{index}}" data-id='{{item.id}}' bindtap="selectList"/>
       <image class='cart-thumb '  src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+      <view class='user-v' wx:if="{{item.copied==true}}">引用</view>
       <view class='st-details'>
         <view class='st-d-t'>{{item.name}}</view>
         <view class='st-d-status'>

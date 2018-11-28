@@ -1,6 +1,9 @@
+<view hidden='{{indexEmpty}}'>
+  <no></no>
+</view>
 <view class='page'>
 <view class='my-top-line'></view>
-   <view class='page__hd page__hd1'>
+   <view class='page__hd page__hd1' style='margin:20rpx 30rpx;border-radius:10rpx'>
     <navigator class='weui-cell weui-cell_access' url='../classList/classList?name=全部商品&allCode=0'>
       <view class='weui-cell__bd'>
         <view class='my-info'>全部商品</view>
@@ -21,5 +24,13 @@
         </view>
       </navigator>
     </view>
+  </view>
+</view>
+<view class="result-null" wx:if='{{list.length<2}}'>
+  <view class="nomore">
+    <view>
+      <image src="/image/class-i.png"></image>
+    </view>
+    暂时还没有分类哦！
   </view>
 </view>

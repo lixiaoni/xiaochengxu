@@ -32,7 +32,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+    if (options.storeId) {
+      wx.setStorageSync("storeId", options.storeId)
+    }
   },
 
   /**
@@ -45,9 +47,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
     var _this=this
-    var storeId = wx.getStorageSync("storeId")
+    var storeId = Api.getThisStoreId()
     Api.miniProgramCode({ storeId: storeId})
     .then(res=>{
       var obj = res.obj.miniProgramCode

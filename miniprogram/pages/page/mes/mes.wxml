@@ -24,7 +24,7 @@
     <view class='weui-xian weui-xian1'></view>
 </view>
 <view class='weui-time wt-font'>
-  <view><image  wx:if='{{floor!=""}}' src=" {{baseUrl}}{{floor.mallLogo}}"></image> {{floor.mallName}}</view>
+  <view wx:if='{{floorInfo!=null}}'><image   src=" {{baseUrl}}{{floorInfo.mallLogo}}"></image> {{floorInfo.mallName}}</view>
   <view>该商家已通过北京百荣世贸商城认证</view>
 </view>
 <view class="weui_cells">
@@ -35,15 +35,15 @@
     <view>
       <image  src="/image/lou.png"></image>
       <text> 所属商城</text>
-      <view class='new-left'>
-       {{floor.mallName}}
+      <view class='new-left' wx:if='{{floorInfo!=null}}'>
+       {{floorInfo.mallName}}
       </view>
     </view>
     <view>
       <image  src="/image/lou.png"></image>
       <text> 楼层区域</text>
-      <view class='new-left'>
-         {{floor.balcony}}{{floor.floor}}{{floor.area}}
+      <view class='new-left'  wx:if='{{floorInfo!=null}}'>
+         {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}
       </view>
     </view>
 </view>
@@ -74,10 +74,10 @@
    <view class='weui-xian weui-xian1'></view>
 </navigator>
 <view class='weui-time wt-font1'>
-  <view>营业时间<text>{{storeMes.openingTime==null?'':storeMes.openingTime}}</text></view>
-  <view>客服电话<text>{{storeMes.servicePhone==null?'':storeMes.servicePhone}}</text><view class='mes-tel'><image src="/image/tel1.png"  bindtap="calling"></image></view></view>
-  <view>客服微信<text>{{storeMes.wechatNumber==null?'':storeMes.wechatNumber}}</text></view>
-  <view>公众号<text></text></view>
+  <view>营业时间<text>{{storeMes.openingTime==null || storeMes.openingTime=="null"?'':storeMes.openingTime}}</text></view>
+  <view>客服电话<text>{{storeMes.servicePhone==null || storeMes.servicePhone=="null"?'':storeMes.servicePhone}}</text><view class='mes-tel'><image src="/image/tel1.png"  bindtap="calling"></image></view></view>
+  <view>客服微信<text>{{storeMes.wechatNumber==null || storeMes.wechatNumber=="null"?'':storeMes.wechatNumber}}</text></view>
+  <view>公众号<text>{{storeMes.wechatPublicAccount==null || storeMes.wechatPublicAccount=="null"?'':storeMes.wechatPublicAccount}}</text></view>
 </view>
 <!-- <view class='weui-one-bottom'>
   √ {{storeMes.collectionNum}} 已关注

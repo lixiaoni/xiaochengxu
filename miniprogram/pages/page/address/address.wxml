@@ -1,14 +1,19 @@
 <view class='ad-top'>
-  <view class="{{currentTab==0?'ad-active':''}}" data-current="0" data-current="0" bindtap="swichNav">
-    <image src="{{currentTab==0?'/image/men.png':'/image/men0.png'}}"></image>门店自提</view>
   <view class="{{currentTab==1?'ad-active':''}}" data-current="1" data-current="1" bindtap="swichNav">
     <image src="{{currentTab==0?'/image/car0.png':'/image/car.png'}}"></image>物流配送</view>
+  <view class="{{currentTab==0?'ad-active':''}}" data-current="0" data-current="0" bindtap="swichNav">
+    <image src="{{currentTab==0?'/image/men.png':'/image/men0.png'}}"></image>门店自提</view>
 </view>
 <view class='ad-send'>
   <view class='ad-tel flex-tel' hidden="{{hiddenSelt}}">
-    <image src="/image/tel.png"></image>
-    <input style='display:inline-block;width:442rpx;top:27rpx;position:absolute;' value='{{phone}}' type='number' data-type='phone' bindinput='watchInput' placeholder='为确保正常取货，请预留您的手机号码' />
-    <!-- <button>自动填写</button> -->
+    <image src="/image/tel.png" style="width:40rpx;height:40rpx;"></image>
+    <input style='display:inline-block;width:390rpx;' value='{{phone}}' type='number' data-type='phone' bindinput='watchInput' placeholder='为确保正常取货，请预留手机号码' />
+    <button bindtap='getMobile'>自动填写</button>
+    <image class='ad-itimg' src="/image/addrbg.png"></image>
+    <image class='ad-itimg ad-itimg1' src="/image/addrbg.png"></image>
+    <image class='ad-itimg ad-itimg2' src="/image/addrbg.png"></image>
+    <image class='ad-itimg ad-itimg3' src="/image/addrbg.png"></image>
+    <image class='ad-itimg ad-itimg4' src="/image/addrbg.png"></image>
   </view>
   <navigator hidden="{{hiddenSend}}" url='../addressWe/addressWe'>
     <view class='ad-tel' wx:if="{{!address}}">
@@ -20,18 +25,23 @@
       <image class='ad-itimg ad-itimg3' src="/image/addrbg.png"></image>
       <image class='ad-itimg ad-itimg4' src="/image/addrbg.png"></image>
     </view>
-     <!-- 收货人 -->
+    <!-- 收货人 -->
     <view class='receive-box' wx:else>
       <view class='receive-man'>
         <view>
           <image src="/image/ad.png"></image>
           <text>收货人：{{address.userName}}</text>
         </view>
-
-        <text class='np-text'>{{address.userPhone}}</text>
+        <view>
+          <text class='np-text'>{{address.userPhone}}</text>
+          <image class='itimg' src="/image/icl.png"></image>
+        </view>
       </view>
-      <text class='receive-address'>收货地址：{{address.detailAddress}}</text>
-      <image class='itimg' src="/image/icl.png"></image>
+      <view class='receive-address'>
+        <view class='address-title'>收货地址：</view>
+        <view class='address-inner'>{{address.detailAddress}}</view>
+      </view>
+
       <image class='ad-itimg' src="/image/addrbg.png"></image>
       <image class='ad-itimg ad-itimg1' src="/image/addrbg.png"></image>
       <image class='ad-itimg ad-itimg2' src="/image/addrbg.png"></image>
@@ -39,15 +49,21 @@
       <image class='ad-itimg ad-itimg4' src="/image/addrbg.png"></image>
     </view>
   </navigator>
- 
-
-
-  <view class='c-title'>
-    <image src="/image/ic1.png"></image> {{store.storeName}}
-    <image class='itimg' src="/image/icl.png"></image>
+  <view class='item-box flex-between payway-box'>
+    <view class='flex-center'>
+      <image style="margin-left:7rpx;" class='s-icon' src='/image/wallet.png'></image>支付方式
+    </view>
+    <view class='flex-center gray-font s-font'>
+      其他支付方式
+      <image class='tri-icon' src="/image/icl.png"></image>
+    </view>
+  </view>
+  <view class='c-title flex-center'>
+    <image src="/image/12.png"></image> 
+    <view class='com-name'>{{store.storeName}}</view>
+    <image class='right-icon' src="/image/icl.png"></image>
   </view>
   <!-- <view class="cart-box">
-
     <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
       <navigator url="../goodsdetails/goodsdetails?id={{item.id}}"><image class="cart-thumb" src="{{item.image}}"></image></navigator> 
       <view class='ct-text ct-text1'>￥{{item.price}}<view>x {{item.num}}</view></view>
@@ -55,45 +71,54 @@
       <text class="cart-pro-name">规格：{{item.small}}</text>
     </view>
   </view> -->
-
   <!-- 商品 -->
-  <view style="margin-bottom:10rpx;">
+  <view style="margin-bottom:10rpx;background:#fff;">
+    <view class='border-line'></view>      
     <view class="cart-box" wx:for="{{goods}}" wx:key="{{index}}">
       <view class="cart-list">
         <navigator>
           <image class="cart-thumb" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
         </navigator>
         <view class='ct-title ct-title1'>{{item.goodsName}}</view>
-        <view class="heji">共
-          <text>{{item.num}}</text>件商品</view>
       </view>
-
       <!-- 表格 -->
-      <view wx:if="{{item.preOrderGoodsSkuList}}" class="table">
-        <view class="tr">
-          <view class="th">规格</view>
-          <view class="th">数量</view>
-          <view class="th">{{item.satisfiedWholesale?'批发价':'单价'}}</view>
-        </view>
-        <view class="tr" wx:for="{{item.preOrderGoodsSkuList}}" wx:key="{{index}}">
-          <view class="td">{{item.skuName}}</view>
-          <view class="td">{{item.num}}件</view>
-          <view class="td">￥{{item.satisfiedWholesale?item.wholesalePrice:item.sellPrice}}</view>
-        </view>
-      </view>
-      <view wx:else class="table">
-        <view class="tr">
-          <view class="th">规格</view>
-          <view class="th">数量</view>
-          <view class="th">{{item.satisfiedWholesale?'批发价':'单价'}}</view>
-        </view>
-        <view class="tr">
-          <view class="td">默认</view>
-          <view class="td">{{item.num}}件</view>
-          <view class="td">￥{{item.satisfiedWholesale?item.wholesalePrice:item.sellPrice}}</view>
+      <view class="table">
+        <block wx:if="{{item.preOrderGoodsSkuList}}">
+          <view class="tr">
+            <view class="th">规格</view>
+            <view class="th">数量</view>
+            <view class="th" wx:if="{{item.satisfiedWholesale}}">零售价</view>
+            <view class="th">{{item.satisfiedWholesale?'批发价':'零售价'}}</view>
+          </view>
+          <view class="tr" wx:for="{{item.preOrderGoodsSkuList}}" wx:key="{{index}}">
+            <view class="td">{{item.skuName}}</view>
+            <view class="td">{{item.num}}件</view>
+            <view class="td price-line" wx:if="{{item.satisfiedWholesale}}">{{item.sellPrice}}</view>
+            <view class="td bold-font td-money">￥{{item.satisfiedWholesale?item.wholesalePrice:item.sellPrice}}</view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="tr">
+            <view class="th">规格</view>
+            <view class="th">数量</view>
+            <view class="th" wx:if="{{item.satisfiedWholesale}}">零售价</view>
+            <view class="th">{{item.satisfiedWholesale?'批发价':'零售价'}}</view>
+          </view>
+          <view class="tr">
+            <view class="td">默认</view>
+            <view class="td">{{item.num}}件</view>
+            <view class="td price-line" wx:if="{{item.satisfiedWholesale}}">{{item.sellPrice}}</view>
+            <view class="td bold-font td-money">￥{{item.satisfiedWholesale?item.wholesalePrice:item.sellPrice}}</view>
+          </view>
+        </block>
+
+        <view class='item-total'>
+          共<text><text class='glod-font'> <text class='bold-font'> {{item.num}}</text> 件</text></text>商品 合计：<text class='glod-font item-price-font'>￥{{item.myPrice}}</text>
         </view>
       </view>
 
+
+    <view hidden='{{index == goods.length-1}}' class='border-line'></view>
     </view>
   </view>
 
@@ -104,26 +129,26 @@
 
   <view class='ad-fp' bindtap='toInvoiceDetail'>
     发票：
-    <text>{{invoice.invoiceType && invoice.invoiceCategory?invoice.invoiceType +" "+invoice.invoiceCategory:"不开发票"}}</text>
+    <text class='s-font'>{{invoice.invoiceType && invoice.invoiceCategory?invoice.invoiceType +" "+invoice.invoiceCategory:"不开发票"}}</text>
     <image class='itimg' src="/image/icl.png"></image>
   </view>
-  <view class='ad-fp'>
+  <view class='ad-fp ad-fp-new'>
     买家留言：
-    <input type="text" maxlength='45' placeholder="选填：给商家留言（45字以内）" data-type='msg' value="{{msg}}" bindinput='watchInput' />
+    <input class='s-font' type="text" maxlength='45' placeholder="选填：给商家留言(45字以内)" data-type='msg' value="{{msg}}" bindinput='watchInput' />
   </view>
   <view class='ad-monery' hidden="{{hiddenSend}}">
     <view>商品金额
       <text>￥{{price}}</text>
     </view>
-    <view>运费
-      <text>货到付款</text>
+    <view>运费类型
+      <text style='color:#000;'>{{postType}}</text>
     </view>
   </view>
 </view>
 <view class="cart-footer">
   <view class='order-all'>
     实付款：
-    <text>￥{{price}}</text>
+    <text class="bold-font">￥{{price}}</text>
   </view>
   <view class="order-icon" bindtap='submit'>
     提交{{orderTitle}}

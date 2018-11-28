@@ -39,7 +39,6 @@
   line-height:40rpx;
   text-align:center;
   color:#CCAA77;
-  border:2rpx dashed #CCAA77;
   position:absolute;
   right:70rpx;
   top:33rpx;

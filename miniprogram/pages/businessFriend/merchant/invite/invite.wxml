@@ -1,24 +1,2 @@
-<view class='bf-all'>需要发送验证申请,等待对方通过</view>
-<view class='bf-cont'>
-  <view class='bf-weui add-bf-weui add-bf-weui1'>
-    <view class="weui_cells weui_cells">
-      <textarea  placeholder=''  bindinput="searchBtn" value='我是{{storeName}}，我的优店，精挑细选优质商品，快来和我一起赚钱吧！'></textarea>
-      <view class='weui-view'>
-        <image  mode="widthFix"  bindtap='emptyVal' src="/image/ser.png"></image>
-      </view>
-    </view>
-  </view>
-</view>
-<view class='bf-cont'>
-  <view class='bf-weui'>
-    <view class="weui_cells new-weui">
-      <view class='bf-img'><image  mode="aspectFill" src="{{headPic}}"></image></view>
-      <text>{{name}}</text>
-    </view>
-  </view>
-  <view class='invi-i'><image  mode="widthFix" src="/image/icon.png"></image>邀请成功后，该进货商将以批发价购买您店铺的商品</view>
-</view>
-<view class='add-bottom'>
-  <view bindtap='goBack'>取消</view>
-  <view bindtap='invita'>邀请</view>
-</view>
+<!--pages/businessFriend/merchant/invite/invite.wxml-->
+<text>pages/businessFriend/merchant/invite/invite.wxml</text>

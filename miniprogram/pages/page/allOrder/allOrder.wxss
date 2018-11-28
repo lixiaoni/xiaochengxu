@@ -1,4 +1,8 @@
 @import '../order/order';
+page{
+  height: auto!important;
+  padding-bottom: 10rpx;
+}
 .order-title-box{
   background-size: cover;
 }
@@ -12,6 +16,7 @@
 }
 .ct-text{
   color:#CCAA77;
+  right: 50rpx;
 }
 .ct-text view{
   color:#999;
@@ -28,7 +33,7 @@
   color: #fff;font-weight: bold;
   font-size: 36rpx;
   position: relative;
-  padding-left: 25rpx;
+  padding-left: 50rpx;
 }
 .np-title image{
   width: 45rpx;
@@ -40,7 +45,7 @@
 .np-right{
   /* position: absolute; */
   /* right: 25rpx; */
-  padding-right: 25rpx;
+  padding-right: 50rpx;
   font-size: 26rpx;
   color: #fff;
   top:30rpx;
@@ -56,12 +61,13 @@
 }
 
 .np-ct .np-view{
-  margin-left:80rpx;
+  margin-left:100rpx;
   /* min-height: 190rpx; */
-  padding-right: 100rpx;
+  margin-right: 50rpx;
   border-bottom: 2rpx solid #f3f3f3;
   position: relative;
   padding-bottom:30rpx;
+  box-sizing: border-box;
 }
 .np-ct .np-view1{
   border-bottom: 0;
@@ -74,7 +80,6 @@
 .np-ct text,.np-ct .np-coden1 text {
   color: #666;font-weight: normal;
   font-size: 26rpx;
-  margin-right: 100rpx;
 }
 .np-ct .np-code text{
   font-size: 26rpx;
@@ -96,7 +101,7 @@
   font-weight:bold;
   font-size: 30rpx;
   position: absolute;
-  right: -70rpx;
+  right: 0;
   top:20rpx;
 }
 .np-mes{
@@ -136,7 +141,7 @@
   color: #333;
   background: #fff;
   margin-bottom: 20rpx;
-  padding:20rpx 30rpx 30rpx 30rpx;
+  padding:20rpx 50rpx 30rpx;
 }
 .np-order-bar{
   margin-bottom: 120rpx;
@@ -173,7 +178,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  border-top: 2rpx solid #DFDFDF;
+  /* border-top: 2rpx solid #DFDFDF; */
   background: #fff;
 }
 .cf-button button{
@@ -192,9 +197,8 @@
   font-size:26rpx;
   color:#333;
   background:#fff;
-  margin-top:-20rpx;
   margin-bottom: 20rpx;
-  padding:30rpx;
+  padding:30rpx 50rpx;
 }
 .np-fapiao view{
   margin-bottom: 10rpx;
@@ -211,4 +215,48 @@
 }
 .sf-tel image{
   top: 13rpx;
+}
+
+
+.border-bottom{
+  border-bottom: 2rpx solid #f3f3f3;
+}
+.back-white{
+  background: #fff;
+}
+.table{
+  border-bottom: 0;
+  padding-bottom:40rpx;
+  margin: 10rpx 50rpx;
+}
+.c-title{
+  margin-left: 50rpx;
+}
+
+/* 商品 */
+.cart-list .cart-thumb{
+  left: 50rpx;
+}
+.cart-list{
+  padding-left:220rpx;
+}
+
+.address-box{
+  color:#666;
+  font-weight:normal;
+  font-size:26rpx;
+  display: flex;
+  padding-top: 0;
+  margin-top: 0;
+}
+.address-title{
+  width: 140rpx;
+}
+.address-inner{
+  flex: 1;
+}
+.heji{
+  font-size:24rpx;
+  color:#666;
+  padding-top:10rpx;
 }

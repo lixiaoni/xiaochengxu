@@ -1,17 +1,6 @@
-@import '../../page/home/home';
-@import '../index/index';
-.home-img{
-  color:#CCAA77;font-size: 30rpx;width: auto;top: 18rpx;
-}
-.bf-font{
-  font-weight: bold
-}
-.bf-all{
-  color: #666;font-size: 26rpx;margin-left: 40rpx;padding-top: 10rpx;
-}
-.bf-weui .weui_cells{
-  font-size: 28rpx;height: 100rpx;line-height: 100rpx;border-bottom: 2rpx solid #F2F2F2;margin-left: 100rpx;position: relative;margin-right:-20rpx;
-}
-.allData{
-  text-align: center;color: #999;font-size: 28rpx;margin-top: 40rpx;
-}
+@import '../common/common';
+.home-img{color:#CCAA77;font-size:30rpx;width:auto;top:18rpx}
+.bf-font{font-weight:bold}
+.bf-all{color:#666;font-size:26rpx;margin-left:40rpx;padding-top:10rpx}
+.bf-weui .weui_cells{font-size:28rpx;height:100rpx;line-height:100rpx;border-bottom:2rpx solid #F2F2F2;margin-left:100rpx;position:relative;margin-right:-20rpx;padding-top:0}
+.allData{text-align:center;color:#999;font-size:28rpx;margin-top:40rpx;margin-bottom:30rpx}

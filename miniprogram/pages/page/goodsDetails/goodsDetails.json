@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "商品详情",
   "usingComponents": {
-    "login": "../../login/login/login"
+    "login": "../../login/login/login",
+    "mes": "../../../../assembly/tips/tips"
   }
 }

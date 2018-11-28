@@ -1,47 +1,65 @@
-<view class='order-box' wx:if="{{msg}}">
-  <view class='order-title'>
-    <view>
-      <text class='store-name'>小云店商城专业版</text>
-      <text class='store-type'>新批零</text>
-    </view>
-    <text class='youyou'>已付款</text>
-  </view>
+<view class='item-box' wx:for="{{list}}">
+  <navigator url='../orderDetail/orderDetail?num={{item.orderNumber}}'>
 
-  <view class='price-box'>
-    <view class='tip-font'>
-      <text>新购</text>
-      <text class='line'></text>
-      <text>订单金额</text>
-    </view>
-    <view>
-      <text class="price">￥{{msg.payAmount}}</text>
-    </view>
-  </view>
+    <view class='order-box'>
+      <view class='order-title'>
+        <view>
+          <text class='store-name'>小云店商城专业版</text>
+        </view>
+        <text wx:if='{{item.orderStatus=="unpaid"}}' class='youyou'>待付款</text>
+        <text wx:if='{{item.orderStatus=="paid"}}' class='youyou'>已付款</text>
+      </view>
 
-  <navigator url='../orderDetail/orderDetail?num={{msg.orderNumber}}'>
-  <view class='bb'>
-    <view class='msg-box'>
-      <view class='msg-item'>
-        <text class='msg-title'>服务时间</text>
-        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceTerm}}</text>
+      <view class='price-box'>
+        <view class='tip-font'>
+          <text>新购</text>
+          <text class='line'></text>
+          <text>订单金额</text>
+        </view>
+        <view>
+          <text class="price">￥{{item.orderAmount}}</text>
+        </view>
       </view>
-      <view class='msg-item'>
-        <text class='msg-title'>开始时间</text>
-        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateBegin}}</text>
-      </view>
-      <view class='msg-item'>
-        <text class='msg-title'>结束时间</text>
-        <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateEnd}}</text>
-      </view>
-      <view class='msg-item'>
-        <text class='msg-title'>下单时间</text>
-        <text class="msg-content">{{msg.createDate}}</text>
+
+      <view class='msg-box'>
+        <view class='msg-item' wx:if='{{item.orderStatus=="unpaid"}}'>
+          <text class='msg-title'>应付金额</text>
+          <text class="msg-content color-red">￥<text class='b-font'>{{item.yunStoreGoodsSnapshot.serviceFee}}</text>元</text>
+        </view>
+        <view class='msg-item'>
+          <text class='msg-title'>服务时间</text>
+          <text class="msg-content">{{item.yunStoreGoodsSnapshot.serviceReriodMonth}}个月</text>
+        </view>
+        <block wx:if='{{item.orderStatus=="paid"}}'>
+        <view class='msg-item'>
+          <text class='msg-title'>开始时间</text>
+          <text class="msg-content"></text>
+        </view>
+        <view class='msg-item'>
+          <text class='msg-title'>结束时间</text>
+          <text class="msg-content"></text>
+        </view>
+        </block>
+        <view class='msg-item'>
+          <text class='msg-title'>下单时间</text>
+          <text class="msg-content">{{item.createDate}}</text>
+        </view>
+
+        
+        <view class='msg-item' wx:if='{{item.orderStatus=="paid"}}'>
+          <text class='msg-title'>剩余时间</text>
+          <text class="msg-content">天</text>
+        </view>
       </view>
     </view>
-    <image class='more' src='/image/mallr.png'></image>
-  </view>
+    <view class='to-detail'>
+      <text>查看详情</text>
+      <image class='more' src='/image/mallr.png'></image>
+    </view>
   </navigator>
 
 </view>
-
+<!-- 
+<view>
+  <image></image>联系优生活客服</view> -->
 <view class='company'>优生活技术支持</view>

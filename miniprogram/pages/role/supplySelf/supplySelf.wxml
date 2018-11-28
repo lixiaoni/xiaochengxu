@@ -92,6 +92,7 @@
         <view class="tr" wx:for="{{good.orderDetails}}" wx:key="{{index}}">
           <view class="td">{{item.goodsDesc}}</view>
           <view class="td">{{item.num}}件</view>
+          <view class="td">￥{{item.wholesalePrice}}</view>
         </view>
       </view>
 

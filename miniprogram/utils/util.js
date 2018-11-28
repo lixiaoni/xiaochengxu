@@ -144,11 +144,39 @@ function newVal(val){
   val = val.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
   return val
 }
+/**
+ *随机三个字母
+ */
+function ramNum(){
+  var c = ''
+  for (var i = 0; i < 3; i++) {
+    var rand = Math.floor(Math.random() * 26);
+    c = c + String.fromCharCode("a".charCodeAt(0) + rand);
+  }
+  return c
+}
+/**
+ *随机三个字母
+ */
+function ramNum1() {
+  var c = ''
+  for (var i = 0; i < 3; i++) {
+    var rand = Math.floor(Math.random() * 26);
+    c = c + String.fromCharCode("a".charCodeAt(0) + rand);
+  }
+  return c
+}
+function ramData(){
+  return Date.parse(new Date()) + parseInt(89999 * Math.random() + 10000 + 1)
+}
 module.exports = {
   formatTime: formatTime,
   count_down:count_down,
   saveImgToPhone: saveImgToPhone,
   parseGoodsDescription: parseGoodsDescription,
-  newVal: newVal
+  newVal: newVal,
+  ramNum: ramNum,
+  ramData: ramData,
+  ramNum1: ramNum1,
 }
 

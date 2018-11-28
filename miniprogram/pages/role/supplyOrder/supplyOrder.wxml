@@ -1,3 +1,4 @@
+<wxs src="../../../public/filter.wxs" module="filter" />
 <!-- 确认收款 -->
 <mes show="{{sureModal}}">
   <view>
@@ -24,25 +25,28 @@
       <input class='alertInput' value='{{expressageCode}}' bindinput='watchInput' data-type='exCode' placeholder='请输入运单号 '></input>
     </view>
     <view style='display:flex;'>
-      <button wx:if="{{!noBtn}}" data-type='no' bindtap='sendGoods'>先发货，再填单</button>
+      <button wx:if="{{!noBtn}}" data-type='no' bindtap='sendGoods' style="padding:0;">先发货，再填单</button>
       <button bindtap='sendGoods'>确定</button>
     </view>
   </view>
 </mes>
 <!-- 取消订单 -->
 <clo show="{{cancelModal}}" bind:sureSelectArea="sureSelectAreaListener">
-  <view wx:for='{{reson}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
+  <view class='layer-reason-item' wx:for='{{reson}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
     <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}" size='18' class="cart-pro-select" />
     <icon wx:else type="circle" class="cart-pro-select" size='18' data-index="{{index}}" /> {{item.title}}
   </view>
-  <button bindtap='sureCancel'>确定</button>
+  <button class='layer-reason-btn' bindtap='sureCancel'>确定</button>
 </clo>
 <!-- 改价 -->
 <mes show="{{changeModal}}">
   <view class='modal-box'>
-    <text>修改价格</text>
-    <view class='inputCon'>
-      <input maxlength='9' type='digit' value="{{changeMoney}}" class='alertInput' placeholder='请输入修改后价格' data-type='change' bindinput='watchInput'></input>
+    <text>修改订单价格</text>
+    <view class='title-line'></view>
+    <view class='money-layer-box '>
+      <view>订单原价：<text style='font-size:36rpx;' class='gold-money'>{{filter.filterMoney(thisOrderMoney)}}</text>元</view>
+      <view class='flex-center padding-set'>订单金额改价：<input class='layer-money-input gold-money' maxlength='9' type='digit' value='{{changeMoney}}' data-type='change' bindinput='watchInput'></input>元</view>
+      <view>差额：{{filter.filterMoney(thisOrderMoney)}} <text class='gold-money'> {{moneyIcon}} {{filter.plusNum(filter.filterMoney(thisOrderMoney-changeMoney))}}</text> = {{showChangeMoney}}元</view>
     </view>
     <button bindtap='sureChange'>确定</button>
   </view>
@@ -93,7 +97,7 @@
           </navigator>
           <view class='ct-title ct-title1'>{{good.goodsName}}</view>
           <view class="heji">共
-            <text>{{item.num}}</text>件商品</view>
+            <text>{{item.num}}件</text> 商品</view>
         </view>
 
         <!-- 表格 -->
@@ -106,7 +110,7 @@
           <view class="tr" wx:for="{{good.orderDetails}}" wx:key="{{index}}">
             <view class="td">{{item.goodsDesc}}</view>
             <view class="td">{{item.num}}件</view>
-            <view class="td">￥{{item.wholesalePrice}}</view>
+            <view class="td">￥{{item.unitPrice}}</view>
           </view>
         </view>
 
@@ -123,7 +127,7 @@
       <!-- 代收款 1自提-->
       <view class='or-last' wx:if="{{item.orderStatus=='unpaid'}}">
         <button class='or-active'> 提醒付款 </button>
-        <button bindtap='showModal' data-type='change' data-num='{{item.orderNumber}}' class='or-active'> 整单改价 </button>
+        <button bindtap='showModal' data-type='change' data-num='{{item.orderNumber}}' data-change="{{item.orderAmount}}" class='or-active'> 整单改价 </button>
         <button wx:if="{{item.orderType==2}}" class='or-active' data-type='ex' bindtap='showModal' data-num="{{item.orderNumber}}">收款发货</button>
         <button wx:if="{{item.orderType==1}}" class='or-active' data-type='sureGet' bindtap='showModal' data-num="{{item.orderNumber}}">确认收款</button>
         <button data-num="{{item.orderNumber}}" data-type='cancel' bindtap='showModal'>关闭供货单</button>

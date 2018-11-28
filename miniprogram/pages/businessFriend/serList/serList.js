@@ -33,16 +33,16 @@ Page({
     })
   },
   onLoad: function (options) {
-    // isFriendStoreUrl
+   var _this=this
     if (options.value){
       app.pageRequest.pageData.pageNum = 0
-      this.getList({ keyword: options.value})
       this.setData({
         value: options.value
+      },function(){
+        _this.getList()
       })
     }else{
-      app.pageRequest.pageData.pageNum = 0
-      this.getList({ keyword: this.data.value })
+      _this.initData()
     }
   
   },
@@ -66,22 +66,24 @@ Page({
       value: val
     })
   },
-  searchBtn: function (e) {
-    var val = e.detail.value
+  initData: function () {
     app.pageRequest.pageData.pageNum = 0
-    this.setData({
-      detailList: []
-    })
-    this.getList({keyword: val })
-  },
-  getList: function (data) {
     var _this = this
-    Api.serWholesalerList(data)
+    this.setData({
+      detailList: [],
+    }, function () {
+      _this.getList()
+    })
+  },
+  searchBtn: function (e) {
+    this.initData()
+  },
+  getList: function (nextPage) {
+    var _this = this,
+    val=this.data.value
+    Api.serWholesalerList({ keyword: val }, nextPage)
       .then(res => {
         var detailList = res.obj.result
-        if (detailList.length==0){
-          Api.showToast("暂无更多了")
-        }
         if (detailList != null) {
           var datas = _this.data.detailList,
             newArr = app.pageRequest.addDataList(datas, detailList)
@@ -89,7 +91,9 @@ Page({
             detailList: newArr,
           })
         } else {
-          Api.showToast("暂无更多了")
+          if (detailList.length == 0) {
+            Api.showToast("暂无更多了")
+          }
         }
 
       })
@@ -116,20 +120,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({
-      detailList: [],
-      value: ''
-    })
-    app.pageRequest.pageData.pageNum = 0
-    this.getList({keyword: this.data.value})
+    this.getList()
+    wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var val = this.data.value
-    this.getList({keyword: val })
+    this.getList(true)
   },
 
 })

@@ -89,7 +89,9 @@ Page({
         title: '请输入正确手机号码',
         icon: 'none',
       })
-      return;
+      return false;
+    }else{
+      return true
     }
   },
   testTel() {
@@ -99,22 +101,6 @@ Page({
     }
     return true;
   },
-  //城市选择
-  // sureSelectAreaListener: function (e) {
-  //   var that = this;
-  //   that.setData({
-  //     show: false,
-  //     province: e.detail.currentTarget.dataset.province,
-  //     city: e.detail.currentTarget.dataset.city,
-  //     area: e.detail.currentTarget.dataset.area
-  //   })
-  // },
-  // chooseAddress: function () {
-  //   var that = this;
-  //   that.setData({
-  //     show: true
-  //   })
-  // },
   /**
    * 添加地址
    */
@@ -131,21 +117,17 @@ Page({
       county= region[2],
       detailAddress = this.data.addressVal,
       addressArr = {}
-    console.log(region)
     addressArr = { userName: userName, userPhone: userPhone, isDefault: isDefault, userId: userId, county: county, province: province, city: city, detailAddress: detailAddress }
     return addressArr
   },
   saveAddress:function(){
     var _this = this
-    Api.saveAddress(this.getInputVal())
-      .then(res => {
-        wx.showToast({
-          title: '添加成功',
-          icon: 'none',
-          duration: 2000
+    if (this.checkTel()){
+      Api.saveAddress(this.getInputVal())
+        .then(res => {
+          _this.goBack()
         })
-        _this.goBack()
-      })
+    }
   },
   editAddress:function(){
     var list = this.getInputVal(),

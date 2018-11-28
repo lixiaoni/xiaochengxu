@@ -1,7 +1,1 @@
-{
-  "navigationBarTitleText": "进货商资料",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "spec": "../../../../../assembly/specifications/spec"
-  }
-}
+{}

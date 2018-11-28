@@ -16,15 +16,12 @@
           <open-data class='user-headPic' type="userAvatarUrl"></open-data>
         </view>
       </navigator>
-
     </view>
-
     <view class='u-pic'>
       <view hidden='{{!hasUser}}' wx:if="{{user.nickName}}">{{user.nickName}}</view>
       <view hidden='{{hasUser}}'>
         <open-data type="userNickName"></open-data>
       </view>
-
       <button wx:if='{{user}}'>已绑定手机</button>
       <button wx:else bindtap='showLogin'>绑定手机</button>
     </view>
@@ -41,12 +38,6 @@
       <view>进货单</view>
     </navigator>
   </block>
-
-  <navigator hidden='{{limitShow==2}}' class='u-o-div' url='../../businessFriend/index/index'>
-    <image src='/image/firend.png'></image>
-    <view>我的商友</view>
-  </navigator>
-
 </view>
 <view class='page_bd'>
   <view class='weui-back'>
@@ -84,3 +75,14 @@
     </navigator>
   </view>
 </view>
+<view class='weui-back' wx:if="{{showCloud}}">
+    <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/myOrder/myOrder'>
+      <image src='/image/cloudOrder.png' class='user-img'></image>
+      <view class='weui-cell__bd'>
+        我的云产品订单
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>

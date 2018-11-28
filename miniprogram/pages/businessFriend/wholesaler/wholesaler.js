@@ -34,17 +34,22 @@ Page({
       value:val
     })
   },
-  searchBtn: function (e) {
-    var val = this.data.value
+  initData:function(){
     app.pageRequest.pageData.pageNum = 0
+    var _this=this
     this.setData({
-      detailList: []
+      detailList: [],
+    }, function () {
+      _this.getList()
     })
-    this.getList({keyword:val})
   },
-  getList: function (data) {
-    var _this = this
-    Api.wholesalerAll(data)
+  searchBtn: function (e) {
+    this.initData()
+  },
+  getList: function (nextPage) {
+    var _this = this,
+     val = this.data.value
+    Api.wholesalerAll({ keyword: val }, nextPage)
       .then(res => {
         var detailList = res.obj.result,
           totalCount = res.obj.totalCount
@@ -57,23 +62,13 @@ Page({
           _this.setData({
             detailList: newArr,
           })
-        } else {
-          wx.showToast({
-            title: '暂无更多了',
-            icon: 'none',
-            duration: 1000,
-            mask: true
-          })
+        }else{
+          Api.showToast("暂无更多数据了！")
         }
-
       })
   },
   onShow: function () {
-    app.pageRequest.pageData.pageNum = 0
-    this.setData({
-      detailList:[],
-    })
-    this.getList({})
+    this.initData()
   },
 
   /**
@@ -94,24 +89,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({
-      detailList: [],
-      value: ''
-    })
-    app.pageRequest.pageData.pageNum = 0
-    this.getList({ purchaserUserId: wx.getStorageSync('purchaserUserId') })
+    this.initData()
+    wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var val = this.data.value
-    if (val == '') {
-      this.getList({ purchaserUserId: wx.getStorageSync('purchaserUserId') })
-    } else {
-      this.getList({ purchaserUserId: wx.getStorageSync('purchaserUserId'), keyword: val })
-    }
+    this.getList(true)
   },
 
 })

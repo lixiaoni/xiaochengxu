@@ -1,6 +1,1 @@
-{
-  "navigationBarTitleText": "商友权限设置",
-  "usingComponents": {
-    "login": "../../../login/login/login"
-  }
-}
+{}

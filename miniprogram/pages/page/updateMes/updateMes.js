@@ -9,7 +9,7 @@ Page({
     value:'',
     emptyVal:0,
     num:0,
-    id:wx.getStorageSync("storeId"),
+    id:Api.getThisStoreId(),
     name:'',
     allNum:0,
     status:0,

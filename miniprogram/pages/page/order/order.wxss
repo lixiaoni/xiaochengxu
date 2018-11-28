@@ -30,7 +30,7 @@
   display: block
 }
 .cart-list .cart-thumb{
-  left: 30rpx;
+  left: 50rpx;
   text-align: center;
   line-height: 150rpx;
 }
@@ -41,10 +41,12 @@
   display: inline;
 }
 .c-title{
-  border-bottom: 0;font-weight: bold;
+  font-weight: bold;
+  border-bottom: 0;
+  margin-left:50rpx;
 }
 .cart-list{
-  padding-left: 200rpx;
+  padding-left: 220rpx;
   margin-left: 0;
   background: #F6F6F6;
   border-bottom: 10rpx solid #fff;
@@ -53,11 +55,13 @@
  width: 35rpx;
  height: 35rpx;
  margin-top:0rpx;
+ right: 50rpx;
 }
 .c-title text {
   color: #CCAA77;
   font-size: 28rpx;
   font-weight: normal;
+  right: 50rpx;
 }
 .c-title .o-close {
   color: #999;
@@ -66,7 +70,7 @@
   background: #fff;
   height: 120rpx;
   position: relative;
-  padding:40rpx 30rpx;
+  padding:40rpx 50rpx;
 }
 .cf-button view{
   font-size: 26rpx;
@@ -82,6 +86,8 @@
 }
 .cf-button .or-font3{
   color:#CCAA77;
+  font-size: 30rpx;  
+  font-weight: 600;
 }
 .cf-button button{
   /* width: 135rpx; */
@@ -115,6 +121,7 @@
 }
 .ct-title {
   color: #333;
+  width: 356rpx;
 }
 .or-no{
   color: #BBBBBB;
@@ -143,4 +150,15 @@
 }
 .mes-text{
   color: #999;font-size: 24rpx;font-weight:normal;margin-bottom: 70rpx;
+}
+
+.layer-reason-item{
+  margin: 20rpx 0;
+}
+.layer-reason-btn{
+  margin-top: 80rpx;
+}
+
+.ct-text{
+  right: 50rpx;
 }

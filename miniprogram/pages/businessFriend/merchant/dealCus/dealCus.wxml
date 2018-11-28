@@ -1,26 +1,2 @@
- <view class="goods-ser">
-    <input placeholder="输入进货商名称、手机号、备注名"   bindinput='changeValue' bindconfirm='searchBtn'    value="{{value}}"/>
-    <image class="home-ser"  src="/image/search1.png"></image>
-  </view>
-<view class='du-title'>
-  <view class="{{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">总交易额<image src="/image/sort.png" wx:if='{{currentTab!=0}}'></image><image src="/image/sort1.png"  wx:if='{{currentTab==0}}'></image></view>
-  <view class="{{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">最近进货</view>
-  <view class="{{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">进货次数</view>
-</view>
-<scroll-view scroll-y="true" style="height:100%;">
-<view class='bf-cont'>
-  <view class='bf-weui'>
-    <navigator class="weui_cells" wx:for='{{detailList}}' wx:key='{{index}}' url="../reach/reach?accept={{item.userId}}">
-      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.headPic}}?x-oss-process=style/logo"></image></view>
-      <text>{{item.remark==null?item.nickName:item.remark}}</text>
-      <text class='de-right' wx:if='{{currentTab==-1}}'>总交易额￥{{item.totalAmount}}</text>
-      <text class='de-right' wx:if='{{currentTab==0}}'>总交易额￥{{item.totalAmount}}</text>
-      <text class='de-right' wx:if='{{currentTab==1 && item.latelyTradeDate!=""}}'>最近购买于{{item.latelyTradeDate}}</text>
-      <text class='de-right' wx:if='{{currentTab==2}}'>进货{{item.tradeNum}}次</text>
-    </navigator>
-  </view>
-</view>
-<view class='allData'  wx:if='{{totalCount==0}}'>暂无进货商！</view>
-<view class='allData'  wx:if='{{totalCount>0}}'>{{totalCount}}位进货商</view>
-</scroll-view>
-
+<!--pages/businessFriend/merchant/dealCus/dealCus.wxml-->
+<text>pages/businessFriend/merchant/dealCus/dealCus.wxml</text>

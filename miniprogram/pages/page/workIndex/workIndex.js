@@ -1,4 +1,5 @@
 import Api from '../../../utils/api.js'
+import authHandler from '../../../utils/authHandler.js';
 Page({
 
   /**
@@ -25,9 +26,36 @@ Page({
     if (options.storeId) {
       wx.setStorageSync("storeId", options.storeId)
     }
-    if (!Api.isEmpty(wx.getStorageSync("access_token"))){
+    if (authHandler.isLogin()){
+      Api.userIdentity()
+        .then(res => {
+          var obj = res.obj
+          if (obj == "null" || obj == null) {
+            wx.switchTab({
+              url: '../../page/home/home'
+            })
+          } else {
+            var isStoreOwner = obj.isStoreOwner
+            if (isStoreOwner) {
+              if (obj.storeNature == 2) {
+                wx.setStorageSync("admin", 2)
+              }
+              if (obj.storeNature == 1) {
+                wx.setStorageSync("admin", 1)
+                wx.switchTab({
+                  url: '../../page/user/user'
+                })  
+              }
+            }else{
+              wx.switchTab({
+                url: '../../page/user/user'
+              })   
+            }
+          }
+        })
+    } else {
       wx.switchTab({
-        url: '../../home/home'
+        url: '../../page/home/home'
       })
     }
     this.getMes()
@@ -47,7 +75,7 @@ Page({
        payOrders: obj.payOrders,
        unshippedPurchaseOrders: obj.unshippedPurchaseOrders,
        payPurchaseOrders: obj.payPurchaseOrders,
-       todaySaleNum: obj.todaySaleNum,
+       todaySaleNum: (obj.todaySaleNum).toFixed(2),
        unshippedOrders: obj.unshippedOrders,
        verifyFriends: obj.verifyFriends,
      })
@@ -57,7 +85,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**

@@ -57,6 +57,11 @@ Page({
           icon: 'none'
         })
         if (res.success) {
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            orderSuccessHiddenBtn:true
+          })
           setTimeout(() => {
             wx.navigateBack()
           }, 800)

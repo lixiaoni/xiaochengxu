@@ -1,6 +1,6 @@
 <view class="main">
     <view class="search-box">
-        <input class="search-input" value="{{value}}" auto-focus='ture' placeholder-class='pre-input' placeholder='请输入商品关键词'   bindinput="searchInput" />
+        <input class="search-input" value="{{value}}" bindconfirm='searchBtn' auto-focus='ture' placeholder-class='pre-input' placeholder='请输入商品关键词'   bindinput="searchInput" />
         <image class="home-ser-new"  src="/image/search.png"></image>
         <view class='serCont' bindtap="searchBtn" wx:if="{{!closeCont}}">搜索</view>
         <image class="home-ser-new ser-font" bindtap='emptyInput' wx:if="{{closeCont}}" src="/image/ser.png"></image>
@@ -11,11 +11,11 @@
             <view class="result-list" wx:for="{{result}}" wx:key="index">
                 <navigator url="../../page/goodsDetails/goodsDetails?goodsId={{item.id}}">
                     <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
-                    <view class="result-text">
+                    <view class="result-text r-h">
                         <text>{{item.name}}</text>
                     </view>
-                    <view class="result-text" style='color:#666'>
-                        <text>零售 <text style='color:#CCAA77'>￥{{item.sellPrice}}</text></text>
+                    <view class="result-text result-text2">
+                        <text style='color:#CCAA77'>￥{{item.sellPrice}}</text>
                     </view>
                 </navigator>
             </view>
@@ -23,7 +23,12 @@
             </scroll-view>
         </view>
         <view class="result-null" wx:if="{{result.length==0}}">
-            <view class="null-tips">搜索结果为空！</view>
+           <view class="nomore">
+              <view>
+                <image src="/image/nohome.png"></image>
+              </view>
+              暂时还没有上架商品
+            </view>
         </view>
     </view>
     <view class="init-page" wx:else>

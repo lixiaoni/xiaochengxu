@@ -1,0 +1,16 @@
+/* pages/login/agreement/agreement.wxss */
+.login-box{
+  padding: 0 50rpx;
+}
+.title-box{
+  font-size: 48rpx;
+  text-align: center;
+  margin: 70rpx 0 45rpx;
+}
+.part{
+  margin-bottom: 60rpx;
+  font-size: 26rpx;
+}
+.com-font{
+  font-size: 26rpx;
+}

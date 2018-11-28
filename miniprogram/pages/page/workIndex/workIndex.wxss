@@ -1,40 +1,13 @@
-.wk-cont{
-  background: #fff;margin:20rpx;border-radius: 20rpx;overflow:hidden
-}
-.wk-title{
-  font-size: 24rpx;background: #CCAA77;color: #fff;padding:50rpx;position: relative
-}
-.wk-title view{
-  font-size:72rpx;margin-top: 30rpx;
-}
-.wk-bot{
-  position: relative
-}
-
-.wk-bot>view,.wk-bot>navigator{
-  width: 33.3%;font-size:40rpx;display: inline-block;text-align: center;margin: 30rpx 0;position: relative
-}
-.wk-bot>view view,.wk-bot>navigator view {
-  font-size: 28rpx;
-}
-.wx-bot-cont>view,.wx-bot-cont>navigator{
-  width: 25%;margin-top: 80rpx;display: inline-block;text-align: center;
-}
-.wk-bot>view .wk-xian,.wk-bot>navigator .wk-xian{
-  height: 45rpx;background: #EEEEEE;width: 2rpx;position: absolute;top:38rpx; 
-}
-.wk-bot>.wk-fg{
-  background: #EEEEEE;width: 88%;position: absolute;height: 2rpx;top: 140rpx;left:6%;
-}
-.wx-bot-cont{
-  font-size: 28rpx;padding-bottom:80rpx;
-}
-.wk-title image{
-  width: 55rpx;position: absolute;right:20rpx;top: 50rpx;
-}
-.wx-bot-cont image{
-  width: 45rpx;
-}
-.wx-bot-cont>view view:first-child{
-  width: 50rpx;height: 50rpx;margin:0 auto;padding-bottom:10rpx;
-}
+.wk-cont{background:#fff;margin:20rpx;border-radius:20rpx;overflow:hidden}
+.wk-title{font-size:24rpx;background:#CCAA77;color:#fff;padding:50rpx;position:relative}
+.wk-title view{font-size:72rpx;margin-top:30rpx}
+.wk-bot{position:relative}
+.wk-bot>view,.wk-bot>navigator{width:33.3%;font-size:40rpx;display:inline-block;text-align:center;margin:30rpx 0;position:relative}
+.wk-bot>view view,.wk-bot>navigator view{font-size:28rpx}
+.wx-bot-cont>view,.wx-bot-cont>navigator{width:25%;margin-top:80rpx;display:inline-block;text-align:center}
+.wk-bot>view .wk-xian,.wk-bot>navigator .wk-xian{height:45rpx;background:#EEEEEE;width:2rpx;position:absolute;top:38rpx}
+.wk-bot>.wk-fg{background:#EEEEEE;width:88%;position:absolute;height:2rpx;top:140rpx;left:6%}
+.wx-bot-cont{font-size:28rpx;padding-bottom:80rpx}
+.wk-title image{width:55rpx;position:absolute;right:20rpx;top:50rpx}
+.wx-bot-cont image{width:45rpx}
+.wx-bot-cont>view view:first-child{width:50rpx;height:50rpx;margin:0 auto;padding-bottom:10rpx}

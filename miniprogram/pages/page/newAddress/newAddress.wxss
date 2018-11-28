@@ -5,8 +5,9 @@
    width: 37rpx;
 }
 .picker{
-  color: #333;font-size:28rpx;position: relative;z-index: 100;min-width:400rpx;height:80rpx;line-height:87rpx;
+  color: #333;font-size:28rpx;position: relative;z-index: 100;min-width:450rpx;height:80rpx;line-height:87rpx;
 }
+.weui-img image{margin-left: -10rpx;}
 .weui-cell__bd input{
   /* position: absolute;
   top: 33rpx; */

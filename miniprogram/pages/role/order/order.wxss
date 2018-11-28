@@ -4,7 +4,7 @@
   width: 40rpx;
 }
 .cf-button{
-  height: auto;padding:20rpx 30rpx;
+  height: auto;padding:20rpx 50rpx;
 }
 .cf-button view{
   margin-bottom: 0;
@@ -26,7 +26,6 @@
 }
 .modal-box{
   padding-bottom:60rpx;
-  
 }
 .textarea{
   width: 680rpx;
@@ -35,4 +34,43 @@ height: 120rpx;
 border:1px solid #dedede;
 padding: 10rpx;
 margin: 10rpx auto;
+}
+
+.title-line{
+  background: #ddd;
+  height: 2rpx;
+  width: 500rpx;
+  margin:60rpx auto 30rpx;
+}
+.money-layer-box{
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 400;
+  padding-bottom: 25rpx;
+}
+.layer-money-input{
+  display: inline-block;
+  width: 262rpx;
+  border-bottom: 1rpx solid #CCAA77;
+  font-size: 60rpx;
+  height:60rpx;
+}
+.padding-set{
+  padding: 40rpx 0;
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+.gold-money{
+  color: #CCAA77;
+  font-weight: 600;
+}
+
+.layer-reason-item{
+  margin: 20rpx 0;
+}
+.layer-reason-btn{
+  margin-top: 80rpx;
 }

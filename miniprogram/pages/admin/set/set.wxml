@@ -1,6 +1,6 @@
 <view style='padding-bottom:130rpx'>
 <view class='shop-cont' wx:for='{{skuListAll}}' wx:key='{{index}}'>
-  <view class='s-title'><image src="/image/ic5.png"></image>商品规格{{index+1}}：{{item.specValueName}}，{{item.specValueCode}}</view>
+  <view class='s-title'><image src="/image/ic5.png"></image>商品规格{{index+1}}：{{item.skuName}} {{item.specValueCode}}</view>
   <view>
     <view><input bindinput='monitor' data-id='{{item.id}}' data-name='sellPrice' value='{{item.sellPrice}}' placeholder='零售价'></input></view>
     <view><input bindinput='monitor' data-id='{{item.id}}' type='number' data-name='stockNum' value='{{item.stockNum}}' placeholder='库存'></input></view>

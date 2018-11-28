@@ -1,8 +1,8 @@
  <view class="goods-ser">
-    <input placeholder="输入小云店名、手机号、备注名"   bindinput='changeValue'   value="{{value}}"/>
+    <input placeholder="输入小云店名、手机号、备注名"  bindconfirm='searchBtn'  bindinput='changeValue'   value="{{value}}"/>
     <image class="home-ser"  src="/image/search1.png"></image>
     <view class='home-img' bindtap='searchBtn' >
-        筛选
+        搜索
     </view>
   </view>
 <view class='bf-cont'>
@@ -16,7 +16,7 @@
     </navigator>
   </view>
 </view>
-<view class='bf-all'>全部供应商</view>
+<view class='bf-all' wx:if='{{totalCount>0}}'>全部供应商</view>
 <scroll-view scroll-y="true" style="height:100%;">
 <view class='bf-cont'>
   <view class='bf-weui'>
@@ -29,6 +29,14 @@
     </navigator>
   </view>
 </view>
-<view class='allData'>{{totalCount}}位供应商</view>
+<view class='allData' wx:if='{{totalCount==0}}'>
+  <view class="nomore">
+      <view>
+        <image src="/image/user.png"></image>
+      </view>
+      暂无供应商！
+    </view>
+  </view>
+<view class='allData' wx:if='{{totalCount>0}}'>{{totalCount}}位供应商</view>
 </scroll-view>
 

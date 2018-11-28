@@ -1,8 +1,6 @@
 @import '../mewWholesaler/mewWholesaler';
-.add-bf-weui .weui_cells {
-  height: 120rpx;line-height: 120rpx;padding-top:0;
-}
-
-.bf-weui .weui_cells{
-  font-size: 30rpx;
-}
+.add-bf-weui .weui_cells{height:120rpx;line-height:120rpx;padding-top:0}
+.bf-weui .weui_cells{font-size:30rpx}
+.weui_cells>image{top:35rpx;width:55rpx}
+.tipMes{font-size:36rpx;font-weight:normal;margin-bottom:70rpx;margin-top:10rpx}
+.tipMes text{color:#CCAA77}

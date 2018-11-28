@@ -8,7 +8,7 @@
   width: 500rpx;
 }
 .heji{
-  font-size: 26rpx;color: #999;position: absolute;right: 30rpx;bottom:30rpx;
+  font-size: 26rpx;color: #999;position: absolute;right: 50rpx;bottom:30rpx;
 }
 
 .cf-button .or-font3 {

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    id: wx.getStorageSync("storeId"),
+    id: Api.getThisStoreId(),
     data: [
       { name: "服饰内衣", selected: false, color: "#fff", colorTrue: "#CDE6DC"},
       { name: "母婴玩具", selected: false, color: "#fff", colorTrue: "#D4E6CD"}, 

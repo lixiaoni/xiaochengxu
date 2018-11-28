@@ -77,6 +77,10 @@ Page({
           codeModal: true,
           testNum: num,
         }; break;  
+      case "payment":
+        obj = {
+          paymentModal: true
+        } ;break; 
     }
     this.setData(obj)
   },
@@ -86,7 +90,8 @@ Page({
       sureModal: false,  //收款
       delModal: false,  //删除
       cancelModal: false, //取消订单
-      afterModal: false //售后
+      afterModal: false, //售后
+      paymentModal: false
     })
   },
   //刷新数据
@@ -222,6 +227,11 @@ Page({
       wx.makePhoneCall({
         phoneNumber: tel,
       })
+    }else{
+      wx.showToast({
+        title: '卖家未设置电话号码',
+        icon: "none"
+      })
     }
   },
   /**
@@ -238,12 +248,19 @@ Page({
     }
     this.setData({
       num: options.num,
-      status: options.status,
+      // status: options.status,
       baseUrl: app.globalData.imageUrl,
       orderType: options.type, //order订单 list进货单
       self: options.self  //是否自提
     })
 
+    API.getPaymentImg().then(res => {
+      if (res.obj) {
+        this.setData({
+          hasPayImg: true
+        })
+      }
+    })
   },
  
   /**

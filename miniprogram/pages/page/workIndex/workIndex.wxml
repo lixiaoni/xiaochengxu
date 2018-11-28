@@ -2,32 +2,27 @@
 <view class='wk-cont'>
   <view class='wk-title'>
     <text>今日收入（元）</text>
-    <view>{{todaySaleNum==null?0:todaySaleNum}}</view>
+    <view>{{todaySaleNum==null?0.00:todaySaleNum}}</view>
     <image mode='widthFix' bindtap='goDerm' src='/image/xcx2.png'></image>
   </view>
   <!-- ../follow/follow -->
   <view class='wk-bot'>
-    <navigator url='../../businessFriend/merchant/follow/follow'>{{followNum==null?0:followNum}}<view>关注人数</view></navigator>
-    <navigator url='../../role/supplyOrder/supplyOrder'>{{payPurchaseOrders==null?0:payPurchaseOrders}}<view>付款供货单</view><view class='wk-xian'></view></navigator>
-    <navigator  url='../../role/order/order'>{{payOrders==null?0:payOrders}}<view>付款订单</view><view class='wk-xian'></view></navigator>
+    <navigator  url='../../role/order/order?navType=paid'>{{payOrders==null?0:payOrders}}<view>付款订单</view></navigator>
     <navigator class='wk-fg'></navigator>
-    <navigator url='../../businessFriend/merchant/newMerchant/newMerchant'>{{verifyFriends==null?0:verifyFriends}}<view>待验证商友</view></navigator>
-    <navigator url='../../role/supplyOrder/supplyOrder'>{{unshippedPurchaseOrders==null?0:unshippedPurchaseOrders}}<view>待发货供货单</view><view class='wk-xian'></view></navigator>
-    <navigator   url='../../role/order/order'>{{unshippedOrders==null?0:unshippedOrders}}<view>待发货订单</view><view class='wk-xian'></view></navigator>
+    <navigator   url='../../role/order/order?navType=paid'>{{unshippedOrders==null?0:unshippedOrders}}<view>待发货订单</view><view class='wk-xian'></view></navigator>
   </view>
 </view>
 <view class='wk-cont wk-cont'>
   <view class='wx-bot-cont'>
-    <navigator   url='../../role/supplyOrder/supplyOrder'><view><image mode='widthFix' src='/image/ad1.png'></image></view><view>供货单</view></navigator>
     <navigator   url='../../role/order/order'><view><image mode='widthFix' src='/image/ad2.png'></image></view><view>订单管理</view></navigator>
-    <navigator   url='../../admin/status/status'><view><image mode='widthFix' src='/image/ad3.png'></image></view><view>云享品</view></navigator>
-    <navigator   url='../../businessFriend/merchant/index/index'><view><image mode='widthFix' src='/image/ad4.png' style='width:50rpx;'></image></view><view>商友录</view></navigator>
+    <navigator   url='../../admin/status/status'><view><image mode='widthFix' src='/image/ad3.png'></image></view><view>云商品</view></navigator>
+    <navigator   url='../../businessFriend/index/index'><view><image mode='widthFix' src='/image/ad4.png' style='width:50rpx;'></image></view><view>商友录</view></navigator>
     <navigator   url='../../page/mesEdit/mesEdit'><view><image mode='widthFix' src='/image/ad5.png'></image></view><view>小云店</view></navigator>
   </view>
 </view>
 <view class='goHome' bindtap='goHome'><view><image src="/image/home.png"></image></view>回首页</view>
 <view class='bottom_M'>
-  <navigator><image  src="/image/11.png"></image><view  class='active'>工作台</view></navigator>
-  <navigator  open-type='redirect'  url='../../businessFriend/merchant/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
+  <navigator><image  src="/image/ww.png"></image><view  class='active'>工作台</view></navigator>
+  <navigator  open-type='redirect'  url='../../businessFriend/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
   <navigator  open-type='redirect'  url='../userM/userM'><image  src="/image/w11.png"></image><view>我的</view></navigator>
 </view>

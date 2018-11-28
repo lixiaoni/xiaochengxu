@@ -17,8 +17,8 @@
         <view class='two-view'>{{item.province}} {{item.city}} {{item.county}} {{item.detailAddress}}</view>
       </view>
       <view class='aw-edit'>
-        <icon wx:if="{{item.isDefault}}" data-code='0' type="success" size='17' data-id='{{item.id}}' color="#CCAA77" data-index="{{index}}" bindtap="selectList"/>
-        <icon wx:else  type="circle" size='17' data-code='1'  data-index="{{index}}" data-id='{{item.id}}' bindtap="selectList"/>
+        <icon wx:if="{{item.isDefault}}" data-code='0' type="success" size='20' data-id='{{item.id}}' color="#CCAA77" data-index="{{index}}" bindtap="selectList"/>
+        <icon wx:else  type="circle" size='20' data-code='1'  data-index="{{index}}" data-id='{{item.id}}' bindtap="selectList"/>
         设置默认
         <view class='aw-view'>
           <image  src="/image/edit.png" bindtap="editList" data-id='{{item.id}}'></image><view bindtap="editList" data-id='{{item.id}}'>编辑</view>

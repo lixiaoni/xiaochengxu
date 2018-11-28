@@ -7,39 +7,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: -1,
-    alertTab: 0,
-    hidden: true,
-    confirmUp: false,
-    confirmDown: false,
-    upIndex: 0,
-    keyword: '',
-    indexDel: '',
-    goodsId: '',
-    currentTabSer: 0,
-    list: [],
-    goodsIdDel: '',
+    currentTab:0,
+    alertTab:0,
+    hidden:true,
+    confirmUp:false,
+    confirmDown:false,
+    upIndex:0,
+    keyword:'',
+    indexDel:'',
+    goodsId:'',
+    currentTabSer:0,
+    list:[],
+    goodsIdDel:'',
     show1: false,
     showNum: false,
-    value: '',
-    totalCount: '',
-    sImg: '/image/xl.png',
+    isCopied:'',
+    value:'',
+    totalCount:'',
+    sImg:'/image/xl.png',
     detailList: [],
-    goodsStatus: 1,
-    classStatus: false,
+    goodsStatus:1,
+    classStatus:false,
+    selGoods:0,
     baseUrl: app.globalData.imageUrl,
-    code: '',
-    alertData: ["全部商品", "引用商品", "自建商品"],
+    code:'',
+    allGoodsShow:false,
+    alertData:["全部商品","引用商品","自建商品"],
   },
-  changeValue: function (e) {
-    var value = e.detail.value
+  allGoodsShow:function(){
     this.setData({
-      value: value
+      allGoodsShow: !this.data.allGoodsShow
     })
   },
-  blurInputEvent: function () {
+  changeValue:function(e){
+    var value = e.detail.value
+    this.setData({
+      value:value
+    })
+  },
+  blurInputEvent:function(){
     wx.navigateTo({
-      url: '../serStatus/serStatus?value=' + this.data.value,
+      url: '../serStatus/serStatus?value='+this.data.value,
     })
   },
   //手指触摸动作开始 记录起点X坐标
@@ -50,7 +58,7 @@ Page({
       detailList: data
     })
   },
-
+ 
   //删除事件
   del: function (e) {
     var indexDel = e.currentTarget.dataset.index,
@@ -63,7 +71,7 @@ Page({
     })
   },
   confirmDetele: function () {
-    var that = this,
+    var that=this,
       indexDel = this.data.indexDel,
       goodsIdDel = this.data.goodsIdDel
     that.data.detailList.splice(indexDel, 1)
@@ -71,13 +79,13 @@ Page({
       .then(res => {
         Api.showToast("删除成功")
         that.setData({
-          show1: false,
+          show1:false,
           detailList: that.data.detailList
         })
       })
   },
-  swichNavLast: function () {
-    if (this.data.currentTab > -1) {
+  swichNavLast:function(){
+    if (this.data.currentTab>-1){
       this.setData({
         hidden: false,
         sImg: '/image/xl1.png',
@@ -85,30 +93,54 @@ Page({
       })
     }
   },
+  // 选择自建或者引用
+  selGoods:function(e){
+    var that = this,
+      index = e.target.dataset.current
+    this.setData({
+      classStatus: false
+    })
+    if (this.data.selGoods === index) {
+      return false;
+    } else {
+      var isCopied=''
+      if (index == 1) {
+        isCopied=false
+      }
+      if (index == 2) {
+        isCopied = true
+      }
+      that.setData({
+        selGoods: index,
+        allGoodsShow:false,
+        isCopied: isCopied
+      },function(){
+        that.initData()
+      })
+    }
+  },
   swichNav: function (e) {
     var that = this,
-      status = e.target.dataset.index
+        status=e.target.dataset.index
     that.setData({
       goodsStatus: status,
       hidden: true,
-      classStatus: false,
-      currentTabSer: 0,
-      code: '',
-      detailList: []
-    }, function () {
-      app.pageRequest.pageData.pageNum = 0
-      this.classCode()
+      classStatus:false,
+      currentTabSer:0,
+      code:'',
+    },function(){
+      that.initData()
     })
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
-      that.setData({
-        currentTab: e.target.dataset.current,
-        sImg: '/image/xl.png'
-      })
+        that.setData({
+          currentTab: e.target.dataset.current,
+          sImg: '/image/xl.png'
+        })
     }
   },
-  alertNav: function (e) {
+  alertNav:function(e){
     var that = this;
     if (that.data.alertTab === e.target.dataset.current) {
       return false;
@@ -119,21 +151,21 @@ Page({
 
     }
   },
-  hideSer: function () {
+  hideSer:function(){
     this.setData({
       hidden: true,
     })
   },
-
+ 
   // 上下架
-  confirmTip: function () {
+  confirmTip:function(){
     var id = this.data.goodsId
     wx.navigateTo({
       url: '../editGoods/editGoods?goodsId=' + id,
     })
   },
-  confirmUp: function () {
-    var _this = this,
+  confirmUp:function(){
+    var _this=this,
       goodsIdList = [],
       index = this.data.upIndex,
       detailList = this.data.detailList,
@@ -145,7 +177,7 @@ Page({
         detailList.splice(index, 1)
         _this.setData({
           detailList: detailList,
-          confirmUp: false
+          confirmUp:false
         })
         wx.showToast({
           title: '上架成功',
@@ -154,21 +186,21 @@ Page({
         })
       })
   },
-  changeStatus: function (e) {
+  changeStatus:function(e){
     const goodId = e.currentTarget.dataset.id,
       num = e.currentTarget.dataset.num,
-      index = e.currentTarget.dataset.index
+          index = e.currentTarget.dataset.index
     this.setData({
       goodsId: goodId
     })
-    if (1 > num) {
+    if (1>num){
       this.setData({
-        showNum: true
+        showNum:true
       })
-    } else {
+    }else{
       this.setData({
         confirmUp: true,
-        upIndex: index
+        upIndex:index
       })
     }
   },
@@ -185,7 +217,7 @@ Page({
         detailList.splice(index, 1)
         _this.setData({
           detailList: detailList,
-          confirmDown: false
+          confirmDown:false
         })
         wx.showToast({
           title: '下架成功',
@@ -194,7 +226,7 @@ Page({
         })
       })
   },
-  upStatus: function (e) {
+  upStatus:function(e){
     const goodId = e.currentTarget.dataset.id,
       index = e.currentTarget.dataset.index
     this.setData({
@@ -202,12 +234,12 @@ Page({
       upIndex: index,
       goodsId: goodId
     })
-
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
-
+  
   onLoad: function (options) {
 
   },
@@ -225,43 +257,50 @@ Page({
         })
       })
   },
-  classCode: function () {
+  classCode:function(){
     var _this = this,
-      goodsStatus = this.data.goodsStatus,
-      customCategoryCodes = this.data.code
-    if (goodsStatus == 0) {
-      goodsStatus = "0,2"
+      goodsStatus =this.data.goodsStatus,
+      customCategoryCodes=this.data.code,
+      isCopied = this.data.isCopied
+    if (goodsStatus==0){
+      goodsStatus="0,2"
     }
-    Api.adminGoodsStatus({ goodsStatus: goodsStatus, customCategoryCodes: customCategoryCodes })
-      .then(res => {
-        var detailList = res.obj.result
-        if (Api.isEmpty(detailList)) {
-          var datas = _this.data.detailList,
-            totalCount = res.obj.totalCount,
-            newArr = app.pageRequest.addDataList(datas, detailList)
-          _this.setData({
-            detailList: newArr,
-            totalCount: totalCount
-          })
-        }
-      })
-
+    Api.adminGoodsStatus({ goodsStatus: goodsStatus, customCategoryCodes: customCategoryCodes,isCopied:isCopied})
+        .then(res => {
+          var detailList = res.obj.result
+          if (Api.isEmpty(detailList)) {
+            var datas = _this.data.detailList,
+              totalCount = res.obj.totalCount,
+              newArr = app.pageRequest.addDataList(datas, detailList)
+            _this.setData({
+              detailList: newArr,
+              totalCount: totalCount
+            })
+          }
+        })
+   
+  },
+  initData:function(){
+    app.pageRequest.pageData.pageNum = 0
+    var _this=this
+    this.setData({
+      detailList: []
+    },function(){
+      _this.classCode()
+    })
+    
   },
   swichSer: function (e) {
     var that = this,
-      code = e.target.dataset.code
+        code=e.target.dataset.code
     if (that.data.currentTabSer === e.target.dataset.current) {
       return false;
     } else {
       that.setData({
         currentTabSer: e.target.dataset.current,
-        code: code
-      }, function () {
-        app.pageRequest.pageData.pageNum = 0
-        that.setData({
-          detailList: []
-        })
-        this.classCode()
+        code:code
+      },function(){
+        that.initData()
       })
     }
   },
@@ -274,29 +313,28 @@ Page({
     this.setData({
       goodsStatus: gS,
       hidden: true,
-      showNum: false,
-      confirmUp: false,
-      confirmDown: false,
-      detailList: []
+      showNum:false,
+      confirmUp:false,
+      confirmDown:false
     })
-    app.pageRequest.pageData.pageNum = 0
-    this.classCode()
+    app.globalData.switchStore = true
+    this.initData()
   },
   bindDownLoad: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
@@ -311,23 +349,21 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var that = this,
-      code = this.data.code,
-      goodsStatus = this.data.goodsStatus
+    var that = this
     that.classCode()
   },
   lookGoodsDetails: function (e) {
     var id = e.target.dataset.id
     wx.navigateTo({
-      url: '/pages/page/goodsDetails/goodsDetails?goodsId=' + id,
+      url: '/pages/page/goodsDetails/goodsDetails?goodsId='+ id,
     })
   },
-  editGoods: function (e) {
-    var id = e.target.dataset.id
+  editGoods:function(e){
+    var id=e.target.dataset.id
     wx.navigateTo({
-      url: '../editGoods/editGoods?goodsId=' + id,
+      url: '../editGoods/editGoods?goodsId='+id,
     })
-  },
+  }, 
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
     //开始触摸时 重置所有删除
@@ -348,15 +384,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: (res) => {
-    var img = '',
-      name = '',
-      id = '',
-      storeId = wx.getStorageSync('storeId')
+    var img='',
+    name='',
+    id='',
+    storeId = wx.getStorageSync('storeId')
     if (res.from === 'button') {
-      var res = res.target.dataset
-      img = res.img;
-      id = res.id
-      name = res.name
+     var res=res.target.dataset
+      img =res.img;
+      id=res.id
+      name=res.name
       return {
         title: name,
         path: '/pages/page/goodsDetails/goodsDetails?goodsId=' + id + "&storeId=" + storeId,
@@ -366,7 +402,7 @@ Page({
         fail: (res) => {
         }
       }
-    } else {
+    }else{
       return {
         path: '/pages/page/home/home?storeId=' + storeId,
         success: (res) => {
@@ -375,6 +411,6 @@ Page({
         }
       }
     }
-
+    
   },
 })

@@ -11,12 +11,14 @@ Page({
     reson: [{ title: "无法联系上买家", selected: true }, { title: "买家误拍或重拍", selected: false }, { title: "买家无诚意完成交易", selected: false }, { title: "缺货无法交易", selected: false }, { title: "其他", selected: false }],
     cancelIndex: 0,
     orderName: "订单",
-    timeOnce:true
+    timeOnce:true,
+    remark: "啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦啊实打实大苏打撒旦"
   },
 
   toHome(){
     API.toHome();
   },
+  
   //复制订单号
   copyCode(){
     wx.setClipboardData({
@@ -50,14 +52,32 @@ Page({
     let type = e.currentTarget.dataset.type;
     let key = "";
     switch (type) {
-      case "change": key = 'changeMoney'; break;
+      case "change":
+        key = 'changeMoney';
+        let nowMoney = Number(e.detail.value),
+          order = Number(this.data.thisOrderMoney),
+          moneyIcon = "-";
+        if (nowMoney > order) {
+          moneyIcon = "+"
+        }
+        this.setData({
+          moneyIcon: moneyIcon
+        })
+        break;
       case "goodCode": key = "getGoodCode"; break;
       case "exCom": key = "expressageCom"; break;
       case "exCode": key = "expressageCode"; break;
+      case "tip": key = "tipText";break;
     }
 
+    let val = e.detail.value
+    if (key == "changeMoney") {
+      this.setData({
+        showChangeMoney: Number(val).toFixed(2)
+      })
+    }
     this.setData({
-      [key]: e.detail.value
+      [key]: val
     })
   },
   showModal(e) {
@@ -65,10 +85,19 @@ Page({
     let num = e.currentTarget.dataset.num;
     let obj = {};
     switch (type) {
+      case "tip":
+        obj = {
+          tipModal:true,
+          tipText:""
+        };
+        break;
       case "change":
         obj = {
           changeModal: true,
-          changeMoney: ""
+          changeMoney: 0,
+          showChangeMoney: 0,
+          moneyIcon: "-",
+          thisOrderMoney: e.currentTarget.dataset.change
         }; break;
       case "goodCode":
         obj = {
@@ -212,7 +241,7 @@ Page({
   sureChange() {
     let num = this.data.num;
     let money = this.data.changeMoney;
-    if (!money || money < 0) {
+    if (!money || money <= 0) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -245,7 +274,14 @@ Page({
   },
   // 保存备注
   saveRemark(e) {
-    let val = e.detail.value;
+    let val = this.data.tipText;
+    if(!val){
+      wx.showToast({
+        title: '请修改备注',
+        icon: 'none'
+      })
+      return
+    }
     API.addRemark({
       orderNumber: this.data.num,
       remark: val
@@ -254,9 +290,7 @@ Page({
         title: res.message,
         icon: 'none'
       })
-      if (res.success) {
-
-      }
+      this.afterOperation();
     })
   },
 
@@ -275,6 +309,7 @@ Page({
       delModal: false,  //删除
       cancelModal: false, //取消订单
       expressage: false, //发货
+      tipModal:false //备注
     })
   },
   /**
@@ -304,24 +339,14 @@ Page({
       wx.makePhoneCall({
         phoneNumber: this.data.order.userInfo.mobile,
       })
+    }else{
+      wx.showToast({
+        title: '买家未设置电话号码',
+        icon: "none"
+      })
     }
   },
-  // 保存备注
-  saveRemark(e) {
-    let val = e.detail.value;
-    API.addRemark({
-      orderNumber: this.data.num,
-      remark: val
-    }).then(res => {
-      wx.showToast({
-        title: res.message,
-        icon: 'none'
-      })
-      if (res.success) {
-
-      }
-    })
-  },
+  
 
   getData() {
     app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {

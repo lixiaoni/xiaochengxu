@@ -1,19 +1,2 @@
- <view class="goods-ser">
-    <input placeholder="输入昵称、手机号、备注名"   bindinput='changeValue' bindconfirm='searchBtn'  value="{{value}}"/>
-    <image class="home-ser"  src="/image/search1.png"></image>
-    <view class='home-img' bindtap='searchBtn' >
-        搜索
-    </view>
-  </view>
-<scroll-view scroll-y="true" style="height:100%;">
-<view class='bf-cont'>
-  <view class='bf-weui'>
-    <navigator class="weui_cells" wx:for='{{detailList}}' wx:key='{{index}}' url="../lookInfo/lookInfo?userId={{item.userId}}&mobile={{item.mobile}}">
-      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.headPic}}?x-oss-process=style/logo"></image></view>
-      <text>{{item.remark==null?item.nickName:item.remark}}</text>
-    </navigator>
-  </view>
-</view>
-<view class='allData'>{{totalCount}}位关注用户</view>
-</scroll-view>
-
+<!--pages/businessFriend/merchant/follow/follow.wxml-->
+<text>pages/businessFriend/merchant/follow/follow.wxml</text>

@@ -1,6 +1,6 @@
 <view class='page'>
   <view class='page__bd'>
-      <navigator class='weui-cell weui-cell_access' url='../updataPwd/updataPwd'>
+      <navigator  wx:if="{{token}}" class='weui-cell weui-cell_access' url='../updataPwd/updataPwd'>
         <view class='weui-cell__bd'>
           修改密码
         </view>

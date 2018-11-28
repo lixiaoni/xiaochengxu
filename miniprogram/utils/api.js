@@ -103,7 +103,14 @@ import {
   getStoreNameUrl,
   getStoreDetailsUrl,
   userInforUrl,
-  supplyOrderUrl
+  supplyOrderUrl,
+  showPurchaserUrl,
+  showMerchantUrl,
+  getPaymentImgUrl,
+  putPaymentImgUrl,
+  recentGoodsUrl,
+  copyGoodsUrl,
+  tempSortUrl
 } from './constUrl.js'
 
 const app = getApp()
@@ -122,6 +129,21 @@ function showToast(message) {
     icon: 'none',
     duration: 2000,
   })
+}
+/**判断楼座是否为空**/
+function isFloorInfo(obj) {
+  if (isEmpty(obj)) {
+    var floor = obj
+      floor.mallName = floor.mallName == null ? '' : floor.mallName,
+      floor.areaName = floor.areaName == null ? '' : floor.areaName,
+      floor.balconyName = floor.balconyName == null ? '' : floor.balconyName,
+      floor.floorName = floor.floorName == null ? '' : floor.floorName,
+      floor.floorDescription = floor.floorDescription == null ? '' : floor.floorDescription,
+      floor.storeDoorNum = floor.storeDoorNum == null ? '' : floor.storeDoorNum
+    return floor
+  } else {
+    return null
+  }
 }
 /**用户身份判断**/
 function userIdentity(data) {
@@ -145,6 +167,11 @@ function getStoreInfo() {
 function adminGoodsList(data){
   data = initStoreId(data);
   return app.pageRequest.pageGet(adminGoodsListUrl, data)
+}
+/**首页新品**/
+function recentGoods(data) {
+  data = initStoreId(data);
+  return app.pageRequest.pageGet(recentGoodsUrl, data)
 }
 /**商品 删除**/
 function adminGoodsDelete(data) {
@@ -213,6 +240,7 @@ function adminGetDetails(data) {
 }
 /**分类**/
 function customCategoryCode(data) {
+  data = initStoreId(data);
   return app.http.putRequest(customCategoryCodeUrl,data)
 }
 /**店铺设置起批量**/
@@ -323,6 +351,10 @@ function cartList(data) {
 function addTemplate(data) {
   return app.http.postRequest(addTemplateUrl, data)
 } 
+/**排序模板**/
+function tempSort(data) {
+  return app.http.postRequest(tempSortUrl +"?sortType=asc", data)
+}
 /**调换规格位置**/
 function saveSpecTemplateContent(data) {
   return app.http.postRequest(saveSpecTemplateContentUrl, data)
@@ -410,7 +442,6 @@ function mewWholesaler(data) {
 }
 /**设置备注**/
 function setName(data) {
-  data = initStoreId(data);
   return app.http.postRequest(setNameUrl, data)
 }
 /**添加批发商**/
@@ -486,6 +517,14 @@ function remakInfo(data) {
 function purchaserUserId(url) {
   return app.http.getRequest(url)
 }
+/**扫一扫查看批发商**/
+function showPurchaser(data) {
+  return app.http.getRequest(showPurchaserUrl,data)
+}
+/**扫一扫查看进货商**/
+function showMerchant(data) {
+  return app.http.getRequest(showMerchantUrl, data)
+}
 /**满足起批配置信息**/
 function config(goodsId) {
   var storeId = wx.getStorageSync('storeId')
@@ -537,7 +576,7 @@ function apiAddUser(data) {
   return app.http.putRequest(apiAddUserUrl+"?bfPripermission="+data)
 }
 function adminAddUser(data) {
-  return app.http.putRequest(adminAddUserUrl + "?bfPripermission=" + data)
+  return app.http.putRequest(adminAddUserUrl,data)
 }
 // 退出登录
 function quit(data){
@@ -598,10 +637,14 @@ function seeVoucher(data){
   return app.http.getRequest(seeVoucherUrl, data)
 }
 // 裁剪图片跳转
-function toCuttingImg(url,quality){
+function toCuttingImg(url,quality,width,height){
   if(url){
     let add = '/pages/page/upload/upload?src=' + url;
     quality?add+="&quality=true":"";
+    add +="&width=";
+    width?add+=width:add+="750";
+    add += "&height=";
+    height ? add += height : add += "750";
     wx.navigateTo({
       url: add,
     })
@@ -612,11 +655,33 @@ function supplyOrde(data){
   data = initStoreId(data);
   return app.http.postRequest(supplyOrderUrl, data);
 }
+/**更新商品**/
+function copyGoods(data) {
+  return app.http.putRequest(copyGoodsUrl, data)
+} 
 // 回首页
 function toHome(){
   wx.switchTab({
     url: '/pages/page/home/home'
   })
+}
+// 获取收款二维码
+function getPaymentImg(data){
+  data = initStoreId(data);  
+  return app.http.getRequest(getPaymentImgUrl, data)
+}
+// 设置收款二维码
+function putPaymentImg(data) {
+  data = initStoreId(data);
+  return app.http.putRequest(putPaymentImgUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+}
+/**
+ * 获取formId
+ */
+function getFormId(e) {
+  var formId = e.detail.formId;
+  var content = e.detail.target.dataset.name//记录用户的操作
+  wx.setStorageSync("formId", formId)
 }
 /**
  * 初始化storeId
@@ -625,11 +690,24 @@ function initStoreId(data) {
   if (data == null || data == undefined) {
     data = {};
   }
-  if(isEmpty(wx.getStorageSync('storeId'))){
+  if (getStoreId()){
     data.storeId = wx.getStorageSync('storeId');
     return data;
   }else{
     showToast("暂无店铺ID！")
+    let pages = getCurrentPages()
+    let curPage = pages[pages.length - 1]
+    curPage.setData({
+      indexEmpty: false
+    })
+  }
+}
+/**
+ * 获取店铺storeId
+ */
+function getThisStoreId(){
+  if(getStoreId()){
+    return wx.getStorageSync("storeId")
   }
 }
 /**
@@ -643,7 +721,14 @@ function getStoreId() {
   }
 }
 module.exports = {
+  copyGoods: copyGoods,
+  getFormId: getFormId,
+  tempSort: tempSort,
+  isFloorInfo: isFloorInfo,
+  putPaymentImg: putPaymentImg,
+  getPaymentImg: getPaymentImg,
   getStoreId: getStoreId,
+  getThisStoreId: getThisStoreId,
   toHome: toHome,
   getStoreInfo: getStoreInfo,
   supplyOrde: supplyOrde,
@@ -755,5 +840,8 @@ module.exports = {
   classListApi: classListApi,
   goodsApiSearchList: goodsApiSearchList,
   updataPwd: updataPwd,
-  changeIcon: changeIcon
+  changeIcon: changeIcon,
+  showPurchaser: showPurchaser,
+  showMerchant: showMerchant,
+  recentGoods: recentGoods
 }

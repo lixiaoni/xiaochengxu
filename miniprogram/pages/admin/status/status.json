@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "云享品管理",
+  "navigationBarTitleText": "云商品管理",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "login-component": "../../login/login/login",

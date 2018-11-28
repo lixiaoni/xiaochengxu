@@ -23,23 +23,7 @@ Page({
   onLoad: function (options) {
 
   },
-  // getList:function(){
-  //   var _this = this
-  //   Api.adminGoodsList({})
-  //     .then(res => {
-  //       var detailList = res.obj.result
-  //       if (detailList.length==0){
-  //         Api.showToast("暂无更多数据了！")
-  //       }else{
-  //         var datas = _this.data.datas,
-  //           totalCount = res.obj.totalCount,
-  //           newArr = app.pageRequest.addDataList(datas, detailList)
-  //         _this.setData({
-  //           datas: newArr,
-  //         })
-  //       }
-  //     })
-  // },
+
   indexOf(val, arr) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i] == val) { return i; }

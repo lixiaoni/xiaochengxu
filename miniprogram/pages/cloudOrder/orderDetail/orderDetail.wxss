@@ -1,7 +1,7 @@
 /* pages/cloudOrder/orderDetail/orderDetail.wxss */
 .order-box{
   margin: 20rpx;
-  padding: 50rpx;
+  padding: 50rpx 50rpx 0;
   background: #fff;
   border-radius: 5px;
 }
@@ -15,7 +15,8 @@
   font-size: 26rpx;
 }
 .price{
-  font-size: 35rpx;
+  font-size: 48rpx;
+  font-weight: 600;
 }
 .logo{
   height: 70rpx;
@@ -75,4 +76,30 @@
 
 .gold{
   color: #ccaa77;
+}
+
+.bottom-lr-box{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  align-items: center;
+  height: 122rpx;
+  background: #fff;
+}
+.bottom-price{
+  flex: 1;
+  display: flex;
+  align-items: center;  
+  padding:0 50rpx;
+  height: 100%;  
+}
+.buy-button{
+  width: 250rpx;
+  background: #ccaa77;
+  color: #fff;
+  height: 100%;
+  text-align: center;
+  line-height: 122rpx;
 }

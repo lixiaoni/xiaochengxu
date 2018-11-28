@@ -1,13 +1,2 @@
-<login id="login"></login>
-<view class='shop-cont shop-cont1' style="padding: 30rpx;">
-  <view>
-      需要验证才可加我为商友<switch color="#CCAA77" checked='{{switch1Change}}' data-index="1"  bindchange="switch1Change"/>
-  </view>
-  <view class='nView'><image src="/image/bac.png"></image>进货商需要验证，通过后才可达成商友合作，查看批发价</view>
-</view>
-<view class='shop-cont' style="padding: 30rpx;">
-  <view>
-      允许任何人加我为商友<switch color="#CCAA77" checked='{{!switch1Change}}' data-index="0" bindchange="switch1Change"/>
-  </view>
-  <view class='nView'><image src="/image/bac.png"></image>进货商无需验证，合作成功即可查看批发价</view>
-</view>
+<!--pages/businessFriend/merchant/setUp/setUp.wxml-->
+<text>pages/businessFriend/merchant/setUp/setUp.wxml</text>

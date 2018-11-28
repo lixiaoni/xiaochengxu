@@ -1,0 +1,18 @@
+var filterMoney = function (money) {
+  if(money){
+    return money.toFixed(2)
+  }else{
+    return 0
+  }
+}
+var plusNum = function(num){
+ if(num<0){
+   return -num
+ }else{
+   return num
+ }
+}
+module.exports = {
+  filterMoney: filterMoney,
+  plusNum: plusNum
+}

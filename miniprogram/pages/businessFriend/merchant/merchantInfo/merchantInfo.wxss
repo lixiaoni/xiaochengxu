@@ -1,9 +1,1 @@
-@import '../../information/information';
-.bf-btn{
-  line-height: 76rpx;
-  font-weight: 600;
-}
-.button-hover{
-  line-height: 76rpx;
-  font-weight: 600;
-}
+/* pages/businessFriend/merchant/merchantInfo/merchantInfo.wxss */

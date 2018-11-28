@@ -8,7 +8,7 @@ Page({
     switch1Change: '',
     name:'',
     show:true,
-    id: wx.getStorageSync("storeId"),
+    id: Api.getThisStoreId(),
     data: [{ name: "个人发票", selected: false }, { name: "提供增值税普通发票", selected: false }, { name: "提供增值税专用发票", selected: false }]
   },
   switch1Change: function (e) {
@@ -90,7 +90,7 @@ Page({
     var _this = this,
       isReceipt = this.data.show,
       data = this.data.data,
-      id = wx.getStorageSync("storeId"),
+      id = Api.getThisStoreId(),
       receiptInfo = ''
     for (var i = 0; i < data.length; i++) {
       if (data[i].selected) {

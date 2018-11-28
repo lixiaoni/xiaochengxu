@@ -49,14 +49,14 @@ Page({
   changeIcon() {
     app.http.onlychoseImg().then(res => {
       let url = res.tempFilePaths[0];
-      Api.toCuttingImg(url)
+      Api.toCuttingImg(url,false,200,200)
     })
   },
   afterCuttingImg(url) {
     this.setData({
       noUpload: true
     })
-    app.http.onlyUploadImg(url).then(res => {
+    app.http.onlyUploadImg(url,"USER_HEAD_PIC").then(res => {
       var url = JSON.parse(res).obj
       if (url) {
         Api.changeIcon({

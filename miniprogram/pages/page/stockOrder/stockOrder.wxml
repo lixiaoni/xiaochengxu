@@ -1,11 +1,11 @@
 <login id="login"></login>
 <!-- 取消进货单 -->
 <clo show="{{cancelModal}}">
-  <view wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
+  <view class='layer-reason-item' wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
     <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}" size='18' class="cart-pro-select" />
     <icon wx:else type="circle" class="cart-pro-select" size='18' data-index="{{index}}" /> {{item.title}}
   </view>
-  <button bindtap='sureCancel'>确定</button>
+  <button class='layer-reason-btn' bindtap='sureCancel'>确定</button>
 </clo>
 <!-- 获取取件码 -->
 <mes show="{{codeModal}}">
@@ -36,6 +36,8 @@
     <view class='mes-tel'>{{afterTel?afterTel:"无"}}</view>
   </view>
 </mes>
+<!-- 付款码 -->
+<savePayment show='{{paymentModal}}' com-name='{{paymentItem.storeInfo.storeName}}' wx='{{paymentItem.storeInfo.wechatNumber}}' goodsName='{{paymentItem.goodsInfos[0].goodsName}}' goods-num="{{paymentItem.num}}" price="{{paymentItem.orderAmount}}" head="{{paymentItem.storeInfo.logo?baseUrl+paymentItem.storeInfo.logo:''}}"></savePayment>
 
 
 <image class='serchImg {{style?"serchImg1":""}}' src="/image/search.png"></image>
@@ -94,7 +96,7 @@
           <view class="tr" wx:for="{{good.orderDetails}}" wx:key="{{index}}">
             <view class="td">{{item.goodsDesc}}</view>
             <view class="td">{{item.num}}件</view>
-            <view class="td">￥{{item.wholesalePrice}}</view>
+            <view class="td">￥{{item.unitPrice}}</view>
           </view>
         </view>
 
@@ -115,7 +117,7 @@
 
       <!-- 代收款 1自提-->
       <view class='or-last' wx:if="{{item.orderStatus=='unpaid'}}">
-      
+        <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">支付二维码</button>
         <button data-num="{{item.orderNumber}}" bindtap='uploadVoucher' class='or-active'> 上传支付凭证 </button>
         <button bindtap='showModal' data-type='cancel' data-num="{{item.orderNumber}}">取消进货单</button>
       </view>

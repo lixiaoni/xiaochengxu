@@ -19,7 +19,7 @@ page{
 .money{
   font-size: 60rpx;
   color: #ccaa77;
-  font-weight: 600;
+  /* font-weight: 600; */
   margin: 30rpx 0 60rpx;
 }
 

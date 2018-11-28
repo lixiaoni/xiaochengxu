@@ -1,19 +1,6 @@
-.m-title{
-  color: #000;font-size: 48rpx;margin-bottom: 70rpx;
-}
-page{
-  height: 100%;
-}
-.m-title text{
-  font-size: 24rpx;color: #666;
-}
-.m-cont{
-  height: 100%;background: #fff;padding:60rpx;
-}
-.m-bottom{
-  width: 100%;border-top: 2rpx solid #E8E8E8;height: 120rpx;line-height: 120rpx;text-align: center;
-  position: fixed;bottom: 0;left: 0;
-}
-.m-body button{
-  border:2rpx solid #ECECEC;font-size: 30rpx;float: left;margin-right: 20rpx;margin-top: 20rpx;
-}
+.m-title{color:#000;font-size:48rpx;margin-bottom:70rpx}
+page{height:100%}
+.m-title text{font-size:24rpx;color:#666}
+.m-cont{height:100%;background:#fff;padding:60rpx}
+.m-bottom{width:100%;border-top:2rpx solid #E8E8E8;height:120rpx;line-height:120rpx;text-align:center;position:fixed;bottom:0;left:0}
+.m-body button{border:2rpx solid #ECECEC;font-size:30rpx;float:left;margin-right:20rpx;margin-top:20rpx}

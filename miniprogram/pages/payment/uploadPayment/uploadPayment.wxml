@@ -1,0 +1,16 @@
+<view class='box' wx:if="{{getUser}}">
+  <view wx:if="{{imgUrl}}" class='add-square'>
+    <image src="{{baseUrl+imgUrl}}" class='upImg'></image>
+  </view>
+  <view wx:else bindtap='upload' class='add-square'>
+    <image src='/image/thin-add.png' class='add-icon'></image>
+  </view>
+
+  <view wx:if="{{imgUrl}}" class='tip'>用户微信扫描付款码完成支付</view>
+  <view wx:else>
+  <view class='tip'>请
+    <text class="gold-font">店主本人</text>谨慎上传清晰的收款码图片</view>
+  <view class='tip'>请裁切至仅保留付款码区域即可</view>
+  </view>
+  <!-- <view wx:if="{{imgUrl}}" bindtap='upload' class='sure-btn'>更换收款码</view> -->
+</view>

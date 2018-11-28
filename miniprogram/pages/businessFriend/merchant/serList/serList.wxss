@@ -1,16 +1,1 @@
-@import '../../serList/serList';
-.bf-imput{
-  margin-top: 10rpx;position:fixed;width:92%;z-index: 100rpx;margin-top: 0;
-}
-.bf-weui .weui_cells{
-  padding-top:10rpx;position: relative;
-}
-.bf-weui .weui_cells .v{
-  position: absolute;width: 100%;height: 80%;top: 0;left: 0;
-}
-.bf-weui{
-  margin-top: 10rpx;
-}
-.bf-cont{
-  margin-top: 70rpx;
-}
+/* pages/businessFriend/merchant/serList/serList.wxss */

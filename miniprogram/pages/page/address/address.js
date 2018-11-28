@@ -7,9 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentTab: 0,
-    hiddenSelt: false,
-    hiddenSend: true,
+    currentTab: 1,
+    hiddenSelt: true,
+    hiddenSend: false,
     address:"",  //地址
     invoice:"",  //发票
     phone:"", //电话
@@ -17,7 +17,21 @@ Page({
     sendData:{}, //获取列表传递参数
     orderTitle:"订单"
   },
-
+  //自动获取手机
+  getMobile(){
+    Api.userInfor().then(res=>{
+      if(res.obj.mobile){
+        this.setData({
+          phone: res.obj.mobile
+        })
+      }else{
+        wx.showToast({
+          title: '获取手机号码失败，请您手动填写',
+          icon: 'none'
+        })
+      }
+    })
+  },
   //提交
   submit(){
     let type = this.data.currentTab,
@@ -46,6 +60,9 @@ Page({
       }
       obj.consigneeInfo = add;
       obj.orderType = 2;
+      obj.postageinfo = {
+        postageType: this.data.postType   //邮费
+      }
     }
 
     let goods = this.data.goods;
@@ -74,6 +91,7 @@ Page({
     obj.userMemo = this.data.msg  //留言
     obj.orderGoods = goodsArr;  //商品
     obj.orderCategory = this.data.orderCategory //订单种类
+
    
     Api.supplyOrde(obj).then((res)=>{
       //'../success/success'
@@ -145,9 +163,19 @@ Page({
   getData(){
     app.http.postRequest("/api/order/store/" + this.data.storeId+"/preorder", this.data.sendData
     ).then((res)=>{
+        //起批量
+        let  conObj = {};       
+        res.obj.goodsWholesaleConfigs.forEach((el,index)=>{
+          if (el.saleBatchNum && el.saleBatchNum>0){
+            conObj[el.goodsId] = el.saleBatchNum
+          }
+        })
+
         this.setData({
           store: res.obj.preOrderStore,
-          goods: res.obj.preOrderGoodsList
+          goods: res.obj.preOrderGoodsList,
+          goodsConfig: conObj,
+          storeConfig: res.obj.storeWholesaleConfig
         })
       this.resetGoods();
     })
@@ -155,14 +183,21 @@ Page({
   //重置goods
   resetGoods(){
     let goods = this.data.goods,
-        price = 0;
+        price = 0,
+        allnum = 0,
+        config = this.data.goodsConfig;
     goods.forEach((el)=>{
       //是否优惠
       let off = el.satisfiedWholesale;
+      //起批量
+      if (config[el.goodsId]){
+        el.goodsConfig = config[el.goodsId];
+      }
 
       //有sku
       if (!el.num && el.preOrderGoodsSkuList){
-        let num = 0;
+        let num = 0,
+            myprice = 0 ; 
         el.preOrderGoodsSkuList.forEach((item)=>{
           if (item.num){
             num += item.num;
@@ -175,10 +210,12 @@ Page({
             }
 
             if (!isNaN(thisPrice * item.num)){
+              myprice += thisPrice * item.num;
               price += thisPrice * item.num;
             }
           }
         })
+        el.myPrice = myprice.toFixed(2);
         el.num = num;
       }
       //没有sku
@@ -191,16 +228,44 @@ Page({
           thisPrice = el.sellPrice;
         }
         if (!isNaN(thisPrice * el.num)) {
+          el.myPrice = thisPrice * el.num;
           price += thisPrice * el.num;
         }
       }
+      allnum += el.num;      
     })
 
-    
+    //全场混批设置
+    let storeNum = this.data.storeConfig.saleBatchNum,
+        storeAmount = this.data.storeConfig.saleBatchAmount,
+        pricesatisfy = false,
+        numsatisfy = false;
+
+    if (storeAmount && storeAmount>0 && price > storeAmount){
+      pricesatisfy = true;
+    }
+    if (storeNum && storeNum > 0 && allnum > storeNum){
+      numsatisfy = true;
+    }
 
     this.setData({
       goods,
-      price: price.toFixed(2)
+      price: price.toFixed(2),
+      allnum,
+      numsatisfy,
+      pricesatisfy      
+    })
+  },
+  //获取店铺信息，得到运费类型
+  getStore(){
+    Api.storeIdInfo().then(res=>{
+      let post = res.obj.store[0].store.postageInfo;
+      if(!post){
+        post = "全场包邮";
+      }
+      this.setData({
+        postType : post
+      })
     })
   },
   /**
@@ -247,6 +312,7 @@ Page({
     this.getData();
     this.getDefaultAdress();
 
+    this.getStore();
   },
   swichNav: function (e) {
     var that = this;

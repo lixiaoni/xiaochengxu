@@ -86,7 +86,7 @@
       
       <view class='btn {{btnID}}' bindtap='login'>登录</view>
 
-      <view class='text-sm user-agreement flex-box' style="justify-content:center;">登录后即完成阅读并同意<navigator class='text-yellow text-underline' url=""     hover-class="navigator-hover">《用户协议》 </navigator>
+      <view class='text-sm user-agreement flex-box' style="justify-content:center;">登录后即完成阅读并同意<navigator class='text-yellow text-underline' url="/pages/login/agreement/agreement"     hover-class="navigator-hover">《用户协议》 </navigator>
       </view>
     
     

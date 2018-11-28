@@ -43,7 +43,7 @@
       <view class='to-login text-xs text-yellow'></view>
       <!-- <view class='to-login text-xs text-yellow' bindtap='showPage'>我已有账号，<text  style='font-weight:600;'>立即登录</text></view> -->
 
-      <view class='text-sm user-agreement flex-box' style="justify-content:center;">注册后即完成阅读并同意<navigator class='text-yellow text-underline' url=""     hover-class="navigator-hover">《用户协议》 </navigator>
+      <view class='text-sm user-agreement flex-box' style="justify-content:center;">注册后即完成阅读并同意<navigator class='text-yellow text-underline' url="../agreement/agreement"     hover-class="navigator-hover">《用户协议》 </navigator>
       </view>
     
     </view>

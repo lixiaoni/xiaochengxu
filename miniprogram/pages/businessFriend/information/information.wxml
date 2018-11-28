@@ -13,7 +13,7 @@
     <view class="weui_cells new-weui">
       <view class='bf-img'><image wx:if='{{logo!=""}}'  mode="aspectFill" src="{{baseUrl}}{{logo}}?x-oss-process=style/logo"></image></view>
       <text>{{name}}</text><text  wx:if='{{success}}'></text>
-      <view class='nbf-font'><image wx:if='{{mallLogo!=""}}'  mode="widthFix" src="{{baseUrl}}{{mallLogo}}"></image>{{mallName}}</view>
+      <view class='nbf-font' wx:if='{{floorInfo!=null}}'><image  mode="widthFix" src="{{baseUrl}}{{floorInfo.mallLogo}}"></image>{{floorInfo.mallName}}</view>
     </view>
   </view>
 </view>
@@ -35,30 +35,34 @@
    <text>所在地址</text><view>{{address}} </view>
   </view>
    <view class='in-cont'>
-   <text>所属商城</text><view>{{mallName}}</view>
+   <text>所属商城</text><view wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}}</view>
   </view>
   <view class='in-cont'>
-   <text>楼层区域</text><view>{{balcony}}{{floor}}{{area}}{{doorNum}}</view>
+   <text>楼层区域</text><view wx:if='{{floorInfo!=null}}'>{{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</view>
   </view>
-  <view class='in-cont'>
+  <view class='in-cont' bindtap='urlHome'>
    <text>小云店</text>
+   <navigator wx:if='{{!oneGreet}}' class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{accept}}" extra-data="" version="trial"></navigator>
+   <navigator wx:if='{{oneGreet}}' class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{send}}" extra-data="" version="trial"></navigator>
    <view style='min-height:120rpx' >
     <view wx:for='{{goodsList}}' wx:key='{{index}}' wx:if='{{index<4}}' class='in-more-img'><image  mode="widthFix" src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image></view>
     <view class='in-img'><image  mode="widthFix" src="/image/icl.png"></image></view>
    </view>
   </view>
   <view class='in-cont'>
-   <text>手机号</text><view wx:if='{{servicePhone!=null}}'>{{servicePhone==null?'':servicePhone}}<view class='in-cont-img'><image  mode="widthFix" src="/image/tel1.png"></image></view></view>
+   <text>手机号</text><view wx:if='{{servicePhone!=null}}'>{{servicePhone==null?'':servicePhone}}<view class='in-cont-img'><image  mode="widthFix"  bindtap='calling' src="/image/tel1.png"></image></view></view>
   </view>
   <view class='in-cont'>
    <text>微信号</text><view wx:if='{{wechatNumber!=null}}'>{{wechatNumber==null?'':wechatNumber}}</view>
   </view>
   <view class='in-cont'>
+  <navigator wx:if='{{!oneGreet}}' class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{accept}}" extra-data="" version="trial"></navigator>
+   <navigator wx:if='{{oneGreet}}' class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{send}}" extra-data="" version="trial"></navigator>
     <text>更多经营信息</text>
     <view class='in-img'><image  mode="widthFix" src="/image/icl.png"></image></view>
   </view>
 </view>
-<button class='bf-btn'  wx:if='{{success}}'  bindtap='urlHome'>去进货</button>
+<button class='bf-btn'  wx:if='{{success}}'><navigator class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{accept}}" extra-data="" version="trial"></navigator>去进货</button>
 <button class='bf-btn'  wx:if='{{aginGreet}}' bindtap='invitation'>再次添加到供应商</button>
 <button class='bf-btn'  wx:if='{{oneGreet}}'  bindtap='passFunc'>通过验证</button>
 <button class='bf-btn'  wx:if='{{addShow}}'  bindtap='invitation'>添加到供应商</button>

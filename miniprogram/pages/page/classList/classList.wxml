@@ -1,26 +1,29 @@
 <view>
-  <view class="result result-box" wx:if="{{result.length > 0}}">
-    <view class="result-list" wx:for="{{result}}" wx:key="index">
-      <navigator url="../goodsDetails/goodsDetails?goodsId={{item.id}}">
-        <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
-        <view class="result-text">
-          <text>{{item.name}}</text>
-        </view>
-        <view class="result-text result-text1">
-          零售
-          <text>￥ {{item.sellPrice}}</text>
-        </view>
-
-      </navigator>
-    </view>
-    <view class='nomore'>没有更多了</view>
-  </view>
-  <view class="result-null" wx:else>
-    <view class="nomore">
-      <view>
-        <image src="/image/nohome.png"></image>
+ <scroll-view scroll-y="true" style="height:100%;">
+    <view class="result" wx:if="{{result.length > 0}}">
+      <view class="result-list" wx:for="{{result}}" wx:key="index">
+        <navigator url="../goodsDetails/goodsDetails?goodsId={{item.id}}">
+          <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+          <view class="result-text result-text-h">
+            <text>{{item.name}}</text>
+          </view>
+          <!-- <view class="result-text">
+            <text>￥ {{item.marketPrice}}</text>
+          </view> -->
+          <view class="result-text result-text1">
+            <text style='color:#CCAA77'>￥ {{item.sellPrice}}</text>
+          </view>
+        </navigator>
       </view>
-      暂时还没有商品哦
+      <view class='nomore'>没有更多了</view>
     </view>
-  </view>
+    <view class="result-null" wx:else>
+      <view class="nomore">
+        <view>
+          <image src="/image/nohome.png"></image>
+        </view>
+        还没有商品哦！
+      </view>
+    </view>
+  </scroll-view>
 </view>

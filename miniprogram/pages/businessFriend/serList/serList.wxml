@@ -1,14 +1,17 @@
 
 <view class='bf-imput'>
    <view class="goods-ser">
-    <input placeholder="输入小云店名、手机号"   bindconfirm="searchBtn"   value="{{value}}"/>
+    <input placeholder="输入小云店名、手机号" bindinput='changeValue'  bindconfirm="searchBtn"   value="{{value}}"/>
     <image class="home-ser"  src="/image/search.png"></image>
-    <view class='home-img'>
+      <view class='home-img' bindtap='searchBtn' >
+          搜索
+      </view>
+    <view class='home-img  home-img1'>
       <image bindtap='removeVal' src="/image/ser.png"></image>
     </view>
   </view>
 </view>
-<view class='bf-all'>搜索结果</view>
+<view class='bf-all' wx:if='{{detailList.length>0}}'>搜索结果</view>
 <view class='bf-cont' wx:if='{{detailList.length>0}}'>
   <scroll-view scroll-y="true" style="height:100%;">
   <view class='bf-weui'>
@@ -21,3 +24,11 @@
   </view>
   </scroll-view>
 </view>
+<view class='allData' wx:if='{{detailList.length==0}}'>
+  <view class="nomore">
+      <view>
+        <image src="/image/user.png"></image>
+      </view>
+      暂无供应商！
+    </view>
+  </view>

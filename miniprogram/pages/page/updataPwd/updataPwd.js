@@ -69,7 +69,7 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '两次输入不一致',
+        title: '新密码输入不一致',
         icon: 'none'
       })
     }

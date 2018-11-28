@@ -1,4 +1,35 @@
 @import '../order/order';
+.tip-textarea{
+  border:1px solid #dedede;
+  padding:10rpx;
+  width:90%;
+  height: auto;
+  min-height:120rpx;
+  margin:0 auto;
+  text-align:left;
+  font-size: 26rpx;
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.add-tip-button{
+  display: inline-block;
+  padding:0 20rpx;
+  height:55rpx;
+  line-height:55rpx;
+  color:#999;
+  border:2rpx solid #D8D8D8;
+  background:#fff;
+  font-size:24rpx;
+}
+.no-text{
+  color: #808080;
+}
+.addTip{
+  float: right;
+}
 .zindex{
   z-index: -1;
 }
@@ -21,7 +52,7 @@
   background: #fff;color: #333;font-size: 30rpx;padding: 10rpx 0 0;
 }
 .np-ct .np-view{
-  margin-left:80rpx;padding-right: 100rpx;border-bottom: 2rpx solid #f3f3f3;position: relative;padding-bottom: 20rpx;
+  margin-left:80rpx;margin-right: 50rpx;border-bottom: 2rpx solid #f3f3f3;position: relative;padding-bottom: 20rpx;box-sizing: border-box;
 }
 .np-ct .np-view1{
   border-bottom: 0;
@@ -30,7 +61,7 @@
   padding-top: 20rpx;font-weight: bold;margin-bottom: 10rpx;
 }
 .np-ct text,.np-ct .np-coden1 text {
-  color: #666;font-weight: normal;font-size: 26rpx;margin-right: 100rpx;
+  color: #666;font-weight: normal;font-size: 26rpx;
 }
 .np-ct .np-code text{
   font-size: 26rpx;color: #333;
@@ -42,7 +73,7 @@
   position: absolute;width: 35rpx;height: 35rpx;left: -51rpx;top: 28rpx;
 }
 .np-ct .np-text{
-  color: #333;font-size: 30rpx;position: absolute;right: -70rpx;font-weight: bold; top:20rpx;
+  color: #333;font-size: 30rpx;position: absolute;right: 0;font-weight: bold; top:20rpx;
 }
 .np-mes{
   color: #333; background: #fff;font-size: 28rpx;margin-top: 20rpx;text-align: center;height: 100rpx;font-weight: bold;
@@ -64,7 +95,7 @@
   width: 42rpx;height: 43rpx;vertical-align: middle;margin-top: -2rpx;margin-right: 10rpx;
 }
 .np-order{
-  font-size: 26rpx;color: #333;background: #fff;margin-bottom: 20rpx;padding:20rpx;padding-bottom: 30rpx;
+  font-size: 26rpx;color: #333;background: #fff;margin-bottom: 20rpx;padding:20rpx 50rpx;padding-bottom: 30rpx;
 }
 .np-order-bar{
   margin-bottom: 120rpx;
@@ -94,7 +125,7 @@
   color:#C79359;font-size: 34rpx;
 }
 .cf-button{
-  height: 105rpx;background: none;padding:15rpx 20rpx 0 0;position: fixed;bottom: 0;width: 100%;border-top: 2rpx solid #DFDFDF;background: #fff;
+  height: 105rpx;background: none;padding:15rpx 20rpx 0 0;position: fixed;bottom: 0;width: 100%;background: #fff;
 }
 .cf-button button{
   height: 75rpx;font-size:30rpx;color: #666;line-height: 75rpx; 
@@ -103,7 +134,7 @@
   margin-right: 30rpx;
 }
 .np-fapiao{
-  border-top:2rpx solid #f3f3f3;padding-top:20rpx;font-size:26rpx;color:#333;background:#fff;margin-top:-20rpx;margin-bottom: 20rpx;padding:30rpx 20rpx;
+  border-top:2rpx solid #f3f3f3;padding-top:20rpx;font-size:26rpx;color:#333;background:#fff;margin-bottom: 20rpx;padding:30rpx 50rpx;
 }
 .np-fapiao view{
   margin-bottom: 15rpx;
@@ -138,8 +169,8 @@
 .os-status view.active{
   color:#CCAA77;font-weight: bold
 }
-.os-mon{
-  color: #333333;font-size: 28rpx;padding:30rpx 20rpx;background: #fff;margin-top: 20rpx;margin-bottom: 20rpx;
+.os-mon,.no-child{
+  color: #333333;font-size: 28rpx;padding:30rpx 50rpx;background: #fff;margin-top: 20rpx;margin-bottom: 20rpx;
 }
 .os-mon text{
   float: right;font-weight: bold;
@@ -154,4 +185,53 @@
   font-size:26rpx;
   min-width: 155rpx;
   font-weight: 600;
+}
+
+.border-bottom{
+  border-bottom: 2rpx solid #f3f3f3;
+}
+.back-white{
+  background: #fff;
+}
+.table{
+  border-bottom: 0;
+  padding-bottom:40rpx;
+}
+
+.c-title{
+  margin-left: 50rpx;
+  font-weight: 600;
+}
+.cart-list .cart-thumb{
+  left: 50rpx;
+}
+.cart-list {
+  padding-left: 220rpx;
+}
+.ct-text{
+  right: 50rpx;
+}
+.textarea{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.address-box{
+  color:#666;
+  font-weight:normal;
+  font-size:26rpx;
+  display: flex;
+}
+.address-title{
+  width: 140rpx;
+}
+.address-inner{
+  flex: 1;
+}
+.heji{
+  font-size: 24rpx;color: #999;bottom:30rpx;margin-top:20rpx;
+}
+
+.like-textarea{
+  overflow-y: scroll;
 }

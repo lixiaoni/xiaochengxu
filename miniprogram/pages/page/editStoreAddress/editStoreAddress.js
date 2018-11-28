@@ -8,7 +8,7 @@ Page({
     region: [],
     show: false,
     value:'',
-    id: wx.getStorageSync("storeId"),
+    id: Api.getThisStoreId(),
     baseUrl: wx.getStorageSync('baseUrl'),
   },
   bindRegionChange: function (e) {

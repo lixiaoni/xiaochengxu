@@ -1,14 +1,6 @@
 @import '../shopClass/shopClass.wxss';
-.add-bottom {
-  font-weight:normal;
-}
-.add-bottom view:first-child {
- border-right:0;color: #333;
-}
-.add-bottom view {
- text-align: left;padding-left: 20rpx;width: 47%;
-}
-.iconall{
-  margin-right: 10rpx;
-}
-.shop-cont{max-height: 100%;overflow-y: scroll}
+.add-bottom{font-weight:normal}
+.add-bottom view:first-child{border-right:0;color:#333}
+.add-bottom view{text-align:left;padding-left:20rpx;width:47%}
+.iconall{margin-right:10rpx}
+.shop-cont{max-height:100%;overflow-y:scroll}

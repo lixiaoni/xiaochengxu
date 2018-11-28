@@ -1,31 +1,7 @@
 @import '../user/user.wxss';
-.weui-cell__bd text{
-  color: #999;
-  float: right
-}
-.wd-pic{
-  height: 125rpx;
-  background: #fff;
-  margin:20rpx 0;
-  margin-bottom: 30rpx;
-}
-.wd-pic text{
-  margin-top: 45rpx;
-  color:#333;
-  float: left
-}
-.wd-pic image.pic{
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  float: right;
-  margin-top: 20rpx;
-  margin-right: 30rpx;
-}
-.wd-pic .weui-img image{
-  margin-top: 15rpx;
-}
-.page_bd .weui-cell {
-  margin-left:0;
-}
-
+.weui-cell__bd text{color:#999;float:right}
+.wd-pic{height:125rpx;background:#fff;margin:20rpx 0;margin-bottom:30rpx}
+.wd-pic text{margin-top:45rpx;color:#333;float:left}
+.wd-pic image.pic{width:100rpx;height:100rpx;border-radius:50%;float:right;margin-top:20rpx;margin-right:30rpx}
+.wd-pic .weui-img image{margin-top:15rpx}
+.page_bd .weui-cell{margin-left:0}

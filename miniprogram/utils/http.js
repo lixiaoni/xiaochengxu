@@ -61,13 +61,16 @@ class request {
     return new Promise((resolve, reject) => {
       url = this.analysisUrl(url, data);
       var header = (customHeader === undefined || customHeader == null || customHeader == "") ? this.defaultHeader : customHeader;
-      // var url = url.substring(0, url.indexOf("/", url.indexOf("/") + 1))
       this.authHandler.getTokenOrRefresh().then(token => {
         if (token) {
           header['Authorization'] = token;
         } else {
           delete header['Authorization'];
         }
+        // var formId = wx.getStorageSync('formId')
+        // var storeId = wx.getStorageSync('storeId')
+        // header['formId'] = formId;
+        // header['storeId'] = storeId;
         wx.request({
           url: this._baseUrl + url,
           data: data,
@@ -83,14 +86,11 @@ class request {
               } else if (res.data.code == 1) {
                 wx.showToast({
                   title: res.data.message,
+                  duration: 2000,
                   icon: 'none'
                 })
                 reject(res);
               } else {
-                wx.showToast({
-                  title: res.data.message,
-                  icon: 'none'
-                })
                 reject(res);
               }
             } else if (res.statusCode === 401) {

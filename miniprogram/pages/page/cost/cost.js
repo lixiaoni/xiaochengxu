@@ -7,7 +7,7 @@ Page({
    */
   data: {
     switch1Change: true,
-    id: wx.getStorageSync("storeId"),
+    id: Api.getThisStoreId(),
     name:''
   },
 

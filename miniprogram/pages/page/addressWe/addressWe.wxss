@@ -1,92 +1,16 @@
-.aw-list{
-  background: #fff;
-  color: #333;
-  font-size: 30rpx;
-  padding-left: 30rpx;
-  margin-bottom: 20rpx;
-  border-radius: 10rpx;
-}
-.aw-list view>text{
-  margin-left: 20rpx;
-}
-.aw-list>text{
-  color: #999;
-  font-size: 24rpx;
-}
-.aw-list view{
-  padding-top: 35rpx;
-}
-.aw-list view.two-view{
-  padding-top:5rpx;
-}
-.aw-list .aw-edit{
-  margin-top: 30rpx;
-  padding-top:0;height: 100rpx;line-height: 100rpx;
-  color: #666;
-  position: relative;padding-left:47rpx;
-  border-top:2rpx solid #F4F4F4;
-}
-.aw-list icon {
-  position: absolute;left: 0rpx;top: 18rpx;
-}
-.aw-list .aw-view {
-  position: absolute;
-  right: 30rpx;padding-top: 0;
-  top:-36rpx;
-}
-.aw-view image{
-  width: 30rpx;
-  height: 30rpx;
-  vertical-align:middle;
-  margin-top: -4rpx;
-  margin-right: 15rpx;
-}
-.aw-view view{
-  display: inline-block;
-  margin-right: 30rpx;
-}
-.aw-but{
-  position:fixed;
-  bottom:40rpx;
-  background: #CCAA77;
-  color: #fff;
-  height: 80rpx;
-  padding:0;line-height: 80rpx;
-  width: 80%;
-  left: 10%; 
-  font-size: 30rpx; 
-}
-.aw-but image{
-  width: 35rpx;
-  height: 35rpx;
-  margin-top: -2rpx;
-  margin-right: 18rpx;
-  vertical-align: middle;
-}
-.aw-cont{
-  margin-bottom: 150rpx;
-  width: 690rpx;
-  margin: 20rpx auto;
-}
-.aw-no{
-  text-align: center;
-  font-size: 30rpx;
-  color: #999;
-  padding-top: 100rpx;
-}
-.aw-no image{
-  width: 151rpx;
-  margin-bottom: 20rpx;
-  height: 145rpx;
-}
-.aw-no button{
-  height: 60rpx;
-  width: 200rpx;
-  color: #fff;
-  line-height: 55rpx;
-  position: relative;
-  border-radius: 0;
-  font-size: 30rpx;
-  border:2rpx solid #CCAA77;
-  margin-top: 50rpx;
-}
+.aw-list{background:#fff;color:#333;font-size:30rpx;padding-left:30rpx;margin-bottom:20rpx;border-radius:10rpx}
+.aw-list view>text{margin-left:20rpx}
+.aw-list>text{color:#999;font-size:24rpx}
+.aw-list view{padding-top:35rpx}
+.aw-list view.two-view{padding-top:5rpx}
+.aw-list .aw-edit{margin-top:30rpx;padding-top:0;height:100rpx;line-height:100rpx;color:#666;position:relative;padding-left:55rpx;border-top:2rpx solid #F4F4F4}
+.aw-list icon{position:absolute;left:0rpx;top:22rpx}
+.aw-list .aw-view{position:absolute;right:30rpx;padding-top:0;top:-36rpx}
+.aw-view image{width:30rpx;height:30rpx;vertical-align:middle;margin-top:-4rpx;margin-right:15rpx}
+.aw-view view{display:inline-block;margin-right:30rpx}
+.aw-but{position:fixed;bottom:40rpx;background:#CCAA77;color:#fff;height:80rpx;padding:0;line-height:80rpx;width:80%;left:10%;font-size:30rpx}
+.aw-but image{width:35rpx;height:35rpx;margin-top:-2rpx;margin-right:18rpx;vertical-align:middle}
+.aw-cont{margin-bottom:150rpx;width:690rpx;margin:20rpx auto}
+.aw-no{text-align:center;font-size:30rpx;color:#999;padding-top:100rpx}
+.aw-no image{width:151rpx;margin-bottom:20rpx;height:145rpx}
+.aw-no button{height:60rpx;width:200rpx;color:#fff;line-height:55rpx;position:relative;border-radius:0;font-size:30rpx;border:2rpx solid #CCAA77;margin-top:50rpx}

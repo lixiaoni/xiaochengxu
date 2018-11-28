@@ -1,3 +1,25 @@
+ <!--不是供应商-->
+<mes
+  show="{{isNotStore}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view class='tipMes'>
+  <view>我是<text>用户</text>,未开通新批零小云店,</view>
+  <view>不提供进货商友功能哦~</view>
+  <button bindtap='closeTip'>知道了</button>
+</view>
+</mes>
+ <!--零售店店主-->
+<mes
+  show="{{isStoreOwner}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view class='tipMes'>
+  <view>我是<text>新零售</text>小云店主,我们不 </view>
+  <view>不提供进货商友功能哦~</view>
+  <button bindtap='closeTip'>知道了</button>
+</view>
+</mes>
  <view class="goods-ser">
     <input placeholder="输入小云店名、手机号"  bindconfirm='searchBtn'    value="{{value}}"/>
     <image class="home-ser"  src="/image/search1.png"></image>

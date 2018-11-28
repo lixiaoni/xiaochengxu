@@ -4,3 +4,11 @@
   height: 40rpx;
   width: 40rpx;
 }
+.table{
+  margin: 10rpx 50rpx;
+}
+
+.heji{
+  right: initial;
+  bottom: 44rpx;
+}

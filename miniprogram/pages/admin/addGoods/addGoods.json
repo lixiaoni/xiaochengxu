@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "新建云享品",
+  "navigationBarTitleText": "新建云商品",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "mes": "../../../../assembly/tips/tips"

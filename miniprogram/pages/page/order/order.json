@@ -3,6 +3,7 @@
   "usingComponents": {
     "mes": "../../../../assembly/tips/tips",
     "clo": "../../../../assembly/close/close",
-    "login": "../../login/login/login"
+    "login": "../../login/login/login",
+    "savePayment": "../../payment/savePayment/savePayment"
   }
 }

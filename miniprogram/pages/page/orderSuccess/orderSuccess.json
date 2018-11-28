@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "提交成功"
+  "navigationBarTitleText": "提交成功",
+  "usingComponents": {
+    "savePayment": "../../payment/savePayment/savePayment"
+  }
 }

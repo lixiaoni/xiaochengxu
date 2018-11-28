@@ -7,21 +7,42 @@ Page({
    */
   data: {
     detailList:[],
+    value:'',
     baseUrl: app.globalData.imageUrl,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  getList:function(data){
-    var _this=this
-    Api.mewWholesaler(data)
+  changeValue: function (e) {
+    var val = e.detail.value
+    this.setData({
+      value: val
+    })
+  },
+  initData: function () {
+    app.pageRequest.pageData.pageNum = 0
+    var _this = this
+    this.setData({
+      detailList: [],
+    }, function () {
+      _this.getList()
+    })
+  },
+  getList: function (nextPage){
+    var _this=this,
+     val = this.data.value
+    Api.mewWholesaler({ keyword: val }, nextPage)
       .then(res => {
         var detailList = res.obj.result
         if (detailList!=null){
           for (var i = 0; i < detailList.length; i++) {
-            var greet = (detailList[i].greet).split("#;#")
-            detailList[i].greet = greet[0]
+            if (detailList[i].greet != null){
+              var greet = (detailList[i].greet).split("#;#")[0]
+            }else{
+              var greet =""
+            }
+            detailList[i].greet = greet
           }
           var datas = _this.data.detailList,
             newArr = app.pageRequest.addDataList(datas, detailList)
@@ -29,23 +50,12 @@ Page({
             detailList: newArr,
           })
         }else{
-          wx.showToast({
-            title: '暂无更多了',
-            icon: 'none',
-            duration: 1000,
-            mask: true
-          })
+          Api.showToast("暂无更多数据了！")
         }
-       
       })
   },
   searchBtn:function(e){
-    var val = e.detail.value
-    app.pageRequest.pageData.pageNum = 0
-    this.setData({
-      detailList:[]
-    })
-    this.getList({keyword:val})
+    this.initData()
   },
   onLoad: function (options) {
   },
@@ -61,11 +71,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      detailList: []
-    })
-    app.pageRequest.pageData.pageNum = 0
-    this.getList()
+    this.initData()
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -86,24 +93,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.setData({
-      detailList: [],
-      value:''
-    })
-    app.pageRequest.pageData.pageNum = 0
-    this.getList({ userId: wx.getStorageSync('userId') })
+    this.initData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var val=this.data.value
-    if (val==''){
-      this.getList({ userId: wx.getStorageSync('userId') })
-    }else{
-      this.getList({ userId: wx.getStorageSync('userId'), keyword: val })
-    }
+    this.getList(true)
   },
 
 })

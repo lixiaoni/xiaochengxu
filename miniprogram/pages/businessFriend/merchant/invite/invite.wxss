@@ -1,4 +1,1 @@
-@import '../../invitation/invitation';
-.bf-img image{
-  border-radius: 50%;
-}
+/* pages/businessFriend/merchant/invite/invite.wxss */

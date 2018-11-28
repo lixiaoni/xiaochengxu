@@ -1,13 +1,27 @@
 <login id="login"></login>
-<!-- 提示 -->
-<mes show="{{show}}" bind:sureSelectArea="sureSelectAreaListener">
-  <view>
-    <text>加商友合作可享批发价</text>
-    <button bindtap='confirm'>确定</button>
-  </view>
+ <!--确定取消关注吗？-->
+<mes
+  show="{{disLike}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view>
+  <text>确定取消关注吗？</text>
+  <button bindtap='disLike'>确定</button>
+</view>
 </mes>
+ <!--是否下架-->
+<mes
+  show="{{confirmDown}}"
+  bind:sureSelectArea="sureSelectAreaListener"
+>
+<view>
+  <text>确定下架该商品？</text>
+  <button bindtap='confirmDown'>确定</button>
+</view>
+</mes>
+
 <view class="goods-ser">
-  <navigator url="../../page/serStatus/serStatus" style='width:85%'>
+  <navigator url="../../page/serStatus/serStatus" style='width:80%'>
     <input placeholder="搜索店铺内商品" placeholder-class='pre-input' disabled='disabled' bindconfirm="searchBtn" value="{{value}}" />
   </navigator>
   <image class="home-ser" src="/image/search1.png"></image>
@@ -17,11 +31,7 @@
     </navigator>
   </view>
 </view>
-<view class='banner'>
-  <view class='hm-fx' wx:if='{{limitShow==2}}'>
-    <button class='shre_btn' open-type='share'>
-      <image src="/image/fx1.png"></image>分享</button>
-  </view>
+<view class='banner' id='myText'>
   <image wx:if='{{store!="" && limitShow==2}}'  bindtap='editDp' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
    <image wx:if='{{store!="" && limitShow!=2}}'  src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
   <view class="ym_sydtstore">
@@ -32,55 +42,59 @@
     </view>
     <view class="ym_sydtdmgzs">
       <view class="store_name">{{store.storeName}}
-         <view>{{store.storeNature==1?'新批零':'新零售'}}</view>
-        <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit1.png" />
+        <view>{{store.storeNature==1?'新批零':'新零售'}}</view>
+        <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit.png" />
       </view>
-      <image class='logoimg' src="{{baseUrl}}{{store.mallLogo}}" />
-      <text>{{store.mallName}}</text>
+      <image class='logoimg' wx:if='{{floorInfo!=null}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
+      <text wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
     </view>
   </view>
-  <button class="ym_sydtgzbtn" wx:if='{{store!="" && !likeShow}}'  bindtap='likeStore'><text style='font-size:34rpx;'>+</text> 关注</button>
-  <button class="ym_sydtgzbtn" wx:if='{{!likeShow  && !getFollw}}'  bindtap='likeStore'><text style='font-size:34rpx;'>+</text> 关注</button>
-  <button class="ym_sydtgzbtn" wx:if='{{likeShow && getFollw}}' bindtap='deteleLikeStore'>已关注</button>
+  <view class="ym_sydtgzbtn share-v" wx:if='{{limitShow==2}}'   style='color:#666 !important'><view><image  src="/image/fx.png" /></view><button class='shre_btn' open-type='share'></button>分享</view>
+  <view class="ym_sydtgzbtn" wx:if='{{store!="" && !likeShow && limitShow!=2}}'  bindtap='likeStore'><view><image  src="/image/f.png" /></view><button class='shre_btn'></button><text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
+  <view class="ym_sydtgzbtn" wx:if='{{!likeShow  && !getFollw && limitShow!=2}}'  bindtap='likeStore'><view><image  src="/image/f.png" /></view><button class='shre_btn'></button><text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
+  <view class="ym_sydtgzbtn"  style='color:#666 !important' wx:if='{{likeShow && getFollw && limitShow!=2}}' bindtap='deteleLikeStore'><view><image  src="/image/dis.png" /></view><button class='shre_btn'></button>已关注</view>
 </view>
-<view class="swiper-tab">
+<view class="swiper-tab" id='swiper-tab'>
   <view class="swiper-tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">综合
     <view></view>
   </view>
-  <view class="swiper-tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">销量
+  <view class="swiper-tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">新品
     <view></view>
   </view>
-  <view class="swiper-tab-item {{currentTab==2 ? 'on' : ''}}">
-    <view class='sort-c' data-current="2" bindtap="swichNav">价格</view>
+  <view class="swiper-tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">销量
+    <view></view>
+  </view>
+  <view class="swiper-tab-item {{currentTab==3 ? 'on' : ''}}">
+    <view class='sort-c' data-current="3" bindtap="swichNav">价格</view>
     <view class='top-p' wx:if='{{descShow}}'></view>
-    <view class='top-p' wx:if='{{!descShow && currentTab!=2}}'></view>
-    <view class='top-p top-p1' wx:if='{{!descShow && currentTab==2}}'></view>
+    <view class='top-p' wx:if='{{!descShow && currentTab!=3}}'></view>
+    <view class='top-p top-p1' wx:if='{{!descShow && currentTab==3}}'></view>
     <view class='up-p' wx:if='{{!descShow}}'></view>
     <view class='up-p up-p1' wx:if='{{descShow}}'></view>
     <view></view>
   </view>
+  
 </view>
 <view class="result result-box" wx:if="{{result.length > 0}}">
   <view class='goods-total'>
-    <text>{{result.length}}</text>
+    <text>{{goodsNum==null?0:goodsNum}}</text>
     <view></view>
     <text>{{totalCount}}</text>
   </view>
   <scroll-view scroll-y="true" style="height:100%;">
     <view class='flex-boxx'>
-      <view class="result-list" wx:for="{{result}}" wx:key="index">
+      <view class="result-list" wx:for="{{result}}" wx:key="index" id='{{index==0?"result-list":""}}'>
         <view>
           <navigator url="../goodsDetails/goodsDetails?goodsId={{item.id}}">
             <view class='ho-img'>
-              <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small " mode="aspectFill"></image>
+              <image src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/goods-small " mode="widthFix"></image>
             </view>
           </navigator>
           <view class="result-text">
             <text>{{item.name}}</text>
           </view>
-          <view class="result-text result-text1">
-            零售
-            <text  class='h-font'>￥ {{item.sellPrice}}</text>
+          <view class="result-text">
+            <text class='h-font'>￥ {{item.sellPrice}}</text>
           </view>
         </view>
       </view>

@@ -1,224 +1,58 @@
 @import '../userDetails/userDetails';
-.banner{
-  position: relative;
-}
-
-.hm-fx image{
-  width: 35rpx;height: 35rpx;vertical-align: middle;margin-right: 10rpx;margin-top: -3rpx;
-}
-.hm-fx{
-  position: absolute;right: 0;background: #CCAA77;color: #fff;font-size: 30rpx;width: 140rpx;height: 58rpx;text-align: center;
-  border-top-left-radius:65rpx;border-bottom-left-radius:65rpx;padding-top: 7rpx;top: 25rpx;
-}
-.slide-image{    
-   width: 100%;    
-}
-.sh-cont view{
-  position: relative;
-}
-.sh-cont view button.shre_btns{
-  position: absolute;background: #fff;width:100%;border:0;opacity: 0;
-}
-.ym_sydtdmgzs {
-    text-shadow: none !important;
-     color: #fff;
-}
-.ym_sydtdmgzs {
-    font-size: 28rpx;
-    line-height: 40rpx;
-}
-.ym_sydtstore {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 10rpx;
-    padding-bottom: 20rpx;
-    padding-top: 30rpx;
-    z-index: 12;
-}
-.ym_sydtlogo {
-    float: left;
-    width: 80rpx;
-    height: 80rpx;
-    margin-right: 20rpx;
-    margin-left: 25rpx;
-}
-.ym_sydtlogo image {
-    border-radius: 100%;
-    max-width: 80rpx;
-    max-height: 80rpx;
-}
-.ym_sydtdmgzs .store_name {
-    font-size:30rpx;
-    color: #fff;
-}
-
-.ym_sydtdmgzs text {
-    font-size: 24rpx;
-     color: #fff;
-}
-.ym_sydtdmgzs image{
-  width: 24rpx;
-  height: 25rpx;
-  vertical-align: middle;
-  margin-right: 10rpx;
-  margin-top:-6rpx;
-}
-.ym_sydtgzbtn {
-    color: #CCAA77 !important;
-    font-weight: normal !important;
-    text-shadow: none !important;
-    border: none;
-}
-.ym_sydtgzbtn {
-    height: 50rpx;
-    position: absolute;
-    right: 30rpx;width: 130rpx;
-    bottom: 40rpx;padding: 0;
-    background: #F6F7F8;
-    line-height: 50rpx;
-    text-align: center;
-    font-size: 26rpx;
-    border-radius: 10rpx;
-    z-index: 13;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-}
-.goods-ser{
-  height: 80rpx;
-  position: relative;
-  background: #fff;
-}
-.goods-ser input{
-  color: #333;
-  font-size: 28rpx;
-  height: 80rpx;max-width:515rpx;
-  padding-left: 90rpx;
-}
-.home-ser{
-  height: 40rpx;
-  width: 40rpx;
-  position: absolute;
-  left: 30rpx;
-  top: 20rpx;
-}
-.home-img{
-  height: 70rpx;
-  width: 48rpx;
-  position: absolute;
-  right: 25rpx;
-  top:25rpx;
-  text-align: center;
-  z-index: 10;
-  font-size: 20rpx;
-  color: #A8A8A8;
-}
-.home-img1{
-  right: 90rpx;
-}
-.home-img image{
-  height: 42rpx;
-  width: 42rpx;
-}
-.swiper-tab{ 
-  width: 100%; 
-  margin-top: -9rpx;
-  text-align: center; 
-  background: #fff;
-  line-height: 80rpx;} 
-.swiper-tab-item{ 
-  font-size: 28rpx; 
-  display: inline-block; 
-  width:29%; position: relative;
-  color: #666; z-index: 1000;
-} 
-.swiper-tab-item image{
-  width: 25rpx;
-  vertical-align: middle;
-  margin-left: 5rpx;
-  height: 25rpx;
-}
-.on{ 
-  color: #C79359; position: relative;
-  } 
-.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden; } 
-.swiper-box view{ 
-  text-align: center; 
-} 
-.on view:last-child{
-  height: 2rpx;
-  width: 90rpx;
-  background:#C79359;
-  left: 50%;
-  margin:0 auto;
-}
-.top-p{
-  position: absolute;
-  width: 0;z-index: 100;
-  height: 0;top:33rpx;left: 145rpx;
-  border-left: 7rpx solid transparent;
-  border-right: 7rpx solid transparent;
-  border-bottom: 10rpx solid #BBBBBB;
-}
-.up-p{
-  width: 0;top:45rpx;left: 145rpx;
-  height: 0; position: absolute;z-index: 100;
-  border-left:7rpx solid transparent;
-  border-right: 7rpx solid transparent;
-  border-top: 10rpx solid #BBBBBB;
-}
-.up-p1{
-  border-top: 10rpx solid #333;
-}
-.top-p1{
-   border-bottom: 10rpx solid #333;
-}
-.sort-c{
- z-index: 1000;position: relative;
-}
-.goods-total{
-  position: fixed;
-  font-size: 20rpx;
-  color: #666;
-  padding-top: 5rpx;
-  height: 85rpx;
-  width: 90rpx;
-  bottom: 30rpx;
-  right: 30rpx;z-index: 100;
-  border-radius: 50%;
-  border:2rpx solid #E7E7E7;
-  box-shadow: 0 5rpx 10rpx #E7E7E7;
-  background: #FDFDFD;
-  text-align: center
-}
-.goods-total view{width: 65rpx;height: 2rpx;background: #E7E7E7;margin:0 auto;}
-.store_name view{display: inline-block;background: #CCAA77;font-size: 24rpx;padding:0 15rpx;border-radius:10rpx;margin-left:6px;line-height:1.3;}
-.add-firend{font-size: 24rpx;height: 80rpx;background: #fff;padding-left: 40rpx;margin-top: -10rpx;}
-.add-firend view{background:#CCAA77;color:#fff;display: inline-block;padding:0 5rpx;line-height: 1.3;margin-right: 15rpx;margin-top: 30rpx;}
-.add-firend image{ width: 32rpx;height: 32rpx;float: right;margin-right: 40rpx;margin-top: 24rpx;}
+.banner{position:relative}
+.hm-fx image{width:35rpx;height:35rpx;vertical-align:middle;margin-right:10rpx;margin-top:-3rpx}
+.hm-fx{position:absolute;right:0;background:#CCAA77;color:#fff;font-size:30rpx;width:140rpx;height:58rpx;text-align:center;border-top-left-radius:65rpx;border-bottom-left-radius:65rpx;padding-top:7rpx;top:25rpx}
+.slide-image{width:100%;display:inherit}
+.sh-cont view{position:relative}
+.sh-cont view button.shre_btns{position:absolute;background:#fff;width:100%;border:0;opacity:0}
+.ym_sydtdmgzs{font-size:28rpx;text-shadow:none !important;margin-left:45rpx;color:#fff;line-height:40rpx;margin-bottom:10rpx}
+.ym_sydtstore{left:0;background:#fff;bottom:10rpx;position:relative;padding-bottom:40rpx;padding-top:60rpx;z-index:12}
+.shre_btn,.ym_sydtgzbtn .button-hover{position:absolute;width:150rpx;bottom:20rpx;height:80rpx;border:0;border-left:2rpx solid #eeeeee;background:unset;border-radius:0;height:90rpx;bottom:0}
+.ym_sydtlogo{width:80rpx;top:-100rpx;height:80rpx;position:absolute;margin-right:20rpx;left:45rpx}
+.ym_sydtlogo image{border-radius:10rpx;max-width:120rpx;border:2rpx solid #fff;max-height:120rpx}
+.ym_sydtdmgzs .store_name{font-size:30rpx;color:#333;font-weight:bold;margin-bottom:20rpx}
+.ym_sydtdmgzs text{font-size:26rpx;color:#666}
+.ym_sydtdmgzs image{width:24rpx;height:25rpx;vertical-align:middle;margin-right:10rpx;margin-top:-6rpx}
+.ym_sydtgzbtn{color:#CCAA77 !important;font-weight:normal !important;text-shadow:none !important;border:none;position:absolute;right:5rpx;width:155rpx;bottom:45rpx;padding:0;text-align:center;background:none;font-size:26rpx;z-index:13;border-radius:0;display:flex;align-items:center;justify-content:center}
+.ym_sydtgzbtn view{position:absolute;bottom:40rpx;width:157rpx;height:50rpx;padding-top:5rpx}
+.ym_sydtgzbtn  image{width:40rpx;height:40rpx}
+.goods-ser{height:80rpx;position:relative;background:#fff}
+.goods-ser input{color:#333;font-size:28rpx;height:80rpx;max-width:515rpx;padding-left:90rpx}
+.home-ser{height:40rpx;width:40rpx;position:absolute;left:30rpx;top:20rpx}
+.home-img{height:70rpx;width:48rpx;position:absolute;right:25rpx;top:25rpx;text-align:center;z-index:10;font-size:20rpx;color:#A8A8A8}
+.home-img1{right:90rpx}
+.home-img image{height:42rpx;width:42rpx}
+.home-img1 image{height:35rpx;width:35rpx}
+.home-img1{top:28rpx}
+.swiper-tab{width:100%;margin-top:10rpx;text-align:center;background:#fff;line-height:80rpx}
+.swiper-tab-item{font-size:28rpx;display:inline-block;width:25%;position:relative;color:#666;z-index:1000}
+.swiper-tab-item image{width:25rpx;vertical-align:middle;margin-left:5rpx;height:25rpx}
+.on{color:#C79359;position:relative}
+.swiper-box{display:block;height:100%;width:100%;overflow:hidden}
+.swiper-box view{text-align:center}
+.on view:last-child{height:2rpx;width:90rpx;background:#C79359;left:50%;margin:0 auto}
+.sort-c{z-index:1000;position:relative}
+.store_name view{display:inline-block;background:#CCAA77;font-size:24rpx;padding:0 15rpx;border-radius:10rpx;margin-left:6px;line-height:1.3;color:#fff}
+.add-firend{font-size:28rpx;height:100rpx;background:#fff;padding-left:40rpx;margin-top:-10rpx;margin-bottom:20rpx;border-top:2rpx solid #FAFAFA}
+.add-firend view{background:#FF5C52;color:#fff;display:inline-block;padding:0 5rpx;line-height:1.3;margin-right:15rpx;margin-top:30rpx;font-size:30rpx;border-radius:10rpx}
+.add-firend image{width:40rpx;height:40rpx;float:right;margin-right:40rpx;margin-top:24rpx}
 .add-firend1 view{background:#C181EA}
-.add-firend2 view{background:#FF5C52}
-.add-firend2{height: 60rpx;}
-.add-firend2 image{margin-top: 20rpx;}
+.add-firend2 view{background:#CCAA77}
+.add-firend2{height:90rpx;border-top:2px solid #FAFAFA;margin-bottom:20rpx}
+.add-firend2 image{margin-top:20rpx}
 .add-firend3 view{background:#F7AC25}
-.add-firend3{padding-bottom: 20rpx;}
-.store_name image{width: 35rpx;height: 35rpx;margin-left: 10rpx;}
-.result-list .result-text1 image.h-img{height:40rpx;width: 40rpx;float: right;margin-right: 10rpx;}
-
-.result-list{
-  height: 490rpx;
-  margin: 0 0 30rpx;
-}
-.flex-boxx{
-  display:flex;justify-content: space-between;
-  flex-wrap: wrap; align-content: flex-start;
-  width: 680rpx;
-  margin: 0 auto;
-}
-.result{
-  padding: 0;
-}
-.result-list .result-text{
-  height: 80rpx;
-}
+.add-firend3{padding-bottom:20rpx}
+.store_name image{width:35rpx;height:35rpx;margin-left:18rpx;margin-top:0}
+.result-list .result-text1 image.h-img{height:40rpx;width:40rpx;float:right;margin-right:10rpx}
+.result-list .result-text1 image.h-img1{transform: rotate(45deg)}
+.result-list{height:480rpx;border:0;margin:0 0 30rpx}
+.flex-boxx{display:flex;justify-content:space-between;flex-wrap:wrap;align-content:flex-start;width:680rpx;margin:0 auto}
+.result{padding:0}
+.result-list .result-text{height:80rpx}
+.share-v image{width:35rpx;height:35rpx}
+.tipMes{font-size:36rpx;font-weight:normal;margin-bottom:70rpx;margin-top:10rpx}
+.tipMes text{color:#CCAA77}
+.result{background:#fff;margin-top:0rpx;padding-top:30rpx}
+.nomore{margin-bottom:0rpx;margin-top:0rpx;text-align:center;background:#f7f7f7;padding:30rpx}
+.tip-v view{font-size: 28rpx;color: #999;font-weight: normal}
+.tip-v button{margin-bottom: 40rpx;margin-top: 40rpx}

@@ -52,6 +52,9 @@ button {
   color:#000;
   font-weight: 300;
 }
+.button-hover{
+  background: #fff;
+}
 .line{
   width: 1px;
   height: 50rpx;

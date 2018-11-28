@@ -1,1 +1,5 @@
-.result-list{height:470rpx;}
+.result-list{height:480rpx;border:0;margin: 0 10rpx;width:320rpx;}
+page{height: 100%;background: #fff}
+.result{width: 680rpx;margin:0 auto;padding-left: 0;padding-top: 30rpx;}
+.result-list image{width:320rpx;height:320rpx;}
+.result-text-h{height: 80rpx;}

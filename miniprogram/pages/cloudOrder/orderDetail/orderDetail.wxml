@@ -5,50 +5,51 @@
       <text class="com">新购-优生活小云店</text>
     </view>
     <view>
-      <text class="price">￥5680.00</text>
+      <text class="price">￥{{msg.orderAmount}}</text>
     </view>
   </view>
 
   <view class='order-title'>
     <view>
       <text class='store-name'>小云店商城专业版</text>
-      <text class='store-type'>新批零</text>
+      <!-- <text class='store-type'>新批零</text> -->
     </view>
-    <text class='youyou'>已付款</text>
+    <text wx:if='{{msg.orderStatus=="unpaid"}}' class='youyou'>待付款</text>
+    <text wx:if='{{msg.orderStatus=="paid"}}' class='youyou'>已付款</text>
   </view>
 
   <view class='msg-box'>
 
     <view class='msg-item'>
       <text class='msg-title'>服务时间</text>
-      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceTerm}}</text>
+      <text class="msg-content">{{msg.yunStoreGoodsSnapshot.serviceReriodMonth}}个月</text>
     </view>
+    <block wx:if='{{msg.orderStatus=="paid"}}'>
+      <view class='msg-item'>
+        <text class='msg-title'>开始时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsSnapshot.serviceDateBegin}}</text>
+      </view>
 
-    <view class='msg-item'>
-      <text class='msg-title'>开始时间</text>
-      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateBegin}}</text>
-    </view>
-
-    <view class='msg-item'>
-      <text class='msg-title'>结束时间</text>
-      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceDateEnd}}</text>
-    </view>
-
+      <view class='msg-item'>
+        <text class='msg-title'>结束时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsSnapshot.serviceDateEnd}}</text>
+      </view>
+    </block>
     <view class='msg-item'>
       <text class='msg-title'>电话号码</text>
-      <text class="msg-content">{{mag.userInfoVO.mobile}}</text>
+      <text class="msg-content">{{msg.userInfoVO.mobile}}</text>
     </view>
+    <block wx:if='{{msg.orderStatus=="paid"}}'>
+      <view class='msg-item'>
+        <text class='msg-title'>服务状态</text>
+        <text class="msg-content">{{msg.yunStoreGoodsSnapshot.serviceStatus==1?"已开通":"未开通"}}</text>
+      </view>
 
-    <view class='msg-item'>
-      <text class='msg-title'>服务状态</text>
-      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.serviceStatus==1?"已开通":"未开通"}}</text>
-    </view>
-
-    <view class='msg-item'>
-      <text class='msg-title'>剩余时间</text>
-      <text class="msg-content">{{msg.yunStoreGoodsOrderInfo.surplusDay}} 天</text>
-    </view>
-
+      <view class='msg-item'>
+        <text class='msg-title'>剩余时间</text>
+        <text class="msg-content">{{msg.yunStoreGoodsSnapshot.surplusDay}} 天</text>
+      </view>
+    </block>
   </view>
 
 </view>
@@ -60,7 +61,7 @@
       <text class='msg-title'>订单号</text>
       <text class="msg-content">{{msg.orderNumber}}</text>
     </view>
-    <view class='msg-item'>
+    <view class='msg-item' wx:if='{{msg.orderStatus=="paid"}}'>
       <text class='msg-title'>交易单号</text>
       <text class="msg-content">{{}}</text>
     </view>
@@ -68,7 +69,7 @@
       <text class='msg-title'>下单时间</text>
       <text class="msg-content">{{msg.createDate}}</text>
     </view>
-    <view class='msg-item'>
+    <view class='msg-item' wx:if='{{msg.orderStatus=="paid"}}'>
       <text class='msg-title'>付款时间</text>
       <text class="msg-content">{{msg.payDate}}</text>
     </view>
@@ -96,14 +97,21 @@
 <view class='order-box'>
   <view class='pay-item'>
     <text class='msg-title'>支付方式</text>
-    <text class="msg-content">其他支付方式</text>
+    <text class="msg-content">微信支付</text>
   </view>
   <view class='pay-item'>
     <text class='msg-title'>优惠码支付</text>
-    <text class="msg-content">￥{{msg.yunStoreGoodsOrderInfo.preferentialPrice}}</text>
+    <text class="msg-content">￥{{msg.yunStoreGoodsSnapshot.discountAmount}}</text>
   </view>
-  <view class='pay-item' style='padding:0;'>
+  <view class='pay-item'>
     <text class='msg-title'>实付金额</text>
-    <text class="msg-content gold">￥{{msg.payAmount}}</text>
+    <text class="msg-content gold">￥{{msg.yunStoreGoodsSnapshot.favourablePrice}}</text>
   </view>
+</view>
+<view style='padding:80rpx 0'></view>
+<view class='bottom-lr-box' wx:if='{{msg.orderStatus=="unpaid"}}'>
+  <view class='bottom-price'>应付支付：
+    <text class="msg-content gold">￥{{msg.yunStoreGoodsSnapshot.favourablePrice}}元</text>
+  </view>
+  <view bindtap='buy' class="buy-button">立即支付</view>
 </view>

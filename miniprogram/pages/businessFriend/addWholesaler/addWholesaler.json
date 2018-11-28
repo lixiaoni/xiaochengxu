@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "添加供应商"
+  "navigationBarTitleText": "添加供应商",
+  "usingComponents": {
+    "mes": "../../../../assembly/tips/tips"
+  }
 }

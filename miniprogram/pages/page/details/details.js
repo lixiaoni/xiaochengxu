@@ -6,23 +6,14 @@ Page({
    */
   data: {
     list: [],
+    indexEmpty: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _this =this
-    Api.classListApi()
-      .then(res => {
-        const obj = res.obj
-        for (var i = 0; i < obj.length; i++) {
-          obj[i].selected = false
-        }
-        _this.setData({
-          list: obj
-        })
-      })
+    
   },
 
   /**
@@ -36,7 +27,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    if (!Api.getStoreId()) {
+      this.setData({
+        indexEmpty: false
+      })
+    } else {
+      var _this = this
+      Api.classListApi()
+        .then(res => {
+          const obj = res.obj
+          for (var i = 0; i < obj.length; i++) {
+            obj[i].selected = false
+          }
+          _this.setData({
+            list: obj
+          })
+        })
+    }
+    
   },
 
   /**

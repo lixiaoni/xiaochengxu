@@ -22,11 +22,11 @@
 </mes>
 <!-- 取消订单 -->
 <clo show="{{cancelModal}}">
-  <view wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
+  <view class='layer-reason-item' wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
     <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}" size='18' class="cart-pro-select" />
     <icon wx:else type="circle" class="cart-pro-select" size='18' data-index="{{index}}" /> {{item.title}}
   </view>
-  <button bindtap='sureCancel'>确定</button>
+  <button class='layer-reason-btn' bindtap='sureCancel'>确定</button>
 </clo>
 <!-- 获取取件码 -->
 <mes show="{{codeModal}}">
@@ -36,6 +36,10 @@
     <view class='mes-text'>请您安排好时间，在营业时间内到店取货</view>
   </view>
 </mes>
+
+<!-- 付款码 -->
+<savePayment show='{{paymentModal}}' com-name='{{paymentItem.storeInfo.storeName}}' wx='{{paymentItem.storeInfo.wechatNumber}}' goodsName='{{paymentItem.goodsInfos[0].goodsName}}' goods-num="{{paymentItem.num}}" price="{{paymentItem.orderAmount}}" head="{{paymentItem.storeInfo.logo?baseUrl+paymentItem.storeInfo.logo:''}}"></savePayment>
+
 <view class='od-status'>
   <view wx:for='{{nav}}' wx:key='{{index}}' class="od-view {{index==navindex?'active':''}}" data-current="{{index}}" bindtap='swichNav'>
     <view></view>{{item.title}}</view>
@@ -67,7 +71,7 @@
             <view class="cart-thumb">
               <image class='goods-icon' mode="aspectFit" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
             </view>
-          <view class='ct-text ct-text1'>￥{{item.orderDetails.sellPrice}}
+          <view class='ct-text ct-text1'>￥{{item.orderDetails.unitPrice}}
             <view>x {{item.orderDetails.num}}</view>
           </view>
           <view class='ct-title ct-title1'>{{item.goodsName}}</view>
@@ -89,6 +93,7 @@
 
       <!-- 待支付 -->
       <block wx:if="{{item.orderStatus=='unpaid'}}">
+        <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">支付二维码</button>
         <navigator url='../../role/supplyVoucher/supplyVoucher?num={{item.orderNumber}}'>
           <button class='or-active'> 上传支付凭证 </button>
         </navigator>

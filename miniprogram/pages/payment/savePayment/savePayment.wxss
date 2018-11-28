@@ -1,0 +1,101 @@
+/* pages/payment/savePayment/savePayment.wxss */
+/* pages/lpgin/login.wxss */
+.dblock{
+  display: block;
+}
+.dnone{
+  display: none;
+}
+page{
+  width: 100%;
+  height: 100%;
+}
+.modal{
+  background: rgba(0, 0, 0, .3);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+}
+.box{
+  padding: 10rpx 30rpx 70rpx;
+  box-sizing: border-box;
+  width: 700rpx;
+  margin: 25rpx auto;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.closeIcon{
+  width: 30rpx;
+  height: 30rpx;
+}
+.title{
+  font-size: 40rpx;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  width: 500rpx;
+  margin: 0 auto 60rpx;
+  padding-bottom: 30rpx; 
+  font-weight: 600;
+}
+/* 头 */
+.name-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.store-icon{
+  width: 72rpx;
+  height: 72rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+.store-title{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.wx-code{
+  font-size: 24rpx;
+  color: #999;
+}
+
+
+.shopping-car{
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  padding: 30rpx 0 20rpx;
+}
+.price{
+  color: #ccaa77;
+  font-size: 60rpx;
+  text-align: center;
+  display: block;
+}
+
+.QRcode{
+  width: 300rpx;
+  height: 300rpx;
+  margin: 35rpx auto 50rpx;
+  display: block;
+}
+
+.tip{
+  font-size: 28rpx;
+  text-align: center;
+  color: #333;  
+}
+
+.save-btn{
+  width: 400rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  margin: 0 auto;
+  border: 1px solid #ccaa77;
+  border-radius: 10rpx;  
+  margin-top: 40rpx;
+  color: #ccaa77;
+  font-weight: 600;
+  font-size: 28rpx;
+}

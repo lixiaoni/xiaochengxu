@@ -1,4 +1,5 @@
 // pages/cloudOrder/orderDetail/orderDetail.js
+const app = getApp();
 Page({
 
   /**
@@ -8,15 +9,48 @@ Page({
     
   },
   getData() {
-    app.getRequest("/api/ystore/order").then(res => {
-      wx.showToast({
-        title: res.message,
-        icon: 'none'
-      })
-      if (res.success) {
+    wx.request({
+      url: 'https://dev-mall.youlife.me/api/yunstore/order/'+this.data.num,
+      header: {
+        Authorization: wx.getStorageSync("access_token")
+      },
+      success: (res) => {
         this.setData({
-          msg: res.obj
+          msg: res.data.obj
         })
+      }
+    })
+  },
+  buy() {
+    wx.navigateTo({
+      url: '../cloudPay/cloudPay?order=' + this.data.num,
+    })
+    // wx.login({
+    //   success:(res)=>{
+    //     if (res.code) {
+    //       console.log(res.code)
+    //       this.getOpenid(res.code);
+    //     }
+    //   }
+    // })
+
+  },
+  getOpenid(code){
+    app.http.getRequest("",{code}).then(res=>{
+      this.payment(res)
+    }).catch(e=>{
+
+    })
+  },
+  payment(res){
+    wx.requestPayment({
+      timeStamp: '',
+      nonceStr: '',
+      package: '',
+      signType: '',
+      paySign: '',
+      success:function(res){
+
       }
     })
   },
@@ -24,6 +58,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      num:options.num
+    })
+    this.getData();
 
   },
 

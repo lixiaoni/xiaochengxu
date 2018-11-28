@@ -13,12 +13,21 @@ function getIdentity(_this) {
             limitShow: 1
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner
+          var isStoreOwner = obj.isStoreOwner,
+            isPurchaser = obj.isPurchaser
           if (isStoreOwner) {
-            wx.setStorageSync("admin", 2)
-            _this.setData({
-              limitShow: 2
-            })
+            if (obj.storeNature == 2) {
+              wx.setStorageSync("admin", 2)
+              _this.setData({
+                limitShow: 2
+              })
+            }
+            if (obj.storeNature == 1) {
+              wx.setStorageSync("admin", 1)
+              _this.setData({
+                limitShow: 1
+              })
+            }
           }else{
             wx.setStorageSync("admin", 1)
             _this.setData({
@@ -227,14 +236,18 @@ Page({
             if (Api.isEmpty(newSkvArr)) {
               var num = 0;
               var allGoodsAmount = 0
+              var allGoodsPf = 0
               for (var j = 0; j < newSkvArr.length; j++) {
                 num += newSkvArr[j].num
                 allGoodsAmount += newSkvArr[j].sellPrice * newSkvArr[j].num
+                allGoodsPf += newSkvArr[j].wholesalePrice * newSkvArr[j].num
               }
               effectiveList[i].num = num
-              effectiveList[i].allGoodsAmount = allGoodsAmount
+              effectiveList[i].allGoodsAmount = allGoodsAmount.toFixed(2)
+              effectiveList[i].allGoodsPf = allGoodsPf.toFixed(2)
             } else {
-              effectiveList[i].allGoodsAmount = effectiveList[i].sellPrice * effectiveList[i].num
+              effectiveList[i].allGoodsAmount = (effectiveList[i].sellPrice * effectiveList[i].num).toFixed(2)
+              effectiveList[i].allGoodsPf = (effectiveList[i].wholesalePrice * effectiveList[i].num).toFixed(2)
             }
           }
         }
@@ -287,7 +300,7 @@ Page({
     this.setData({
       detailList: []
     })
-    if (wx.getStorageSync("storeId") == undefined || wx.getStorageSync("storeId") == '') {
+    if (!Api.getStoreId()) {
       this.setData({
         indexEmpty: false
       })
@@ -332,6 +345,7 @@ Page({
    * 清空失效宝贝
    */
   emptyAll(e) {
+    var _this=this
     Api.deteleCartFai()
      .then(res => {
         wx.showToast({
@@ -339,7 +353,9 @@ Page({
           icon: 'none',
           duration: 2000
         })
-        this.getList()
+       setTimeout(function () {
+         _this.getList()
+       }, 1000)
     })
   },
 
@@ -393,6 +409,7 @@ Page({
     detailList[index].num = num
     var arr = this.updatePrice(num, index)
     detailList[index].allGoodsAmount = arr[0]
+    detailList[index].allGoodsPf = arr[1]
     var data = detailList[index].shoppingCartSkuList
     var dataArr=[]
     dataArr.push({ goodsId: data[0]["goodsId"], num: num, skuCode: data[0]["skuCode"], storeId:storeId})
@@ -418,6 +435,8 @@ Page({
     }
     num = num - 1;
     detailList[index].num = num;
+    detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
+    detailList[index].allGoodsAmount = num * detailList[index].sellPrice
     var dataArr = []
     dataArr.push({ goodsId:detailList[index]["goodsId"], num: num, skuCode:0, storeId: storeId })
     this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
@@ -435,6 +454,8 @@ Page({
     num = num + 1;
     let storeId = this.data.storeId
     detailList[index].num = num
+    detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
+    detailList[index].allGoodsAmount = num * detailList[index].sellPrice
     var dataArr = []
     dataArr.push({ goodsId: detailList[index]["goodsId"], num: num, skuCode: 0, storeId: storeId })
     this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
@@ -446,14 +467,18 @@ Page({
   },
   // 更改商品价格
   updatePrice:function(num,index){
-    var effectiveList = this.data.detailList
-    for (var i = 0; i < effectiveList.length; i++) {
-      if(i==index){
-        var arr=[]
-        arr.push(effectiveList[i].sellPrice * num)
-        arr.push(effectiveList[i].wholesalePrice*num)
-        return arr
-      }
+    var effectiveList = this.data.detailList[index],
+      shoppingCartSkuList = effectiveList.shoppingCartSkuList
+    if (Api.isEmpty(shoppingCartSkuList)){
+      var arr = []
+      arr.push(shoppingCartSkuList[0].sellPrice * num)
+      arr.push(shoppingCartSkuList[0].wholesalePrice * num)
+      return arr
+    }else{
+      var arr = []
+      arr.push(effectiveList.sellPrice * num)
+      arr.push(effectiveList.wholesalePrice * num)
+      return arr
     }
   },
   minusCount(e) {
@@ -470,6 +495,7 @@ Page({
     detailList[index].num = num
     var arr=this.updatePrice(num,index)
     detailList[index].allGoodsAmount = arr[0]
+    detailList[index].allGoodsPf = arr[1]
     var data = detailList[index].shoppingCartSkuList
     var dataArr = []
     dataArr.push({ goodsId: data[0]["goodsId"], num: num, skuCode: data[0]["skuCode"], storeId: storeId })
@@ -489,17 +515,22 @@ Page({
       allTotalNum=0,
       total1=0,
       totalNew=0,
+      differentPrice = this.data.differentPrice,
+      differentPriceNew = 0,
       saleBatchGoodsNum=0,
-      allGoodsAmount = 0
+      allGoodsAmount = 0,
+      enjoyCost=false
     var detailList = this.data.detailList;// 获取购物车列表
     for (var i = 0; i < detailList.length; i++) { 
       if (detailList[i].selected) {
-        total1 += detailList[i].allGoodsAmount;
+        total1 += parseFloat(detailList[i].allGoodsAmount);
       }
     }
     this.setData({ 
       detailList: detailList,
       total1: total1.toFixed(2),
+      enjoyCost: enjoyCost,
+      differentPrice: parseInt(differentPrice),
     });
   },
   creatOrder:function(){

@@ -15,14 +15,26 @@ function getIdentity(_this) {
             _this.getUser()
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner
+          var isStoreOwner = obj.isStoreOwner,
+            isPurchaser = obj.isPurchaser
           if (isStoreOwner) {
-            wx.setStorageSync("admin", 2)
-            _this.setData({
-              limitShow: 2
-            }, function () {
-              _this.getUser()
-            })
+            if (obj.storeNature == 2) {
+              wx.setStorageSync("admin", 2)
+              _this.setData({
+                limitShow: 2
+              }, function () {
+                _this.getUser()
+              })
+            }
+            if (obj.storeNature == 1) {
+              wx.setStorageSync("admin", 1)
+              _this.setData({
+                limitShow: 1
+              }, function () {
+                _this.getUser()
+              })
+            }
+           
           }else{
             wx.setStorageSync("admin", 1)
             _this.setData({
@@ -51,8 +63,8 @@ Page({
     hasUser: false,
     limitShow:1,
     indexEmpty: true,
+    showCloud: false,
   },
-
   showLogin() {
     this.selectComponent("#login").showPage();
   },
@@ -63,16 +75,28 @@ Page({
           user: res.obj,
           hasUser: true
         })
+        //小云点订单列表
+        if (this.data.user.id == "cbced730cc43cead0592fbdd5ef10f99") {
+          this.setData({
+            showCloud: true
+          })
+        }else{
+          this.setData({
+            showCloud: false
+          })
+        }
       }else{
         this.setData({
           user: "",
-          hasUser: false
+          hasUser: false,
+          showCloud: false
         })
       }
     }).catch(e => {
       this.setData({
         user: "",
-        hasUser: false
+        hasUser: false,
+        showCloud: false
       })
     })
   },
@@ -94,7 +118,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (wx.getStorageSync("storeId") == undefined ||  wx.getStorageSync("storeId") == '') {
+    if (!Api.getStoreId()) {
       this.setData({
         indexEmpty: false
       })

@@ -1,42 +1,14 @@
-.bf-cont{
-  background:#fff;margin:20rpx;border-radius: 10rpx;font-size: 24rpx;padding:0 25rpx;
-}
-.bf-cont>text{
-  color: #666;
-}
-.bf-title{
-  font-size: 60rpx;padding-top: 45rpx;
-}
-.bt-view{
-  color: #999;margin-top: 70rpx;
-}
-.bt-view>view,.bt-view>navigator{
-  width: 33.1%;display: inline-block;text-align: center;height:50rpx;line-height:20rpx;
-}
-.bt-view>view view,.bt-view>navigator view{
-  color: #333;font-size: 50rpx;margin-bottom: 30rpx;
-}
-.bt-view>view:nth-child(2){
-  border-left: 2rpx solid #DDDDDD; border-right: 2rpx solid #DDDDDD;
-}
-.bf-btn{
-  background: #CCAA77;color: #fff;font-size: 30rpx;height: 80rpx;margin-top: 50rpx;font-weight: bold;line-height: 80rpx;
-}
-.bf-weui .weui_cells{
-  font-size: 28rpx;height: 100rpx;line-height: 100rpx;border-bottom: 2rpx solid #F2F2F2;margin-left: 100rpx;position: relative;margin-right:-20rpx;
-}
-.weui_cells>image{
-  width: 45rpx;position: absolute;left: -100rpx;top: 30rpx;
-}
-.weui-view{
-  position: absolute;right:25rpx;top: 13rpx;
-}
-.weui-view image{
-  width: 30rpx;
-}
-.bf-weui{
-  margin-top: 25rpx;
-}
-.bf-weui .weui_cells:last-child{
-  border-bottom: 0;
-}
+.bf-cont{background:#fff;margin:20rpx;border-radius:10rpx;font-size:24rpx;padding:0 25rpx}
+.bf-cont>text{color:#666}
+.bf-title{font-size:60rpx;padding-top:45rpx}
+.bt-view{color:#999;margin-top:70rpx}
+.bt-view>view,.bt-view>navigator{width:33.1%;display:inline-block;text-align:center;height:50rpx;line-height:20rpx}
+.bt-view>view view,.bt-view>navigator view{color:#333;font-size:50rpx;margin-bottom:30rpx}
+.bt-view>view:nth-child(2){border-left:2rpx solid #DDDDDD;border-right:2rpx solid #DDDDDD}
+.bf-btn,.button-hover{background:#CCAA77;color:#fff;font-size:30rpx;height:80rpx;margin-top:50rpx;font-weight:bold;line-height:80rpx}
+.bf-weui .weui_cells{font-size:28rpx;height:100rpx;line-height:100rpx;border-bottom:2rpx solid #F2F2F2;margin-left:100rpx;position:relative;margin-right:-20rpx}
+.weui_cells>image{width:45rpx;position:absolute;left:-100rpx;top:30rpx}
+.weui-view{position:absolute;right:25rpx;top:13rpx}
+.weui-view image{width:30rpx}
+.bf-weui{margin-top:25rpx}
+.bf-weui .weui_cells:last-child{border-bottom:0}

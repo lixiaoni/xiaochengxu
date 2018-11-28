@@ -12,12 +12,21 @@ function getIdentity(_this) {
             limitShow: 1
           })
         }else{
-          var isStoreOwner = obj.isStoreOwner
+          var isStoreOwner = obj.isStoreOwner,
+            isPurchaser = obj.isPurchaser
           if (isStoreOwner) {
-            wx.setStorageSync("admin", 2)
-            _this.setData({
-              limitShow: 2
-            })
+            if(obj.storeNature==2){
+              wx.setStorageSync("admin", 2)
+              _this.setData({
+                limitShow: 2
+              })
+            }
+            if (obj.storeNature == 1) {
+              wx.setStorageSync("admin", 1)
+              _this.setData({
+                limitShow: 1
+              })
+            }
           }else{
             wx.setStorageSync("admin", 1)
             _this.setData({
@@ -46,32 +55,38 @@ Page({
     showHide:true,
     showDp:true,
     currentTab: 0,
+    confirmDown:false,
     baseUrl:'',
     result: [],
     noMoreData:true,
     keyword:'',
     descShow:false,
     totalCount:0,
+    goodsNum:0,
     store:'',
+    bannerHeight:0,
+    swiperHeight:0,
+    goodsHeight:0,
     coverUrl:'',
+    disLike:false,
     identity:'',
     likeShow:false,
     limitShow:1,
     src:'',
-    goodsName:''
+    goodsName:'',
+    copyGoods:false,
+    openStore:false
   },
-
+  // 关闭
+  closeTip:function(){
+    this.setData({
+      isStoreOwner: false,
+      isNotStore:false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  addTip:function(){
-    var Id = wx.getStorageSync("storeId"),
-      logo =this.data.store.logo,
-      name = this.data.store.storeName
-    wx.navigateTo({
-      url: '../../businessFriend/information/information?status=0&send=&accept='+Id+'&remark=&logo='+logo+'&name='+name,
-    })
-  },
   confirm:function(){
     this.setData({
       show: false,
@@ -91,8 +106,13 @@ Page({
   }, 
   // 下架商品
   upGoods:function(e){
-    var _this=this,
-      goodsIdList=[],
+    this.setData({
+      confirmDown:true
+    })
+  },
+  confirmDown:function(){
+    var _this = this,
+      goodsIdList = [],
       goodsId = this.data.goodsId
     goodsIdList.push(goodsId)
     Api.adminGoodsDown(goodsIdList)
@@ -104,7 +124,8 @@ Page({
           success: function () {
             _this.setData({
               showHide: true,
-              currentTab:0
+              confirmDown:false,
+              currentTab: 0
             })
             _this.emptyArr()
           }
@@ -149,9 +170,9 @@ Page({
       sortType=''
     if (currentTab == 0) {
       sortType = 'multiple'
-    } else if (currentTab == 1) {
-      sortType = 'sales'
     } else if (currentTab == 2) {
+      sortType = 'sales'
+    } else if (currentTab == 3) {
       if (descShow){
         sortType = 'prices_asc'
       }else{
@@ -160,12 +181,15 @@ Page({
     } 
     Api.shopList({ keyword: '', sortType: sortType})
       .then(res => {
-        var detailList = res.obj.result
+        var detailList = res.obj.result,
+          totalCount = res.obj.totalCount
         if (Api.isEmpty(detailList)){
           var datas = _this.data.result,
             newArr = app.pageRequest.addDataList(datas, detailList)
           _this.setData({
             result: newArr,
+            totalCount: totalCount,
+            baseUrl: app.globalData.imageUrl,
             noMoreData:true
           })
         }else{
@@ -200,19 +224,47 @@ Page({
   },
   homeIndex:function(){
     var that = this;
-    Api.homeIndex()
+    Api.homeIndex({ goodsSortType: "multiple" })
       .then(res => {
         var obj = res.obj
         wx.setNavigationBarTitle({
           title: obj.store.storeName
         })
+        app.globalData.isFollow = obj.isFollow
+        var result=obj.goods.result
+        var floorInfo = Api.isFloorInfo(obj.store.floor)
         that.setData({
           store: obj.store,
+          floorInfo: floorInfo,
           baseUrl: app.globalData.imageUrl,
           coverUrl: obj.store.coverUrl,
-          result: obj.goods.result,
+          result: result,
           totalCount: obj.goods.totalCount,
-          likeShow: obj.isFollow
+          likeShow: app.globalData.isFollow
+        },function(){
+          var query = wx.createSelectorQuery();
+          query.select('#myText').boundingClientRect()
+          query.exec(function (res) {
+            that.setData({
+              bannerHeight: res[0].height
+            })
+          })
+          if (result.length>0){
+            var query2 = wx.createSelectorQuery();
+            query2.select('#result-list').boundingClientRect()
+            query2.exec(function (res) {
+              that.setData({
+                goodsHeight: res[0].height
+              })
+            })
+          }
+          var query1 = wx.createSelectorQuery();
+          query1.select('#swiper-tab').boundingClientRect()
+          query1.exec(function (res) {
+            that.setData({
+              swiperHeight: res[0].height
+            })
+          })
         })
       })    
   },
@@ -253,11 +305,53 @@ Page({
     app.pageRequest.pageDataIndex.pageNum = 0
     this.getList()
   },
+  getListNew:function(){
+    var _this=this
+    Api.recentGoods()
+      .then(res => {
+        var detailList = res.obj.result,
+          totalCount = res.obj.totalCount
+        if (Api.isEmpty(detailList)) {
+          var datas = _this.data.result,
+            newArr = app.pageRequest.addDataList(datas, detailList)
+          _this.setData({
+            result: newArr,
+            totalCount: totalCount,
+            baseUrl: app.globalData.imageUrl,
+            noMoreData: true
+          })
+          if (newArr.length > 0) {
+            var query2 = wx.createSelectorQuery();
+            query2.select('#result-list').boundingClientRect()
+            query2.exec(function (res) {
+              _this.setData({
+                goodsHeight: res[0].height
+              })
+            })
+          }
+        } else {
+          _this.setData({
+            noMoreData: false
+          })
+          Api.showToast("暂无更多数据了！")
+        }
+      })
+  },
+  emptyArrNew: function () {
+    var _this=this
+    this.setData({
+      result: []
+    },function(){
+      app.pageRequest.pageData.pageNum = 0
+      _this.getListNew()
+    });
+  },
   swichNav: function (e) {
     var that = this,
-      descShow = this.data.descShow
-    if (this.data.currentTab === e.target.dataset.current) {
-      if (e.target.dataset.current == 2) {
+      descShow = this.data.descShow,
+      index = e.target.dataset.current
+    if (this.data.currentTab === index) {
+      if (index == 3) {
         that.setData({
           descShow: !descShow
         }, function () {
@@ -267,9 +361,13 @@ Page({
       return false;
     } else {
       that.setData({
-        currentTab: e.target.dataset.current,
+        currentTab:index,
       },function(){
-        this.emptyArr()
+          if (index==1){
+            that.emptyArrNew()
+          }else{
+            this.emptyArr()
+          }
       })
     }
   },
@@ -309,8 +407,8 @@ Page({
       })
     })
   }, 
-  deteleLikeStore: function() {
-    var _this = this
+  disLike:function(){
+    var _this=this
     Api.deteleLikeStore()
       .then(res => {
         wx.showToast({
@@ -320,9 +418,16 @@ Page({
           mask: true,
         })
         _this.setData({
-          likeShow: false
+          likeShow: false,
+          disLike:false
         })
       })
+  },
+  deteleLikeStore: function() {
+    var _this = this
+    this.setData({
+      disLike:true
+    })
   },
   onReady: function () {
 
@@ -345,6 +450,16 @@ Page({
           limitShow: setlimitShow
         })
       }
+      if (app.globalData.isFollow){
+        this.setData({
+          likeShow:true
+        })
+      }
+      if (!app.globalData.isFollow){
+        this.setData({
+          likeShow: false
+        })
+      }
     }else{
       this.setData({
         limitShow: 1,
@@ -353,7 +468,21 @@ Page({
     }
     this.setData({
       getFollw: authHandler.isLogin(),
+      disLike:false,
     })
+    if (app.globalData.switchStore) {
+      if (!Api.getStoreId()) {
+        this.setData({
+          indexEmpty: false
+        })
+      } else {
+        this.closeShow()
+        app.pageRequest.pageDataIndex.pageNum = 1
+        app.pageRequest.pageData.pageNum = 0
+        getIdentity(this)
+        app.globalData.switchStore = false
+      }
+    }
   },
 
   /**
@@ -377,8 +506,11 @@ Page({
       currentTab: currentTab,
       noMoreData:true
     },function(){
-      this.emptyArr()
-      // this.onShow()
+      if (currentTab==1){
+        this.emptyArrNew()
+      }else{
+        this.emptyArr()
+      }
       wx.stopPullDownRefresh();
     })
   },
@@ -399,7 +531,7 @@ Page({
       if (name=="names"){
         return {
           title: goodsName,
-          path: '/pages/page/home/home?goodsId='+id+"&storeId"+storeId,
+          path: '/pages/page/goodsDetails/goodsDetails?goodsId='+id+"&storeId"+storeId,
           imageUrl: img,
           success: (res) => {
           },
@@ -424,8 +556,32 @@ Page({
    */
   onReachBottom: function () {
     var noMoreData = this.data.noMoreData
+    var currentTab = this.data.currentTab
     if (noMoreData){
-      this.getList()
+      if (currentTab == 1) {
+        this.getListNew()
+      } else {
+        this.getList()
+      }
     }
   },
+  onPageScroll: function (e) {
+    var top = e.scrollTop,
+      result = this.data.result,
+      goodsHeight = this.data.goodsHeight,
+      totalCount = this.data.totalCount,
+      swiperHeight = this.data.swiperHeight,
+      allHeight = this.data.bannerHeight + swiperHeight - goodsHeight,
+      getHeght = top - allHeight,
+      goodsNum = (parseInt(getHeght / goodsHeight)+1)*2
+    if (goodsNum > result.length){
+      this.setData({
+        goodsNum: result.length
+      })
+    }else{
+      this.setData({
+        goodsNum: goodsNum
+      })
+    }
+  }
 })

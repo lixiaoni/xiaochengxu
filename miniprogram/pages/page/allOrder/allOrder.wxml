@@ -15,11 +15,11 @@
 </mes>
 <!-- 取消订单 -->
 <clo show="{{cancelModal}}">
-  <view wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
+  <view class='layer-reason-item' wx:for='{{reason}}' wx:key='{{index}}' data-current="{{index}}" bindtap='swichReason'>
     <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}" size='18' class="cart-pro-select" />
     <icon wx:else type="circle" class="cart-pro-select" size='18' data-index="{{index}}" /> {{item.title}}
   </view>
-  <button bindtap='sureCancel'>确定</button>
+  <button class='layer-reason-btn' bindtap='sureCancel'>确定</button>
 </clo>
 <!-- 删除订单 -->
 <mes show="{{delModal}}" bind:sureSelectArea="sureSelectAreaListener">
@@ -35,7 +35,8 @@
     <view class='mes-tel'>{{order.storeInfo.servicePhone?order.storeInfo.servicePhone:"无"}}</view>
   </view>
 </mes>
-
+<!-- 付款码 -->
+<savePayment show='{{paymentModal}}' com-name='{{order.storeInfo.storeName}}' wx='{{order.storeInfo.wechatNumber}}' goodsName='{{order.goodsInfos[0].goodsName}}' goods-num="{{order.num}}" price="{{order.orderAmount}}" head="{{order.storeInfo.logo?baseUrl+order.storeInfo.logo:''}}"></savePayment>
 
 
 <view class='order-title-box order-title-img'>
@@ -114,7 +115,10 @@
     <image src="/image/ad.png"></image>
     <text class='np-text'>{{order.consigneeInfo.userPhone}}</text>
     <view>收货人：{{order.consigneeInfo.userName}}</view>
-    <text>收货地址：{{order.consigneeInfo.detailAddress}}</text>
+    <view class='address-box' style='padding:0;'>
+      <view class='address-title'>收货地址：</view>
+      <view class='address-inner'>{{order.consigneeInfo.detailAddress}}</view>
+    </view>
   </view>
 </view>
 <view class='np-ct' wx:if="{{order.userMemo}}">
@@ -135,7 +139,7 @@
 
 <!-- 商品 -->
 <view class='cf-cont'>
-  <view bindtap='toHome' class='c-title'>
+  <view bindtap='toHome' class='c-title {{orderType=="list"?"border-bottom":""}}'>
     <image src="/image/ic1.png"></image>{{order.storeInfo.storeName}}
     <image class='itimg' src="/image/icl.png"></image>
     <view wx:if="{{self=='true'}}" class='order-zt'>自提</view>
@@ -147,10 +151,10 @@
       <view class="cart-list" wx:for="{{showList}}" wx:key="{{index}}">
         <navigator url='/pages/page/goodsDetails/goodsDetails?goodsId={{item.goodsId}}'>
           <image class="cart-thumb" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
-          <view class='ct-text ct-text1'>￥{{item.orderDetails.sellPrice}}
+          <view class='ct-text ct-text1'>￥{{item.orderDetails.unitPrice}}
             <view>x {{item.orderDetails.num}}</view>
           </view>
-          <view class='ct-title ct-title1'>{{item.goodsName}}</view>
+          <view class='ct-title ct-title1' style="width:360rpx;">{{item.goodsName}}</view>
           <text class="cart-pro-name">规格：{{item.orderDetails.goodsDesc}}</text>
         </navigator>
       </view>
@@ -160,12 +164,11 @@
   <!-- 进货单 -->
   <view wx:if="{{orderType=='list'}}">
     <view class="cart-box" wx:for="{{order.goodsInfos}}" wx:key="{{index}}">
-      <view class="cart-list">
+      <view class="cart-list" style='background:#fff;'>
         <navigator url='/pages/page/goodsDetails/goodsDetails?goodsId={{item.goodsId}}'>
           <image class="cart-thumb" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
           <view class='ct-title ct-title1'>{{item.goodsName}}</view>
-          <view class="heji">共
-          <text>{{item.goodsNum}}</text>件商品</view>
+          <view class="heji">共 <text style='font-size:26rpx;'>{{item.goodsNum}} 件</text>商品</view>
         </navigator>
       </view>
 
@@ -179,7 +182,7 @@
         <view class="tr" wx:for="{{item.orderDetails}}" wx:key="{{index}}">
           <view class="td">{{item.goodsDesc}}</view>
           <view class="td">{{item.num}}件</view>
-          <!-- <view class="td">￥{{item.wholesalePrice}}</view> -->
+          <view class="td">￥{{item.unitPrice}}</view>
         </view>
       </view>
     </view>
@@ -190,7 +193,7 @@
 
 
 <!-- 显示字段 -->
-<view class='np-order'>
+<view class='np-order' style='margin:0;'>
   <view>{{orderName}}号
     <text bindtap='copyCode'>{{order.orderNumber}}</text>
   </view>
@@ -231,25 +234,28 @@
   </view>
   <view wx:if="{{order.receiptInfo.invoiceType=='公司'}}">
     <view>公司名称
-      <text>{{order.receiptInfo.invoiceTitle}}</text>
+      <text>{{order.receiptInfo.invoiceTitle?order.receiptInfo.invoiceTitle:""}}</text>
     </view>
     <view>纳税人识别号
-      <text>{{order.receiptInfo.identificationNumber}}</text>
+      <text>{{order.receiptInfo.identificationNumber?order.receiptInfo.identificationNumber:""}}</text>
     </view>
     <block wx:if="{{order.receiptInfo.invoiceCategory=='增值税专用发票'}}">
       <view>注册地址
-        <text>{{order.receiptInfo.registeredAddress}}</text>
+        <text>{{order.receiptInfo.registeredAddress?order.receiptInfo.registeredAddress:""}}</text>
       </view>
       <view>注册电话
-        <text>{{order.receiptInfo.registererMobile}}</text>
+        <text>{{order.receiptInfo.registererMobile?order.receiptInfo.registererMobile:""}}</text>
       </view>
       <view>开户银行
-        <text>{{order.receiptInfo.depositBank}}</text>
+        <text>{{order.receiptInfo.depositBank?order.receiptInfo.depositBank:""}}</text>
       </view>
       <view>开户账号
-        <text>{{order.receiptInfo.depositBankNumber}}</text>
+        <text>{{order.receiptInfo.depositBankNumber?order.receiptInfo.depositBankNumber:""}}</text>
       </view>
     </block>
+  </view>
+  <view style='margin:0;'>支付方式
+    <text>其他支付方式</text>
   </view>
 </view>
 
@@ -260,20 +266,21 @@
       <text>￥{{order.orderAmount}}</text>
     </view>
     <view>运费类型
-      <text>货到付款</text>
+      <text>{{order.postageinfo.postageType?order.postageinfo.postageType:"邮费到付"}}</text>
     </view>
   </block>
   <view class='np-o-view'>
     <!-- 未支付 -->
-    <block wx:if='{{status=="unpaid"||status=="closed"|| status=="cancelled"}}'>应付金额</block>
+    <block wx:if='{{status=="unpaid"||status=="closed"|| status=="cancelled"}}'>应付合计</block>
     <!-- 已支付 -->
-    <block wx:if='{{status!="closed" && status!="unpaid" && status!="cancelled"}}'>实付金额</block>
+    <block wx:if='{{status!="closed" && status!="unpaid" && status!="cancelled"}}'>实付合计</block>
     <text>￥{{order.orderAmount}}</text>
   </view>
 </view>
 
 <view class='cf-button'>
   <block wx:if="{{status=='unpaid'}}">
+    <button wx:if="{{hasPayImg}}" bindtap="showModal" data-type='payment' class='or-active'> 支付二维码 </button>
     <button style='' bindtap="uploadVoucher" class='or-active'> 上传支付凭证 </button>
     <button bindtap='showModal' data-type='cancel'>取消{{orderName}}</button>
   </block>

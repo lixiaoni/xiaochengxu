@@ -87,7 +87,13 @@ Page({
         obj = {
           afterModal: true,
           afterTel: e.currentTarget.dataset.tel
-        }
+        };break;
+      case "payment":
+        let i = e.currentTarget.dataset.index;
+        obj = {
+          paymentModal: true,
+          paymentItem: this.data.showList[i]
+        }; break;  
     }
     this.setData(obj)
   },
@@ -97,7 +103,8 @@ Page({
       sureModal: false, //收款
       delModal: false, //删除
       cancelModal: false, //取消订单
-      afterModal: false //售后
+      afterModal: false, //售后
+      paymentModal: false //支付二维码      
     })
   },
   //取消理由
@@ -256,8 +263,15 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      storeId: wx.getStorageSync("storeId"),   //列表请求
+      storeId: API.getThisStoreId(),   //列表请求
       baseUrl: app.globalData.imageUrl      //图片
+    })
+    API.getPaymentImg().then(res => {
+      if (res.obj) {
+        this.setData({
+          hasPayImg: true
+        })
+      }
     })
   },
 

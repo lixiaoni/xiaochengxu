@@ -43,6 +43,7 @@ export const addCartUrl='/api/shop/shoppingcart/goods'
 export const deleteTemplateUrl='/admin/shop/specificationTemplate/deleteTemplateContentByTemplateContentId'
 export const addTempContUrl='/admin/shop/specificationTemplate/updateTemplateContentSpecValue'
 export const saveSpecTemplateContentUrl='/admin/shop/specificationTemplate/saveSpecTemplateContent'
+export const tempSortUrl='/admin/shop/specificationTemplate/templatecontent/{{templateContentId}}/sort'
 export const deteleCartGoodsUrl = '/api/shop/shoppingcart/{{goodsId}}'
 export const deteleCartFaiUrl='/api/shop/shoppingcart/user/failure'
 export const addMoreCartUrl ='/api/shop/shoppingcart/goods/batch'
@@ -64,6 +65,7 @@ export const setUserNameUrl='/admin/shop/storecustomer/remark/{{storeId}}/{{user
 export const getUserDetaislUrl='/api/user/bymobile/{{mobile}}'
 export const userIdentityUrl='/api/store/{{storeId}}/user/identity'
 export const miniProgramCodeUrl='/api/store/{{storeId}}'
+export const recentGoodsUrl='/api/shop/store/{{storeId}}/user/goods/recent'
 // 批发商管理信息
 export const indexUrl = '/admin/purchasermerchant/index'
 export const mewWholesalerUrl ='/admin/bizfriend/merchantapply'
@@ -88,9 +90,9 @@ export const purchaserListUrl='/admin/merchantpurchaser/purchaserlist'
 export const remakInfoUrl ='/admin/merchantpurchaser/{{storeId}}/purchaserinfo/{{purchaserUserId}}'
 export const apiSetUserUrl='/api/user/set'
 export const apiAddUserUrl='/api/user/set/bfpripermission'
-export const adminSetUserUrl='/api/user/set'
+export const adminSetUserUrl ='/admin/merchantset/set'
 export const isFriendStoreUrl='/admin/purchasermerchant/{{storeId}}/merchant'
-export const adminAddUserUrl = '/api/user/set/bfpripermission'
+export const adminAddUserUrl = '/admin/merchantset'
 // 退出
 export const quitUrl = "/oauth/authentication/removetoken"
 export const updataPwdUrl = "/oauth/authentication/changepassword"
@@ -107,3 +109,11 @@ export const addDxpressUrl = "/admin/order/{{orderNumber}}/addexpress"
 export const addRemarkUrl = "/admin/order/{{orderNumber}}/addRemark"
 export const seeVoucherUrl = "/api/order/orderpayment/{{orderNumber}}"
 export const supplyOrderUrl = "/api/order/"
+// 扫一扫
+export const showPurchaserUrl='/admin/bizscan/purchaser/{{userId}}'
+export const showMerchantUrl='/admin/bizscan/merchant/{{userId}}'
+//获取收款码
+export const getPaymentImgUrl = "/admin/store/receiptcode/{{storeId}}"
+export const putPaymentImgUrl = "/admin/store/{{storeId}}/receiptcode"
+// 一键入库
+export const copyGoodsUrl='/api/shop/goods/copy/{{originGoodsId}}'

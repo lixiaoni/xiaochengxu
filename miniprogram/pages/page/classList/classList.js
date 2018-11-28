@@ -22,15 +22,12 @@ Page({
         .then(res => {
           var detailList = res.obj.result,
             datas = _this.data.result
-          if (detailList.length==0){
-            Api.showToast("暂无更多数据了！")
-          }else{
+          if (detailList.length>0){
             var newArr = app.pageRequest.addDataList(datas, detailList)
             _this.setData({
               result: newArr,
             })
           }
-          
         })
     }else{
       Api.goodsApiSearchList()
@@ -73,7 +70,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      limitShow: wx.getStorageSync('admin')
+    })
   },
 
   /**
@@ -99,6 +98,7 @@ Page({
       result: []
     })
     this.getList()
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -106,7 +106,6 @@ Page({
    */
   onReachBottom: function () {
     this.getList()
-
   },
 
 })

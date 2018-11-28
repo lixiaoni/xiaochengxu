@@ -42,7 +42,27 @@ Page({
     baseUrl: app.globalData.imageUrl,
     goodsImageVOList: [],
     mainImgUrl:'',
-    addGoodsDetails: []
+    addGoodsDetails: [],
+    show: false,
+    reImgIndex: 0,
+    moveImgShow: true,
+  },
+  // 删除商品图
+  showRemoveImg: function (e) {
+    var index = e.target.dataset.index
+    this.setData({
+      show: true,
+      reImgIndex: index
+    })
+  },
+  removeImg: function () {
+    var index = this.data.reImgIndex,
+      pics = this.data.pics
+    pics.splice(index, 1)
+    this.setData({
+      show: false,
+      pics
+    })
   },
   // 删除详情信息
   removeImage:function(e){
@@ -54,6 +74,19 @@ Page({
     data.splice(index, 1)
     this.setData({
       addGoodsDetails: data
+    })
+  },
+  // 下移
+  upData: function (e) {
+    var addGoodsDetails = this.data.addGoodsDetails,
+      index = e.target.dataset.index,
+      newObj = ''
+    if (index == addGoodsDetails.length - 1) { return }
+    newObj = addGoodsDetails[index]
+    addGoodsDetails.splice(index, 1)
+    addGoodsDetails.splice(index + 1, 0, newObj)
+    this.setData({
+      addGoodsDetails: addGoodsDetails
     })
   },
   topData:function(e){
@@ -275,7 +308,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../set/set?model=' + model + "&sellPrice=" + sellPrice+ "&newConst=" + newConst,
+        url: '../set/set?model=' + model + "&sellPrice=" + sellPrice +"&newConst=" + newConst,
       })
     }
   },
@@ -294,6 +327,7 @@ Page({
     this.setData({
       mainx: currindex,
       opacity: 0.7,
+      moveImgShow: false,
       start: { x: x2, y: y2 }
     })
   },
@@ -315,6 +349,7 @@ Page({
       this.setData({
         mainx: "",
         pics: arr1,
+        moveImgShow: true,
         opacity: 1
       })
     }
@@ -419,23 +454,21 @@ Page({
           Api.showToast("请输入商品零售价！")
           return;
         }
-        if (!Api.isEmpty(stockNum)) {
+        if (!Api.isEmpty(stockNum) || stockNum<1) {
           Api.showToast("商品库存不能为零！")
           return;
         }
         if (pageall.length == 1) {
           skuList0 = pageall[0].goodsSpecificationValueVOList
           for (var i = 0; i < skuList0.length; i++) {
-            skuListAll.push({ id: i + '1' + i, specValueName: skuList0[i].specValueName, specValueCode: "", specValueCodeList: [skuList0[i].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst
-            })
+            skuListAll.push({ id: i + '1' + i, specValueName: skuList0[i].specValueName, specValueCode: "", specValueCodeList: [skuList0[i].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst})
           }
         } else if (pageall.length = 2) {
           skuList0 = pageall[0].goodsSpecificationValueVOList
           skuList1 = pageall[1].goodsSpecificationValueVOList
           for (var i = 0; i < skuList0.length; i++) {
             for (var j = 0; j < skuList1.length; j++) {
-              skuListAll.push({ id: j + '1' + i, specValueName: skuList0[i].specValueName, specValueCode: skuList1[j].specValueName, specValueCodeList: [skuList0[i].specValueCode, skuList1[j].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst
-              })
+              skuListAll.push({ id: j + '1' + i, specValueName: skuList0[i].specValueName, specValueCode: skuList1[j].specValueName, specValueCodeList: [skuList0[i].specValueCode, skuList1[j].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst})
             }
           }
         }
@@ -465,8 +498,9 @@ Page({
       "recommendDesc": this.data.recommendDesc,
       "sellPrice":sellPrice,
       "status":status,
+      "wholesalePrice":0,
       "stockNum": stockNum,
-      "saleBatchNum": saleBatchNum,
+      "saleBatchNum": saleBatchNum
     }
     Api.addGoods(goodsVO)
       .then(res => {
