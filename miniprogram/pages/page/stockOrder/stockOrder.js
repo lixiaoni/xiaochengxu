@@ -235,7 +235,7 @@ Page({
         showList: []
       })
     }
-    app.pageRequest.pageGet("/api/order/user/store/" + this.data.storeId +"/ordercategory/1/orderstatus/" + this.data.whitch, {
+    app.pageRequest.pageGet("/admin/order/store/" + this.data.storeId + "/orderstatus/" + this.data.whitch + "/purchaseorder", {
       //pageNum:1,
       //pageSize:100
     }).then((res) => {

@@ -84,13 +84,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
+  changeVal:function(e){
+    this.setData({
+      value: e.detail.value
+    })
+  },
   searchBtn: function (e) {
-    var val = e.detail.value
+    var val = this.data.value
     wx.navigateTo({
       url: '../serList/serList?value='+val,
     })
   },
   onShow: function () {
+    wx.setNavigationBarTitle({
+      title: "添加供应商"
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

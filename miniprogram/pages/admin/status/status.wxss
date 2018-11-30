@@ -31,3 +31,4 @@ scroll-view{margin-top:0rpx;padding-bottom:100rpx}
 .new-ser>view view{background:#fff;height:4rpx;top:-2rpx;z-index:12;width:20rpx;margin-left:3rpx}
 .new-ser .on{color: #CCAA77}
 .st-bottom1 view{width:33%}
+.serCont{padding-top:18rpx;}

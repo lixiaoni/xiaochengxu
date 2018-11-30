@@ -19,7 +19,6 @@
   <button bindtap='confirmDown'>确定</button>
 </view>
 </mes>
-
 <view class="goods-ser">
   <navigator url="../../page/serStatus/serStatus" style='width:80%'>
     <input placeholder="搜索店铺内商品" placeholder-class='pre-input' disabled='disabled' bindconfirm="searchBtn" value="{{value}}" />

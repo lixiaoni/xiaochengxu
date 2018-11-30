@@ -26,7 +26,6 @@ Page({
     }
     if (options.categoryCustomCode){
       var categoryCustomCode = (options.categoryCustomCode).split(",")
-      console.log(categoryCustomCode)
       this.setData({
         categoryCustomCode: categoryCustomCode,
       })
@@ -71,9 +70,10 @@ Page({
     for(var i=0;i<dataList.length;i++){
       if (dataList[i].selected){
         codeList.push({ name: dataList[i].name, customCategoryCode:dataList[i].customCategoryCode})
-        strCode = dataList[i].customCategoryCode
+        strCode+= dataList[i].customCategoryCode + ","
       }
     }
+    strCode =strCode.slice(0, -1)
     if (this.data.shouTitile) {
         app.http.putRequest('/admin/shop/goods/customcategory/'+strCode+'/goods', this.data.codeArr)
           .then(res => {

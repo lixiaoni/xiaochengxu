@@ -545,7 +545,7 @@ Page({
       skuListAll = [],
       goodsImageVOList = [],
       sellPrice = this.data.sellPrice,
-      wholesalePrice = 0,
+      wholesalePrice = this.data.wholesalePrice,
       newConst = this.data.newConst,
       saleBatchNum = this.data.stock,
       skuList0 = [],

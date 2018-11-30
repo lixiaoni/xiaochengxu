@@ -19,7 +19,7 @@
       <view class='v' bindtap='getMes' data-accept='{{item.storeId}}' data-name='{{item.name}}' data-logo='{{item.logo}}'></view>
       <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image></view>
       <text><text></text>{{item.name}} </text>
-      <view class='nbf-font'>手机号：{{item.mobile}}</view>
+      <view class='nbf-font'>手机号：{{item.mobile==null?'':item.mobile}}</view>
     </view>
   </view>
   </scroll-view>
