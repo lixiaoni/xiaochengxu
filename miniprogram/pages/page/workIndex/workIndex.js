@@ -40,6 +40,10 @@ Page({
     if (options.storeId) {
       wx.setStorageSync("storeId", options.storeId)
     }
+    let _this = this;
+    this.setData({
+      limitShow: 1
+    })
     if (authHandler.isLogin()){
       Api.userIdentity()
         .then(res => {
@@ -53,6 +57,9 @@ Page({
             if (isStoreOwner) {
               if (obj.storeNature == 2) {
                 wx.setStorageSync("admin", 2)
+                _this.setData({
+                  limitShow: 2
+                })
               }
               if (obj.storeNature == 1) {
                 wx.setStorageSync("admin", 1)

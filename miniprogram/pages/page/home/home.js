@@ -228,7 +228,7 @@ Page({
       .then(res => {
         var obj = res.obj
         wx.setNavigationBarTitle({
-          title: obj.store.storeName
+          title: obj.store.storeName == null ? "小云店" : obj.store.storeName
         })
         app.globalData.isFollow = obj.isFollow
         var result=obj.goods.result
