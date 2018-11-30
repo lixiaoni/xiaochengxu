@@ -2,9 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
-    
     "pages/page/cartList/cartList",
-    
     "pages/page/user/user",
     "pages/cloudOrder/applyStore/applyStore",
     "pages/cloudOrder/newCloud/newCloud",

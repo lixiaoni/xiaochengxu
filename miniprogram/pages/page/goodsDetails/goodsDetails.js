@@ -285,6 +285,8 @@ Page({
   },
   getSpecDetails:function(index,code){
     var that = this,
+      swichNavCode = this.data.swichNavCode,
+      changeButton = this.data.changeButton,
       swichNavCode = index,
       code = code,
       skuArrTwo = this.data.skuArrTwo,
@@ -739,7 +741,8 @@ Page({
   },
   addCount:function(){
     let num=this.data.numbers
-    var stockNum = this.data.stockNum
+    var stockNum = this.data.stockNum,
+      swichNavCode = this.data.swichNavCode
     if (num >= stockNum){
       Api.showToast("库存不足！")
       return 
@@ -754,12 +757,13 @@ Page({
     }
     if (this.data.editOneName){
       var newSkuArrTwo = this.data.newSkuArrTwo
-      // for (var i = 0; i < newSkuArrTwo.length;i++){
-      //   if (newSkuArrTwo[i].num>0){
-      //     newSkuArrTwo[].num = num
-      //   }
-      // }
-      console.log(newSkuArrTwo)
+      for (var i = 0; i < newSkuArrTwo.length;i++){
+        if ((newSkuArrTwo[i].specValueCodeList).indexOf(swichNavCode)!=-1){
+          newSkuArrTwo[i].num = num
+        }else{
+          newSkuArrTwo[i].num=0
+        }
+      }
       this.setData({
         newSkuArrTwo: newSkuArrTwo
       },function(){
