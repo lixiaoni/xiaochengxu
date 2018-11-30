@@ -1,9 +1,10 @@
 {
   "cloud": true,
   "pages": [
+    "pages/page/home/home",
+    "pages/page/cartList/cartList",
     "pages/page/user/user",
     "pages/cloudOrder/congratulation/congratulation",
-    "pages/page/home/home",
     "pages/cloudOrder/applyStore/applyStore",
     "pages/cloudOrder/newCloud/newCloud",
     "pages/businessFriend/merchant/follow/follow",
@@ -11,7 +12,6 @@
     "pages/businessFriend/merchant/lookInfo/lookInfo",
     "pages/businessFriend/index/index",
     "pages/admin/status/status",
-    "pages/page/cartList/cartList",
     "pages/login/agreement/agreement",
     "pages/role/order/order",
     "pages/admin/addGoods/addGoods",
