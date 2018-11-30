@@ -1,6 +1,8 @@
 {
   "cloud": true,
   "pages": [
+    "pages/page/cartList/cartList",
+    
     "pages/page/home/home",
     "pages/page/user/user",
     "pages/businessFriend/merchant/follow/follow",
@@ -8,7 +10,6 @@
     "pages/businessFriend/merchant/lookInfo/lookInfo",
     "pages/businessFriend/index/index",
     "pages/admin/status/status",
-    "pages/page/cartList/cartList",
     "pages/login/agreement/agreement",
     "pages/role/order/order",
     "pages/admin/addGoods/addGoods",

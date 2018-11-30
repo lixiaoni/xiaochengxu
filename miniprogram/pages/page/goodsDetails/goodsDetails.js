@@ -754,11 +754,12 @@ Page({
     }
     if (this.data.editOneName){
       var newSkuArrTwo = this.data.newSkuArrTwo
-      for (var i = 0; i < newSkuArrTwo.length;i++){
-        if (newSkuArrTwo[i].num>0){
-          newSkuArrTwo[i].num = num
-        }
-      }
+      // for (var i = 0; i < newSkuArrTwo.length;i++){
+      //   if (newSkuArrTwo[i].num>0){
+      //     newSkuArrTwo[].num = num
+      //   }
+      // }
+      console.log(newSkuArrTwo)
       this.setData({
         newSkuArrTwo: newSkuArrTwo
       },function(){
