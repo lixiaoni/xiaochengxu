@@ -11,6 +11,8 @@
     <navigator  url='../../role/order/order?navType=paid'>{{payOrders==null?0:payOrders}}<view>付款订单</view><view class='wk-xian'></view></navigator>
     <navigator class='wk-fg'></navigator>
     <navigator   url='../../role/order/order?navType=paid'>{{unshippedOrders==null?0:unshippedOrders}}<view>待发货订单</view><view class='wk-xian'></view></navigator>
+      <navigator class='wk-fg'></navigator>
+    <navigator url='/pages/businessFriend/mewWholesaler/mewWholesaler'>{{verifyFriends==null?0:verifyFriends}}<view>待验证商友</view></navigator>
   </view>
 </view>
 <view class='wk-cont wk-cont'>

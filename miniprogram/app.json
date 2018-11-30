@@ -3,6 +3,7 @@
   "pages": [
     "pages/page/home/home",    
     "pages/cloudOrder/applyStore/applyStore",
+    "pages/page/updateArea/mesEdit",
     "pages/page/cartList/cartList",
     "pages/page/user/user",
     "pages/cloudOrder/congratulation/congratulation",

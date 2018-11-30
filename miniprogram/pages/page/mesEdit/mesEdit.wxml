@@ -29,13 +29,35 @@
        {{floorInfo.mallName}}
       </view>
     </view>
-    <view>
+    <view bindtap='showModal' data-type='floor'>
       <image  src="/image/lou.png"></image>
       <text>  楼层区域</text>
-       <view class='new-left'  wx:if='{{floorInfo!=null}}'>
-         {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}
+       <view class='new-left'>
+          {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}}
+          <image class='img' src="/image/icl.png"></image>
       </view>
     </view>
+    <navigator style='padding-left:60rpx' url='../updateArea/mesEdit?value={{shopCode}}&storeId={{storeId}}'>
+        门牌号
+        <view class='new-left'>{{shopCode}}<image class='img' src="/image/icl.png"></image></view>
+    </navigator>
+</view>
+<view class='business' wx:if='{{floorModal}}'>
+  <view class='picker-box'>
+    <view class='picker-title'>选择楼层区域</view>
+    <picker-view value="{{beforeChose}}" class='picker' indicator-class="chosewola" bindchange="choseFloor">
+      <picker-view-column>
+        <view wx:for="{{choseMall}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{choseFloor}}" wx:key="{{index}}" class='overflow-text'>{{item.floorNum}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{choseArea}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
+      </picker-view-column>
+    </picker-view>
+    <view bindtap='sureFloor' class='picker-sure'>确认</view>
+  </view>
 </view>
 <view class="weui_cells">
     <view>

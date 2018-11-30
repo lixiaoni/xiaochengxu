@@ -79,8 +79,8 @@
             <view class='st-d-status'>
               <view><text>零售：</text><text class='st-mom'>￥{{item.sellPrice}}</text></view>
               <!-- <view>供货：400</view><view>零售：400</view> -->
-               <view  wx:if="{{item.copied==true}}"><text>成本：</text>{{item.wholesalePrice}}</view>
               <view><text>库存：</text>{{item.stockNum}}<image class='warn' wx:if='{{item.stockNum<10}}' src="/image/warn.png"></image></view>
+               <view  wx:if="{{item.copied==true}}"><text>成本：</text>{{item.wholesalePrice}}</view>
             </view>
             <view class='not' wx:if='{{item.stockNum<10}}'><view class='triangle_border_up'></view>该商品库存不足 请及时补货</view>
           </view>
