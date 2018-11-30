@@ -32,12 +32,12 @@
     <image src='/image/order.png'></image>
     <view>我的订单</view>
   </navigator>
-  <block wx:if='{{limitShow==3}}'>
+  <!-- <block wx:if='{{limitShow==2}}'>
     <navigator class='u-o-div' url='../stockOrder/stockOrder'>
       <image src='/image/supplyOrder.png'></image>
       <view>进货单</view>
     </navigator>
-  </block>
+  </block> -->
 </view>
 <view class='page_bd'>
   <view class='weui-back'>

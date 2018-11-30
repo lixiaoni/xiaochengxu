@@ -5,7 +5,7 @@
       <image wx:if="{{user}}" src="{{user.headPic?baseUrl+user.headPic+'?x-oss-process=style/logo':'/image/userphoto.png'}}" mode="widthFix"></image>
     </view>
     <view class="weui-cell__name" wx:if="{{user.nickName}}">
-      {{user.nickName}}<view style='margin-left:10rpx;' class='floor-admin'>新批零店主</view>
+      {{user.nickName}}<view style='margin-left:10rpx;' class='floor-admin'>新零售店主</view>
       <!-- <view class="weui-dp">
         <image src='/image/dp.png' mode="widthFix"></image>百荣世贸 商务部
       </view> -->
@@ -23,7 +23,7 @@
         </view>
         <view class='weui-xian weui-xian1'></view>
     </navigator> -->
-    <navigator  url='../../businessFriend/merchant/setUp/setUp'>
+    <navigator  url='../../businessFriend/setUp/setUp'>
         <text class="store-address">商友权限</text>
         <view class='weui-view'>
           <image class='img' src="/image/icl.png"></image>
@@ -48,7 +48,7 @@
 </view>
 
 <view class='bottom_M'>
-  <navigator open-type='redirect' url='../workIndex/workIndex'><image  src="/image/ww.png"></image><view>工作台</view></navigator>
-  <navigator open-type='redirect' url='../../businessFriend/merchant/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
+  <navigator open-type='redirect' url='../workIndex/workIndex'><image  src="/image/ww1.png"></image><view>工作台</view></navigator>
+  <navigator open-type='redirect' url='../../businessFriend/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
   <navigator><image  src="/image/w12.png"></image><view   class='active'>我的</view></navigator>
 </view>

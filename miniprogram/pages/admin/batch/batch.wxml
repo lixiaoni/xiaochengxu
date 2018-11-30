@@ -16,6 +16,7 @@
         <view class='st-d-t'>{{item.name}}</view>
         <view class='st-d-status'>
           <view><text>零售：</text><text class='st-mom'>￥{{item.sellPrice}}</text></view>
+           <view  wx:if="{{item.copied==true}}"><text>成本：</text>{{item.wholesalePrice}}</view>
           <!-- <view>供货：122</view><view>零售：144</view> -->
           <view><text>库存：</text>{{item.stockNum}}</view>
         </view>

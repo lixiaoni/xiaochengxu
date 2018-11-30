@@ -21,8 +21,9 @@
 </view>
 </mes>
  <view class="goods-ser">
-    <input placeholder="输入小云店名、手机号"  bindconfirm='searchBtn'    value="{{value}}"/>
+    <input placeholder="输入小云店名、手机号"  bindconfirm='searchBtn'  bindinput='changeVal'   value="{{value}}"/>
     <image class="home-ser"  src="/image/search1.png"></image>
+    <view class='home-img' bindtap='searchBtn'>搜索</view>
   </view>
 <view class='bf-cont' bindtap="click">
   <view class='bf-weui add-bf-weui'>

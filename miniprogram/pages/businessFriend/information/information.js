@@ -216,13 +216,20 @@ Page({
   onReady: function () {
 
   },
-  urlHome: function () {
-    wx.setStorageSync("storeId", this.data.accept)
-    app.globalData.switchStore = true
-    wx.switchTab({
-      url: '../../page/home/home'
-    })
-  },
+  // urlHome: function () {
+  //   var storeId = this.data.accept
+  //   wx.navigateToMiniProgram({
+  //     appId: 'wx4f385374765e4cbb',
+  //     path: 'page/index/index?storeId=' + storeId,
+  //     extraData: {
+  //       foo: 'bar'
+  //     },
+  //     envVersion: 'develop',
+  //     success(res) {
+  //       // 打开成功
+  //     }
+  //   })
+  // },
   passFunc: function () {
     var send = this.data.send,
       accept = this.data.accept,

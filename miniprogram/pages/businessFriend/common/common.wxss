@@ -2,6 +2,7 @@
 .sp-color image{width:40rpx;height:40rpx;position:absolute;right:0;top:6rpx}
 page{height:100%}
 .sp-color image.img{right:70rpx}
+.goods-ser {height:80rpx;position:relative;background:#fff;}
 .sp-color{font-size:34rpx;font-weight:600;margin-bottom:30rpx;padding:0 10rpx;position:relative}
 .sp-button{margin-bottom:20rpx;margin-top:70rpx}
 .sp-button view{display:inline-block;background:#F1F1F1;height:55rpx;line-height:55rpx;position:relative;font-size:26rpx;border-radius:10rpx;padding:0 25rpx;margin:10rpx;position:relative;text-align:center}
