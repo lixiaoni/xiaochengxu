@@ -1,3 +1,4 @@
+<view wx:if="{{initOrder && limitShow == 2}}"><initstroe></initstroe></view>
 <view hidden='{{indexEmpty}}'>
   <no></no>
 </view>
@@ -79,21 +80,8 @@
     </view>
   </view>
 
-  <block wx:if="{{payStore && limitShow==2}}">
-    <view class='page_bd page_hd1' wx:if="{{ initOrder}}">
-      <view class='weui-back'>
-        <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/applyStore/applyStore'>
-          <image src='/image/u4.png' class='user-img'></image>
-          <view class='weui-cell__bd'>
-            小云店工作台
-          </view>
-          <view class='weui-img'>
-            <image src="/image/icl.png"></image>
-          </view>
-        </navigator>
-      </view>
-    </view>
-    <view class='page_bd page_hd1' wx:else>
+  <block wx:if="{{limitShow==2}}">
+    <view class='page_bd page_hd1'>
       <view class='weui-back'>
         <navigator class='weui-cell weui-cell_access' url='../workIndex/workIndex'>
           <image src='/image/cloudIcon.png' class='user-img'></image>
@@ -141,7 +129,7 @@
     </view>
   </navigator>
 
-  <view class='page_bd page_hd1' wx:if="{{hasYunStoreOrder && limitShow==2 && !payStore}}">
+  <!-- <view class='page_bd page_hd1' wx:if="{{hasYunStoreOrder && limitShow==2 && !payStore}}">
     <view class='weui-back'>
       <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/myOrder/myOrder'>
         <image src='/image/orderStoreList.png' class='user-img'></image>
@@ -153,6 +141,6 @@
         </view>
       </navigator>
     </view>
-  </view>
+  </view> -->
 
 </block>

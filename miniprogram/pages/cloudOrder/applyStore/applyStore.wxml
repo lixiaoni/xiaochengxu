@@ -1,10 +1,11 @@
+<view class='box-all'>
 <!-- 弹窗 -->
 <spec show="{{modal}}" class='nide'>
   <view class='spec-title'>恭喜您申请成功</view>
   <view class='spec-tip'>欢迎加入小云店大家庭</view>
   <view class='upload-box'>
     <view class='add-voucher' wx:if='{{url}}'>
-      <image bindtap='showImg' class='user-img' mode='aspectFit' src='{{url}}'></image>
+      <image bindtap='choseImg' class='user-img' mode='aspectFit' src='{{url}}'></image>
     </view>
     <image wx:else bindtap='choseImg' class='upload-icon' src='/image/uploadStore.png'></image>
     <text class='up-text'>上传小云店LOGO</text>
@@ -79,7 +80,7 @@
     </view>
     <view class="show-item-box flex-center">
       <text>{{choseMall[floorChose[0]].name}}</text>
-      <text>{{choseFloor[floorChose[1]].name}}</text>
+      <text>{{choseFloor[floorChose[1]].floorNum}}</text>
       <text>{{choseArea[floorChose[2]].name}}</text>
       <image class='more' src='/image/icl.png'></image>
     </view>
@@ -101,7 +102,7 @@
         <view wx:for="{{choseMall}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
       </picker-view-column>
       <picker-view-column>
-        <view wx:for="{{choseFloor}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
+        <view wx:for="{{choseFloor}}" wx:key="{{index}}" class='overflow-text'>{{item.floorNum}}</view>
       </picker-view-column>
       <picker-view-column>
         <view wx:for="{{choseArea}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
@@ -122,4 +123,6 @@
     </picker-view>
     <view bindtap='sureMall' class='picker-sure'>确认</view>
   </view>
+</view>
+
 </view>

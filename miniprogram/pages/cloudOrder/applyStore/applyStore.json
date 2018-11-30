@@ -3,5 +3,6 @@
   "usingComponents": {
     "spec": "../../../../assembly/specifications/spec",
     "mes": "../../../../assembly/tips/tips"
-  }
+  },
+  "component": true
 }

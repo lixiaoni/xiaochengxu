@@ -4,6 +4,7 @@
   "usingComponents": {
     "mes": "../../../../assembly/tips/tips",
     "login": "../../login/login/login",
-    "no": "../indexEmpty/indexEmpty"
+    "no": "../indexEmpty/indexEmpty",
+    "initstroe": "../../cloudOrder/applyStore/applyStore"
   }
 }

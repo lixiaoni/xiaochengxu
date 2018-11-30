@@ -2,6 +2,7 @@
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
     "login": "../../login/login/login",
-    "no": "../indexEmpty/indexEmpty"
+    "no": "../indexEmpty/indexEmpty",
+    "initstroe": "../../cloudOrder/applyStore/applyStore"
   }
 }

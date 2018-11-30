@@ -1,11 +1,11 @@
 {
   "cloud": true,
   "pages": [
-    "pages/page/home/home",
+    "pages/page/home/home",    
+    "pages/cloudOrder/applyStore/applyStore",
     "pages/page/cartList/cartList",
     "pages/page/user/user",
     "pages/cloudOrder/congratulation/congratulation",
-    "pages/cloudOrder/applyStore/applyStore",
     "pages/cloudOrder/newCloud/newCloud",
     "pages/businessFriend/merchant/follow/follow",
     "pages/businessFriend/merchant/details/details",

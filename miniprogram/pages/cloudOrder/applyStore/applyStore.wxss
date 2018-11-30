@@ -1,4 +1,7 @@
 /* pages/cloudOrder/applyStore/applyStore.wxss */
+.box-all{
+  position:fixed;width: 100%;height: 100%;top: 0;z-index:1001;background:#F7F7F7
+}
 .overflow-text{
   text-overflow: ellipsis;
   white-space: nowrap;
