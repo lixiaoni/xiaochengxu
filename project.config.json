@@ -2,14 +2,14 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"appid": "wx1a7532a2abdd1698",
-	"projectname": "wx1a7532a2abdd1698",
+	"projectname": "xinlingshou",
 	"libVersion": "2.3.0",
 	"condition": {
 		"search": {

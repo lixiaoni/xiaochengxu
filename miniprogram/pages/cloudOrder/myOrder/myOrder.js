@@ -9,21 +9,20 @@ Page({
   },
 
   getData() {
-    console.log(wx.getStorageInfoSync("access_token"));
     let wo = wx.getStorageSync("access_token");
-    if(!wo){
+    if (!wo) {
       wx.showToast({
         title: '请先登录',
-        icon:'none'
+        icon: 'none'
       })
       return
     }
     wx.request({
       url: 'https://dev-mall.youlife.me/api/yunstore/order/user/page/orderstatus/all',
-      header:{
-        Authorization: "bearer "+wo
+      header: {
+        Authorization: "bearer " + wo
       },
-      success: (res)=>{
+      success: (res) => {
         this.setData({
           list: res.data.obj.result
         })
@@ -45,7 +44,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData()
   },
 
   /**
@@ -59,7 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getData()
   },
 
   /**

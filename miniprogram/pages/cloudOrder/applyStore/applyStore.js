@@ -1,4 +1,6 @@
 // pages/cloudOrder/applyStore/applyStore.js
+const Api = require("../../../utils/api.js");
+const App = getApp();
 Page({
 
   /**
@@ -6,29 +8,34 @@ Page({
    */
   data: {
     // 筛选器
-    years:[1990123123123,1991],
-    months:[12,123,123],
-    days:[123,123],
-    beforeChose:[0,0,0],
-    readyChose:"",
+    beforeChose: [0, 0, 0],
+    floorChose: "",
+    baseUrl: App.globalData.imageUrl,
     //END 筛选器
+    //店铺号
+    shopCode: "",
+    //楼层
     floorModal: false, //
     rangeModal: false,  //经营范围
-    modal:false,  //第一步
+    modal: true,  //第一步
+    mallList: [{ name: '1', code: 1 }],
+    mallModal: false,
     nameNum: 0,
     name: "",
     url: "",
     itemNum: 0,
-    item: [{
-      title: "男装",
-      checked: false
-    }, {
-      title: "女装",
-      checked: false
-    }, {
-      title: "男装",
-      checked: false
-    }]
+    item: [
+      { name: "服饰内衣", checked: false, color: "#fff", colorTrue: "#CDE6DC" },
+      { name: "母婴玩具", checked: false, color: "#fff", colorTrue: "#D4E6CD" },
+      { name: "鞋类箱包", checked: false, color: "#fff", colorTrue: "#D1DEE5" },
+      { name: "运动户外", checked: false, color: "#fff", colorTrue: "#AAFAE3" },
+      { name: "珠宝配饰", checked: false, color: "#fff", colorTrue: "#D6C1AA" },
+      { name: "化妆品", checked: false, color: "#fff", colorTrue: "#D1DEE5" },
+      { name: "家居家纺", checked: false, color: "#fff", colorTrue: "#F57158" },
+      { name: "日用百货", checked: false, color: "#fff", colorTrue: "#D1DEE5" },
+      { name: "休闲装", checked: false, color: "#fff", colorTrue: "#AA8EAD" },
+      { name: "礼品婚庆", checked: false, color: "#fff", colorTrue: "#F57158" },
+      { name: "仿真花艺", checked: false, color: "#fff", colorTrue: "#D1DEE5" },],
   },
   watchInput(e) {
     let val = e.detail.value,
@@ -63,6 +70,20 @@ Page({
       return
     }
 
+    App.http.getRequest("/api/" + name + "/exist").then(res => {
+      if (res.obj == true) {
+        wx.showToast({
+          title: '名字重复，请更换店名',
+          icon: "none"
+        })
+      } else {
+        this.setData({
+          comName: name,
+          cUrl: url,
+          modal: false
+        })
+      }
+    })
   },
   choseImg() {
     wx.chooseImage({
@@ -70,120 +91,297 @@ Page({
       sizeType: "compressed",
       success: (res) => {
         this.setData({
-          url: res.tempFilePaths
+          url: res.tempFilePaths[0]
         })
       },
     })
   },
   pcikMe(e) {
     let index = e.currentTarget.dataset.index;
-    let status = !this.data.item[index].checked ;
-    this.setData({
-      ["item[" + index + "].checked"]: status
-    })
-    if(status){
+    let status = !this.data.item[index].checked;
+    if (status) {
+      if (this.data.itemNum == 2) {
+        wx.showToast({
+          title: '最多选择两个主营范围',
+          icon: 'none'
+        })
+        return
+      }
       this.setData({
         itemNum: ++this.data.itemNum
       })
-    }else{
+    } else {
       this.setData({
         itemNum: --this.data.itemNum
       })
     }
+    this.setData({
+      ["item[" + index + "].checked"]: status
+    })
   },
-  sureRange(){
+  sureRange() {
     this.closeModal();
   },
   // 模态框
-  showModal(e){
+  showModal(e) {
     let type = e.currentTarget.dataset.type;
     let obj = {};
-    switch(type){
+    switch (type) {
       case "range":
-        obj={
-          rangeModal:true
+        obj = {
+          rangeModal: true
         }
         break;
       case "floor":
-      obj={
-        floorModal:true
-      }  
-      break;
+        obj = {
+          floorModal: true
+        }
+        break;
+      case 'mall':
+        obj = {
+          mallModal: true
+        }
     }
     this.setData(obj)
   },
-  closeModal(){
+  closeModal() {
     this.setData({
       rangeModal: false,
-      floorModal: false
+      floorModal: false,
+      mallModal: false
     })
   },
-  // 楼层
-  choseFloor(e){
+  //商城
+  choseMall(e) {
     let val = e.detail.value;
     this.setData({
-      beforeChose: val
+      mallChose: val
     })
   },
-  sureFloor(){
+  sureMall() {
+    let index = this.data.mallChose[0];
     this.setData({
-      readyChose: this.data.beforeChose
+      mallSureChose: this.data.mallList[index],
+      beforeChose: [0, 0, 0],
+      floorChose: "",
+    })
+    this.getFloorList();
+    this.closeModal();
+  },
+  // 楼层
+  choseFloor(e) {
+    let val = e.detail.value;
+    let old = this.data.beforeChose;
+    if (val[0] == old[0]) {
+      if (val[1] == old[1]) {
+        this.setData({
+          beforeChose: [val[0], val[1], val[2]]
+        })
+      } else {
+        this.setData({
+          beforeChose: [val[0], val[1], 0]
+        })
+      }
+    } else {
+      this.setData({
+        beforeChose: [val[0], 0, 0]
+      })
+    }
+    let newArr = this.data.beforeChose
+    this.setData({
+      choseFloor: this.data.choseMall[newArr[0]].childList,
+      choseArea: this.data.choseMall[newArr[0]].childList[newArr[1]].childList,
+    })
+  },
+  sureFloor() {
+    this.setData({
+      floorChose: this.data.beforeChose
     })
     this.closeModal();
   },
   // 下一步
-  next(){
-    
-    wx.navigateTo({
-      url: '../congratulation/congratulation',
+  next() {
+    let obj = {},
+      floorObj = {};
+
+    //选择范围
+    let rangeItem = [];
+    this.data.item.forEach(el => {
+      if (el.checked == true) {
+        rangeItem.push(el.name);
+      }
+    })
+    if (rangeItem.length == 0) {
+      wx.showToast({
+        title: '请选择经营范围',
+        icon: 'none'
+      })
+      return
+    }
+    obj.businessScope = rangeItem.join(",");
+    //商城
+    floorObj.mallCode = this.data.mallSureChose.code;
+
+    //楼层
+    if (this.data.floorChose) {
+      let floorarr = this.data.floorChose;
+      let cMall = this.data.choseMall[floorarr[0]] ? this.data.choseMall[floorarr[0]] : { code: 0 },
+        cFloor = this.data.choseFloor[floorarr[1]] ? this.data.choseFloor[floorarr[1]] : { code: 0 },
+        cArea = this.data.choseArea[floorarr[2]] ? this.data.choseArea[floorarr[2]] : { code: 0 };
+
+      floorObj.balconyCode = cMall.code;
+      floorObj.floorAreaCode = cArea.code;
+      floorObj.floorCode = cFloor.code;
+    } else {
+      wx.showToast({
+        title: '请选择楼层区域',
+        icon: 'none'
+      })
+      return
+    }
+    //店铺号
+    if (this.data.shopCode == "") {
+      wx.showToast({
+        title: '店铺号不能为空',
+        icon: 'none'
+      })
+      return
+    }
+    floorObj.storeDoorNum = this.data.shopCode;
+    floorObj.storeId = this.data.storeID;
+
+    obj.id = this.data.storeID;
+    obj.name = this.data.comName;
+
+    App.http.onlyUploadImg(this.data.cUrl, "STORE_IMAGE").then(res => {
+      var url = JSON.parse(res).obj;
+      let p1 = Api.updateMes(obj)
+      let p2 = App.http.postRequest("/api/floor/store/addorupdate", floorObj)
+      let p3 = Api.uploadLogoImg(url)
+      Promise.all([p1, p2, p3]).then(res => {
+        wx.redirectTo({
+          url: '../congratulation/congratulation',
+        })
+      }).catch(e => {
+        wx.showToast({
+          title: e.message,
+          icon: 'none'
+        })
+      })
+
+    })
+
+  },
+  getStore() {
+    Api.storeIdInfo().then(res => {
+      let store = res.obj.store[0].store;
+      this.setData({
+        store
+      })
     })
   },
+  getFloorList() {
+    let mall = this.data.mallSureChose;
+    Api.threeFloorList({ mallCode: mall.code ? mall.code : 1000 }).then(res => {
+      let arr = this.data.beforeChose;
+      this.setData({
+        choseMall: res.obj,
+        choseFloor: res.obj[arr[0]].childList,
+        choseArea: res.obj[arr[0]].childList[arr[1]].childList,
+      })
+    })
+  },
+  getMallList() {
+    App.http.getRequest("/api/floor/mall/findAll").then(res => {
+      this.setData({
+        mallList: res.obj,
+        mallSureChose: res.obj[0],
+        mallChose: [0],
+      })
+      this.getFloorList();
+    })
+  },
+  inputCode(e) {
+    this.setData({
+      shopCode: e.detail.value
+    })
+  },
+  getUser() {
+    App.http.getRequest("/api/user/byuserid").then((res) => {
+      if (res.obj.storeId) {
+        this.setData({
+          storeID: res.obj.storeId
+        })
+        let nowID = wx.getStorageSync('storeId');
+        if (res.obj.storeId != nowID) {
+          wx.switchTab({
+            url: '../../page/user/user'
+          })
+        }
+      } else {
+        wx.showToast({
+          title: '请重新登录账号后,再次进入设置',
+          icon: "none"
+        })
+        setTimeout(() => {
+          wx.navigateBack()
+        }, 1000)
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
+  onLoad: function (options) {
+    // var store = wx.getStorageSync('storeId');
+    // this.setData({
+    //   storeID: store
+    // })
+    this.getUser();
+    this.getMallList();
+    // this.getStore();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 

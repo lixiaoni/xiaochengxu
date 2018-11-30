@@ -61,28 +61,98 @@
     </navigator>
   </view>
 </view>
-<view class='page_bd page_hd1' wx:if='{{limitShow==2}}'>
-  <view class='weui-back'>
-    <navigator class='weui-cell weui-cell_access' url='../workIndex/workIndex'>
-      <image src='/image/u4.png' class='user-img'></image>
-      <view class='weui-cell__bd'>
-        <!-- 申请小云店 -->
-        小云店工作台
-      </view>
-      <view class='weui-img'>
-        <image src="/image/icl.png"></image>
-      </view>
-    </navigator>
+
+
+<block wx:if="{{hasUser}}">
+  <!-- 没有付款订单 -->
+  <view class='page_bd page_hd1' wx:if="{{!payStore}}">
+    <view class='weui-back'>
+      <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/newCloud/newCloud'>
+        <image src='/image/applyStore.png' class='user-img'></image>
+        <view class='weui-cell__bd'>
+          我也要开小云店
+        </view>
+        <view class='weui-img'>
+          <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+    </view>
   </view>
-</view>
-<view class='weui-back' wx:if="{{showCloud}}">
-    <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/myOrder/myOrder'>
-      <image src='/image/cloudOrder.png' class='user-img'></image>
-      <view class='weui-cell__bd'>
-        我的云产品订单
+
+  <block wx:if="{{payStore && limitShow==2}}">
+    <view class='page_bd page_hd1' wx:if="{{ initOrder}}">
+      <view class='weui-back'>
+        <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/applyStore/applyStore'>
+          <image src='/image/u4.png' class='user-img'></image>
+          <view class='weui-cell__bd'>
+            小云店工作台
+          </view>
+          <view class='weui-img'>
+            <image src="/image/icl.png"></image>
+          </view>
+        </navigator>
       </view>
-      <view class='weui-img'>
-        <image src="/image/icl.png"></image>
+    </view>
+    <view class='page_bd page_hd1' wx:else>
+      <view class='weui-back'>
+        <navigator class='weui-cell weui-cell_access' url='../workIndex/workIndex'>
+          <image src='/image/cloudIcon.png' class='user-img'></image>
+          <view class='weui-cell__bd'>
+            <!-- 申请小云店 -->
+            小云店工作台
+          </view>
+          <view class='weui-img'>
+            <image src="/image/icl.png"></image>
+          </view>
+        </navigator>
       </view>
-    </navigator>
+    </view>
+  </block>
+
+  <view bindtap='toMyStore' class='page_bd page_hd1' wx:if="{{isStoreOwner && limitShow !=2}}">
+    <view class='weui-back'>
+      <view class='weui-cell weui-cell_access'>
+        <image src='/image/ad5.png' class='user-img'></image>
+        <view class='weui-cell__bd'>
+          <text wx:if="{{payStore}}">回到我的小云店</text>
+          <text wx:else>看看我的小云店</text>
+        </view>
+        <view class='weui-img'>
+          <image src="/image/icl.png"></image>
+        </view>
+      </view>
+    </view>
   </view>
+  <!-- 去新批零 -->
+  <navigator wx:if="{{otherStoreOwner && limitShow !=2}}" target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/workIndex/workIndex?storeId={{user.storeId}}" extra-data="" version="trial"  >
+    <view class='page_bd page_hd1'>
+      <view class='weui-back'>
+        <view class='weui-cell weui-cell_access'>
+          <image src='/image/ad5.png' class='user-img'></image>
+          <view class='weui-cell__bd'>
+            <text wx:if="{{payStore}}">回到我的小云店</text>
+            <text wx:else>看看我的小云店</text>
+          </view>
+          <view class='weui-img'>
+            <image src="/image/icl.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </navigator>
+
+  <view class='page_bd page_hd1' wx:if="{{hasYunStoreOrder && limitShow==2 && !payStore}}">
+    <view class='weui-back'>
+      <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/myOrder/myOrder'>
+        <image src='/image/orderStoreList.png' class='user-img'></image>
+        <view class='weui-cell__bd'>
+          云产品订单
+        </view>
+        <view class='weui-img'>
+          <image src="/image/icl.png"></image>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+</block>

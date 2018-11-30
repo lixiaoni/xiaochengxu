@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/page/home/home",
+    "pages/page/user/user",
+    "pages/cloudOrder/applyStore/applyStore",
+    "pages/cloudOrder/newCloud/newCloud",
     "pages/admin/status/status",
     "pages/page/cartList/cartList",
-    "pages/page/user/user",
     "pages/login/agreement/agreement",
     "pages/role/order/order",
     "pages/admin/addGoods/addGoods",
@@ -61,7 +63,6 @@
     "pages/businessFriend/information/information",
     "pages/businessFriend/invitation/invitation",
     "pages/cloudOrder/orderDetail/orderDetail",
-    "pages/cloudOrder/applyStore/applyStore",
     "pages/cloudOrder/congratulation/congratulation",
     "pages/page/userM/userM",
     "pages/page/editStoreAddress/editStoreAddress",
@@ -142,10 +143,10 @@
         "selectedIconPath": "image/41.png",
         "text": "客户"
       }
-    ],
-    "navigateToMiniProgramAppIdList": [
-      "wx4f385374765e4cbb",
-      "wx6241529c7dc70d51"
     ]
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx4f385374765e4cbb",
+    "wx6241529c7dc70d51"
+  ]
 }

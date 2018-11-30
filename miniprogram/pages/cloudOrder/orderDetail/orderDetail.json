@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "订单详情"
+  "navigationBarTitleText": "云产品订单详情",
+  "usingComponents": {
+    "mes": "../../../../assembly/tips/tips"
+  }
 }
