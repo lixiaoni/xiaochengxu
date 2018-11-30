@@ -1,3 +1,4 @@
+<view wx:if="{{initOrder && limitShow == 2}}"><initstroe></initstroe></view>
 <login id="login"></login>
 <view class='wk-cont'>
   <view class='wk-title'>

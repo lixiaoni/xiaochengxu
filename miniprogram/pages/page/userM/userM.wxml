@@ -16,7 +16,7 @@
   </view>
 </view>
 <view class="weui_cells ">
-    <!-- <navigator  url=''>
+    <!-- <navigator  url='../../cloudOrder/myOrder/myOrder'>
         <text class="store-address">云产品订单</text>
         <view class='weui-view'>
           <image class='img' src="/image/icl.png"></image>

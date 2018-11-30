@@ -27,7 +27,7 @@
 
     <scroll-view class='c-item-box' scroll-y='true'>
       <block wx:for="{{item}}" wx:key="{{index}}">
-        <text class='c-item' style='background:{{item.checked?item.colorTrue:"#fff"}};color:{{item.checked?"#fff":""}};border:{{item.checked?"0":"1px solid #ddd"}}' data-index='{{index}}' bindtap='pcikMe'>{{item.name}}</text>
+        <text class='c-item' style='background:{{item.checked?item.colorTrue:"#fff"}};color:{{item.checked?"#fff":""}};border:{{item.checked?"1px solid #fff":"1px solid #ddd"}}' data-index='{{index}}' bindtap='pcikMe'>{{item.name}}</text>
       </block>
     </scroll-view>
     <view class='chose-text'>{{itemNum}}/2</view>
