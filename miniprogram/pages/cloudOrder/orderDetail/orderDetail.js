@@ -48,7 +48,7 @@ Page({
         "tradeType": "JSAPI"
       },
       header: {
-        "appNumber": "APP001",
+        "appNumber": "APP003",
       },
       success: (res) => {
         if (res.data.code == 0) {

@@ -37,7 +37,7 @@
 <!-- 第二步 -->
 <view class='view-box'>
   <view class='title-box'>
-    <view class='com-title'>{{comName}}<view class='xpl'>新批零</view>
+    <view class='com-title'><text style='max-width:500rpx;'>{{comName}}</text><view class='xpl'>新批零</view>
     </view>
     <text class='com-tip'>小云店ID：{{storeID}}</text>
   </view>

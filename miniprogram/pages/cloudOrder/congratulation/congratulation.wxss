@@ -5,6 +5,7 @@
   background: #fff;
   border-radius: 5px;
   margin: 20rpx;
+  padding-top: 60rpx;
 }
 
 .top-box {
@@ -44,10 +45,9 @@
 }
 
 .f-title {
-  padding: 40rpx 60rpx;
+  padding: 40rpx 60rpx 20rpx;
   font-size: 34rpx;
   font-weight: 600;
-  border-bottom: 1px solid #eee;
 }
 
 .f-item {
