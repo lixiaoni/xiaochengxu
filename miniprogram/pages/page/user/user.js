@@ -155,6 +155,10 @@ Page({
     })
 
     try {
+      if (options.storeId) {
+        wx.setStorageSync("storeId", options.storeId)
+        app.globalData.switchStore = true;
+      }
       if (options.layerText) {
         app.globalData.userShowTip = true
       }

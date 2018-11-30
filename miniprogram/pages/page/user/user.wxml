@@ -124,7 +124,7 @@
     </view>
   </view>
   <!-- 去新批零 -->
-  <navigator wx:if="{{otherStoreOwner && limitShow !=2}}" target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/workIndex/workIndex?storeId={{user.storeId}}" extra-data="" version="trial"  >
+  <navigator wx:if="{{otherStoreOwner && limitShow !=2}}" target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/user/user?storeId={{user.storeId}}" extra-data="" version="trial"  >
     <view class='page_bd page_hd1'>
       <view class='weui-back'>
         <view class='weui-cell weui-cell_access'>
