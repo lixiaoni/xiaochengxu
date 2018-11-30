@@ -12,8 +12,8 @@
 
   <view class='stroe-name'>小云店名称（必填）：</view>
   <view class='input-box'>
-    <input value='{{name}}' maxlength='15' bindinput='watchInput' data-type='name' type='text'></input>
-    <text>{{nameNum}}/15</text>
+    <input value='{{name}}' placeholder='请输入' placeholder-class='pre-input' maxlength='15' bindinput='watchInput' data-type='name' type='text'></input>
+    <text class='num-text'>{{nameNum}}/15</text>
   </view>
   <button bindtap='open' class='open-btn'>开启我的小云店</button>
 </spec>
@@ -26,10 +26,10 @@
 
     <scroll-view class='c-item-box' scroll-y='true'>
       <block wx:for="{{item}}" wx:key="{{index}}">
-        <text class='c-item {{item.checked?"c-item-ac":""}}' data-index='{{index}}' bindtap='pcikMe'>{{item.title}}</text>
+        <text class='c-item' style='background:{{item.checked?item.colorTrue:"#fff"}};color:{{item.checked?"#fff":""}};border:{{item.checked?"0":"1px solid #ddd"}}' data-index='{{index}}' bindtap='pcikMe'>{{item.name}}</text>
       </block>
     </scroll-view>
-    <view class='chose-text'>{{itemNum}}/4</view>
+    <view class='chose-text'>{{itemNum}}/2</view>
     <button bindtap='sureRange' class='sure-area'>确定</button>
   </view>
 </view>
@@ -37,45 +37,57 @@
 <!-- 第二步 -->
 <view class='view-box'>
   <view class='title-box'>
-    <view class='com-title'>周大福珠宝专卖店</view>
-    <text class='com-tip'>小云店ID：1239127391729387</text>
-  </view>
-  <view class='item-box padding-left padding-right'>
-    <text>从事业态</text>
-    <text>购物</text>
+    <view class='com-title'>{{comName}}<view class='xpl'>新批零</view>
+    </view>
+    <text class='com-tip'>小云店ID：{{storeID}}</text>
   </view>
 
-  <view class='item-box padding-left' bindtap='showModal' data-type='range'>
-    <text>选择经营范围</text>
-    <image class='more' src='/image/icl.png'></image>
-  </view>
-</view>
-
-<view class='view-box'>
-  <view class='item-box padding-right'>
+   <view class='item-box padding-right' bindtap='showModal' data-type='mall'>
     <view class="flex-center">
       <image class='floor' src='/image/lou.png'></image>
       <text>所属商城</text>
     </view>
 
     <view class="flex-center">
-      <image class='logo' src='/image/dp.png'></image>
-      <text>百荣世贸</text>
+      <image class='logo' wx:if="{{mallSureChose}}" src='{{baseUrl+mallSureChose.logo}}'></image>
+      <text>{{mallSureChose.name}}</text>
     </view>
 
   </view>
 
+  <view class='item-box padding-left padding-right'>
+    <text>从事业态</text>
+    <text>购物</text>
+  </view>
+
+  <view class='item-box padding-left' bindtap='showModal' data-type='range'>
+    <text>选择主营范围</text>
+    <view class='flex-center'>
+      <view class="show-item-box arange-box flex-center">
+        <text wx:for="{{item}}" wx:key="{{index}}" wx:if="{{item.checked}}">{{item.name}}</text>
+      </view>
+      <image class='more' src='/image/icl.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='view-box'>
   <view class='item-box' bindtap='showModal' data-type='floor'>
     <view class="flex-center">
       <image class='floor' src='/image/lou.png'></image>
       <text>楼层区域</text>
     </view>
-    <image class='more' src='/image/icl.png'></image>
+    <view class="show-item-box flex-center">
+      <text>{{choseMall[floorChose[0]].name}}</text>
+      <text>{{choseFloor[floorChose[1]].name}}</text>
+      <text>{{choseArea[floorChose[2]].name}}</text>
+      <image class='more' src='/image/icl.png'></image>
+    </view>
   </view>
 
   <view class='item-box padding-left'>
-    <text>店铺号</text>
-    <image class='more' src='/image/icl.png'></image>
+    <text>门牌号</text>
+    <input bindinput='inputCode' value='{{shopCode}}' maxlength='50' class="{{!floorModal && !rangeModal && !modal && !mallModal?'':'hide'}}" style="text-align:right;" type='text'></input>
   </view>
 </view>
 
@@ -84,17 +96,30 @@
 <view class='business' wx:if='{{floorModal}}'>
   <view class='picker-box'>
     <view class='picker-title'>选择楼层区域</view>
-    <picker-view value="[0,0,0]" class='picker' indicator-class="chosewola" bindchange="choseFloor">
-      <picker-view-column class='picker-border'>
-        <view wx:for="{{years}}" wx:key="{{index}}">{{item}}年</view>
-      </picker-view-column>
-      <picker-view-column class='picker-border'>
-        <view wx:for="{{months}}" wx:key="{{index}}">{{item}}月</view>
+    <picker-view value="{{beforeChose}}" class='picker' indicator-class="chosewola" bindchange="choseFloor">
+      <picker-view-column>
+        <view wx:for="{{choseMall}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
       </picker-view-column>
       <picker-view-column>
-        <view wx:for="{{days}}" wx:key="{{index}}">{{item}}日</view>
+        <view wx:for="{{choseFloor}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{choseArea}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
       </picker-view-column>
     </picker-view>
     <view bindtap='sureFloor' class='picker-sure'>确认</view>
+  </view>
+</view>
+
+
+<view class='business' wx:if='{{mallModal}}'>
+  <view class='picker-box'>
+    <view class='picker-title'>选择商城</view>
+    <picker-view value="[0]" class='picker' indicator-class="chosewola" bindchange="choseMall">
+      <picker-view-column>
+        <view wx:for="{{mallList}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
+      </picker-view-column>
+    </picker-view>
+    <view bindtap='sureMall' class='picker-sure'>确认</view>
   </view>
 </view>

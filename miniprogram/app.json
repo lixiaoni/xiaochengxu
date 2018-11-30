@@ -1,10 +1,13 @@
 {
   "cloud": true,
   "pages": [
+    "pages/page/home/home",
+    
     "pages/page/cartList/cartList",
     
-    "pages/page/home/home",
     "pages/page/user/user",
+    "pages/cloudOrder/applyStore/applyStore",
+    "pages/cloudOrder/newCloud/newCloud",
     "pages/businessFriend/merchant/follow/follow",
     "pages/businessFriend/merchant/details/details",
     "pages/businessFriend/merchant/lookInfo/lookInfo",
@@ -59,7 +62,6 @@
     "pages/businessFriend/information/information",
     "pages/businessFriend/invitation/invitation",
     "pages/cloudOrder/orderDetail/orderDetail",
-    "pages/cloudOrder/applyStore/applyStore",
     "pages/cloudOrder/congratulation/congratulation",
     "pages/page/userM/userM",
     "pages/page/editStoreAddress/editStoreAddress",

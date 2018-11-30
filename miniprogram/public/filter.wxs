@@ -1,18 +1,44 @@
 var filterMoney = function (money) {
-  if(money){
+  if (money) {
     return money.toFixed(2)
-  }else{
+  } else {
     return 0
   }
 }
-var plusNum = function(num){
- if(num<0){
-   return -num
- }else{
-   return num
- }
+var plusNum = function (num) {
+  if (num < 0) {
+    return -num
+  } else {
+    return num
+  }
 }
+
+var filterTime = function (timestamp) {
+  var str = "";
+  if (timestamp != '' && timestamp != null && timestamp != undefined && timestamp != NaN) {
+    var date = getDate(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    var Y = date.getFullYear();
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    var D = date.getDate();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
+  }
+  return str
+}
+
+var filterNull = function (val) {
+  var str = "";
+  if (val != '' && val != null && val != undefined && val != NaN) {
+    return val
+  }
+  return str
+}
+
 module.exports = {
   filterMoney: filterMoney,
-  plusNum: plusNum
+  plusNum: plusNum,
+  filterTime: filterTime,
+  filterNull: filterNull,
 }

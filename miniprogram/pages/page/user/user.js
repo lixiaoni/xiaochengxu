@@ -14,7 +14,7 @@ function getIdentity(_this) {
           }, function () {
             _this.getUser()
           })
-        }else{
+        } else {
           var isStoreOwner = obj.isStoreOwner,
             isPurchaser = obj.isPurchaser
           if (isStoreOwner) {
@@ -34,8 +34,8 @@ function getIdentity(_this) {
                 _this.getUser()
               })
             }
-           
-          }else{
+
+          } else {
             wx.setStorageSync("admin", 1)
             _this.setData({
               limitShow: 1
@@ -61,43 +61,89 @@ Page({
    */
   data: {
     hasUser: false,
-    limitShow:1,
+    limitShow: 1,
     indexEmpty: true,
-    showCloud: false,
+  },
+  toMyStore() {
+    let toID = this.data.user.storeId;
+    if (toID) {
+      wx.setStorageSync("storeId", toID)
+      app.globalData.switchStore = true;
+      let pages = getCurrentPages() //获取页面数组
+      let curPage = pages[pages.length - 1]  //获取当前页
+      curPage.onShow()
+    }
   },
   showLogin() {
     this.selectComponent("#login").showPage();
   },
   getUser() {
+    this.setData({
+      isStoreOwner: false,
+      otherStoreOwner: false
+    })
     app.http.getRequest("/api/user/byuserid").then((res) => {
       if (res.obj) {
         this.setData({
           user: res.obj,
           hasUser: true
         })
-        //小云点订单列表
-        if (this.data.user.id == "cbced730cc43cead0592fbdd5ef10f99") {
+        //是否是新零售店主
+        if (res.obj.isStoreOwner == true && res.obj.storeNature == 2) {
           this.setData({
-            showCloud: true
+            isStoreOwner: true
           })
-        }else{
+        } else if (res.obj.isStoreOwner == true && res.obj.storeNature == 1){
           this.setData({
-            showCloud: false
+            otherStoreOwner: true   //新零售店主
+          })        
+        }
+        //是否有云订单
+        if (res.obj.hasYunStoreOrder == true) {
+          this.setData({
+            hasYunStoreOrder: true
+          })
+        } else {
+          this.setData({
+            hasYunStoreOrder: false
           })
         }
-      }else{
+        // 店铺开通是否付费
+        if (res.obj.storeStatus == true) {
+          this.setData({
+            payStore: true
+          })
+        } else {
+          this.setData({
+            payStore: false
+          })
+        }
+
+      } else {
         this.setData({
           user: "",
           hasUser: false,
-          showCloud: false
         })
       }
     }).catch(e => {
       this.setData({
         user: "",
         hasUser: false,
-        showCloud: false
       })
+    })
+  },
+  getStore() {
+    Api.storeIdInfo().then(res => {
+      let store = res.obj.store[0].store;
+      if (!store.name) {
+        this.setData({
+          initOrder: true
+        })
+      } else {
+        this.setData({
+          initOrder: false
+        })
+      }
     })
   },
   /**
@@ -107,51 +153,79 @@ Page({
     this.setData({
       baseUrl: app.globalData.imageUrl
     })
+
+    try {
+      if (options.layerText) {
+        app.globalData.userShowTip = true
+      }
+    } catch (e) { }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!Api.getStoreId()) {
-      this.setData({
-        indexEmpty: false
+    //跳转弹框
+    if (app.globalData.userShowTip) {
+      app.globalData.userShowTip = false;
+      wx.showModal({
+        title: '',
+        content: '请登陆购买账号后，点击小云店工作台初始化店铺',
+        showCancel: false,
+        complete: () => {
+          if (!Api.getStoreId()) {
+            this.setData({
+              indexEmpty: false
+            })
+          }
+          getIdentity(this)
+
+          this.getStore();
+        }
       })
+    } else {
+      if (!Api.getStoreId()) {
+        this.setData({
+          indexEmpty: false
+        })
+      }
+      getIdentity(this)
+
+      this.getStore();
     }
-    getIdentity(this)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
 })

@@ -1,17 +1,20 @@
 <view class='box'>
   <view class='top-box'>
-    <text class='my-title'>周大福珠宝专卖店</text>
-    <text class='id-tip'>小云店ID：123123123123</text>
+    <text class='my-title'>{{cName}}</text>
+    <text class='id-tip'>小云店ID：{{storeID}}</text>
     <view>
       <image class='success-icon' src="/image/duile.png"></image>
     </view>
     <text class='congra'>恭喜您开启小云店!</text>
-    <button class='toStore'>快去打理我的小云店</button>
+    <navigator url='../../page/workIndex/workIndex'>
+      <button class='toStore'>快去打理我的小云店</button>
+    </navigator>
   </view>
 </view>
 
 <view class='footer-box'>
   <view class='f-title'>开启您的小云店之旅</view>
+  <navigator url='../../admin/status/status'>
   <view class='f-item'>
     <image class='s-icon' src='/image/gift.png'></image>
     <view class='cute'>
@@ -19,13 +22,5 @@
       <image class='more' src='/image/mallr.png'></image>
     </view>
   </view>
-  <view class='f-item'>
-    <image class='s-icon' src='/image/gift.png'></image>
-    <view class='cute'>
-      <text>加更多商友，赚更多的￥，去设置吧</text>
-      <image class='more' src='/image/mallr.png'></image>
-    </view>
-  </view>
- 
-  
+  </navigator>
 </view>

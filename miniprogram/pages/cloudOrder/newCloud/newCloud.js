@@ -1,4 +1,4 @@
-// pages/cloudOrder/congratulation/congratulation.js
+// pages/cloudOrder/newCloud/newCloud.js
 const Api = require("../../../utils/api.js");
 Page({
 
@@ -6,27 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    src: ""
+  },
 
-  },
-  getStore() {
-    Api.storeIdInfo().then(res => {
-      this.setData({
-        cName: res.obj.store[0].store.name
-      })
-    })
-  },
-  toStore() {
-
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var store = wx.getStorageSync('storeId');
-    this.setData({
-      storeID: store
+    Api.userInfor().then(res => {
+      let id = res.obj.id;
+      this.setData({
+        src: "https://www.youlife.me?user=" + id
+      })
     })
-    this.getStore();
+
   },
 
   /**
@@ -71,4 +64,10 @@ Page({
 
   },
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

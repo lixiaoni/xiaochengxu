@@ -1,13 +1,15 @@
-<view class='item-box' wx:for="{{list}}">
+<wxs src="../../../public/filter.wxs" module="filter" />
+<view class='item-box' wx:for="{{list}}" wx:key="{{index}}">
   <navigator url='../orderDetail/orderDetail?num={{item.orderNumber}}'>
 
     <view class='order-box'>
       <view class='order-title'>
         <view>
-          <text class='store-name'>小云店商城专业版</text>
+          <text class='store-name'>小云店·{{item.yunStoreGoodsSnapshot.classifyName}}</text>
         </view>
         <text wx:if='{{item.orderStatus=="unpaid"}}' class='youyou'>待付款</text>
         <text wx:if='{{item.orderStatus=="paid"}}' class='youyou'>已付款</text>
+        <text wx:if='{{item.orderStatus=="cancelled"}}' class='youyou'>已取消</text>
       </view>
 
       <view class='price-box'>
@@ -33,22 +35,22 @@
         <block wx:if='{{item.orderStatus=="paid"}}'>
         <view class='msg-item'>
           <text class='msg-title'>开始时间</text>
-          <text class="msg-content"></text>
+          <text class="msg-content">{{filter.filterTime(item.yunStore.serviceTimeStart)}}</text>
         </view>
         <view class='msg-item'>
           <text class='msg-title'>结束时间</text>
-          <text class="msg-content"></text>
+          <text class="msg-content">{{filter.filterTime(item.yunStore.serviceTimeEnd)}}</text>
         </view>
         </block>
         <view class='msg-item'>
           <text class='msg-title'>下单时间</text>
-          <text class="msg-content">{{item.createDate}}</text>
+          <text class="msg-content">{{filter.filterTime(item.createDate)}}</text>
         </view>
 
         
         <view class='msg-item' wx:if='{{item.orderStatus=="paid"}}'>
           <text class='msg-title'>剩余时间</text>
-          <text class="msg-content">天</text>
+          <text class="msg-content">{{item.yunStore.surplusDay?item.yunStore.surplusDay:"0"}}天</text>
         </view>
       </view>
     </view>
