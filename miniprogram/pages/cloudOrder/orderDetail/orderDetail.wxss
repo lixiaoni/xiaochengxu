@@ -15,8 +15,7 @@
   font-size: 26rpx;
 }
 .price{
-  font-size: 48rpx;
-  font-weight: 600;
+  font-size: 72rpx;
 }
 .logo{
   height: 80rpx;
