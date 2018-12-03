@@ -266,8 +266,6 @@ picker-view-column view{
   font-weight: 600;
 }
 .show-item-box text{
-  font-size: 24rpx;
-  color: #999;
   margin-right: 5rpx;
 }
 .arange-box text{

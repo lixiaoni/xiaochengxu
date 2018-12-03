@@ -30,6 +30,9 @@ Page({
       success: (res) => {
         if (res.code) {
           this.getOpenid(res.code);
+          wx.showLoading({
+            title: '正在获取订单'
+          })
         }
       }
     })
@@ -65,6 +68,9 @@ Page({
       },
       fail: (e) => {
         console.log(e);
+      },
+      complete(){
+        wx.hideLoading();
       }
     })
   },
