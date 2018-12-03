@@ -14,7 +14,7 @@ Page({
   },
   getData() {
     wx.request({
-      url: 'https://dev-mall.youlife.me/api/yunstore/order/' + this.data.num,
+      url: 'https://mall.youlife.me/api/yunstore/order/' + this.data.num,
       header: {
         Authorization: wx.getStorageSync("access_token")
       },

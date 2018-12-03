@@ -18,7 +18,7 @@ Page({
       return
     }
     wx.request({
-      url: 'https://dev-mall.youlife.me/api/yunstore/order/user/page/orderstatus/all',
+      url: 'https://mall.youlife.me/api/yunstore/order/user/page/orderstatus/all',
       header: {
         Authorization: "bearer " + wo
       },

@@ -221,25 +221,34 @@ Page({
       dataList = _this.data.goodsSkuVOList
      for (var i = 0; i < dataList.length; i++) {
        if (dataList[i].specValueCodeList.indexOf(code) != -1) {
-        if(index==0){
-          if (dataList[i].specValueCodeList.indexOf(swichNavCode) != -1) {
-            _this.setData({
-              wholesale: dataList[i].wholesalePrice,
-              stockNum: dataList[i].stockNum,
-              sell: dataList[i].sellPrice
-            })
-            break
-          }
-        }else{
-          if (dataList[i].specValueCodeList.indexOf(changeButtonCode) != -1){
-            _this.setData({
-              wholesale: dataList[i].wholesalePrice,
-              stockNum: dataList[i].stockNum,
-              sell: dataList[i].sellPrice
-            })
-            break
-          }
-        }
+         if (dataList[i].specValueCodeList.length == 2) {
+           if (index == 0) {
+             if (dataList[i].specValueCodeList.indexOf(swichNavCode) != -1) {
+               _this.setData({
+                 wholesale: dataList[i].wholesalePrice,
+                 stockNum: dataList[i].stockNum,
+                 sell: dataList[i].sellPrice
+               })
+               break
+             }
+           } else {
+             if (dataList[i].specValueCodeList.indexOf(changeButtonCode) != -1) {
+               _this.setData({
+                 wholesale: dataList[i].wholesalePrice,
+                 stockNum: dataList[i].stockNum,
+                 sell: dataList[i].sellPrice
+               })
+               break
+             }
+           }
+         }else{
+           _this.setData({
+             wholesale: dataList[i].wholesalePrice,
+             stockNum: dataList[i].stockNum,
+             sell: dataList[i].sellPrice
+           })
+           break
+         }
        }
      }
     if (!this.data.showCartOne) { this.getTotalPrice();}
