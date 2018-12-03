@@ -22,7 +22,7 @@ Page({
   getStore() {
     Api.storeIdInfo().then(res => {
       let store = res.obj.store[0].store;
-      if (!store.name) {
+      if (!store || !store.name) {
         this.setData({
           initOrder: true
         })

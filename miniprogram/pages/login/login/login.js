@@ -106,6 +106,9 @@ Component({
     },
     //登录
     login() {
+      if (this.data.stopLoginBtn) {
+        return
+      }
       if (this.data.btnID === 'loginBtnDis') {
         wx.showToast({
           title: '请填写完整',
@@ -133,8 +136,16 @@ Component({
           mobile: this.data.telephone.trim(),
           smsCode: this.data.verificationCode
         };
+
+        this.setData({
+          stopLoginBtn: true
+        })
         loginApp.authHandler.loginByMobile(this.data.telephone, this.data.verificationCode).then(res => {
           this.loginAfter(res);
+        }).catch(e => {
+          this.setData({
+            stopLoginBtn: false
+          })
         })
 
 
@@ -153,15 +164,23 @@ Component({
           username: this.data.telephone.trim(),
           password: this.data.password
         };
+        this.setData({
+          stopLoginBtn: true
+        })
         loginApp.authHandler.loginByUser(this.data.telephone, this.data.password).then(res => {
           this.loginAfter(res);
         }).catch(e => {
-          API.showToast(e.data.message)         
+          this.setData({
+            stopLoginBtn: false
+          })        
         })
       }
 
     },
     loginAfter(res) {
+      this.setData({
+        stopLoginBtn: false
+      })
       if (res.message) {
         wx.showToast({
           title: res.message,

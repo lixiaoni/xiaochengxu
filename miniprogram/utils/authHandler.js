@@ -46,9 +46,14 @@ class TokenHandler {
         success: (res => {
           if (res.statusCode === 200) {
             this.saveTokenInfo(res.data);
-          } else if (res.statusCode === 400 || res.statusCode === 401) {
+          } else if (res.statusCode === 400){
             wx.showToast({
-              title: '用户名或密码错误',
+              title: "用户名或密码错误",
+              icon: 'none'
+            });
+          }else if( res.statusCode === 401) {
+            wx.showToast({
+              title: res.data.error_description,
               icon: 'none'
             });
           } else {
@@ -58,7 +63,14 @@ class TokenHandler {
             });
           }
           resolve(res.data);
-        })
+        }),
+        fail:(e)=>{
+          wx.showToast({
+            title: e.data.error_description,
+            icon: 'none'
+          });
+          reject(e)
+        }
       })
     });
   }
@@ -96,7 +108,14 @@ class TokenHandler {
             });
           }
           resolve(res.data);
-        })
+        }),
+        fail: (e) => {
+          wx.showToast({
+            title: e.data.error_description,
+            icon: 'none'
+          });
+          reject(e)
+        }
       })
     });
   }
