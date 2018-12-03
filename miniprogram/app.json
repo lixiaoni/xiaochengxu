@@ -1,7 +1,7 @@
 {
   "cloud": true,
   "pages": [
-    "pages/page/home/home",    
+    "pages/page/home/home",
     "pages/cloudOrder/applyStore/applyStore",
     "pages/page/updateArea/mesEdit",
     "pages/page/cartList/cartList",

@@ -14,20 +14,8 @@
   width: 40rpx;
   height: 40rpx;
 }
-.up-save{
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 30rpx;
-  text-align: right;
-  font-weight: bold;
-  background: #fff;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.up-save text{
-  margin-right: 30rpx;
-}
+.up-save{height:122rpx;line-height:122rpx;font-size:34rpx;text-align:center;background:#fff;position:fixed;bottom:0;width:100%;color: #ccaa77;}
+
 .section-input{
   height:8%;
   background:#F4F4F4; 
