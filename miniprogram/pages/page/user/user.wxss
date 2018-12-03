@@ -33,7 +33,8 @@
   background: #fff;
   font-size: 24rpx;
   width: 160rpx;
-  border:2rpx solid #EEE3D2
+  border:2rpx solid #EEE3D2;
+  line-height:60rpx;
 }
 .u-pic view{
   margin-bottom:30rpx;

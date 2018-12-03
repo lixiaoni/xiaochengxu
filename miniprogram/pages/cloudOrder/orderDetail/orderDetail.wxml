@@ -118,7 +118,8 @@
     <text class="msg-content">￥{{msg.yunStoreGoodsSnapshot.discountAmount?msg.yunStoreGoodsSnapshot.discountAmount:0}}</text>
   </view>
   <view class='pay-item'>
-    <text class='msg-title'>实付金额</text>
+    <text class='msg-title' wx:if='{{msg.orderStatus=="paid"}}'>实付金额</text>  
+    <text class='msg-title' wx:else>应付金额</text>
     <text class="msg-content red-price-font">￥{{msg.payAmount}}</text>
   </view>
 </view>
