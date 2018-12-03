@@ -6,18 +6,73 @@ Page({
    */
   data: {
     id: Api.getThisStoreId(),
-    data: [
-      { name: "服饰内衣", selected: false, color: "#fff", colorTrue: "#CDE6DC"},
-      { name: "母婴玩具", selected: false, color: "#fff", colorTrue: "#D4E6CD"}, 
-      { name: "鞋类箱包", selected: false, color: "#fff", colorTrue: "#D1DEE5"},
-      { name: "运动户外", selected: false, color: "#fff", colorTrue: "#AAFAE3"},
-      { name: "珠宝配饰", selected: false, color: "#fff", colorTrue: "#D6C1AA"},
-      { name: "化妆品", selected: false, color: "#fff", colorTrue: "#D1DEE5"},
-      { name: "家居家纺", selected: false, color: "#fff", colorTrue: "#F57158"},
-      { name: "日用百货", selected: false, color: "#fff", colorTrue: "#D1DEE5"},
-      { name: "休闲装", selected: false, color: "#fff", colorTrue: "#AA8EAD"},
-      { name: "礼品婚庆", selected: false, color: "#fff", colorTrue: "#F57158" },
-      { name: "仿真花艺", selected: false, color: "#fff", colorTrue: "#D1DEE5" },],
+    data: [{
+        name: "服饰内衣",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cde6dc"
+      },
+      {
+        name: "母婴玩具",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#d6cde6"
+      },
+      {
+        name: "鞋类箱包",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cddee6"
+      },
+      {
+        name: "运动户外",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#d4e6cd"
+      },
+      {
+        name: "珠宝配饰",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cde6dc"
+      },
+      {
+        name: "化妆品",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#d6cde6"
+      },
+      {
+        name: "家居家纺",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cddee6"
+      },
+      {
+        name: "日用百货",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#d4e6cd"
+      },
+      {
+        name: "休闲装",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cde6dc"
+      },
+      {
+        name: "礼品婚庆",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#d6cde6"
+      },
+      {
+        name: "仿真花艺",
+        checked: false,
+        color: "#fff",
+        colorTrue: "#cddee6"
+      },
+    ],
     name:''
   },
 
