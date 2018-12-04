@@ -97,11 +97,11 @@
   <navigator url='../editInvoice/editInvoice?code={{storeMes.isReceipt}}&name={{storeMes.receiptInfo}}'>发票设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
   <navigator url='../postageInfo/postageInfo?code={{storeMes.postageInfo}}'>邮费设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
 </view>
-  <view class='showHide' hidden='{{showHide}}'>
+  <!-- <view class='showHide' hidden='{{showHide}}'>
     <view class='sh-cont'>
       <view class='sh-title'>更换小云店logo</view>
       <view  bindtap="chooseImage">拍照</view>
       <view  bindtap="chooseImage">从手机相册选取</view>
       <view bindtap='closeShow'>取消</view>
     </view>
-  </view>
+  </view> -->

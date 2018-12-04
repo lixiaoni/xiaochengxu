@@ -133,18 +133,18 @@ Page({
   onLoad: function (options) {
     this.getMallList();
   },
-  editFun: function () {
-    this.setData({
-      showHide: false,
-    })
-  },
+  // editFun: function () {
+  //   this.setData({
+  //     showHide: false,
+  //   })
+  // },
   closeShow: function () {
     this.setData({
       showHide: true,
     })
   },
   // 上传logo
-  chooseImage() {
+  editFun() {
     app.http.onlychoseImg().then(res => {
       let url = res.tempFilePaths[0];
       Api.toCuttingImg(url)
