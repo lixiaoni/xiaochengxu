@@ -162,3 +162,8 @@
 .ct-text{
   right: 50rpx;
 }
+
+.c-title image{
+  width: 35rpx;
+  height: 35rpx;
+}
