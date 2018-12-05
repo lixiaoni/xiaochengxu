@@ -1,12 +1,13 @@
 {
   "cloud": true,
   "pages": [
-    "pages/casher/success/success",
+    "pages/page/home/home",
     "pages/page/user/user",
+    "pages/casher/success/success",
     "pages/casher/casher/casher",
     "pages/cloudOrder/myOrder/myOrder",
-    "pages/page/home/home",
     "pages/login/register/register",
+    "pages/admin/status/status",
     "pages/cloudOrder/applyStore/applyStore",
     "pages/page/updateArea/mesEdit",
     "pages/page/cartList/cartList",
@@ -16,7 +17,6 @@
     "pages/businessFriend/merchant/details/details",
     "pages/businessFriend/merchant/lookInfo/lookInfo",
     "pages/businessFriend/index/index",
-    "pages/admin/status/status",
     "pages/login/agreement/agreement",
     "pages/role/order/order",
     "pages/admin/addGoods/addGoods",
