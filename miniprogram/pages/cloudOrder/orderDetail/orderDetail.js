@@ -13,132 +13,16 @@ Page({
 
   },
   getData() {
-    wx.request({
-      url: 'https://mall.youlife.me/api/yunstore/order/' + this.data.num,
-      header: {
-        Authorization: wx.getStorageSync("access_token")
-      },
-      success: (res) => {
-        this.setData({
-          msg: res.data.obj
-        })
-      }
+    app.http.getRequest('/admin/yunstore/order/' + this.data.num).then(res => {
+      this.setData({
+        msg: res.obj
+      })
     })
   },
   buy() {
-    wx.login({
-      success: (res) => {
-        if (res.code) {
-          this.getOpenid(res.code);
-          wx.showLoading({
-            title: '正在获取订单'
-          })
-        }
-      }
+    wx.navigateTo({
+      url: '../../casher/casher?num=' + this.data.num + '&type=cloud'
     })
-  },
-  getOpenid(code) {
-    wx.request({
-      url: 'https://pay.youlife.me/api/pay',
-      method: 'POST',
-      data: {
-        "channel": "wx_pay",
-        "currency": "CNY",
-        "code": code,
-        "goodsInfo": "小云店购买",
-        "orderNumber": this.data.num,
-        "payWay": "wx_mini_app_pay",
-        "tradeType": "JSAPI"
-      },
-      header: {
-        "appNumber": "APP003",
-      },
-      success: (res) => {
-        if (res.data.code == 0) {
-          this.payment(res.data.obj.payData);
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none'
-          })
-          setTimeout(() => {
-            wx.navigateBack()
-          }, 1000)
-        }
-      },
-      fail: (e) => {
-        console.log(e);
-      },
-      complete(){
-        wx.hideLoading();
-      }
-    })
-  },
-  payment(res) {
-    wx.requestPayment({
-      "timeStamp": res.timeStamp,
-      "package": res.package,
-      "paySign": res.paySign,
-      "signType": res.signType,
-      "nonceStr": res.nonceStr,
-      success: (res) => {
-        wx.showToast({
-          title: '恭喜您开通成功',
-          icon: "none"
-        })
-        setTimeout(() => {
-          this.afterPayment();
-        }, 800)
-      },
-      fail: (err) => {
-        console.log(err)
-      },
-      complete: (res) => {
-        setTimeout(() => {
-          this.getData();
-        }, 1000)
-      }
-    })
-  },
-  afterPayment() {
-    let type = this.data.msg.yunStore.storeNature;
-    let env = app.globalData.projectType;
-    if (type == 1) {
-      //新批零
-      if (env == 'xpl') {
-        let toID = this.data.user.storeId;
-        if (toID) {
-          wx.setStorageSync("storeId", toID)
-          app.globalData.switchStore = true;
-          app.globalData.userShowTip = true;
-          wx.switchTab({
-            url: "../../page/user/user",
-          })
-        }
-      } else {
-        this.setData({
-          toStatus: "xpl",
-          returnModal: true
-        })
-      }
-    } else if (type == 2) {
-      //新零售
-      if (env == 'xls') {
-        let toID = this.data.user.storeId;
-        if (toID) {
-          wx.setStorageSync("storeId", toID)
-          app.globalData.switchStore = true;
-          wx.switchTab({
-            url: "../../page/user/user?layerText=请登陆购买账号后，点击小云店工作台初始化账户",
-          })
-        }
-      } else {
-        this.setData({
-          toStatus: "xls",
-          returnModal: true
-        })
-      }
-    }
   },
   getUser() {
     Api.userInfor().then(res => {

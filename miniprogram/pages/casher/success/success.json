@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "付款成功",
+  "usingComponents": {
+    "mes": "../../../../assembly/tips/tips"
+  }
+}

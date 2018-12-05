@@ -9,36 +9,12 @@ Page({
   },
 
   getData() {
-    let wo = wx.getStorageSync("access_token");
-    if (!wo) {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'none'
+    let storeId = wx.getStorageSync("storeId");
+    app.http.getRequest("/admin/yunstore/order/store/" + storeId + "/page").then(res => {
+      this.setData({
+        list: res.obj.result
       })
-      return
-    }
-    wx.request({
-      url: 'https://mall.youlife.me/api/yunstore/order/user/page/orderstatus/all',
-      header: {
-        Authorization: "bearer " + wo
-      },
-      success: (res) => {
-        this.setData({
-          list: res.data.obj.result
-        })
-      }
     })
-    // app.http.getRequest("/api/yunstore/order/user/page/orderstatus/all").then(res => {
-    //   // wx.showToast({
-    //   //   title: res.message,
-    //   //   icon:'none'
-    //   // })
-    //   if (res.success) {
-    //     this.setData({
-    //       msg: res.obj.result
-    //     })
-    //   }
-    // })
   },
   /**
    * 生命周期函数--监听页面加载
