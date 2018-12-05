@@ -1,7 +1,7 @@
 import http from './utils/http.js'
 import pageRequest from './utils/pageRequest.js'
 import AuthHandler from './utils/authHandler.js'
-import { imageUrl } from './utils/const.js'
+import { imageUrl, payUrl } from './utils/const.js'
 import touch from './utils/touch.js'
 App({
   onLaunch: function (options) {
@@ -51,7 +51,9 @@ App({
     switchStore: false,
     isFollow: null,
     projectType: "xls",
-    userShowTip: false
+    userShowTip: false,
+    payUrl:payUrl,
+    payNum:"APP003"
   },
   http: new http(),
   pageRequest: new pageRequest(),

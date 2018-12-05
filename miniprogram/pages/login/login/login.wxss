@@ -146,3 +146,19 @@ page{
 .pre-input{
   color:#aaa;
 }
+
+/* 关注 */
+.chose-input {
+  color: #ca7;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.la-checkbox{
+  margin-right: 22rpx;
+  width: 35rpx;
+  height: 35rpx;
+}
+.padding-top-box{
+  margin-top: 60rpx;
+}

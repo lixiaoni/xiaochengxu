@@ -1,5 +1,4 @@
-// pages/cloudOrder/cloudPay/cloudPay.js
-const Api = require("../../../utils/api.js");
+// pages/casher/casher/casher.js
 const app = getApp();
 Page({
 
@@ -9,16 +8,14 @@ Page({
   data: {
 
   },
-  getData() {
-
-
-  },
   buy() {
     wx.login({
       success: (res) => {
         if (res.code) {
-          console.log(res.code)
           this.getOpenid(res.code);
+          wx.showLoading({
+            title: '正在获取订单'
+          })
         }
       }
     })
@@ -37,7 +34,7 @@ Page({
         "tradeType": "JSAPI"
       },
       header: {
-        "platAppId": app.globalData.payNum,
+        "platAppId": app.globalData.payAppNum,
       },
       success: (res) => {
         if (res.data.code == 0) {
@@ -47,40 +44,59 @@ Page({
             title: res.data.message,
             icon: 'none'
           })
-          setTimeout(() => {
-            wx.navigateBack()
-          }, 1000)
+          // setTimeout(() => {
+          //   wx.navigateBack()
+          // }, 1000)
         }
       },
       fail: (e) => {
         console.log(e);
+      },
+      complete() {
+        wx.hideLoading();
       }
     })
-
   },
   payment(res) {
-    console.log(res)
     wx.requestPayment({
       "timeStamp": res.timeStamp,
       "package": res.package,
       "paySign": res.paySign,
       "signType": res.signType,
       "nonceStr": res.nonceStr,
-      success: function (res) {
+      success: (res) => {
+        wx.showToast({
+          title: '付款成功',
+          icon: "none"
+        })
+        setTimeout(() => {
+          this.afterPayment();
+        }, 800)
+      },
+      fail: (err) => {
+        console.log(err)
+      },
+      complete: (res) => {
 
       }
+    })
+  },
+  afterPayment() {
+    wx.navigateTo({
+      url: '../success/success?type=' + this.data.orderType,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let orderId = options.order;
-
     this.setData({
-      num: orderId
+      num: options.num,
+      orderType: options.type
     })
-    this.buy();
+    if (options.num) {
+      this.buy()
+    }
   },
 
   /**

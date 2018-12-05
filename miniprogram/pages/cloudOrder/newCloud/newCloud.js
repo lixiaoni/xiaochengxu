@@ -1,5 +1,6 @@
 // pages/cloudOrder/newCloud/newCloud.js
 const Api = require("../../../utils/api.js");
+import { cloudUrl } from "../../../utils/const.js";
 Page({
 
   /**
@@ -16,7 +17,7 @@ Page({
     Api.userInfor().then(res => {
       let id = res.obj.id;
       this.setData({
-        src: "https://www.youlife.me?user=" + id
+        src: cloudUrl+"?user=" + id
       })
     })
 

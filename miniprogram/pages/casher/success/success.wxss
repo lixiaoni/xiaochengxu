@@ -1,0 +1,24 @@
+page{
+  background: #fff;
+}
+
+.title{
+  font-size: 70rpx;
+  text-align: center;
+  margin: 80rpx 0;
+}
+.success-img{
+  width: 286rpx;
+  height: 366rpx;
+  margin: 0 auto;
+}
+.success-btn{
+  width: 474rpx;
+  position: fixed;
+  bottom: 200rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #ccaa77;
+  color: #fff;
+}

@@ -90,6 +90,15 @@ Page({
      * 用户点击右上角分享
      */
   onShareAppMessage: function (res) {
-    
+    let id = wx.getStorageInfoSync("storeId");
+    if (id) {
+      return {
+        path: "pages/page/home/home?storeId=" + id
+      }
+    } else {
+      wx.showToast({
+        title: '请进入店铺，再分享给好友',
+      })
+    }
   }
 })
