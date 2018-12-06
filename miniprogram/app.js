@@ -53,7 +53,7 @@ App({
     projectType: "xls",
     userShowTip: false,
     payUrl:payUrl,
-    payNum:"APP003"
+    payAppNum:"APP003"
   },
   http: new http(),
   pageRequest: new pageRequest(),
