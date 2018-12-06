@@ -122,6 +122,16 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
       </view>
       <view class='weui-input'>总库存<input placeholder-class='pla-input'  class="weui-input" disabled='disabled' value='{{skuNum}}' type="number" placeholder=""></input><text>件</text></view>
     </view>
+    <view class="page__category-content"  wx:if='{{!stockHide}}'>
+      <view class='weui-title'>其他设置</view>
+      <view class="weui-cell1">
+        <view class="weui-cell__bd">
+          <text>起批量</text>
+        </view>
+        <input class="stock" type="number" bindinput='stockFun' value='{{stock}}'></input>
+        <view class="weui-cell__ft" bindtap='clearInput'><image  src="/image/clo.png"></image></view>
+      </view>
+    </view>
   </view>
   <view hidden='{{hiddenSend}}'>
     <view class='write'>

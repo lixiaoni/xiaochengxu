@@ -12,6 +12,7 @@ Page({
     isShow: true,
     isStatus: true,
     mainx: 0,
+    saveHide: true,
     isEmptySku: false,
     newConst: '',
     pageall: [],
@@ -26,7 +27,6 @@ Page({
     skuNum: 0,
     brand: '',
     name: '',
-    saveHide:true,
     show1: false,
     show: false,
     reImgIndex: 0,
@@ -41,7 +41,7 @@ Page({
     sellPrice: '',
     stockNum: 0,
     baseUrl: app.globalData.imageUrl,
-    wholesalePrice: 0,
+    wholesalePrice: '',
     goodsId: '',
     addGoodsDetails: [],
     mainImgUrl: "",
@@ -173,18 +173,6 @@ Page({
         })
       })
   },
-  wholesalePrice: function (event) {
-    var _this = this,
-      val = event.detail.value,
-      num = val.length
-    if (num > 11) {
-      Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        wholesalePrice: (util.newVal(val)).substring(0, 10),
-      })
-    }
-  },
   sellPrice: function (event) {
     var _this = this,
       val = event.detail.value,
@@ -266,30 +254,16 @@ Page({
           model: modelData,
           storeId: obj.storeId,
           storeName: obj.storeName,
-          wholesalePrice: obj.wholesalePrice,
+          wholesalePrice: obj.wholesalePrice == '' ? 0 : obj.wholesalePrice,
           skuNum: obj.stockNum,
           skuListAll: obj.goodsSkuVOList,
           description: obj.description,
           categoryCode: obj.categoryCode,
           strName: obj.customCategoryName,
           codeName: obj.categoryName,
-          categoryCustomCode: obj.customCategoryCode == "0" ? '':obj.customCategoryCode
+          categoryCustomCode: obj.customCategoryCode
         })
       })
-  },
-  wholesalePrice: function (event) {
-    var _this = this,
-      val = event.detail.value
-    this.setData({
-      wholesalePrice: val
-    })
-  },
-  sellPrice: function (event) {
-    var _this = this,
-      val = event.detail.value
-    this.setData({
-      sellPrice: val
-    })
   },
   getConfig: function () {
     var _this = this
@@ -538,115 +512,115 @@ Page({
   },
   // 更新
   updateGoods: function (e) {
-    this.setData({
-      saveHide:false
-    },function(){
-      var _this = this,
-        pics = this.data.pics,
-        status = e.target.dataset.status,
-        mainImgUrl = '',
-        description = '',
-        skuListAll = [],
-        goodsImageVOList = [],
-        sellPrice = this.data.sellPrice,
-        wholesalePrice = this.data.wholesalePrice,
-        newConst = this.data.newConst,
-        saleBatchNum = this.data.stock,
-        skuList0 = [],
-        skuList1 = [],
-        goodsListData = this.data.pageall,
-        clickSpecShow = this.data.clickSpecShow,
-        addGoodsDetails = this.data.addGoodsDetails
-      if (clickSpecShow == false) {
-        if (!Api.isEmpty(sellPrice)) {
-          Api.showToast("请输入商品零售价！")
-          return;
-        }
-        if (!Api.isEmpty(this.data.skuNum)) {
-          Api.showToast("商品库存不能为零！")
-          return;
-        }
-        if (goodsListData != null) {
-          if (goodsListData.length == 1) {
-            skuListAll = []
-            skuList0 = goodsListData[0].goodsSpecificationValueVOList
-            for (var i = 0; i < skuList0.length; i++) {
-              skuListAll.push({ specValueCodeList: [skuList0[i].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst, wholesalePrice: wholesalePrice })
-            }
-          } else if (goodsListData.length = 2) {
-            skuList0 = goodsListData[0].goodsSpecificationValueVOList
-            skuList1 = goodsListData[1].goodsSpecificationValueVOList
-            for (var i = 0; i < skuList0.length; i++) {
-              for (var j = 0; j < skuList1.length; j++) {
-                skuListAll.push({ specValueCodeList: [skuList0[i].specValueCode, skuList1[j].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst, wholesalePrice: wholesalePrice })
-              }
+    var _this = this,
+      pics = this.data.pics,
+      status = e.target.dataset.status,
+      mainImgUrl = '',
+      description = '',
+      skuListAll = [],
+      goodsImageVOList = [],
+      sellPrice = this.data.sellPrice,
+      wholesalePrice = this.data.wholesalePrice,
+      newConst = this.data.newConst,
+      saleBatchNum = this.data.stock,
+      skuList0 = [],
+      skuList1 = [],
+      goodsListData = this.data.pageall,
+      clickSpecShow = this.data.clickSpecShow,
+      addGoodsDetails = this.data.addGoodsDetails
+    if (clickSpecShow == false) {
+      if (!Api.isEmpty(sellPrice)) {
+        Api.showToast("请输入商品零售价！")
+        return;
+      }
+      if (!Api.isEmpty(this.data.skuNum)) {
+        Api.showToast("商品库存不能为零！")
+        return;
+      }
+      if (goodsListData != null) {
+        if (goodsListData.length == 1) {
+          skuListAll = []
+          skuList0 = goodsListData[0].goodsSpecificationValueVOList
+          for (var i = 0; i < skuList0.length; i++) {
+            skuListAll.push({ specValueCodeList: [skuList0[i].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst, wholesalePrice: wholesalePrice })
+          }
+        } else if (goodsListData.length = 2) {
+          skuList0 = goodsListData[0].goodsSpecificationValueVOList
+          skuList1 = goodsListData[1].goodsSpecificationValueVOList
+          for (var i = 0; i < skuList0.length; i++) {
+            for (var j = 0; j < skuList1.length; j++) {
+              skuListAll.push({ specValueCodeList: [skuList0[i].specValueCode, skuList1[j].specValueCode], marketPrice: '0', sellPrice: sellPrice, stockNum: newConst, wholesalePrice: wholesalePrice })
             }
           }
-          sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
+        }
+        sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
+      }
+    } else {
+      skuListAll = this.data.skuListAll
+      if (Api.isEmpty(skuListAll)) {
+        sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
+      }
+    }
+    for (var i = 0; i < addGoodsDetails.length; i++) {
+      if (addGoodsDetails[i].input) {
+        if (Api.isEmpty(addGoodsDetails[i].value)) {
+          description += '<h4>' + addGoodsDetails[i].value + '</h4>'
+        }
+      } else if (addGoodsDetails[i].textInput) {
+        if (Api.isEmpty(addGoodsDetails[i].value)) {
+          description += '<p>' + addGoodsDetails[i].value + '</p>'
         }
       } else {
-        skuListAll = this.data.skuListAll
-        if (Api.isEmpty(skuListAll)) {
-          sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
-        }
+        description += '<img src="' + addGoodsDetails[i].img + '"/>'
       }
-      for (var i = 0; i < addGoodsDetails.length; i++) {
-        if (addGoodsDetails[i].input) {
-          if (Api.isEmpty(addGoodsDetails[i].value)) {
-            description += '<h4>' + addGoodsDetails[i].value + '</h4>'
-          }
-        } else if (addGoodsDetails[i].textInput) {
-          if (Api.isEmpty(addGoodsDetails[i].value)) {
-            description += '<p>' + addGoodsDetails[i].value + '</p>'
-          }
-        } else {
-          description += '<img src="' + addGoodsDetails[i].img + '"/>'
-        }
+    }
+    for (var i = 0; i < pics.length; i++) {
+      if (i == 0) {
+        mainImgUrl = pics[i].replace(this.data.baseUrl, '')
       }
-      for (var i = 0; i < pics.length; i++) {
-        if (i == 0) {
-          mainImgUrl = pics[i].replace(this.data.baseUrl, '')
-        }
-        goodsImageVOList.push({ imageUrl: pics[i].replace(this.data.baseUrl, '') })
+      goodsImageVOList.push({ imageUrl: pics[i].replace(this.data.baseUrl, '') })
+    }
+    if (Api.isEmpty(skuListAll)) {
+      if (skuListAll.length == 0) {
+        skuListAll = null
       }
-      if (Api.isEmpty(skuListAll)) {
-        if (skuListAll.length == 0) {
-          skuListAll = null
-        }
-      }
-      var goodsVO = {
-        "categoryCode": this.data.categoryCode,
-        "customCategoryCode": this.data.categoryCustomCode,
-        "description": description,
-        "goodsImageVOList": goodsImageVOList,
-        "goodsSkuVOList": skuListAll,
-        "goodsSpecificationVOList": this.data.pageall,
-        "id": this.data.goodsId,
-        "mainImgUrl": mainImgUrl,
-        "marketPrice": 10,
-        "name": this.data.name,
-        "recommendDesc": this.data.recommendDesc,
-        "saleBatchNum": saleBatchNum,
-        "sellPrice": sellPrice,
-        "status": status,
-        "stockNum": this.data.skuNum,
-        "storeId": this.data.storeId,
-        "storeName": this.data.storeName,
-        "top": false,
-        "wholesalePrice": wholesalePrice
-      }
-      if (!Api.isEmpty(mainImgUrl)) {
-        Api.showToast("请上传商品图片！")
-        return;
-      }
-      if (!Api.isEmpty(this.data.name)) {
-        Api.showToast("请输入标题！")
-        return;
-      }
-      if (!Api.isEmpty(this.data.categoryCode)) {
-        Api.showToast("请输入商品类目！")
-        return;
-      }
+    }
+    var goodsVO = {
+      "categoryCode": this.data.categoryCode,
+      "customCategoryCode": this.data.categoryCustomCode,
+      "description": description,
+      "goodsImageVOList": goodsImageVOList,
+      "goodsSkuVOList": skuListAll,
+      "goodsSpecificationVOList": this.data.pageall,
+      "id": this.data.goodsId,
+      "mainImgUrl": mainImgUrl,
+      "marketPrice": 10,
+      "name": this.data.name,
+      "recommendDesc": this.data.recommendDesc,
+      "saleBatchNum": saleBatchNum,
+      "sellPrice": sellPrice,
+      "status": status,
+      "stockNum": this.data.skuNum,
+      "storeId": this.data.storeId,
+      "storeName": this.data.storeName,
+      "top": false,
+      "wholesalePrice": wholesalePrice
+    }
+    if (!Api.isEmpty(mainImgUrl)) {
+      Api.showToast("请上传商品图片！")
+      return;
+    }
+    if (!Api.isEmpty(this.data.name)) {
+      Api.showToast("请输入标题！")
+      return;
+    }
+    if (!Api.isEmpty(this.data.categoryCode)) {
+      Api.showToast("请输入商品类目！")
+      return;
+    }
+    this.setData({
+      saveHide: false
+    }, function () {
       Api.updateGoods(goodsVO)
         .then(res => {
           wx.showToast({
@@ -654,6 +628,7 @@ Page({
             icon: 'none',
             duration: 2000
           })
+          app.globalData.switchStore = true
           _this.goback()
         })
     })
@@ -703,7 +678,6 @@ Page({
         skuNum: '',
         newConst: '',
         sellPrice: '',
-        wholesalePrice: '',
         isEmptySku: true,
         pageShow: false,
         clickSpecShow: false,

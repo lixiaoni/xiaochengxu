@@ -2,12 +2,12 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/admin/status/status",
     "pages/page/user/user",
     "pages/casher/success/success",
     "pages/casher/casher/casher",
     "pages/cloudOrder/myOrder/myOrder",
     "pages/login/register/register",
-    "pages/admin/status/status",
     "pages/cloudOrder/applyStore/applyStore",
     "pages/page/updateArea/mesEdit",
     "pages/page/cartList/cartList",
