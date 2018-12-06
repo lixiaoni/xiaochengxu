@@ -1,7 +1,7 @@
 <login id="login"></login>
 <view class="main" bindtap='rightList' >
     <view class='cf-cont'  wx:if="{{hasList}}" wx:if='{{allEmpty}}'>
-      <view class='c-title'  wx:for="{{storeMes}}" wx:key="{{index}}">
+      <view class='c-title' wx:if="{{detailList.length>0}}"  wx:for="{{storeMes}}" wx:key="{{index}}">
         <image src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image> {{item.storeName}}<image class='itimg' src="/image/icl.png"></image> 
         <view wx:if='{{limitShow==3}}' class='new-c-t'>
          <view wx:if='{{storeAmount!=0 && enjoyCost==true && storeAmount!=0  && differentPrice<0}}'>全场已满{{storeAmount}}元<text>混批</text></view>

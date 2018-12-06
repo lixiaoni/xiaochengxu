@@ -168,5 +168,6 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
   <view bindtap='updateGoods' wx:if='{{isStatus==0 || isStatus==2}}' data-status='1'>上架</view>
   <view bindtap='confirmDown' wx:if='{{isStatus==1 || isStatus==4}}' data-status='2'>下架</view>
   <view bindtap='deleteList'>删除</view>
-  <view bindtap='updateGoods' data-status='{{isStatus}}'>保存</view>
+  <view bindtap='updateGoods' data-status='{{isStatus}}' wx:if="{{saveHide}}">保存</view>
+  <view wx:if="{{!saveHide}}">保存</view>
 </view>
