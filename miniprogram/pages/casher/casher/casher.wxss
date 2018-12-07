@@ -1,1 +1,72 @@
 /* pages/casher/casher/casher.wxss */
+page{
+  color:#333;
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+}
+view{
+  line-height: 1;
+}
+.order-box{
+  text-align: center;
+  background: #fff;
+  border-radius: 10rpx;
+  margin:20rpx;
+  padding: 60rpx 0 80rpx; 
+}
+.order-code{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.price{
+  padding: 48rpx 0 80rpx;
+  color: #ca7;
+  font-size: 60rpx;
+}
+.goods{
+  font-size: 26rpx;
+  color: #666;
+}
+/* 支付方式 */
+.pay-type{
+  margin:0 20rpx 20rpx;
+  padding: 0 30rpx;
+  background: #fff;
+  border-radius: 10rpx;  
+}
+.payItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 145rpx;  
+  font-size: 32rpx;
+}
+.wx-icon{
+  width: 50rpx;
+  height: 44rpx;
+  margin-right: 20rpx;
+}
+.check-icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.bottom-btn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ca7;
+  color: #fff;
+  font-size: 40rpx;
+  height: 122rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-price{
+  font-size: 48rpx;
+  font-weight: 600;
+  margin-left: 20rpx;
+}

@@ -1,8 +1,12 @@
-<view class='title'>恭喜您付款成功!</view>
+<wxs src="../../../public/filter.wxs" module="filter" />
 <view style='text-align:center;'>
-<image src='/image/duile.png' class='success-img'></image>
+  <image src='/image/pay-succss.png' class='success-img'></image>
+  <view class='title-box'>支付成功！</view>
+  <view class="price"><block wx:if="{{price}}">订单金额：<text class='price-num'>￥{{filter.filterMoney(price)}}</text></block></view>
+  <view>支付方式：<text class='gold-color'>微信支付</text></view>
+  <button bindtap='afterPay' class='success-btn'> 查看订单 </button>
+  <view bindtap='toUser'>返回首页</view>
 </view>
-<button bindtap='toUser' class='success-btn'> 回到首页 </button>
 
 
 <!-- 返回我的小云店 -->

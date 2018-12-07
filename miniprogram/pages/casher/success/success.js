@@ -64,13 +64,12 @@ Page({
         this.setData({
           user: res.obj
         })
-        this.afterPay();
       }
     })
   },
   toUser() {
     wx.switchTab({
-      url: "/pages/page/user/user",
+      url: "/pages/page/home/home",
     })
   },
   /**
@@ -81,7 +80,8 @@ Page({
       return
     }
     this.setData({
-      type: options.type
+      type: options.type,
+      price: options.price ? options.price : false
     })
     this.getUser();
   },

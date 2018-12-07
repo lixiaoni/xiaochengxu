@@ -9,6 +9,13 @@ Page({
 
   },
   buy() {
+    if (!this.data.num) {
+      wx.showToast({
+        title: '无订单号',
+        icon: "none"
+      })
+      return
+    }
     wx.login({
       success: (res) => {
         if (res.code) {
@@ -37,6 +44,7 @@ Page({
         "platAppId": app.globalData.payAppNum,
       },
       success: (res) => {
+        this.preSet(res);
         if (res.data.code == 0) {
           this.payment(res.data.obj.payData);
         } else {
@@ -50,11 +58,29 @@ Page({
         }
       },
       fail: (e) => {
-        console.log(e);
+        wx.showToast({
+          title: e.data.message,
+          icon: 'none'
+        })
+
       },
       complete() {
         wx.hideLoading();
       }
+    })
+  },
+  preSet(res) {
+    console.log(res)
+    let type = "";
+    switch (this.data.orderType) {
+      case "cloudXPL":
+        type = "新批零"; break;
+      case "cloudXLS":
+        type = "新零售"; break;
+    }
+    this.setData({
+      price: res.data.obj.amount,
+      uutype: type
     })
   },
   payment(res) {
@@ -83,7 +109,7 @@ Page({
   },
   afterPayment() {
     wx.navigateTo({
-      url: '../success/success?type=' + this.data.orderType,
+      url: '../success/success?type=' + this.data.orderType + "&price=" + this.data.price,
     })
   },
   /**
@@ -94,9 +120,7 @@ Page({
       num: options.num,
       orderType: options.type
     })
-    if (options.num) {
-      this.buy()
-    }
+    this.buy();
   },
 
   /**

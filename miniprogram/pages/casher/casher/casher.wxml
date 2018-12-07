@@ -1,0 +1,22 @@
+<wxs src="../../../public/filter.wxs" module="filter" />
+
+<view class='order-box'>
+  <view class='order-code'>订单号：{{num}}</view>
+  <view class='price' wx:if="{{price}}">￥{{filter.filterMoney(price)}}</view>
+  <view class='goods'>{{uutype?"小云店·"+uutype+"购买":""}}</view>
+</view>
+
+<view class='pay-type'>
+  <view class='payItem'>
+    <view class='flex-center'>
+      <image class='wx-icon' src='/image/weixinzhifu.png'></image>
+      <text>微信支付</text>
+    </view>
+    <!-- <image class='check-icon' src='/image/uncheck-circle.png'></image> -->
+    <image class='check-icon' src='/image/checked-circle.png'></image>
+  </view>
+</view>
+
+<view class='bottom-btn' bindtap='buy'>立即支付 
+<text class='btn-price' wx:if="{{price}}">￥{{filter.filterMoney(price)}}</text>
+</view>
