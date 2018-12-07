@@ -103,9 +103,6 @@ Page({
       // delete skuListAll[i].specValueName
       delete skuListAll[i].id
       // delete skuListAll[i].specValueCode
-      if (!this.isEmpty(skuListAll[i].wholesalePrice, "批发价不能为空!")) {
-        return
-      }
       if (isNaN(skuListAll[i].stockNum)) {
         Api.showToast("库存不能为空!")
         return

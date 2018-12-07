@@ -93,8 +93,9 @@
           <view class="result-text">
             <text>{{item.name}}</text>
           </view>
-          <view class="result-text">
-            <text class='h-font'>￥ {{item.sellPrice}}</text>
+          <view class="result-text result-text1">
+            <text>￥ {{item.sellPrice}}</text>
+            <image wx:if='{{limitShow==2}}' class='h-img' data-id='{{item.id}}' data-src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/store-cover" data-name='{{item.name}}' bindtap='editFun' src="/image/edit2.png" />
           </view>
         </view>
       </view>
