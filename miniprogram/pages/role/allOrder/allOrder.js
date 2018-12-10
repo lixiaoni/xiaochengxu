@@ -349,7 +349,7 @@ Page({
   
 
   getData() {
-    app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {
+    API.getOrderDetail({ orderNumber: this.data.num }).then((res) => {
       this.setData({
         order: res.obj,
         status: res.obj.orderStatus  //状态

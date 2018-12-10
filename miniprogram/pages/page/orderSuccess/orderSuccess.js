@@ -1,5 +1,6 @@
 // pages/page/orderSuccess/orderSuccess.js
 const app = getApp();
+import API from "../../../utils/api.js"
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
     orderSuccessHiddenBtn:false,
   },
   getData() {
-    app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {
+    API.getOrderDetail({ orderNumber: this.data.num }).then((res) => {
       this.setData({
         user: res.obj,
         price: res.obj.orderAmount.toFixed(2)        
