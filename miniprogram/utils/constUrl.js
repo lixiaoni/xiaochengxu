@@ -120,3 +120,5 @@ export const putPaymentImgUrl = "/admin/store/{{storeId}}/receiptcode"
 export const copyGoodsUrl='/api/shop/goods/copy/{{originGoodsId}}'
 // 楼层三级
 export const threeFloorListUrl = "/api/floor/threelevellist/{{mallCode}}"
+//订单详情
+export const orderDetailUrl = "/api/order/byordernumber/{{orderNumber}}";

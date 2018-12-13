@@ -66,7 +66,7 @@
 
 <block wx:if="{{hasUser}}">
   <!-- 没有付款订单 -->
-  <!-- <view class='page_bd page_hd1' wx:if="{{!payStore}}">
+  <view class='page_bd page_hd1' wx:if="{{!payStore && user.id=='cbced730cc43cead0592fbdd5ef10f99'}}">
     <view class='weui-back'>
       <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/newCloud/newCloud'>
         <image src='/image/applyStore.png' class='user-img'></image>
@@ -78,7 +78,7 @@
         </view>
       </navigator>
     </view>
-  </view> -->
+  </view>
 
   <block wx:if="{{limitShow==2}}">
     <view class='page_bd page_hd1'>

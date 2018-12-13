@@ -59,9 +59,23 @@ Page({
     }
 
     if (type == 'name') {
+      if (text.length > 10) {
+        wx.showToast({
+          title: '最多10位字符',
+          icon: 'none'
+        })
+        return
+      }
       url = "/api/user/nickname/{{nickName}}";
       obj = { nickName: text };
     } else if (type == 'wx') {
+      if (text.length > 50) {
+        wx.showToast({
+          title: '最多50位字符',
+          icon: 'none'
+        })
+        return
+      }
       url = "/api/user/weixinNumber/{{weixinNumber}}";
       obj = { weixinNumber: text };
     }

@@ -168,7 +168,7 @@ Page({
   },
 
   getData() {
-    app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {
+    API.getOrderDetail({ orderNumber: this.data.num }).then((res) => {
       try {
         res.obj.createDate = util.formatTime(new Date(res.obj.createDate));
         res.obj.payDate = util.formatTime(new Date(res.obj.payDate));

@@ -1,5 +1,5 @@
 <view class='login-box'>
-  <view class='title-box'>《注册协议及隐私条款》</view>
+  <view class='title-box'>《注册服务协议及隐私条款》</view>
   <view class='mid-title'>优生活平台服务协议</view>
   <view class='right-title'>版本生效日期：2018年10月01日</view>
   <view class="part-title">提示条款</view>
@@ -16,7 +16,7 @@
   </view>
   <view class='part s-title'>一、 定义</view>
   <view class='part'>
-    <text class="bold">优生活平台：</text>指包括优生活官网（域名为 youlife.me，youlife.net.cn）、优生活云动力（域名为ecpower.cn）、优生活小云店（域名为xiaoyundian.cn）、优生活生活猫（域名为youlifemall.com，youlifemall.cn）等网站及客户端（包括微信小程序）。</view>
+    <text class="bold">优生活平台：</text>指包括小云店家微信小程序、小云店铺微信小程序、百荣世贸商城微信小程序、优生活官网（域名为 youlife.me，youlife.net.cn）、优生活云动力（域名为ecpower.cn）、优生活小云店（域名为xiaoyundian.cn）、优生活生活猫（域名为youlifemall.com，youlifemall.cn）等网站及客户端（包括微信小程序）。</view>
   <view class='part'>
     <text class="bold">优生活：</text>优生活平台经营者的单称或合称，优生活互动（北京）信息技术有限公司。</view>
   <view class='part'>
