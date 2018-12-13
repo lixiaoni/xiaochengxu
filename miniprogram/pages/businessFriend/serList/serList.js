@@ -41,8 +41,6 @@ Page({
       },function(){
         _this.getList()
       })
-    }else{
-      _this.initData()
     }
   
   },
@@ -76,6 +74,8 @@ Page({
     })
   },
   searchBtn: function (e) {
+    var val = this.data.value
+    if (!val) { return }
     this.initData()
   },
   getList: function (nextPage) {
@@ -120,14 +120,18 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getList()
+    var val = this.data.value
     wx.stopPullDownRefresh();
+    if (!val) { return }
+    this.getList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    var val = this.data.value
+    if (!val) { return }
     this.getList(true)
   },
 

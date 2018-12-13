@@ -3,8 +3,6 @@ var that
 import Api from '../../../utils/api.js'
 Page({
   data: {
-    history:[],
-    hidden: false,
     baseUrl: app.globalData.imageUrl,
     result: [],
     value: '',
@@ -12,18 +10,9 @@ Page({
     closeCont: false,
   },
   searchInput(e) {
-    if (e.detail.value == '') {
-      this.setData({
-        value: e.detail.value,
-        hidden: false,
-      })
-    } else {
-      this.setData({
-        value: e.detail.value,
-        hidden: true,
-      })
-    }
-
+    this.setData({
+      value: e.detail.value
+    })
   },
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
@@ -42,113 +31,58 @@ Page({
     })
   },
   //搜索确定键
-  getList:function(value){
-    var keyword = value,
+  getList: function () {
+    var keyword = this.data.value,
       _this = this
-    this.setData({
-      result: [],
-    })
     Api.goodsSearchList({ keyword: keyword })
       .then(res => {
-        var obj = res.obj.result,
-          datas = _this.data.result,
-          newArr = app.pageRequest.addDataList(datas, obj)
-        if (newArr.length > 0) {
-          _this.setData({
-            showResult: true,
-          })
-        }else{
-          _this.setData({
-            showResult: true,
-          })
+        var obj = res.obj.result
+        if (obj) {
+          if (obj.length == 0) {
+            Api.showToast("暂无更多了！")
+          } else {
+            var datas = _this.data.result,
+              newArr = app.pageRequest.addDataList(datas, obj)
+            _this.setData({
+              result: newArr,
+            })
+          }
         }
-        _this.setData({
-          result: newArr,
-        })
       })
+  },
+  // 初始化数据
+  initData: function () {
+    app.pageRequest.pageData.pageNum = 0
+    this.setData({
+      result: []
+    })
   },
   searchBtn(e) {
-    app.pageRequest.pageData.pageNum = 0
-    this.setData({
-      result:[]
-    })
-    var value = this.data.value
-    if (Api.isEmpty(value)){
-      this.historyHandle(value)
-    }
-    this.getList(value)
-  },
-  // 清空input的内容
-  emptyInput(e) {
-    this.setData({
-      value: '',
-      showResult: false,
-      hidden: false,
-      closeCont: false
-    })
-    wx.removeStorageSync('history')
-  },
-  keywordHandle(e) {
-    const text = e.target.dataset.name;
-    this.setData({
-      value: text,
-      showResult: true
-    })
-    this.historyHandle(text);
-    this.getList(text)
-  },
-  historyHandle(value) {
-    let history = this.data.history;
-    const idx = history.indexOf(value);
-    if (idx === -1) {
-      // 搜索记录只保留8个
-      if (history.length > 7) {
-        history.pop();
-      }
-    } else {
-      history.splice(idx, 1);
-    }
-    history.unshift(value);
-    wx.setStorageSync('history', JSON.stringify(history));
-    this.setData({
-      history
-    });
-  },
-  removeAll() {
-    this.setData({
-      history: []
-    });
-    wx.removeStorageSync('history')
+    var val = this.data.value
+    if (!val) { return }
+    this.initData()
+    this.getList()
   },
   onLoad(options) {
-    app.pageRequest.pageData.pageNum = 0
-    const history = wx.getStorageSync('history');
-    if (history) {
-      this.setData({
-        history: JSON.parse(history)
-      })
-    }
-    var _this = this
-    wx.getSystemInfo({
-      success: function (res) {
-        _this.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    });
-    this.getList(options.value)
+    // var _this = this
+    // this.initData()
+    // if (options.value){
+    //   _this.setData({
+    //     value:options.value
+    //   },function(){
+    //     _this.getList()
+    //   })
+    // }
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    app.pageRequest.pageData.pageNum = 0
-    this.setData({
-      result: [],
-    })
-    if (this.data.value != '') {
-      this.getList()
-    }
+    var val = this.data.value
+    this.initData()
+    wx.stopPullDownRefresh();
+    if (!val) { return }
+    this.getList()
   },
   onShareAppMessage: (res) => {
     var img = '',
@@ -162,16 +96,16 @@ Page({
       name = res.name
       return {
         title: name,
-        path: '/pages/page/goodsDetails/goodsDetails?goodsId='+id+"&storeId="+storeId,
+        path: '/pages/page/goodsDetails/goodsDetails?goodsId=' + id + "&storeId=" + storeId,
         imageUrl: img,
         success: (res) => {
         },
         fail: (res) => {
         }
       }
-    }else{
+    } else {
       return {
-        path: '/pages/page/home/home?storeId='+storeId,
+        path: '/pages/page/home/home?storeId=' + storeId,
         success: (res) => {
         },
         fail: (res) => {
@@ -190,7 +124,7 @@ Page({
     wx.navigateTo({
       url: '../editGoods/editGoods?goodsId=' + id,
     })
-  }, 
+  },
   // 上下架
   changeStatus: function (e) {
     const goodId = e.currentTarget.dataset.id,
@@ -266,5 +200,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    var val = this.data.value
+    if (!val) { return }
+    this.getList()
   }
 })

@@ -41,7 +41,9 @@
 </view>
 </mes>
 <view class="goods-ser">
-  <input placeholder='输入商品名称' value="{{value}}" bindinput='changeValue' />
+  <navigator style='width:75%' url='../serStatus/serStatus'>
+    <input placeholder='输入商品名称' value="{{value}}" disabled='disabled'  />
+  </navigator>
     <image class="home-ser"  src="/image/search.png"></image>
     <view class='home-img home-img-c'>
       <view class='serCont'>

@@ -44,6 +44,8 @@ Page({
     })
   },
   searchBtn: function (e) {
+    var val = this.data.value
+    if(!val){return}
     this.initData()
   },
   getList: function (nextPage) {
@@ -89,8 +91,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.initData()
     wx.stopPullDownRefresh();
+    this.initData()
   },
 
   /**

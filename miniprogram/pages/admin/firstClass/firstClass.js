@@ -45,10 +45,16 @@ Page({
     this.setData({
       currentTab:0,
     })
+    wx.setNavigationBarTitle({
+      title: '选择一级类目'
+    })
   },
   goFistClass2: function () {
     this.setData({
       currentTab:1,
+    })
+    wx.setNavigationBarTitle({
+      title: '选择二级类目'
     })
   },
   twoClass:function(e){
@@ -56,7 +62,7 @@ Page({
         code=e.target.dataset.id,
         _this=this
     wx.setNavigationBarTitle({
-      title: '选择二级分类'
+      title: '选择二级类目'
     })
     Api.classCodePar({ parentCategoryCode: code })
       .then(res => {
@@ -73,7 +79,7 @@ Page({
       code = e.target.dataset.id,
       _this = this
     wx.setNavigationBarTitle({
-      title: '选择三级分类'
+      title: '选择三级类目'
     })
     Api.classCodePar({ parentCategoryCode: code })
       .then(res => {

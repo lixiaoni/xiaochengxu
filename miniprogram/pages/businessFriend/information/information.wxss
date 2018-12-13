@@ -2,3 +2,4 @@
 .bf-img{ position: absolute;
 }
 .miniProgram{position: absolute;width: 100%;height: 100%;top: 0;left: 0;}
+.data-cont>view view{margin-left: 160rpx;}

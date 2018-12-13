@@ -34,11 +34,13 @@ Page({
         var bfPermission = res.obj.bfPermission
         if (bfPermission == 1) {
           _this.setData({
-            switch1Change: true
+            switch1Change: true,
+            index:1
           })
         } else {
           _this.setData({
-            switch1Change: false
+            switch1Change: false,
+            index: 0
           })
         }
       })

@@ -360,14 +360,25 @@ Page({
           value: value.substring(0, 15),
         })
       } else {
-        if (num > 10) {
-          Api.showToast("超过最长数字限制")
+        if (this.data.addSpecAttc || this.data.updateSpec) {
+          if (num > 7) {
+            Api.showToast("超过最长数字限制")
+          }
+          this.setData({
+            watchInput: true,
+            value: value.substring(0, 6),
+            valueEdit: value.substring(0, 6)
+          })
+        } else {
+          if (num > 10) {
+            Api.showToast("超过最长数字限制")
+          }
+          this.setData({
+            watchInput: true,
+            value: value.substring(0, 9),
+            valueEdit: value.substring(0, 9)
+          })
         }
-        this.setData({
-          watchInput: true,
-          value: value.substring(0, 9),
-          valueEdit: value.substring(0, 9)
-        })
       }
     }
   },

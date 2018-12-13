@@ -32,7 +32,7 @@ Page({
    watchInput: function (event) {
      var value = event.detail.value, 
      num = value.length
-     if (value == '') {
+     if (value == '' || value.trim().length == 0) {
       this.setData({
         watchInput: false
       })
@@ -73,6 +73,9 @@ Page({
           Api.showToast("新建成功")
           _this.cancel()
           _this.getList()
+          _this.setData({
+            watchInput: false
+          })
         })
     }
    

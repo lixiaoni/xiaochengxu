@@ -486,10 +486,6 @@ Page({
         sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
       }
     } else {
-      if (!Api.isEmpty(wholesalePrice)) {
-        Api.showToast("请输入商品批发价！")
-        return;
-      }
       if (!Api.isEmpty(sellPrice)) {
         Api.showToast("请输入商品零售价！")
         return;

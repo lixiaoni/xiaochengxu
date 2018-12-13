@@ -1,6 +1,6 @@
 .sp-cont{color:#333;padding:20rpx;background:#fff;border-radius:8rpx;margin:20rpx}
 .sp-color image{width:40rpx;height:40rpx;position:absolute;right:0;top:6rpx}
-page{height:100%}
+page{height:99%}
 .sp-color image.img{right:70rpx}
 .sp-color{font-size:34rpx;font-weight:600;margin-bottom:30rpx;padding:0 10rpx;position:relative}
 .sp-button{margin-bottom:20rpx;margin-top:70rpx}
@@ -23,5 +23,5 @@ page{height:100%}
 .spec-view{margin-top:50rpx;float:left;height:75rpx;line-height:75rpx;border:2rpx solid #BFBFBF;color:#999;width:260rpx;font-weight:normal;border-radius:8rpx;font-size:30rpx;padding-top:0 !important;text-align:center}
 .spec-view-ac{background:#ddd;color:#fff;border:2rpx solid #ddd;margin-left:20rpx}
 .spec-view-active{color:#fff;background:#CCAA77;border:2rpx solid #CCAA77}
-swiper{height:110%}
+swiper{height:85%}
 .spec-title{font-size:46rpx;font-weight:bold;text-align:center;margin-bottom:80rpx;margin-top:40rpx}

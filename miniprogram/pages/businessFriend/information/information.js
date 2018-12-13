@@ -13,6 +13,7 @@ Page({
     status: '',
     success: false,
     oneGreet: false,
+    greet:[],
     aginGreet: false,
     accept: '',
     logo: '',
@@ -69,6 +70,14 @@ Page({
           goodsList = store.goodsList,
           storeMes = store.store,
           floor = Api.isFloorInfo(obj.floor)
+        if(this.data.value==''){
+          if (obj.merchantRemark){
+            _this.setData({
+              value: obj.merchantRemark,
+              remarkName: obj.merchantRemark,
+            })
+          }
+        }
         if (goodsList != null) {
           _this.setData({
             goodsList: goodsList
@@ -97,6 +106,11 @@ Page({
       logo = options.logo,
       name = options.name,
       remark = options.remark
+    if (options.greet){
+      this.setData({
+        greet:options.greet
+      })
+    }
     this.setData({
       send: send
     })

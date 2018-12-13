@@ -6,6 +6,7 @@ import {
   adminGoodsDownUrl,
   adminShopCateUrl,
   adminGoodsStatusUrl,
+  updateClassUrl,
   saleBatchNumUrl,
   isFriendUrl,
   newGoodsSearchListUrl,
@@ -168,6 +169,11 @@ function getStoreInfo() {
 function adminGoodsList(data){
   data = initStoreId(data);
   return app.pageRequest.pageGet(adminGoodsListUrl, data)
+}
+/**修改店内分类**/
+function updateClass(data) {
+  data = initStoreId(data);
+  return app.http.putRequest(updateClassUrl, data)
 }
 /**首页新品**/
 function recentGoods(data) {
@@ -847,6 +853,7 @@ module.exports = {
   goodsApiSearchList: goodsApiSearchList,
   updataPwd: updataPwd,
   changeIcon: changeIcon,
+  updateClass: updateClass,
   showPurchaser: showPurchaser,
   showMerchant: showMerchant,
   recentGoods: recentGoods

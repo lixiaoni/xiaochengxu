@@ -2,7 +2,7 @@
 <view class="main" bindtap='rightList' >
     <view class='cf-cont'  wx:if="{{hasList}}" wx:if='{{allEmpty}}'>
       <view class='c-title' wx:if="{{detailList.length>0}}"  wx:for="{{storeMes}}" wx:key="{{index}}">
-        <image src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image> {{item.storeName}}<image class='itimg' src="/image/icl.png"></image> 
+        <view bindtap='urlHome'><image src="{{baseUrl}}{{item.logo}}?x-oss-process=style/logo"></image> {{item.storeName}}<image class='itimg' src="/image/icl.png"></image></view>
         <view wx:if='{{limitShow==3}}' class='new-c-t'>
          <view wx:if='{{storeAmount!=0 && enjoyCost==true && storeAmount!=0  && differentPrice<0}}'>全场已满{{storeAmount}}元<text>混批</text></view>
          <view wx:if='{{!enjoyCost && !enjoyCostNew}}'><text style='color:#666;border:0' wx:if='{{differentPrice>0}}'>还差<text style='color:red;border:0;margin-left:0'>{{differentPrice}}</text>元全场可享受批发价</text><text>混批</text></view>
@@ -22,11 +22,11 @@
                   <icon wx:if="{{item.selected}}" type="success" color="#CCAA77" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
                   <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
                   <navigator url="../goodsDetails/goodsDetails?goodsId={{item.goodsId}}"><image class="cart-thumb" src="{{baseUrl}}{{item.mainUrl}}?x-oss-process=style/goods-small"></image></navigator>
-<view class='ct-text ct-text1' wx:if='{{limitShow!=3 && item.shoppingCartSkuList==null}}'>￥{{item.sellPrice}}</view>
-                  <view class='ct-text ct-text1' wx:if='{{limitShow!=3 && item.shoppingCartSkuList!=null}}'>￥{{item.shoppingCartSkuList[0].sellPrice}}</view>
-                  <view class='ct-text ct-text1'  wx:if='{{limitShow==3 && item.shoppingCartSkuList==null}}'>￥{{item.enjoyPrice?item.wholesalePrice:item.sellPrice}}</view>
-                  <view class='ct-text ct-text1' wx:if='{{limitShow==3 && item.shoppingCartSkuList!=null}}'>￥{{item.enjoyPrice?item.shoppingCartSkuList[0].wholesalePrice:item.shoppingCartSkuList[0].sellPrice}}</view>
-                  <view style='width:335rpx' class='ct-title ct-title1'>{{item.goodsName}}
+<view class='ct-text ct-text1' wx:if='{{limitShow!=3 && item.shoppingCartSkuList==null}}'  data-id='{{item.goodsId}}' bindtap="lookDetails">￥{{item.sellPrice}}</view>
+                  <view class='ct-text ct-text1' wx:if='{{limitShow!=3 && item.shoppingCartSkuList!=null}}'  data-id='{{item.goodsId}}' bindtap="lookDetails">￥{{item.shoppingCartSkuList[0].sellPrice}}</view>
+                  <view class='ct-text ct-text1'  wx:if='{{limitShow==3 && item.shoppingCartSkuList==null}}'  data-id='{{item.goodsId}}' bindtap="lookDetails">￥{{item.enjoyPrice?item.wholesalePrice:item.sellPrice}}</view>
+                  <view class='ct-text ct-text1' wx:if='{{limitShow==3 && item.shoppingCartSkuList!=null}}'  data-id='{{item.goodsId}}' bindtap="lookDetails">￥{{item.enjoyPrice?item.shoppingCartSkuList[0].wholesalePrice:item.shoppingCartSkuList[0].sellPrice}}</view>
+                  <view style='width:335rpx' class='ct-title ct-title1'  data-id='{{item.goodsId}}' bindtap="lookDetails">{{item.goodsName}}
                    
                   </view>
                   <view class="cart-pro-name cart-pro-name1"  wx:if="{{item.shoppingCartSkuList.length==1}}" wx:for="{{item.shoppingCartSkuList}}" bindtap='showAlert' data-name="one" data-gid='{{item.goodsId}}' wx:for-item="record"  wx:key="{{index}}">规格：{{record.skuName}}<image class='down' src="/image/down.png"></image></view>
@@ -62,14 +62,15 @@
                   </view>
                   <view class='allNumShow' wx:if="{{item.shoppingCartSkuList.length>1}}">共<text> {{item.num}} 件</text>商品 合计：<text>￥{{item.enjoyPrice?item.allGoodsPf:item.allGoodsAmount}}</text></view>
                   <view class="cc-coun-new" wx:if="{{item.shoppingCartSkuList.length==1}}">
-                    <view bindtap="minusCount" data-obj="{{obj}}"  data-index="{{index}}">-</view>
-                    <view class='cc-add'>{{item.num}}</view>
+                    <view bindtap="minusCount" data-obj="{{obj}}" class='{{item.num==1?"classFont":""}}'  data-index="{{index}}">-</view>
+                    <!-- <view class='cc-add'>{{item.num}}</view> -->
+                    <input class='cc-add' type='number' data-index="{{index}}"  bindblur='blurInput' bindinput='changeNum' value='{{item.num}}'></input>
                     <view bindtap="addCount" data-index="{{index}}">+</view>
                   </view>
                   <!-- <view  class='man-j'>满<text>{{item.saleBatchNum}}</text>起批<text wx:if='{{limitShow==3 && item.saleBatchNum-item.num>0 && !item.enjoyPrice}}' style='color:#333;'> 还差<text style='color:#CCAA77'>{{item.saleBatchNum-item.num}}</text>件</text></view> -->
                    <view class="cc-coun-new" wx:if="{{item.shoppingCartSkuList==null}}"  wx:for-item="record">
-                    <view bindtap="minusCountNew" data-obj="{{obj}}"  data-index="{{index}}">-</view>
-                    <view class='cc-add'>{{item.num}}</view>
+                    <view bindtap="minusCountNew" data-obj="{{obj}}" class='{{item.num==1?"classFont":""}}'  data-index="{{index}}">-</view>
+                    <input class='cc-add' type='number' data-index="{{index}}"  bindblur='blurInput1' bindinput='changeNum1' value='{{item.num}}'></input>
                     <view bindtap="addCountNew" data-index="{{index}}">+</view>
                   </view>
                 </view>

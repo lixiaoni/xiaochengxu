@@ -10,8 +10,8 @@
 <view class='shop-cont'>
   <view class='shop-size' hidden='{{shouTitile}}'>请选择本店分类</view>
   <view class='shop-size shop-size-new' hidden='{{!shouTitile}}'>按分类显示商品，方便客户筛选</view>
-  <view wx:for='{{dataList}}' wx:key='{{index}}' wx:if='{{item.name!="未分类"}}'>
-     <icon wx:if="{{item.selected}}" data-index="{{index}}" type="success" size="18" color="#CCAA77" bindtap="selectList"/>
+  <view wx:for='{{dataList}}' wx:key='{{index}}' wx:if='{{item.name!="未分类"}}' data-index="{{index}}"  bindtap="selectList">
+     <icon wx:if="{{item.selected}}" data-index="{{index}}" type="success" size="18" color="#CCAA77"/>
      <icon wx:else data-index="{{index}}" type="circle" size="18" bindtap="selectList"/>
      {{item.name}}<view>{{item.count}}件</view>
   </view>

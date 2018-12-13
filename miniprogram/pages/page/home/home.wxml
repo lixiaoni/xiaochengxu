@@ -32,7 +32,7 @@
   </view>
 </view>
 <view class='banner' id='myText'>
-  <image wx:if='{{store!="" && limitShow==2}}'  bindtap='editDp' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
+  <image wx:if='{{store!="" && limitShow==2}}'  bindtap='chooseImage' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
    <image wx:if='{{store!="" && limitShow!=2}}'  src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
   <view class="ym_sydtstore">
     <view class="ym_sydtlogo">
@@ -91,10 +91,10 @@
             </view>
           </navigator>
           <view class="result-text">
-            <text>{{item.name}}</text>
+            <text data-id='{{item.id}}' bindtap='lookDetails'>{{item.name}}</text>
           </view>
           <view class="result-text result-text1">
-            <text>￥ {{item.sellPrice}}</text>
+            <text data-id='{{item.id}}' bindtap='lookDetails'>￥ {{item.sellPrice}}</text>
             <image wx:if='{{limitShow==2}}' class='h-img' data-id='{{item.id}}' data-src="{{baseUrl}}{{item.mainImgUrl}}?x-oss-process=style/store-cover" data-name='{{item.name}}' bindtap='editFun' src="/image/edit2.png" />
           </view>
         </view>
@@ -120,14 +120,14 @@
     <view bindtap='closeShow'>取消</view>
   </view>
 </view>
-<view class='showHide' hidden='{{showDp}}'>
+<!-- <view class='showHide' hidden='{{showDp}}'>
   <view class='sh-cont'>
     <view class='sh-title'>更换小云店封面</view>
     <view bindtap="chooseImage">拍照</view>
     <view bindtap="chooseImage">从手机相册选取</view>
     <view bindtap='closeShow'>取消</view>
   </view>
-</view>
+</view> -->
 <view hidden='{{indexEmpty}}'>
   <no></no>
 </view>

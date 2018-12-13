@@ -132,6 +132,12 @@ Page({
         })
       })
   },
+  lookDetails: function (e) {
+    var goodsId = e.target.dataset.id
+    wx.navigateTo({
+      url: '../goodsDetails/goodsDetails?goodsId=' + goodsId,
+    })
+  },
   editGoods:function(){
     var goodsId = this.data.goodsId
     wx.navigateTo({
@@ -145,11 +151,11 @@ Page({
       currentTab:0
     })
   }, 
-  editDp: function () {
-    this.setData({
-      showDp: false,
-    })
-  }, 
+  // editDp: function () {
+  //   this.setData({
+  //     showDp: false,
+  //   })
+  // }, 
   editDpMes:function(){
     var limitShow = this.data.limitShow
     if (limitShow==2){

@@ -24,11 +24,14 @@ Page({
                   status = obj.status
                 if (status) {
                   if (status == 3) {
-                    status == 0
+                    wx.navigateTo({
+                      url: '../information/information?status=0&send=&accept=' + obj.storeId_ + '&remark=&name=&logo=',
+                    })
+                  }else{
+                    wx.navigateTo({
+                      url: '../information/information?status=' + status + '&send=&accept=' + obj.storeId_ + '&remark=&name=&logo=',
+                    })
                   }
-                  wx.navigateTo({
-                    url: '../information/information?status=' + status + '&send=&accept=' + obj.storeId_ + '&remark= &name=&logo=',
-                  })
                 }
               })
               .catch(res => {

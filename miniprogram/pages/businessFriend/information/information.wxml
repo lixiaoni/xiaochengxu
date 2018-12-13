@@ -16,11 +16,14 @@
       <view class='nbf-font' wx:if='{{floorInfo!=null}}'><image  mode="widthFix" src="{{baseUrl}}{{floorInfo.mallLogo}}"></image>{{floorInfo.mallName}}</view>
     </view>
   </view>
+  <view class='data-cont'  wx:if='{{greet!=""}}'>
+   <view><text>{{name}}：</text><view>{{greet}}</view></view>
+  </view>
 </view>
 <view class='bf-cont'>
   <view class='bf-weui add-bf-weui' bindtap='setName'>
     <view class="weui_cells">
-      <text class="bf-font">设置备注 </text>
+      <text class="bf-font">设置备注</text><text style='font-weight:none;margin-left:30rpx'>{{remarkName}}</text>
       <view class='weui-view'>
         <image  mode="widthFix" src="/image/icl.png"></image>
       </view>
