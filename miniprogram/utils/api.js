@@ -624,11 +624,13 @@ function registerPhoneMsg(data) {
 }
 // 关闭订单
 function closeOrder(data){
-  return app.http.putRequest(closedOrderUrl+"?reason="+data.reason, data)
+  let url = closedOrderUrl + "?reason=" + encodeURI(data.reason)
+  return app.http.putRequest(url, data)
 }
 // 取消订单
 function cancelOrder(data){
-  return app.http.putRequest(cancelOrderUrl + "?reason=" + data.reason, data)
+  let url = cancelOrderUrl + "?reason=" + encodeURI(data.reason)
+  return app.http.putRequest(url, data)
 }
 // 添加快递
 function addExpress(data){
