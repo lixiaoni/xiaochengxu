@@ -18,7 +18,7 @@
 </view>
 <view class='wk-cont wk-cont'>
   <view class='wx-bot-cont'>
-    <navigator   url='../stockOrder/stockOrder'><view><image mode='widthFix' src='/image/ad1.png'></image></view><view>进货单</view></navigator>
+    <navigator   url='../stockOrder/stockOrder'><view><image mode='widthFix' src='/image/nav-sorder-gold.png'></image></view><view>进货单</view></navigator>
     <navigator   url='../../role/order/order'><view><image mode='widthFix' src='/image/ad2.png'></image></view><view>订单管理</view></navigator>
     <navigator   url='../../admin/status/status'><view><image mode='widthFix' src='/image/ad3.png'></image></view><view>云商品</view></navigator>
     <navigator   url='../../businessFriend/index/index'><view><image mode='widthFix' src='/image/ad4.png' style='width:50rpx;'></image></view><view>商友录</view></navigator>
