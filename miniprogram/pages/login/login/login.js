@@ -109,6 +109,11 @@ Component({
           password: "",
           verificationCode: ""
         })
+      }).catch(e => {
+        wx.showToast({
+          title: e.data.message,
+          icon: 'none'
+        })
       })
     },
     //登录
