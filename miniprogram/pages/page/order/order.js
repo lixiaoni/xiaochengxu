@@ -10,7 +10,7 @@ Page({
   data: {
     showList: [],
     hasList: false, 
-    nav: [{ title: "全部" }, { title: "待付款" }, { title: "已付款" }, { title: "待收货" }, { title: "已完成" }],
+    nav: [{ title: "全部" }, { title: "待付款" }, { title: "待发货" }, { title: "待收货" }, { title: "已完成" }],
     reason: [{ title: "我不想买了", selected: true }, { title: "信息填写错误，重新拍", selected: false }, { title: "卖家缺货", selected: false }, { title: "同城见面交易", selected: false }, { title: "其他", selected: false}],
     navindex:0,
     inputActive:'inputActive ',
@@ -161,8 +161,8 @@ Page({
       switch (current) {
         case 0: whitch = 'all'; break;
         case 1: whitch = "unpaid"; break;
-        case 2: whitch = 'paid'; break;
-        case 3: whitch = 'shipped'; break;
+        case 2: whitch = 'wait_deliver'; break;
+        case 3: whitch = 'delivered'; break;
         case 4: whitch = 'finish'; break;
       }
       this.setData({
@@ -216,23 +216,23 @@ Page({
   resetData(data){
     let arr = [];
     for(let i =0; i<data.length;i++){ // 循环订单
-      let oldGoods = data[i].goodsInfos,  //商品数组
+      let oldGoods = data[i].goodsInfoList,  //商品数组
           newGoods = [];
       for (let j = 0; j < oldGoods.length;j++){ //货品循环
         
-        let type = oldGoods[j].orderDetails;  //规格数组
+        let type = oldGoods[j].goodsSkuInfoVOList;  //规格数组
         
         for(let k = 0;k < type.length;k++){
           //当前货物,类型变为对象
           let nowGood = {};  
           Object.assign(nowGood,oldGoods[j]);
-          nowGood.orderDetails = type[k];
+          nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
       }
       //编辑新订单数组
       let newOrder = data[i];
-      newOrder.goodsInfos = newGoods;
+      newOrder.goodsInfoList = newGoods;
       arr.push(newOrder)
     }
     this.setData({

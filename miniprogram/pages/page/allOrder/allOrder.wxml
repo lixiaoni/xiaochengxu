@@ -36,7 +36,7 @@
   </view>
 </mes>
 <!-- 付款码 -->
-<savePayment show='{{paymentModal}}' com-name='{{order.storeInfo.storeName}}' wx='{{order.storeInfo.wechatNumber}}' goodsName='{{order.goodsInfos[0].goodsName}}' goods-num="{{order.num}}" price="{{order.orderAmount}}" head="{{order.storeInfo.logo?baseUrl+order.storeInfo.logo:''}}"></savePayment>
+<savePayment show='{{paymentModal}}' com-name='{{order.storeInfo.storeName}}' wx='{{order.storeInfo.wechatNumber}}' goodsName='{{order.goodsInfoList[0].goodsName}}' goods-num="{{order.num}}" price="{{order.orderAmount}}" head="{{order.storeInfo.logo?baseUrl+order.storeInfo.logo:''}}"></savePayment>
 
 
 <view class='order-title-box order-title-img'>
@@ -52,23 +52,23 @@
   </view>
 
   <!-- 已付款 -->
-  <view class='np-title' wx:if="{{status=='paid' && self=='false'}}">
+  <view class='np-title' wx:if="{{status=='wait_deliver' && self=='false'}}">
     <image src="/image/wuliu.png"></image>等待卖家发货
   </view>
   <!-- 自提  待取货-->
-  <view class='flex-box' wx:if="{{status=='paid' && self=='true'}}">
+  <view class='flex-box' wx:if="{{status=='delivered' && self=='true'}}">
     <view class='np-title'>
       <image src="/image/nz.png"></image>请在营业时间内提取您的商品
     </view>
   </view>
   
   <!-- 待收货 -->
-  <view class='flex-box' wx:if='{{status=="shipped"}}'>
+  <view class='flex-box' wx:if="{{status=='delivered' && self=='false'}}">
     <view class='np-title'>
       <image src="/image/nz.png"></image>卖家已发货
     </view>
     <view class='np-right np-right1'>
-      <view>{{order.autoReviceTime}} 后自动确认收货</view>
+      <view>{{order.autoReceiveTime}} 后自动确认收货</view>
     </view>
   </view>
   <!-- 交易成功 -->
@@ -76,14 +76,14 @@
     <image src="/image/mon.png"></image>交易成功
   </view>
   <!-- 交易关闭 -->
-  <view class='flex-box' wx:if="{{status=='closed' || status=='cancelled' }}">
+  <view class='flex-box' wx:if="{{status=='closed' || status=='canceled' }}">
     <view class='np-title'>
       <image src="/image/qx.png"></image>交易关闭
     </view>
     <view class='np-right'>
       <view>原因：
         <text wx:if="{{status=='closed'}}">{{order.closedReason?order.closedReason:""}}</text>
-        <text wx:if="{{status=='cancelled'}}">{{order.cancelReason?order.cancelReason:""}}</text>
+        <text wx:if="{{status=='canceled'}}">{{order.cancelReason?order.cancelReason:""}}</text>
       </view>
     </view>
   </view>
@@ -102,7 +102,7 @@
 </view>
 <!-- 物流信息 -->
 <view class='np-ct' wx:else>
-  <view class='np-view np-code np-coden1' wx:if="{{status=='finish'||status=='shipped'}}">
+  <view class='np-view np-code np-coden1' wx:if="{{status=='finish'||status=='delivered'}}">
     <image src="/image/wl-car.png"></image>
     <view>物流信息</view>
     <text>承运公司：{{order.expressCompany?order.expressCompany:""}}</text>
@@ -151,11 +151,11 @@
       <view class="cart-list" wx:for="{{showList}}" wx:key="{{index}}">
         <navigator url='/pages/page/goodsDetails/goodsDetails?goodsId={{item.goodsId}}'>
           <image class="cart-thumb" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
-          <view class='ct-text ct-text1'>￥{{item.orderDetails.unitPrice}}
-            <view>x {{item.orderDetails.num}}</view>
+          <view class='ct-text ct-text1'>￥{{item.goodsSkuInfoVOList.unitPrice}}
+            <view>x {{item.goodsSkuInfoVOList.num}}</view>
           </view>
           <view class='ct-title ct-title1' style="width:360rpx;">{{item.goodsName}}</view>
-          <text class="cart-pro-name">规格：{{item.orderDetails.goodsDesc}}</text>
+          <text class="cart-pro-name">规格：{{item.goodsSkuInfoVOList.goodsDesc}}</text>
         </navigator>
       </view>
     </view>
@@ -163,7 +163,7 @@
 
   <!-- 进货单 -->
   <view wx:if="{{orderType=='list'}}">
-    <view class="cart-box" wx:for="{{order.goodsInfos}}" wx:key="{{index}}">
+    <view class="cart-box" wx:for="{{order.goodsInfoList}}" wx:key="{{index}}">
       <view class="cart-list" style='background:#fff;'>
         <navigator url='/pages/page/goodsDetails/goodsDetails?goodsId={{item.goodsId}}'>
           <image class="cart-thumb" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
@@ -179,7 +179,7 @@
           <view class="th">数量</view>
           <view class="th">金额</view>
         </view>
-        <view class="tr" wx:for="{{item.orderDetails}}" wx:key="{{index}}">
+        <view class="tr" wx:for="{{item.goodsSkuInfoVOList}}" wx:key="{{index}}">
           <view class="td">{{item.goodsDesc}}</view>
           <view class="td">{{item.num}}件</view>
           <view class="td">￥{{item.unitPrice}}</view>
@@ -201,7 +201,7 @@
     <text>{{order.createDate}}</text>
   </view>
 
-  <block wx:if="{{status!='closed'&& status!='cancelled'}}">
+  <block wx:if="{{status!='closed'&& status!='canceled'}}">
     <block wx:if="{{status!='unpaid'}}">
       <!-- <view>交易单号
     <text>83578475389</text>
@@ -210,7 +210,7 @@
         <text>{{order.payDate}}</text>
       </view>
     </block>
-    <block wx:if="{{status!='unpaid'&& status!='paid' && self=='false'}}">
+    <block wx:if="{{status!='unpaid'&& status!='wait_deliver' && self=='false'}}">
       <view>发货时间
         <text>{{order.deliverDate}}</text>
       </view>
@@ -221,9 +221,9 @@
       </view>
     </block>
   </block>
-  <block wx:if="{{status=='closed'|| status=='cancelled'}}">
+  <block wx:if="{{status=='closed'|| status=='canceled'}}">
     <view>关闭时间
-      <text></text>
+      <text>{{order.cancelDate}}</text>
     </view>
   </block>
 </view>
@@ -271,9 +271,9 @@
   </block>
   <view class='np-o-view'>
     <!-- 未支付 -->
-    <block wx:if='{{status=="unpaid"||status=="closed"|| status=="cancelled"}}'>应付合计</block>
+    <block wx:if='{{status=="unpaid"||status=="closed"|| status=="canceled"}}'>应付合计</block>
     <!-- 已支付 -->
-    <block wx:if='{{status!="closed" && status!="unpaid" && status!="cancelled"}}'>实付合计</block>
+    <block wx:if='{{status!="closed" && status!="unpaid" && status!="canceled"}}'>实付合计</block>
     <text>￥{{order.orderAmount}}</text>
   </view>
 </view>
@@ -285,12 +285,14 @@
     <button bindtap='showModal' data-type='cancel'>取消{{orderName}}</button>
   </block>
 
-  <block wx:if="{{status=='paid'}}">
+  <block wx:if="{{status=='wait_deliver'}}">
     <button wx:if="{{self=='false'}}" class='or-active'> 提醒发货 </button>
-    <button wx:else class='or-active' data-type='goodCode' bindtap='showModal'> 获取取货码 </button>
   </block>
 
-  <block wx:if="{{status=='shipped'}}">
+  <button wx:if="{{status=='delivered' && self=='true'}}" class='or-active' data-type='goodCode' bindtap='showModal'> 获取取货码 </button>
+
+
+  <block wx:if="{{status=='delivered' && self=='false'}}">
     <button class='or-active' data-type='get' bindtap='showModal'> 确认收货 </button>
   </block>
 
@@ -298,10 +300,10 @@
     <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
   </block>
 
-  <block wx:if="{{status=='finish' || status=='closed'|| status=='cancelled'}}">
+  <block wx:if="{{status=='finish' || status=='closed'|| status=='canceled'}}">
     <button data-index='{{index}}' data-type='del' bindtap='showModal'>删除{{orderName}}</button>
   </block>
-  <block wx:if="{{self=='false' && (status=='shipped' || status=='finish')}}">
+  <block wx:if="{{self=='false' && (status=='delivered' || status=='finish')}}">
     <!-- <button>查看物流</button> -->
   </block>
 </view>

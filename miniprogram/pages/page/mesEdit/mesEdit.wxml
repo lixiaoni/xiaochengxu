@@ -95,7 +95,7 @@
 <view class='weui-time'>
 <navigator url='../../payment/uploadPayment/uploadPayment'>付款码<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
   <navigator url='../editInvoice/editInvoice?code={{storeMes.isReceipt}}&name={{storeMes.receiptInfo}}'>发票设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
-  <navigator url='../postageInfo/postageInfo?code={{storeMes.postageInfo}}'>邮费设置<view class='mes-tel'><image src="/image/icl.png"></image></view></navigator>
+  <navigator url='../postageInfo/postageInfo?code={{storeMes.postageInfo}}'>邮费设置<view class='mes-tel'><text wx:if='{{storeMes.postageInfo!=null}}'>{{storeMes.postageInfo}}</text><image src="/image/icl.png"></image></view></navigator>
 </view>
   <!-- <view class='showHide' hidden='{{showHide}}'>
     <view class='sh-cont'>

@@ -54,18 +54,18 @@ Page({
       case 'get':
         obj = {
           sureModal: true,
-          getNum: e.currentTarget.dataset.num
+          // getNum: e.currentTarget.dataset.num
         }; break;
       case 'del':
         let index = e.currentTarget.dataset.index;
         obj = {
           delModal: true,
-          delNum: { num: num, index: index }
+          // delNum: { num: num, index: index }
         }; break;
       case 'cancel':
         obj = {
           cancelModal: true,
-          cancelNum: num
+          // cancelNum: num
         }; break;
       case 'after':
         obj = {
@@ -75,7 +75,7 @@ Page({
       case "goodCode":
         obj = {
           codeModal: true,
-          testNum: num,
+          // testNum: num,
         }; break;  
       case "payment":
         obj = {
@@ -174,7 +174,7 @@ Page({
         res.obj.payDate = util.formatTime(new Date(res.obj.payDate));
         res.obj.deliverDate = util.formatTime(new Date(res.obj.deliverDate));
         res.obj.finishDate = util.formatTime(new Date(res.obj.finishDate));
-
+        res.obj.updateDate = util.formatTime(new Date(res.obj.updateDate));
       } catch (e) { }
 
       this.setData({
@@ -197,27 +197,27 @@ Page({
   resetData(data) {
     let arr = [];
     for (let i = 0; i < data.length; i++) { // 循环订单
-      let oldGoods = data[i].goodsInfos,  //商品数组
+      let oldGoods = data[i].goodsInfoList,  //商品数组
         newGoods = [];
       for (let j = 0; j < oldGoods.length; j++) { //货品循环
 
-        let type = oldGoods[j].orderDetails;  //规格数组
+        let type = oldGoods[j].goodsSkuInfoVOList;  //规格数组
 
         for (let k = 0; k < type.length; k++) {
           //当前货物,类型变为对象
           let nowGood = {};
           Object.assign(nowGood, oldGoods[j]);
-          nowGood.orderDetails = type[k];
+          nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
       }
       //编辑新订单数组
       let newOrder = data[i];
-      newOrder.goodsInfos = newGoods;
+      newOrder.goodsInfoList = newGoods;
       arr.push(newOrder)
     }
     this.setData({
-      showList: arr[0].goodsInfos
+      showList: arr[0].goodsInfoList
     })
   },
   //电话

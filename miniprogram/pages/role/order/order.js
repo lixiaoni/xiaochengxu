@@ -19,11 +19,11 @@ Page({
       title: "待付款",
       state: 'unpaid'
     }, {
-      title: "已付款",
-      state: "paid"
+      title: "待发货",
+      state: "wait_deliver"
     }, {
       title: "待收货",
-      state: "shipped"
+      state: "delivered"
     }, {
       title: "已完成",
       state: "finish"
@@ -420,23 +420,23 @@ Page({
   resetData(data) {
     let arr = [];
     for (let i = 0; i < data.length; i++) { // 循环订单
-      let oldGoods = data[i].goodsInfos, //商品数组
+      let oldGoods = data[i].goodsInfoList, //商品数组
         newGoods = [];
       for (let j = 0; j < oldGoods.length; j++) { //货品循环
 
-        let type = oldGoods[j].orderDetails; //规格数组
+        let type = oldGoods[j].goodsSkuInfoVOList; //规格数组
 
         for (let k = 0; k < type.length; k++) {
           //当前货物,类型变为对象
           let nowGood = {};
           Object.assign(nowGood, oldGoods[j]);
-          nowGood.orderDetails = type[k];
+          nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
       }
       //编辑新订单数组
       let newOrder = data[i];
-      newOrder.goodsInfos = newGoods;
+      newOrder.goodsInfoList = newGoods;
       arr.push(newOrder)
     }
     this.setData({

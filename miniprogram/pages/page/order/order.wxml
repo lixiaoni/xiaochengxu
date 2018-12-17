@@ -38,7 +38,7 @@
 </mes>
 
 <!-- 付款码 -->
-<savePayment show='{{paymentModal}}' com-name='{{paymentItem.storeInfo.storeName}}' wx='{{paymentItem.storeInfo.wechatNumber}}' goodsName='{{paymentItem.goodsInfos[0].goodsName}}' goods-num="{{paymentItem.num}}" price="{{paymentItem.orderAmount}}" head="{{paymentItem.storeInfo.logo?baseUrl+paymentItem.storeInfo.logo:''}}"></savePayment>
+<savePayment show='{{paymentModal}}' com-name='{{paymentItem.storeInfo.storeName}}' wx='{{paymentItem.storeInfo.wechatNumber}}' goodsName='{{paymentItem.goodsInfoList[0].goodsName}}' goods-num="{{paymentItem.num}}" price="{{paymentItem.orderAmount}}" head="{{paymentItem.storeInfo.logo?baseUrl+paymentItem.storeInfo.logo:''}}"></savePayment>
 
 <view class='od-status'>
   <view wx:for='{{nav}}' wx:key='{{index}}' class="od-view {{index==navindex?'active':''}}" data-current="{{index}}" bindtap='swichNav'>
@@ -46,36 +46,32 @@
 </view>
 <view wx:if="{{showList.length>0}}">
   <view class='cf-cont' wx:for="{{showList}}" wx:key="{{index}}">
-    <view class='c-title' bindtap='toOrderDetail' data-status='{{item.orderStatus}}' data-type='{{item.orderType}}' data-num="{{item.orderNumber}}">
-      <!-- <navigator url='{{item.status<5?"../nopay/nopay":"../self/self"}}?status={{item.status}}'> -->
-      <image src="/image/ic1.png"></image> {{item.storeInfo.storeName}}
-      <image class='itimg' src="/image/icl.png"></image>
-      <view class='order-zt' wx:if="{{item.orderType==1}}">自提</view>
-      <view bindtap="onChangeShowState">
-        <text wx:if="{{item.orderStatus=='unpaid'}}">待付款</text>
-        <text wx:if="{{item.orderStatus=='paid' && item.orderType==2}}">待发货</text>
-        <text wx:if="{{item.orderStatus=='shipped'  }}">待收货</text>
-        <text wx:if="{{item.orderStatus=='finish' }}">交易成功 </text>
-        <text wx:if="{{item.orderStatus=='closed' }}">交易关闭</text>
-        <text wx:if="{{item.orderStatus=='cancelled' }}">交易取消</text>
-        <text wx:if="{{item.orderStatus==5}}">待付款</text>
-        <text wx:if="{{item.orderStatus=='paid' && item.orderType==1}}">待取货</text>
-        <text wx:if="{{item.orderStatus==7}}">交易成功</text>
-        <text wx:if="{{item.orderStatus==8}}">交易关闭</text>
+    <navigator url="../home/home" open-type='switchTab'>        
+      <view class='c-title' data-status='{{item.orderStatus}}' data-type='{{item.logisticsMode}}' data-num="{{item.orderNumber}}">
+        <image src="/image/ic1.png"></image> {{item.storeInfo.storeName}}
+        <image class='itimg' src="/image/icl.png"></image>
+        <view class='order-zt' wx:if="{{item.logisticsMode==1}}">自提</view>
+        <view bindtap="onChangeShowState">
+          <text wx:if="{{item.orderStatus=='unpaid'}}">待付款</text>
+          <text wx:if="{{item.orderStatus=='wait_deliver' && item.logisticsMode==2}}">待发货</text>
+          <text wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2 }}">待收货</text>
+          <text wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==1}}">待取货</text>
+          <text wx:if="{{item.orderStatus=='canceled' }}">交易关闭</text>
+          <text wx:if="{{item.orderStatus=='finish' }}">交易成功 </text>
+        </view>
       </view>
-      <!-- </navigator> -->
-    </view>
-    <view bindtap='toOrderDetail' data-status='{{item.orderStatus}}' data-type='{{item.orderType}}' data-num="{{item.orderNumber}}">
+    </navigator>
+    <view bindtap='toOrderDetail' data-status='{{item.orderStatus}}' data-type='{{item.logisticsMode}}' data-num="{{item.orderNumber}}">
       <view class="cart-box">
-        <view class="cart-list" wx:for="{{item.goodsInfos}}" wx:key="{{index}}">
+        <view class="cart-list" wx:for="{{item.goodsInfoList}}" wx:key="{{index}}">
             <view class="cart-thumb">
-              <image class='goods-icon' mode="aspectFit" src="{{baseUrl+item.mainImgUrl}}?x-oss-process=style/goods-small"></image>
+              <image class='goods-icon' mode="aspectFit" src="{{item.mainImgUrl?baseUrl+item.mainImgUrl+'?x-oss-process=style/goods-small':''}}"></image>
             </view>
-          <view class='ct-text ct-text1'>￥{{item.orderDetails.unitPrice}}
-            <view>x {{item.orderDetails.num}}</view>
+          <view class='ct-text ct-text1'>￥{{item.goodsSkuInfoVOList.unitPrice}}
+            <view>x {{item.goodsSkuInfoVOList.num}}</view>
           </view>
           <view class='ct-title ct-title1'>{{item.goodsName}}</view>
-          <text class="cart-pro-name">规格：{{item.orderDetails.goodsDesc}}</text>
+          <text class="cart-pro-name">规格：{{item.goodsSkuInfoVOList.goodsDesc}}</text>
         </view>
       </view>
     </view>
@@ -100,34 +96,34 @@
         <button bindtap='showModal' data-type='cancel' data-num="{{item.orderNumber}}">取消订单</button>
       </block>
       <!-- 已支付 -->
-      <block wx:if="{{item.orderStatus=='paid' && item.orderType==2}}">
+      <block wx:if="{{item.orderStatus=='wait_deliver' && item.logisticsMode==2}}">
         <button class='or-active'>提醒发货</button>
       </block>
 
-      <block wx:if="{{item.orderStatus=='paid' && item.orderType==1}}">
+      <block wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==1}}">
         <button class='or-active' bindtap='showModal' data-type='code' data-code="{{item.claimGoodsNum}}"> 取货码 </button>
       </block>
 
       <!-- 已发货 -->
-      <block wx:if="{{item.orderStatus=='shipped' && item.orderType==2}}">
+      <block wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2}}">
         <button class='or-active' data-num='{{item.orderNumber}}' data-type='get' bindtap='showModal'> 确认收货 </button>
         <!-- <button>查看物流</button> -->
       </block>
 
       <!-- 已收货_已完成 -->
-      <block wx:if="{{item.orderStatus=='finish' && item.orderType==2}}">
+      <block wx:if="{{item.orderStatus=='finish' && item.logisticsMode==2}}">
         <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
         <!-- <button>查看物流</button> -->
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
 
-      <block wx:if="{{item.orderStatus=='finish' && item.orderType==1}}">
+      <block wx:if="{{item.orderStatus=='finish' && item.logisticsMode==1}}">
         <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
 
       <!-- 订单取消 -->
-      <block wx:if="{{item.orderStatus=='closed' || item.orderStatus=='cancelled'}}">
+      <block wx:if="{{item.orderStatus=='closed' || item.orderStatus=='canceled'}}">
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
     </view>
