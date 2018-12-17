@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/businessFriend/index/index",
     "pages/page/workIndex/workIndex",
     "pages/admin/status/status",
