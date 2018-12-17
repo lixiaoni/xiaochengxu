@@ -174,7 +174,7 @@ Page({
         res.obj.payDate = util.formatTime(new Date(res.obj.payDate));
         res.obj.deliverDate = util.formatTime(new Date(res.obj.deliverDate));
         res.obj.finishDate = util.formatTime(new Date(res.obj.finishDate));
-        res.obj.updateDate = util.formatTime(new Date(res.obj.updateDate));
+        res.obj.cancelDate = util.formatTime(new Date(res.obj.cancelDate));
       } catch (e) { }
 
       this.setData({
