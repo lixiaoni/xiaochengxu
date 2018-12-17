@@ -10,21 +10,21 @@ Page({
     currentTab: 1,
     hiddenSelt: true,
     hiddenSend: false,
-    address:"",  //地址
-    invoice:"",  //发票
-    phone:"", //电话
-    msg:"",  //留言
-    sendData:{}, //获取列表传递参数
-    orderTitle:"订单"
+    address: "",  //地址
+    invoice: "",  //发票
+    phone: "", //电话
+    msg: "",  //留言
+    sendData: {}, //获取列表传递参数
+    orderTitle: "订单"
   },
   //自动获取手机
-  getMobile(){
-    Api.userInfor().then(res=>{
-      if(res.obj.mobile){
+  getMobile() {
+    Api.userInfor().then(res => {
+      if (res.obj.mobile) {
         this.setData({
           phone: res.obj.mobile
         })
-      }else{
+      } else {
         wx.showToast({
           title: '获取手机号码失败，请您手动填写',
           icon: 'none'
@@ -33,25 +33,25 @@ Page({
     })
   },
   //提交
-  submit(){
+  submit() {
     let type = this.data.currentTab,
-        obj = {};
-    if(type == 0){
+      obj = {};
+    if (type == 0) {
       //自提
       let phone = this.data.phone;
       if (!phone || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(phone)) {
         wx.showToast({
           title: '请输入正确手机号码',
-          icon:'none'
+          icon: 'none'
         })
         return false;
       }
       obj.userPhone = phone;
-      obj.orderType = 1;
-    }else if(type == 1){
+      obj.logisticsMode = 1;
+    } else if (type == 1) {
       //物流
       let add = this.data.address;
-      if(add=={}||!add){
+      if (add == {} || !add) {
         wx.showToast({
           title: '请选择收货人信息',
           icon: 'none'
@@ -59,7 +59,7 @@ Page({
         return false;
       }
       obj.consigneeInfo = add;
-      obj.orderType = 2;
+      obj.logisticsMode = 2;
       obj.postageinfo = {
         postageType: this.data.postType   //邮费
       }
@@ -67,9 +67,9 @@ Page({
 
     let goods = this.data.goods;
     let goodsArr = [];
-    goods.forEach((el,index,arr)=>{
+    goods.forEach((el, index, arr) => {
       let detail = el.preOrderGoodsSkuList;
-      if(detail){
+      if (detail) {
         detail.forEach((item, index, arr) => {
           let obj = {};
           obj.goodsId = item.goodsId;
@@ -77,7 +77,7 @@ Page({
           obj.skuCode = item.skuCode;
           goodsArr.push(obj);
         })
-      }else{
+      } else {
         goodsArr.push({
           goodsId: el.goodsId,
           num: el.num,
@@ -85,62 +85,62 @@ Page({
         });
       }
     })
-    if (this.data.invoice){
+    if (this.data.invoice) {
       obj.receiptInfo = this.data.invoice;  //发票
     }
     obj.userMemo = this.data.msg  //留言
-    obj.orderGoods = goodsArr;  //商品
+    obj.orderDetailReqVOList = goodsArr;  //商品
     obj.orderCategory = this.data.orderCategory //订单种类
 
-   
-    Api.supplyOrde(obj).then((res)=>{
+
+    Api.supplyOrde(obj).then((res) => {
       //'../success/success'
       wx.showToast({
         title: res.message,
         icon: "none"
       })
-      
-      setTimeout(()=>{
+
+      setTimeout(() => {
         wx.redirectTo({
           url: '../orderSuccess/orderSuccess?num=' + res.obj.orderNumber
         })
-      },800)
+      }, 800)
     })
   },
 
-  watchInput(e){
+  watchInput(e) {
     let val = e.detail.value,
-        type = e.currentTarget.dataset.type;
-    switch(type){
-      case "phone" :
+      type = e.currentTarget.dataset.type;
+    switch (type) {
+      case "phone":
         this.setData({
           phone: val
-        });break;
+        }); break;
       case "msg":
         this.setData({
           msg: val
         }); break;
-    }    
-    
+    }
+
   },
   //获取地址
-  getAddress(obj){
-    if(!obj){return}
+  getAddress(obj) {
+    if (!obj) { return }
     this.setData({
-      address:obj
+      address: obj
     })
   },
   //获取发票
-  getInvoice(obj){
+  getInvoice(obj) {
     if (!obj) { return }
     this.setData({
       invoice: obj
     })
   },
-  toInvoiceDetail(){
+  toInvoiceDetail() {
     let arr = [],
       invoice = this.data.invoice;
-    for (let key in invoice){
+    for (let key in invoice) {
       arr.push(key + "=" + invoice[key]);
     }
     let str = arr.join("&")
@@ -149,67 +149,67 @@ Page({
     })
   },
   //获取默认地址
-  getDefaultAdress(){
+  getDefaultAdress() {
     //userid
-    app.http.getRequest("/api/user/usershopaddress/default").then((res)=>{
-      if(res.obj){
+    app.http.getRequest("/api/user/usershopaddress/default").then((res) => {
+      if (res.obj) {
         this.setData({
-          address:res.obj
+          address: res.obj
         })
       }
     })
   },
   // 获取数据
-  getData(){
-    app.http.postRequest("/api/order/store/" + this.data.storeId+"/preorder", this.data.sendData
-    ).then((res)=>{
-        //起批量
-        let  conObj = {};       
-        res.obj.goodsWholesaleConfigs.forEach((el,index)=>{
-          if (el.saleBatchNum && el.saleBatchNum>0){
-            conObj[el.goodsId] = el.saleBatchNum
-          }
-        })
+  getData() {
+    app.http.postRequest("/api/order/store/" + this.data.storeId + "/preorder", this.data.sendData
+    ).then((res) => {
+      //起批量
+      let conObj = {};
+      res.obj.goodsWholesaleConfigs.forEach((el, index) => {
+        if (el.saleBatchNum && el.saleBatchNum > 0) {
+          conObj[el.goodsId] = el.saleBatchNum
+        }
+      })
 
-        this.setData({
-          store: res.obj.preOrderStore,
-          goods: res.obj.preOrderGoodsList,
-          goodsConfig: conObj,
-          storeConfig: res.obj.storeWholesaleConfig
-        })
+      this.setData({
+        store: res.obj.preOrderStore,
+        goods: res.obj.preOrderGoodsList,
+        goodsConfig: conObj,
+        storeConfig: res.obj.storeWholesaleConfig
+      })
       this.resetGoods();
     })
   },
   //重置goods
-  resetGoods(){
+  resetGoods() {
     let goods = this.data.goods,
-        price = 0,
-        allnum = 0,
-        config = this.data.goodsConfig;
-    goods.forEach((el)=>{
+      price = 0,
+      allnum = 0,
+      config = this.data.goodsConfig;
+    goods.forEach((el) => {
       //是否优惠
       let off = el.satisfiedWholesale;
       //起批量
-      if (config[el.goodsId]){
+      if (config[el.goodsId]) {
         el.goodsConfig = config[el.goodsId];
       }
 
       //有sku
-      if (!el.num && el.preOrderGoodsSkuList){
+      if (!el.num && el.preOrderGoodsSkuList) {
         let num = 0,
-            myprice = 0 ; 
-        el.preOrderGoodsSkuList.forEach((item)=>{
-          if (item.num){
+          myprice = 0;
+        el.preOrderGoodsSkuList.forEach((item) => {
+          if (item.num) {
             num += item.num;
             let thisPrice = 0;
             //价格
-            if(off==true){
+            if (off == true) {
               thisPrice = item.wholesalePrice;
-            }else{
+            } else {
               thisPrice = item.sellPrice;
             }
 
-            if (!isNaN(thisPrice * item.num)){
+            if (!isNaN(thisPrice * item.num)) {
               myprice += thisPrice * item.num;
               price += thisPrice * item.num;
             }
@@ -219,32 +219,32 @@ Page({
         el.num = num;
       }
       //没有sku
-      if (el.num && !el.preOrderGoodsSkuList){
+      if (el.num && !el.preOrderGoodsSkuList) {
         let thisPrice = 0;
         //价格
-        if (off==true) {
+        if (off == true) {
           thisPrice = el.wholesalePrice;
         } else {
           thisPrice = el.sellPrice;
         }
         if (!isNaN(thisPrice * el.num)) {
-          el.myPrice = thisPrice * el.num;
+          el.myPrice = (thisPrice * el.num).toFixed(2);
           price += thisPrice * el.num;
         }
       }
-      allnum += el.num;      
+      allnum += el.num;
     })
 
     //全场混批设置
     let storeNum = this.data.storeConfig.saleBatchNum,
-        storeAmount = this.data.storeConfig.saleBatchAmount,
-        pricesatisfy = false,
-        numsatisfy = false;
+      storeAmount = this.data.storeConfig.saleBatchAmount,
+      pricesatisfy = false,
+      numsatisfy = false;
 
-    if (storeAmount && storeAmount>0 && price > storeAmount){
+    if (storeAmount && storeAmount > 0 && price > storeAmount) {
       pricesatisfy = true;
     }
-    if (storeNum && storeNum > 0 && allnum > storeNum){
+    if (storeNum && storeNum > 0 && allnum > storeNum) {
       numsatisfy = true;
     }
 
@@ -253,18 +253,18 @@ Page({
       price: price.toFixed(2),
       allnum,
       numsatisfy,
-      pricesatisfy      
+      pricesatisfy
     })
   },
   //获取店铺信息，得到运费类型
-  getStore(){
-    Api.storeIdInfo().then(res=>{
+  getStore() {
+    Api.storeIdInfo().then(res => {
       let post = res.obj.store[0].store.postageInfo;
-      if(!post){
-        post = "全场包邮";
+      if (!post) {
+        post = "邮费到付";
       }
       this.setData({
-        postType : post
+        postType: post
       })
     })
   },
@@ -274,8 +274,8 @@ Page({
   onLoad: function (options) {
     let userType = wx.getStorageSync('identity'),
       storeId = wx.getStorageSync('storeId'),
-      adminType= wx.getStorageSync("admin");
-    
+      adminType = wx.getStorageSync("admin");
+
     this.setData({
       baseUrl: app.globalData.imageUrl
     })
@@ -283,13 +283,13 @@ Page({
     //订单分类[1 进货单|2 普通订单|3 购物车订单]
     let orderType = 3;
     //adminType=3;//delit
-    if (adminType==1){
+    if (adminType == 1) {
       //普通用户
       orderType = 3;
-    } else if (adminType == 3 || adminType == 2){
+    } else if (adminType == 3 || adminType == 2) {
       //批发商
-      orderType = 1;  
-      this.setData({orderTitle:'进货单'})
+      orderType = 1;
+      this.setData({ orderTitle: '进货单' })
       wx.setNavigationBarTitle({
         title: '提交进货单',
       })
@@ -298,15 +298,15 @@ Page({
     //let type = options.type;
     let model = JSON.parse(options.model);
     //model = { "goodsId": "180904092152685923df", "num": 1, "skuCode": "180904092152685923df_38a" }
-    
+
     //读取数据
 
-    if(!Array.isArray(model)){
+    if (!Array.isArray(model)) {
       model = [model]
     }
     this.setData({
       orderCategory: orderType,
-      storeId: storeId ?storeId:123,    
+      storeId: storeId ? storeId : 123,
       sendData: model,
     })
     this.getData();
@@ -320,34 +320,37 @@ Page({
       return false;
     } else {
       var index = e.currentTarget.dataset.current
-      if(index==1){
+      if (index == 1) {
         that.setData({
           currentTab: e.currentTarget.dataset.current,
           hiddenSelt: true,
           hiddenSend: false
         })
-      }else{
+      } else {
         that.setData({
           currentTab: e.currentTarget.dataset.current,
           hiddenSelt: false,
           hiddenSend: true
         })
       }
-      
+
     }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var admin = wx.getStorageSync('admin')
+    this.setData({
+      admin: admin
+    })
   },
 
   /**
@@ -361,21 +364,21 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
 })

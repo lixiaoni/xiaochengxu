@@ -1,5 +1,5 @@
 <!-- 付款码 -->
-<savePayment show='{{paymentModal}}' com-name='{{user.storeInfo.storeName}}' wx='{{user.storeInfo.wechatNumber}}' goodsName='{{user.goodsInfos[0].goodsName}}' goods-num="{{user.num}}" price="{{user.orderAmount}}" head="{{user.storeInfo.logo?baseUrl+user.storeInfo.logo:''}}"></savePayment>
+<savePayment show='{{paymentModal}}' com-name='{{user.storeInfo.storeName}}' wx='{{user.storeInfo.wechatNumber}}' goodsName='{{user.goodsInfoList[0].goodsName}}' goods-num="{{user.num}}" price="{{user.orderAmount}}" head="{{user.storeInfo.logo?baseUrl+user.storeInfo.logo:''}}"></savePayment>
 
 <view class='box'>
   <view class='flex-box'>

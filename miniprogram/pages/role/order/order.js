@@ -65,7 +65,7 @@ Page({
     let list = this.data.nav;
     let currentIndex = 2;
     list.forEach((i, index) => {
-      if (i == type) {
+      if (i.state == type) {
         currentIndex = index
       }
     })

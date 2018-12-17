@@ -362,7 +362,7 @@ Page({
         'order.payDate': this.timeFormat(this.data.order.payDate),
         'order.finishDate': this.timeFormat(this.data.order.finishDate),
         'order.deliverDate': this.timeFormat(this.data.order.deliverDate),
-        'order.updateDate': this.timeFormat(new Date(res.obj.updateDate))
+        'order.cancelDate': this.timeFormat(new Date(res.obj.cancelDate))
       })
       //倒计时
       let timm = this.data.timeOnce;
