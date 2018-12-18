@@ -95,10 +95,12 @@ Page({
 
     Api.supplyOrde(obj).then((res) => {
       //'../success/success'
-      wx.showToast({
-        title: res.message,
-        icon: "none"
-      })
+      setTimeout(() => {
+        wx.showToast({
+          title: res.message,
+          icon: "none"
+        })
+      }, 0)
 
       setTimeout(() => {
         wx.redirectTo({

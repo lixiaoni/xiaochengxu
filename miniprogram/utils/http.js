@@ -84,11 +84,13 @@ class request {
               if (res.data.code == 0) {
                 resolve(res.data);
               } else if (res.data.code == 1) {
-                wx.showToast({
-                  title: res.data.message,
-                  duration: 2000,
-                  icon: 'none'
-                })
+                setTimeout(() => {
+                  wx.showToast({
+                    title: res.data.message,
+                    duration: 2000,
+                    icon: 'none'
+                  })
+                }, 0)
                 reject(res);
               } else {
                 reject(res);
