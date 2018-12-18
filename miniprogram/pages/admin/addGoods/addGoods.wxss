@@ -58,8 +58,9 @@
 .write-cont image{width:50rpx;height:50rpx;margin-right:30rpx}
 .removeImg{position:relative;margin-bottom:20rpx;border:2rpx solid #ddd;height:200rpx;width:90%;margin-left:5%;padding:15rpx 0 15rpx 15rpx;height:auto;padding-bottom:60rpx}
 .removeImg>view{position:absolute;bottom:0rpx;z-index:9;background:#F0F0F0;height:55rpx;width:auto;right:0;font-size:28rpx;line-height:50rpx}
-.removeImg>view view{display:inline-block;width:130rpx;color:#666;text-align:center}
-.removeImg>view image{width:35rpx;height:35rpx;vertical-align:middle;margin-top:-2rpx;margin-right:10rpx;margin-left:0}
+.removeImg>view view{display:inline-block;width:130rpx;color:#666;text-align:center;position: relative}
+.removeImg>view view text{padding: 0 25rpx;z-index: 1000;position: relative}
+.removeImg>view image{width:35rpx;height:35rpx;vertical-align:middle;position:absolute;left:-10rpx;top:9rpx;z-index: 100}
 .removeImg>view  view:first-child image{width:30rpx;height:30rpx}
 .add-bottom{z-index:20}
 .page{overflow-x:hidden}

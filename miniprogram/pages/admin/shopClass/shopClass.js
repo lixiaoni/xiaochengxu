@@ -111,28 +111,33 @@ Page({
     var _this=this,
         tempArr={},
         name=this.data.value
-    Api.addClass({name: name})
-      .then(res => {
-        wx.showToast({
-          title: '新建成功',
-          duration: 1000,
-          mask: true,
-          success:function(){
-            _this.getList()
-            _this.cancel()
-          }
+    if(_this.data.watchInput){
+      Api.addClass({name: name})
+        .then(res => {
+          wx.showToast({
+            title: '新建成功',
+            duration: 1000,
+            mask: true,
+            success:function(){
+              _this.getList()
+              _this.cancel()
+            }
+          })
+          _this.setData({
+            watchInput: false
+          })
         })
-      })
+      }
   },
   // 监听input
   watchInput: function (event) {
     var value = event.detail.value,
       num = value.length
-    if (value == '') {
+    if (value == '' || value.trim().length == 0) {
       this.setData({
         watchInput: false
       })
-    } else {
+    }  else {
       if (num > 11) {
         wx.showToast({
           title: '超过最长数字限制',

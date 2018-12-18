@@ -146,28 +146,28 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
          -->
          <textarea bindinput='watchInput' class='input-v' value='{{item.value}}' data-index='{{index}}' placeholder='请输入标题'></textarea>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image  src="/image/remove.png" ></image><text data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image  src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData'>插入</text></view>
+            <view  wx:if='{{index!=0}}'><image src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image data-index='{{index}}'  bindtap='upData' src="/image/up1.png" ></image><text data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
       <view class='removeImg' wx:if='{{item.textInput}}'>
         <textarea  data-index='{{index}}' value='{{item.value}}'  placeholder-class='weui-plac' bindinput='watchDec' placeholder='请输入商品描述内容...'></textarea>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image src="/image/remove.png" ></image><text  data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData'>插入</text></view>
+            <view wx:if='{{index!=0}}'><image src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image  src="/image/up1.png" ></image><text data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
        <view class='removeImg'  wx:if='{{item.img}}' >
         <image mode='widthFix'  data-index='{{index}}' src="{{item.img}}"></image>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image src="/image/remove.png" ></image><text  data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData' >插入</text></view>
+            <view wx:if='{{index!=0}}'><image  src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image  src="/image/up1.png" ></image><text  data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
       </view>

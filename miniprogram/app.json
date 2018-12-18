@@ -2,10 +2,10 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/admin/status/status",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/businessFriend/index/index",
     "pages/page/workIndex/workIndex",
-    "pages/admin/status/status",
     "pages/page/user/user",
     "pages/casher/success/success",
     "pages/casher/casher/casher",
