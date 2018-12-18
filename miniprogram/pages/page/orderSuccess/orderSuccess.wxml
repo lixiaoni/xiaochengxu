@@ -6,10 +6,10 @@
     <text class='title-text blod' wx:if="{{admin==3}}">进货单金额</text>
     <text class='title-text blod' wx:else>订单金额</text>
     <view class='money'>￥{{price}}</view>
-    <view class='tip'>您的{{dan}}已提交成功，请及时上传支付凭证</view>
+    <view class='tip'>您的{{dan}}已提交成功，请及时上传付款凭证</view>
     <button bindtap='toDetail' class='sure'>查看{{dan}}</button>
     <navigator hidden='{{orderSuccessHiddenBtn}}' url='../../role/supplyVoucher/supplyVoucher?num={{num}}'>
-      <view class='title-text'>上传支付凭证</view>
+      <view class='title-text'>上传付款凭证</view>
     </navigator>
   </view>
   <view class='msg-box'>

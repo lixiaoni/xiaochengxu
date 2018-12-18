@@ -2,6 +2,8 @@
 const app = getApp();
 let searchTimer;
 import API from "../../../utils/api.js";
+var seeImg = false;
+
 Page({
 
   /**
@@ -17,11 +19,11 @@ Page({
       title: "待付款",
       state: 'unpaid'
     }, {
-        title: "待发货",
-        state: "wait_deliver"
+      title: "待发货",
+      state: "wait_deliver"
     }, {
       title: "待收货",
-        state: "delivered"
+      state: "delivered"
     }, {
       title: "已完成",
       state: "finish"
@@ -35,6 +37,23 @@ Page({
 
   },
 
+  //查看凭证
+  seeVoucher(e) {
+    let num = e.currentTarget.dataset.num;
+    API.seeVoucher({ orderNumber: num }).then((res) => {
+      if (res.obj.payVoucher) {
+        seeImg = true;
+        wx.previewImage({
+          urls: [this.data.baseUrl + res.obj.payVoucher]
+        })
+      } else {
+        wx.showToast({
+          title: '未上传付款凭证',
+          icon: 'none'
+        })
+      }
+    })
+  },
 
   showModal(e) {
     let type = e.currentTarget.dataset.type,
@@ -73,13 +92,13 @@ Page({
         obj = {
           afterModal: true,
           afterTel: e.currentTarget.dataset.tel
-        };break;
+        }; break;
       case "payment":
         let i = e.currentTarget.dataset.index;
         obj = {
           paymentModal: true,
           paymentItem: this.data.showList[i]
-        }; break;  
+        }; break;
     }
     this.setData(obj)
   },
@@ -153,7 +172,7 @@ Page({
           icon: 'none'
         })
         //删除成功剔除
-        if (res.success ) {
+        if (res.success) {
           // list.splice(del.index, 1);
           // this.setData({
           //   showList: list
@@ -251,7 +270,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       storeId: API.getThisStoreId(),   //列表请求
       baseUrl: app.globalData.imageUrl      //图片
@@ -268,42 +287,46 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
+    if (seeImg) {
+      seeImg = false;
+      return;
+    }
     this.getList(true);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     this.getList();
   },
 

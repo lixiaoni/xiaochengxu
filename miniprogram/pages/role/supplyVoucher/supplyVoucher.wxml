@@ -8,7 +8,7 @@
     <image class='add-img' src='/image/add3.png'></image>
   </view>
   <view class='tip-box'>
-    <text class='tip-font'>请上传清晰的支付凭证图片，工作人员审核凭证，请耐心等待</text>
+    <text class='tip-font'>请上传清晰的付款凭证图片，工作人员审核凭证，请耐心等待</text>
   </view>
   <!-- 支付方式 -->
   <view class='pay-type'>

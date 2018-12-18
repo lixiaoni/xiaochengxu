@@ -52,7 +52,8 @@
         <image class='itimg' src="/image/icl.png"></image>
         <view class='order-zt' wx:if="{{item.logisticsMode==1}}">自提</view>
         <view bindtap="onChangeShowState">
-          <text wx:if="{{item.orderStatus=='unpaid'}}">待付款</text>
+          <text wx:if="{{item.orderStatus=='unpaid' && item.payVoucher}}">待确认</text>
+          <text wx:if="{{item.orderStatus=='unpaid' && !item.payVoucher}}">待付款</text>
           <text wx:if="{{item.orderStatus=='wait_deliver' && item.logisticsMode==2}}">待发货</text>
           <text wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2 }}">待收货</text>
           <text wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==1}}">待取货</text>
@@ -89,24 +90,27 @@
 
       <!-- 待支付 -->
       <block wx:if="{{item.orderStatus=='unpaid'}}">
-        <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">支付二维码</button>
+        <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">付款码</button>
         <navigator url='../../role/supplyVoucher/supplyVoucher?num={{item.orderNumber}}'>
-          <button class='or-active'> 上传支付凭证 </button>
+          <button class='or-active'> 上传付款凭证 </button>
         </navigator>
         <button bindtap='showModal' data-type='cancel' data-num="{{item.orderNumber}}">取消订单</button>
       </block>
       <!-- 已支付 -->
       <block wx:if="{{item.orderStatus=='wait_deliver' && item.logisticsMode==2}}">
         <button class='or-active'>提醒发货</button>
-      </block>
-
-      <block wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==1}}">
-        <button class='or-active' bindtap='showModal' data-type='code' data-code="{{item.claimGoodsNum}}"> 取货码 </button>
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
       </block>
 
       <!-- 已发货 -->
+      <block wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==1}}">
+        <button class='or-active' bindtap='showModal' data-type='code' data-code="{{item.claimGoodsNum}}"> 取货码 </button>
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
+      </block>
+
       <block wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2}}">
         <button class='or-active' data-num='{{item.orderNumber}}' data-type='get' bindtap='showModal'> 确认收货 </button>
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <!-- <button>查看物流</button> -->
       </block>
 
@@ -114,16 +118,19 @@
       <block wx:if="{{item.orderStatus=='finish' && item.logisticsMode==2}}">
         <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
         <!-- <button>查看物流</button> -->
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
 
       <block wx:if="{{item.orderStatus=='finish' && item.logisticsMode==1}}">
         <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
 
       <!-- 订单取消 -->
       <block wx:if="{{item.orderStatus=='closed' || item.orderStatus=='canceled'}}">
+        <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <button data-index='{{index}}' data-type='del' data-num='{{item.orderNumber}}' bindtap='showModal'>删除订单</button>
       </block>
     </view>

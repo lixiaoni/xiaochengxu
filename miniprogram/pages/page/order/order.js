@@ -1,6 +1,7 @@
 // pages/order/order.js
 const app = getApp();
 import API from "../../../utils/api.js";
+var seeImg = false;
 Page({
 
   /**
@@ -9,40 +10,56 @@ Page({
   // 0待付款 1已付款 2待收货 3交易成功 4交易关闭  5自提待付款 6自提待取货 7交易成功自提 8自提交易关闭
   data: {
     showList: [],
-    hasList: false, 
+    hasList: false,
     nav: [{ title: "全部" }, { title: "待付款" }, { title: "待发货" }, { title: "待收货" }, { title: "已完成" }],
-    reason: [{ title: "我不想买了", selected: true }, { title: "信息填写错误，重新拍", selected: false }, { title: "卖家缺货", selected: false }, { title: "同城见面交易", selected: false }, { title: "其他", selected: false}],
-    navindex:0,
-    inputActive:'inputActive ',
+    reason: [{ title: "我不想买了", selected: true }, { title: "信息填写错误，重新拍", selected: false }, { title: "卖家缺货", selected: false }, { title: "同城见面交易", selected: false }, { title: "其他", selected: false }],
+    navindex: 0,
+    inputActive: 'inputActive ',
 
-    whitch:'all',
-    cancelIndex:0
+    whitch: 'all',
+    cancelIndex: 0
 
   },
+  //查看凭证
+  seeVoucher(e) {
+    let num = e.currentTarget.dataset.num;
+    API.seeVoucher({ orderNumber: num }).then((res) => {
+      if (res.obj.payVoucher) {
+        seeImg = true;
+        wx.previewImage({
+          urls: [this.data.baseUrl + res.obj.payVoucher]
+        })
+      } else {
+        wx.showToast({
+          title: '未上传付款凭证',
+          icon: 'none'
+        })
+      }
+    })
+  },
 
-
-  showModal(e,item){
+  showModal(e, item) {
     let type = e.currentTarget.dataset.type,
-        num = e.currentTarget.dataset.num,
-        obj = {};
-    switch(type){
-      case "code" : 
-        obj={
+      num = e.currentTarget.dataset.num,
+      obj = {};
+    switch (type) {
+      case "code":
+        obj = {
           codeModal: true,
           codeNum: e.currentTarget.dataset.code
         }
         break;
-      case 'get' : 
-        obj={
+      case 'get':
+        obj = {
           sureModal: true,
           getNum: e.currentTarget.dataset.num
-        };break;
+        }; break;
       case 'del':
         let index = e.currentTarget.dataset.index;
         obj = {
           delModal: true,
           delNum: { num: num, index: index }
-        } ;break;
+        }; break;
       case 'cancel':
         obj = {
           cancelModal: true,
@@ -52,13 +69,13 @@ Page({
         obj = {
           afterModal: true,
           afterTel: e.currentTarget.dataset.tel
-        };break;
+        }; break;
       case "payment":
         let i = e.currentTarget.dataset.index;
         obj = {
           paymentModal: true,
-          paymentItem: this.data.showList[i] 
-        };break;    
+          paymentItem: this.data.showList[i]
+        }; break;
     }
     this.setData(obj)
   },
@@ -129,15 +146,15 @@ Page({
       index = this.data.cancelIndex;
     API.cancelOrder({
       reason: this.data.reason[index].title,
-      orderNumber:num
+      orderNumber: num
     }).then((res) => {
       this.afterOperation();
       wx.showToast({
         title: res.message,
         icon: "none"
       })
-    })  
-  
+    })
+
   },
 
 
@@ -175,21 +192,21 @@ Page({
 
 
   //跳转
-  toOrderDetail(e){
+  toOrderDetail(e) {
     let type = e.currentTarget.dataset.type,
       status = e.currentTarget.dataset.status,
       num = e.currentTarget.dataset.num,
       url = "../allOrder/allOrder";
     //是否自提
-    switch (type){
-      case '1': 
+    switch (type) {
+      case '1':
         //url = "../self/self?status=";break;
         url += "?self=true"; break;
-      case '2': 
+      case '2':
         //url = "../nopay/nopay?status="; break;
         url += "?self=false"; break;
     }
-    url += '&status='+status;
+    url += '&status=' + status;
     url += '&num=' + num;
     url += "&type=order"
     wx.navigateTo({
@@ -197,35 +214,35 @@ Page({
     })
   },
   //获取订单列表
-  getList(re){
+  getList(re) {
     if (re) {
       app.pageRequest.pageData.pageNum = 0;
       this.setData({
         showList: []
       })
     }
-    app.pageRequest.pageGet("/api/order/user/store/" + this.data.storeId +"/ordercategory/3/orderstatus/" + this.data.whitch,{
+    app.pageRequest.pageGet("/api/order/user/store/" + this.data.storeId + "/ordercategory/3/orderstatus/" + this.data.whitch, {
       // pageNum:1,
       // pageSize:5
     }).then((res) => {
-      if (res.obj && res.obj.result){
+      if (res.obj && res.obj.result) {
         this.resetData(res.obj.result);
       }
     })
   },
-  resetData(data){
+  resetData(data) {
     let arr = [];
-    for(let i =0; i<data.length;i++){ // 循环订单
+    for (let i = 0; i < data.length; i++) { // 循环订单
       let oldGoods = data[i].goodsInfoList,  //商品数组
-          newGoods = [];
-      for (let j = 0; j < oldGoods.length;j++){ //货品循环
-        
+        newGoods = [];
+      for (let j = 0; j < oldGoods.length; j++) { //货品循环
+
         let type = oldGoods[j].goodsSkuInfoVOList;  //规格数组
-        
-        for(let k = 0;k < type.length;k++){
+
+        for (let k = 0; k < type.length; k++) {
           //当前货物,类型变为对象
-          let nowGood = {};  
-          Object.assign(nowGood,oldGoods[j]);
+          let nowGood = {};
+          Object.assign(nowGood, oldGoods[j]);
           nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
@@ -253,7 +270,7 @@ Page({
         this.setData({
           hasPayImg: true
         })
-      }  
+      }
     })
   },
 
@@ -261,19 +278,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
-  clickInput:function(event){
+  clickInput: function (event) {
     this.setData({
       inputActive: ''
     });
   },
-  
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // app.pageRequest.pageData.pageNum = app.pageRequest.pageData.pageNum == 0 ? app.pageRequest.pageData.pageNum:app.pageRequest.pageData.pageNum-1;
+    if (seeImg) {
+      seeImg = false;
+      return;
+    }
     this.getList(true);
   },
 
@@ -281,21 +301,21 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**

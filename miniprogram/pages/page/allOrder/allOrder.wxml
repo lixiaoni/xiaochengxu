@@ -43,7 +43,9 @@
   <!-- 待付款 -->
   <view class='flex-box' wx:if="{{status=='unpaid'}}">
     <view class='np-title'>
-      <image src="/image/nz.png"></image>等待买家付款
+      <image src="/image/nz.png"></image>
+      <text wx:if="{{order.payVoucher}}">等待商家确认</text>
+      <text wx:if="{{!order.payVoucher}}">等待买家付款</text>
     </view>
     <view class='np-right'>
       <view>剩余时间：{{clock?clock:""}}</view>
@@ -280,24 +282,33 @@
 
 <view class='cf-button'>
   <block wx:if="{{status=='unpaid'}}">
-    <button wx:if="{{hasPayImg}}" bindtap="showModal" data-type='payment' class='or-active'> 支付二维码 </button>
-    <button style='' bindtap="uploadVoucher" class='or-active'> 上传支付凭证 </button>
+    <button wx:if="{{hasPayImg}}" bindtap="showModal" data-type='payment' class='or-active'>付款码</button>
+    <button style='' bindtap="uploadVoucher" class='or-active'> 上传付款凭证 </button>
     <button bindtap='showModal' data-type='cancel'>取消{{orderName}}</button>
   </block>
 
-  <block wx:if="{{status=='wait_deliver'}}">
-    <button wx:if="{{self=='false'}}" class='or-active'> 提醒发货 </button>
+  <block wx:if="{{status=='wait_deliver' && self=='false'}}">
+    <button class='or-active'> 提醒发货 </button>
+    <button wx:if="{{order.payVoucher}}" bindtap='seeVoucher'>付款凭证</button>
   </block>
 
-  <button wx:if="{{status=='delivered' && self=='true'}}" class='or-active' data-type='goodCode' bindtap='showModal'> 获取取货码 </button>
-
+  <block wx:if="{{status=='delivered' && self=='true'}}" >
+    <button class='or-active' data-type='goodCode' bindtap='showModal'> 取货码 </button>
+    <button wx:if="{{order.payVoucher}}" bindtap='seeVoucher'>付款凭证</button>
+  </block>
 
   <block wx:if="{{status=='delivered' && self=='false'}}">
     <button class='or-active' data-type='get' bindtap='showModal'> 确认收货 </button>
+    <button wx:if="{{order.payVoucher}}" bindtap='seeVoucher'>付款凭证</button>
   </block>
 
   <block wx:if="{{status=='finish'}}">
     <button class='or-active' data-type='after' data-tel="{{item.storeInfo.servicePhone}}" bindtap='showModal'> 客服电话 </button>
+    <button wx:if="{{order.payVoucher}}" bindtap='seeVoucher'>付款凭证</button>
+  </block>
+
+  <block wx:if="{{status == 'canceled'}}">
+    <button wx:if="{{order.payVoucher}}" bindtap='seeVoucher'>付款凭证</button>
   </block>
 
   <block wx:if="{{status=='finish' || status=='closed'|| status=='canceled'}}">

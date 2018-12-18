@@ -133,7 +133,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '未上传支付凭证',
+          title: '未上传付款凭证',
           icon: 'none'
         })
       }
