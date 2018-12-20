@@ -3,8 +3,8 @@
   "pages": [
     "pages/page/home/home",
     "pages/admin/status/status",
-    "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/businessFriend/index/index",
+    "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/page/workIndex/workIndex",
     "pages/page/user/user",
     "pages/casher/success/success",

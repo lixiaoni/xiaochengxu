@@ -153,7 +153,7 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
         </view>
       </view>
       <view class='removeImg' wx:if='{{item.textInput}}'>
-        <textarea  data-index='{{index}}' value='{{item.value}}'  placeholder-class='weui-plac' bindinput='watchDec' placeholder='请输入商品描述内容...'></textarea>
+        <textarea  data-index='{{index}}' value='{{item.value}}'   class='input-v' bindinput='watchDec' placeholder='请输入商品描述内容...'></textarea>
         <view>
             <view><image src="/image/remove.png" ></image><text  data-index='{{index}}' bindtap='removeImage'>删除</text></view>
             <view><image src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData'>插入</text></view>
