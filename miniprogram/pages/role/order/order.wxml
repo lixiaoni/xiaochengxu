@@ -131,8 +131,8 @@
       
 
       <!-- 待收货-->
-      <view class='or-last' wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2}}">
-        <button class='or-active' data-type='ex2' bindtap='showModal' wx:if="{{!item.isForm}}"> 填写运单号 </button>
+      <view class='or-last' wx:if="{{item.orderStatus=='delivered' && item.logisticsMode==2 && item.payVoucher}}">
+        <!-- <button class='or-active' data-type='ex2' bindtap='showModal' wx:if="{{!item.isForm}}"> 填写运单号 </button> -->
         <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <!-- <button wx:if="{{item.logisticsMode==2}}" class='or-active'> 查看物流 </button> -->        
       </view>
@@ -142,7 +142,7 @@
       </view>
 
       <!-- 已完成 -->
-      <view class='or-last' wx:if="{{item.orderStatus=='finish'}}">
+      <view class='or-last' wx:if="{{item.orderStatus=='finish' && item.payVoucher}}">
         <!-- <button class='or-active' wx:if="{{item.logisticsMode==2}}"> 查看物流 </button> -->
         <button wx:if="{{item.payVoucher}}" bindtap='seeVoucher' data-num="{{item.orderNumber}}">付款凭证</button>
         <!-- <button data-num="{{item.orderNumber}}" data-type="del" bindtap='showModal'> 删除订单 </button> -->
