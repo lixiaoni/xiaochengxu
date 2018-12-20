@@ -65,13 +65,13 @@
                     <view bindtap="minusCount" data-obj="{{obj}}" class='{{item.num==1?"classFont":""}}'  data-index="{{index}}">-</view>
                     <!-- <view class='cc-add'>{{item.num}}</view> -->
                     <input class='cc-add' type='number' data-index="{{index}}"  bindblur='blurInput' bindinput='changeNum' value='{{item.num}}'></input>
-                    <view bindtap="addCount" data-index="{{index}}">+</view>
+                    <view bindtap="addCount" class='{{item.num==item.shoppingCartSkuList[0].stockNum?"classFontAdd":""}}' data-index="{{index}}">+</view>
                   </view>
                   <!-- <view  class='man-j'>满<text>{{item.saleBatchNum}}</text>起批<text wx:if='{{limitShow==3 && item.saleBatchNum-item.num>0 && !item.enjoyPrice}}' style='color:#333;'> 还差<text style='color:#CCAA77'>{{item.saleBatchNum-item.num}}</text>件</text></view> -->
                    <view class="cc-coun-new" wx:if="{{item.shoppingCartSkuList==null}}"  wx:for-item="record">
                     <view bindtap="minusCountNew" data-obj="{{obj}}" class='{{item.num==1?"classFont":""}}'  data-index="{{index}}">-</view>
                     <input class='cc-add' type='number' data-index="{{index}}"  bindblur='blurInput1' bindinput='changeNum1' value='{{item.num}}'></input>
-                    <view bindtap="addCountNew" data-index="{{index}}">+</view>
+                    <view bindtap="addCountNew" class='{{item.num==item.stockNum?"classFontAdd":""}}' data-index="{{index}}">+</view>
                   </view>
                 </view>
           </view>

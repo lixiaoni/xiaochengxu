@@ -142,7 +142,6 @@ Page({
   },
   blurInput: function (e) {
     var num = e.detail.value
-    console.log(num)
     if (num == '') {
       num = 1
     }
@@ -193,6 +192,10 @@ Page({
       num = 1
     }
     let storeId = this.data.storeId
+    let stockNum = detailList[index].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     detailList[index].num = num
     detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
     detailList[index].allGoodsAmount = num * detailList[index].sellPrice
@@ -485,6 +488,10 @@ Page({
     const index = e.currentTarget.dataset.index;
     let detailList = this.data.detailList;
     let storeId = this.data.storeId
+    let stockNum = detailList[index].shoppingCartSkuList[0].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     detailList[index].shoppingCartSkuList[0].num = num;
     detailList[index].num = num
     var arr = this.updatePrice(num, index)
@@ -504,6 +511,10 @@ Page({
     let detailList = this.data.detailList;
     let num = detailList[index].shoppingCartSkuList[0].num;
     num = parseInt(num) + 1;
+    let stockNum = detailList[index].shoppingCartSkuList[0].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     let storeId = this.data.storeId
     detailList[index].shoppingCartSkuList[0].num = num;
     detailList[index].num = num
@@ -552,6 +563,10 @@ Page({
     let detailList = this.data.detailList;
     let num = detailList[index].num;
     num = parseInt(num) + 1;
+    let stockNum = detailList[index].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     let storeId = this.data.storeId
     detailList[index].num = num
     detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
