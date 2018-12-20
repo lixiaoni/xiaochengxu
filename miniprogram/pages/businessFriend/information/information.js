@@ -120,10 +120,17 @@ Page({
         remarkName: '',
       })
     } else {
-      this.setData({
-        value: remark,
-        remarkName: remark,
-      })
+      if (status == 3) {
+        this.setData({
+          value: '',
+          remarkName: '',
+        })
+      }else{
+        this.setData({
+          value: remark,
+          remarkName: remark,
+        })
+      }
     }
     this.setData({
       status: status,
@@ -248,7 +255,7 @@ Page({
     var send = this.data.send,
       accept = this.data.accept,
       remark = this.data.remarkName
-    Api.acceptmerchant({ accept: accept, send: send, remark: remark })
+    Api.acceptmerchant({ accept: accept, send: send, otherSideRemark: remark })
       .then(res => {
         wx.showToast({
           title: '添加成功',

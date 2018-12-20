@@ -65,6 +65,7 @@
     <view class='in-img'><image  mode="widthFix" src="/image/icl.png"></image></view>
   </view>
 </view>
+
 <button class='bf-btn'  wx:if='{{success}}'><navigator class='miniProgram' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/home/home?storeId={{accept}}" extra-data="" version="trial"></navigator>去进货</button>
 <button class='bf-btn'  wx:if='{{aginGreet}}' bindtap='invitation'>再次添加到供应商</button>
 <button class='bf-btn'  wx:if='{{oneGreet}}'  bindtap='passFunc'>通过验证</button>
