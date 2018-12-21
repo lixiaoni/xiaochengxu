@@ -42,7 +42,7 @@
     </view>
     <view class="ym_sydtdmgzs">
       <view class="store_name">{{store.storeName?store.storeName:"小云店"}}
-        <view>{{store.storeNature==1?'新批零':'新零售'}}</view>
+        <view>新零售</view>
         <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit.png" />
       </view>
       <image class='logoimg' wx:if='{{floorInfo!=null}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
