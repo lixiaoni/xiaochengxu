@@ -92,7 +92,8 @@
       <block wx:if="{{item.orderStatus=='unpaid'}}">
         <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">付款码</button>
         <navigator url='../../role/supplyVoucher/supplyVoucher?num={{item.orderNumber}}'>
-          <button class='or-active'> 上传付款凭证 </button>
+          <button wx:if="{{!item.payVoucher}}" class='or-active'> 上传付款凭证 </button>
+          <button wx:else class='or-active'> 重新上传凭证 </button>
         </navigator>
         <button bindtap='showModal' data-type='cancel' data-num="{{item.orderNumber}}">取消订单</button>
       </block>

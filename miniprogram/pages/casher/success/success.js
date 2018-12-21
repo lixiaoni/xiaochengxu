@@ -7,9 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    returnModal: false
+    returnModal: false,
+    secTime: 5,
+    waitStatus: true
   },
   afterPay() {
+    if (this.data.waitStatus) {
+      return
+    }
     switch (this.data.type) {
       case "cloudXPL":
       case "cloudXLS":
@@ -74,18 +79,39 @@ Page({
       url: "/pages/page/home/home",
     })
   },
+  //倒计时
+  startTimeout() {
+    wx.showLoading({
+      title: '处理中',
+    })
+    let sec = this.data.secTime;
+    let timmer = setInterval(() => {
+      sec--
+      if (sec == 0) {
+        wx.hideLoading();
+        clearInterval(timmer);
+        Api.userInfor().then(res => {
+          if (res.obj) {
+            this.setData({
+              user: res.obj
+            })
+            this.setData({
+              waitStatus: false
+            })
+          }
+        })
+      }
+    }, 1000)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!options.type) {
-      return
-    }
     this.setData({
-      type: options.type,
+      type: options.type ? options.type : "",
       price: options.price ? options.price : false
     })
-    this.getUser();
+    this.startTimeout();
   },
 
   /**
