@@ -1,5 +1,6 @@
 var filterMoney = function (money) {
   if (money) {
+    money = parseFloat(money)    
     return money.toFixed(2)
   } else {
     return 0

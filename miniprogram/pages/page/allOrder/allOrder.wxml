@@ -283,7 +283,8 @@
 <view class='cf-button'>
   <block wx:if="{{status=='unpaid'}}">
     <button wx:if="{{hasPayImg}}" bindtap="showModal" data-type='payment' class='or-active'>付款码</button>
-    <button style='' bindtap="uploadVoucher" class='or-active'> 上传付款凭证 </button>
+    <button wx:if="{{!order.payVoucher}}" bindtap="uploadVoucher" class='or-active'> 上传付款凭证 </button>
+    <button wx:else bindtap="uploadVoucher" class='or-active'> 重新上传凭证 </button>
     <button bindtap='showModal' data-type='cancel'>取消{{orderName}}</button>
   </block>
 
