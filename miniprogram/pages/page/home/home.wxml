@@ -1,24 +1,20 @@
-<view wx:if="{{initOrder && limitShow == 2}}"><initstroe></initstroe></view>
+<view wx:if="{{initOrder && limitShow == 2}}">
+  <initstroe></initstroe>
+</view>
 <login id="login"></login>
- <!--确定取消关注吗？-->
-<mes
-  show="{{disLike}}"
-  bind:sureSelectArea="sureSelectAreaListener"
->
-<view>
-  <text>确定取消关注吗？</text>
-  <button bindtap='disLike'>确定</button>
-</view>
+<!--确定取消关注吗？-->
+<mes show="{{disLike}}" bind:sureSelectArea="sureSelectAreaListener">
+  <view>
+    <text>确定取消关注吗？</text>
+    <button bindtap='disLike'>确定</button>
+  </view>
 </mes>
- <!--是否下架-->
-<mes
-  show="{{confirmDown}}"
-  bind:sureSelectArea="sureSelectAreaListener"
->
-<view>
-  <text>确定下架该商品？</text>
-  <button bindtap='confirmDown'>确定</button>
-</view>
+<!--是否下架-->
+<mes show="{{confirmDown}}" bind:sureSelectArea="sureSelectAreaListener">
+  <view>
+    <text>确定下架该商品？</text>
+    <button bindtap='confirmDown'>确定</button>
+  </view>
 </mes>
 <view class="goods-ser">
   <navigator url="../../page/serStatus/serStatus" style='width:80%'>
@@ -32,12 +28,12 @@
   </view>
 </view>
 <view class='banner' id='myText'>
-  <image wx:if='{{store!="" && limitShow==2}}'  bindtap='chooseImage' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
-   <image wx:if='{{store!="" && limitShow!=2}}'  src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
+  <image wx:if='{{store!="" && limitShow==2}}' bindtap='chooseImage' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
+  <image wx:if='{{store!="" && limitShow!=2}}' src="{{baseUrl}}{{coverUrl}}?x-oss-process=style/store-cover" class="slide-image" mode="widthFix" />
   <view class="ym_sydtstore">
     <view class="ym_sydtlogo">
       <navigator class='logoimg' url='../mes/mes?code={{limitShow}}'>
-        <image wx:if='{{store!=""}}' mode="aspectFill" src="{{baseUrl}}{{store.logo}}?x-oss-process=style/logo"/>  
+        <image wx:if='{{store!=""}}' mode="aspectFill" src="{{baseUrl}}{{store.logo}}?x-oss-process=style/logo" />
       </navigator>
     </view>
     <view class="ym_sydtdmgzs">
@@ -49,10 +45,28 @@
       <text wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
     </view>
   </view>
-  <view class="ym_sydtgzbtn share-v" wx:if='{{limitShow==2}}'   style='color:#666 !important'><view><image  src="/image/fx.png" /></view><button class='shre_btn' open-type='share'></button>分享</view>
-  <view class="ym_sydtgzbtn" wx:if='{{store!="" && !likeShow && limitShow!=2}}'  bindtap='likeStore'><view><image  src="/image/f.png" /></view><button class='shre_btn'></button><text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
-  <view class="ym_sydtgzbtn" wx:if='{{!likeShow  && !getFollw && limitShow!=2}}'  bindtap='likeStore'><view><image  src="/image/f.png" /></view><button class='shre_btn'></button><text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
-  <view class="ym_sydtgzbtn"  style='color:#666 !important' wx:if='{{likeShow && getFollw && limitShow!=2}}' bindtap='deteleLikeStore'><view><image  src="/image/dis.png" /></view><button class='shre_btn'></button>已关注</view>
+  <view class="ym_sydtgzbtn share-v" wx:if='{{limitShow==2}}' style='color:#666 !important'>
+    <view>
+      <image src="/image/fx.png" />
+    </view>
+    <button class='shre_btn' open-type='share'></button>分享</view>
+  <view class="ym_sydtgzbtn" wx:if='{{store!="" && !likeShow && limitShow!=2}}' bindtap='likeStore'>
+    <view>
+      <image src="/image/f.png" />
+    </view>
+    <button class='shre_btn'></button>
+    <text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
+  <view class="ym_sydtgzbtn" wx:if='{{!likeShow  && !getFollw && limitShow!=2}}' bindtap='likeStore'>
+    <view>
+      <image src="/image/f.png" />
+    </view>
+    <button class='shre_btn'></button>
+    <text style='font-size:34rpx;margin-top:-5rpx;'>+</text> 关注</view>
+  <view class="ym_sydtgzbtn" style='color:#666 !important' wx:if='{{likeShow && getFollw && limitShow!=2}}' bindtap='deteleLikeStore'>
+    <view>
+      <image src="/image/dis.png" />
+    </view>
+    <button class='shre_btn'></button>已关注</view>
 </view>
 <view class="swiper-tab" id='swiper-tab'>
   <view class="swiper-tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">综合
@@ -73,7 +87,7 @@
     <view class='up-p up-p1' wx:if='{{descShow}}'></view>
     <view></view>
   </view>
-  
+
 </view>
 <view class="result result-box" wx:if="{{result.length > 0}}">
   <view class='goods-total'>
@@ -113,7 +127,8 @@
 </view>
 <view class='showHide' hidden='{{showHide}}'>
   <view class='sh-cont'>
-    <view><button  class='shre_btns' data-name='names' open-type='share'></button>分享</view>
+    <view>
+      <button class='shre_btns' data-name='names' open-type='share'></button>分享</view>
     <view bindtap='topGoods'>置顶</view>
     <view bindtap='editGoods'>编辑</view>
     <view bindtap='upGoods'>下架</view>
@@ -130,4 +145,7 @@
 </view> -->
 <view hidden='{{indexEmpty}}'>
   <no></no>
+</view>
+<view hidden='{{goRetailStore}}'>
+  <retailStore></retailStore>
 </view>

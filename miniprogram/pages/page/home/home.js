@@ -51,6 +51,7 @@ Page({
   data: {
     indexEmpty: true,
     show:false,
+    goRetailStore: true,
     isShow:false,
     showHide:true,
     showDp:true,
