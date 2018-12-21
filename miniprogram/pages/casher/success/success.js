@@ -36,7 +36,8 @@ Page({
       } else {
         this.setData({
           toStatus: "xpl",
-          returnModal: true
+          returnModal: true,
+          storeId: toID
         })
       }
     } else if (type == "cloudXLS") {
@@ -53,7 +54,8 @@ Page({
       } else {
         this.setData({
           toStatus: "xls",
-          returnModal: true
+          returnModal: true,
+          storeId: toID
         })
       }
     }
