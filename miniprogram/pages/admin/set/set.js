@@ -66,10 +66,10 @@ Page({
             Api.showToast("输入有效的库存数量!")
             skuListAll[j][name] = ''
           } else {
-            skuListAll[j][name] = parseInt(val)
+            skuListAll[j][name] = val.substring(0, 9)
           }
         } else {
-          skuListAll[j][name] = (util.newVal(val)).substring(0, 10)
+          skuListAll[j][name] = (util.newVal(val)).substring(0, 9)
         }
       }
     }

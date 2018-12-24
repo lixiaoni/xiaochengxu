@@ -181,7 +181,7 @@ Page({
       Api.showToast("超过最长数字限制")
     } else {
       this.setData({
-        sellPrice: (util.newVal(val)).substring(0, 10),
+        sellPrice: (util.newVal(val)).substring(0, 9),
       })
     }
   },
@@ -190,7 +190,7 @@ Page({
       val = e.detail.value
     if (val > 0) {
       this.setData({
-        stock: val
+        stock: val.substring(0, 9)
       })
     } else {
       this.setData({
@@ -343,13 +343,13 @@ Page({
       }
       len = index1 * index2
       this.setData({
-        newConst: val,
-        skuNum: len * val
+        newConst: val.substring(0, 9),
+        skuNum: len * (val.substring(0, 9))
       })
     } else {
       this.setData({
-        newConst: val,
-        skuNum: val
+        newConst: val.substring(0, 9),
+        skuNum: val.substring(0, 9)
       })
     }
   },
