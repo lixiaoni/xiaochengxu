@@ -130,7 +130,7 @@ Component({
         return
       }
 
-      App.http.getRequest("/api/" + name + "/exist").then(res => {
+      App.http.getRequest("/api/exist?storeName="+name).then(res => {
         if (res.obj == true) {
           wx.showToast({
             title: '名字重复，请更换店名',
