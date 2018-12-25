@@ -332,7 +332,7 @@ Page({
       index1 = 1,
       index2 = 1,
       len = 1
-    if (Api.isEmpty(pageall)) {
+    if (Api.isNotEmpty(pageall)) {
       for (var i = 0; i < pageall.length; i++) {
         var data = pageall[i].goodsSpecificationValueVOList.length
         if (i == 0) {
@@ -529,11 +529,11 @@ Page({
       clickSpecShow = this.data.clickSpecShow,
       addGoodsDetails = this.data.addGoodsDetails
     if (clickSpecShow == false) {
-      if (!Api.isEmpty(sellPrice)) {
+      if (!Api.isNotEmpty(sellPrice)) {
         Api.showToast("请输入商品零售价！")
         return;
       }
-      if (!Api.isEmpty(this.data.skuNum)) {
+      if (!Api.isNotEmpty(this.data.skuNum)) {
         Api.showToast("商品库存不能为零！")
         return;
       }
@@ -557,17 +557,17 @@ Page({
       }
     } else {
       skuListAll = this.data.skuListAll
-      if (Api.isEmpty(skuListAll)) {
+      if (Api.isNotEmpty(skuListAll)) {
         sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
       }
     }
     for (var i = 0; i < addGoodsDetails.length; i++) {
       if (addGoodsDetails[i].input) {
-        if (Api.isEmpty(addGoodsDetails[i].value)) {
+        if (Api.isNotEmpty(addGoodsDetails[i].value)) {
           description += '<h4>' + addGoodsDetails[i].value + '</h4>'
         }
       } else if (addGoodsDetails[i].textInput) {
-        if (Api.isEmpty(addGoodsDetails[i].value)) {
+        if (Api.isNotEmpty(addGoodsDetails[i].value)) {
           description += '<p>' + addGoodsDetails[i].value + '</p>'
         }
       } else {
@@ -580,7 +580,7 @@ Page({
       }
       goodsImageVOList.push({ imageUrl: pics[i].replace(this.data.baseUrl, '') })
     }
-    if (Api.isEmpty(skuListAll)) {
+    if (Api.isNotEmpty(skuListAll)) {
       if (skuListAll.length == 0) {
         skuListAll = null
       }
@@ -606,15 +606,15 @@ Page({
       "top": false,
       "wholesalePrice": wholesalePrice
     }
-    if (!Api.isEmpty(mainImgUrl)) {
+    if (!Api.isNotEmpty(mainImgUrl)) {
       Api.showToast("请上传商品图片！")
       return;
     }
-    if (!Api.isEmpty(this.data.name)) {
+    if (!Api.isNotEmpty(this.data.name)) {
       Api.showToast("请输入标题！")
       return;
     }
-    if (!Api.isEmpty(this.data.categoryCode)) {
+    if (!Api.isNotEmpty(this.data.categoryCode)) {
       Api.showToast("请输入商品类目！")
       return;
     }

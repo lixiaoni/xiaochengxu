@@ -118,7 +118,7 @@ import {
 
 const app = getApp()
 /**判断是否为空**/
-function isEmpty(str) {
+function isNotEmpty(str) {
   if (str == '' || str == undefined || str == null){
     return false
   }else{
@@ -135,7 +135,7 @@ function showToast(message) {
 }
 /**判断楼座是否为空**/
 function isFloorInfo(obj) {
-  if (isEmpty(obj)) {
+  if (isNotEmpty(obj)) {
     var floor = obj
       floor.mallName = floor.mallName == null ? '' : floor.mallName,
       floor.areaName = floor.areaName == null ? '' : floor.areaName,
@@ -764,7 +764,7 @@ module.exports = {
   registerPhoneMsg: registerPhoneMsg,
   uploadVoucher: uploadVoucher,
   testGoodCode: testGoodCode,
-  isEmpty: isEmpty,
+  isNotEmpty: isNotEmpty,
   showToast: showToast,
   classListApi: classListApi,
   adminGoodsList: adminGoodsList,

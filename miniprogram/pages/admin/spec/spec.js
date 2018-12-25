@@ -126,7 +126,7 @@ Page({
       editShowModel = this.data.editShowModel,
       templateId = this.data.templateId
     if (editShowModel) {
-      if (Api.isEmpty(templateId)) {
+      if (Api.isNotEmpty(templateId)) {
         for (var i = 0; i < goodsListData.length; i++) {
           var data = goodsListData[i].goodsSpecificationValueVOList
           for (var j = 0; j < data.length; j++) {
@@ -281,7 +281,7 @@ Page({
       editDataModel = this.data.editDataModel,
       arrIndex1 = this.data.arrIndex1
     if (editShowModel) {
-      if (Api.isEmpty(templateId)) {
+      if (Api.isNotEmpty(templateId)) {
         arrIndex = that.checkedFunc(arrIndex, false)
         arrIndex1 = that.checkedFunc(arrIndex1, false)
       } else {
@@ -497,7 +497,7 @@ Page({
       longTap: longTap,
       arrIndex: arrIndex,
     })
-    if (!Api.isEmpty(pId)) {
+    if (!Api.isNotEmpty(pId)) {
       Api.showToast("删除成功")
       _this.setData({
         lock: false,
@@ -552,7 +552,7 @@ Page({
       longTap1: longTap1,
       arrIndex1: arrIndex1,
     })
-    if (!Api.isEmpty(pId)) {
+    if (!Api.isNotEmpty(pId)) {
       Api.showToast("删除成功")
       _this.setData({
         lock: false,
@@ -700,7 +700,7 @@ Page({
         arrIndex1: arrIndex
       })
     }
-    if (editShowModel && !Api.isEmpty(pIdNew)) {
+    if (editShowModel && !Api.isNotEmpty(pIdNew)) {
       if (switchi == 0) {
         if (arrIndex[current].selected) {
           if (current >= editDataModel[switchi].goodsSpecificationValueVOList.length) {
@@ -864,7 +864,7 @@ Page({
       }
       editDataModel[0].goodsSpecificationValueVOList = specEditNew
     }
-    if (Api.isEmpty(templateId)) {
+    if (Api.isNotEmpty(templateId)) {
       Api.deleteTemplate(templateContentId)
         .then(res => {
           wx.showToast({

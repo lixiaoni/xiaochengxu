@@ -268,7 +268,7 @@ Page({
     Api.adminGoodsStatus({ goodsStatus: goodsStatus, customCategoryCodes: customCategoryCodes,isCopied:isCopied})
         .then(res => {
           var detailList = res.obj.result
-          if (Api.isEmpty(detailList)) {
+          if (Api.isNotEmpty(detailList)) {
             var datas = _this.data.detailList,
               totalCount = res.obj.totalCount,
               newArr = app.pageRequest.addDataList(datas, detailList)

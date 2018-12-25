@@ -190,7 +190,7 @@ Page({
       .then(res => {
         var detailList = res.obj.result,
           totalCount = res.obj.totalCount
-        if (Api.isEmpty(detailList)){
+        if (Api.isNotEmpty(detailList)){
           var datas = _this.data.result,
             newArr = app.pageRequest.addDataList(datas, detailList)
           _this.setData({
@@ -318,7 +318,7 @@ Page({
       .then(res => {
         var detailList = res.obj.result,
           totalCount = res.obj.totalCount
-        if (Api.isEmpty(detailList)) {
+        if (Api.isNotEmpty(detailList)) {
           var datas = _this.data.result,
             newArr = app.pageRequest.addDataList(datas, detailList)
           _this.setData({
@@ -467,7 +467,7 @@ Page({
     if(authHandler.isLogin()){
       var limitShow = this.data.limitShow
       var setlimitShow = wx.getStorageSync("admin")
-      if (Api.isEmpty(setlimitShow)){
+      if (Api.isNotEmpty(setlimitShow)){
         this.setData({
           limitShow: setlimitShow
         })

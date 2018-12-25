@@ -22,7 +22,7 @@ Page({
         let type = qrUrl.match(/type=(\S*)&/)[1];
         if (type == "user") {
           let userId = qrUrl.match(/userId=(\S*)/)[1];
-          if (Api.isEmpty(userId)){
+          if (Api.isNotEmpty(userId)){
             Api.showPurchaser({ userId: userId })
               .then(res => {
                 var obj = res.obj,

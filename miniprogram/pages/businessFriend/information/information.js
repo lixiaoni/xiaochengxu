@@ -199,7 +199,7 @@ Page({
     _this.setData({
       remarkName: remark
     })
-    if (Api.isEmpty(remark)) {
+    if (Api.isNotEmpty(remark)) {
       this.cancel()
       if (this.data.status == 2) {
         Api.setName({ remark: remark, storeId: purchaserUserId })
@@ -216,12 +216,12 @@ Page({
 
   },
   invitation: function () {
-    if (!Api.isEmpty(wx.getStorageSync("access_token"))) {
+    if (!Api.isNotEmpty(wx.getStorageSync("access_token"))) {
       this.showLogo()
       return
     }
     var floorInfo = this.data.floorInfo
-    if (Api.isEmpty(floorInfo)) {
+    if (Api.isNotEmpty(floorInfo)) {
       wx.navigateTo({
         url: '../invitation/invitation?accept=' + this.data.accept + "&remark=" + this.data.remarkName + "&name=" + this.data.name + "&logo=" + this.data.logo + "&send=" + this.data.send + "&mallName=" + floorInfo.mallName + "&mallLogo=" + floorInfo.mallLogo,
       })

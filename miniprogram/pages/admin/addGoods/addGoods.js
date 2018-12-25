@@ -428,11 +428,11 @@ Page({
       addGoodsDetails = this.data.addGoodsDetails
     for (var i = 0; i < addGoodsDetails.length; i++) {
       if (addGoodsDetails[i].input) {
-        if (Api.isEmpty(addGoodsDetails[i].value)) {
+        if (Api.isNotEmpty(addGoodsDetails[i].value)) {
           description += '<h4>' + addGoodsDetails[i].value + '</h4>'
         }
       } else if (addGoodsDetails[i].textInput) {
-        if (Api.isEmpty(addGoodsDetails[i].value)) {
+        if (Api.isNotEmpty(addGoodsDetails[i].value)) {
           description += '<p>' + addGoodsDetails[i].value + '</p>'
         }
       } else {
@@ -445,26 +445,26 @@ Page({
       }
       goodsImageVOList.push({ imageUrl: pics[i].replace(this.data.baseUrl, '') })
     }
-    if (!Api.isEmpty(mainImgUrl)) {
+    if (!Api.isNotEmpty(mainImgUrl)) {
       Api.showToast("请上传商品图片！")
       return;
     }
-    if (!Api.isEmpty(this.data.name)) {
+    if (!Api.isNotEmpty(this.data.name)) {
       Api.showToast("请输入标题！")
       return;
     }
-    if (!Api.isEmpty(this.data.categoryCode)) {
+    if (!Api.isNotEmpty(this.data.categoryCode)) {
       Api.showToast("请输入商品类目！")
       return;
     }
     var stockNum = this.data.skuNum == '' ? this.data.allTotalNew : this.data.skuNum
     if (pageall.length > 0) {
       if (skuListAll.length == 0) {
-        if (!Api.isEmpty(sellPrice)) {
+        if (!Api.isNotEmpty(sellPrice)) {
           Api.showToast("请输入商品零售价！")
           return;
         }
-        if (!Api.isEmpty(stockNum)) {
+        if (!Api.isNotEmpty(stockNum)) {
           Api.showToast("商品库存不能为零！")
           return;
         }
@@ -486,11 +486,11 @@ Page({
         sellPrice = Math.min.apply(Math, skuListAll.map(function (o) { return o.sellPrice }))
       }
     } else {
-      if (!Api.isEmpty(sellPrice)) {
+      if (!Api.isNotEmpty(sellPrice)) {
         Api.showToast("请输入商品零售价！")
         return;
       }
-      if (!Api.isEmpty(stockNum)) {
+      if (!Api.isNotEmpty(stockNum)) {
         Api.showToast("商品库存不能为零！")
         return;
       }

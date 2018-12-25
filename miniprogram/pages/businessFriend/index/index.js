@@ -27,7 +27,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    if (!Api.isEmpty(authHandler.isLogin())){
+    if (!Api.isNotEmpty(authHandler.isLogin())){
       var pages = getCurrentPages();             //  获取页面栈
       var currPage = pages[pages.length - 1];
       var prevPage = pages[pages.length - 2];    // 上一个页面

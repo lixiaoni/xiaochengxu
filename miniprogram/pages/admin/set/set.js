@@ -86,7 +86,7 @@ Page({
     })
   },
   isEmpty: function (val, mes) {
-    if (Api.isEmpty(val)) {
+    if (Api.isNotEmpty(val)) {
       return true
     } else {
       Api.showToast(mes)
