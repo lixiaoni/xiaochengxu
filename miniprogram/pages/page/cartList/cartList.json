@@ -3,6 +3,7 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "login": "../../login/login/login",
-    "no": "../indexEmpty/indexEmpty"
+    "no": "../indexEmpty/indexEmpty",
+    "retailStore": "../retailStore/retailStore"
   }
 }

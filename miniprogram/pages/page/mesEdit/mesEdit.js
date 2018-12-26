@@ -154,10 +154,9 @@ Page({
     var _this = this
     app.http.onlyUploadImg(url, "STORE_IMAGE").then(res => {
       var url = JSON.parse(res).obj
-      _this.setData({
-        coverUrl: url,
-        logo: url
-      })
+      // _this.setData({
+      //   logo: url
+      // })
       if (url) {
         Api.uploadLogoImg(url)
           .then(res => {
@@ -168,7 +167,8 @@ Page({
               duration: 1000,
               mask: true,
               success: function () {
-                _this.closeShow()
+                // _this.closeShow()
+                _this.getStoreMes()
               }
             })
           })
@@ -182,11 +182,7 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  getStoreMes:function(){
     var _this = this
     Api.storeIdInfo()
       .then(res => {
@@ -211,6 +207,12 @@ Page({
           logo: obj.store[0].store.logo
         })
       })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getStoreMes()
   },
 
   /**

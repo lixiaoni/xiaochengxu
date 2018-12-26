@@ -41,7 +41,7 @@
         <view>{{store.storeNature=="1"?"新批零":"新零售"}}</view>
         <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit.png" />
       </view>
-      <image class='logoimg' wx:if='{{floorInfo!=null}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
+      <image class='logoimg' wx:if='{{floorInfo.mallLogo!=""}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
       <text wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
     </view>
   </view>

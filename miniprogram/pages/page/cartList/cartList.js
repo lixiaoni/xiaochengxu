@@ -48,6 +48,7 @@ function getIdentity(_this) {
 Page({
   data: {
     indexEmpty: true,
+    goRetailStore: true,
     enjoyCost:false,
     detailList:[],
     detailList1:[],
@@ -384,7 +385,13 @@ Page({
         indexEmpty: false
       })
     } else {
-      getIdentity(this)
+      if (app.globalData.storeIdRetail) {
+        this.setData({
+          goRetailStore: false
+        })
+      } else {
+        getIdentity(this)
+      }
     }
     
   },

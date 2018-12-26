@@ -63,6 +63,7 @@ Page({
     hasUser: false,
     limitShow: 1,
     indexEmpty: true,
+    goRetailStore: true,
   },
   toMyStore() {
     let toID = this.data.user.storeId;
@@ -150,6 +151,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options == undefined) {
+      app.globalData.switchStore = true
+    }
     this.setData({
       baseUrl: app.globalData.imageUrl
     })
@@ -199,9 +203,14 @@ Page({
           indexEmpty: false
         })
       }
-      getIdentity(this)
-
-      this.getStore();
+      if (app.globalData.storeIdRetail) {
+        this.setData({
+          goRetailStore: false
+        })
+      } else {
+        getIdentity(this)
+        this.getStore();
+      }
     }
   },
 

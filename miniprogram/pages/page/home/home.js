@@ -1,6 +1,7 @@
 const app = getApp();
 import Api from '../../../utils/api.js'
 import authHandler from '../../../utils/authHandler.js';
+import EnterStoreHandler from '../../../utils/enterStoreHandler.js';
 function getIdentity(_this) {
   if (authHandler.isLogin()) {
     Api.userIdentity()
@@ -74,6 +75,7 @@ Page({
     likeShow:false,
     limitShow:1,
     src:'',
+    isOnloaded:false,
     goodsName:'',
     copyGoods:false,
     openStore:false
@@ -275,27 +277,54 @@ Page({
         })
       })    
   },
-  onLoad: function (options) {
+  // 初始化数据
+  loadData:function(){
     var _this = this
-    if (options!=undefined){
-      if (options.scene) {
-        let scene = decodeURIComponent(options.scene);
-        var storeId = scene.split("store_")[1]
-        wx.setStorageSync("storeId", storeId)
-      }
-      if (options.storeId) {
-        wx.setStorageSync("storeId", options.storeId)
-      }
-    }
-    this.closeShow()
     if (!Api.getStoreId()) {
       this.setData({
         indexEmpty: false
       })
     } else {
+      this.setData({
+        indexEmpty: true
+      })
+      this.closeShow()
       app.pageRequest.pageDataIndex.pageNum = 1
       app.pageRequest.pageData.pageNum = 0
       getIdentity(this)
+      app.globalData.switchStore = false
+    }
+  },
+  onLoad: function (options) {
+    var _this = this
+    if (options != undefined) {
+      let enEnterStoreHandler = new EnterStoreHandler("2");
+      enEnterStoreHandler.enterStore(options).then(store => {
+        //进店成功
+        _this.setData({
+          isOnloaded: true
+        });
+        _this.loadData()
+      }).catch(store => {
+        _this.setData({
+          isOnloaded: true
+        });
+        _this.loadData()
+        if (store) {
+          // 判断批零进到零售店
+          if (store.storeIdRetail) {
+            _this.setData({
+              goRetailStore: false
+            })
+          }
+        }
+      });
+    } else {
+      _this.loadData()
+      this.setData({
+        getFollw: authHandler.isLogin(),
+        disLike: false,
+      })
     }
   },
   bindChange: function (e) {
@@ -461,47 +490,41 @@ Page({
    */
   onShow: function (options) {
     this.getStore();
-    if(authHandler.isLogin()){
-      var limitShow = this.data.limitShow
-      var setlimitShow = wx.getStorageSync("admin")
-      if (Api.isNotEmpty(setlimitShow)){
+    var _this = this,
+      isOnloaded = this.data.isOnloaded
+    if (isOnloaded) {
+      if (authHandler.isLogin()) {
+        var limitShow = this.data.limitShow
+        var setlimitShow = wx.getStorageSync("admin")
+        if (Api.isNotEmpty(setlimitShow)) {
+          this.setData({
+            limitShow: setlimitShow
+          })
+        }
+        if (app.globalData.isFollow) {
+          this.setData({
+            likeShow: true
+          })
+        }
+        if (!app.globalData.isFollow) {
+          this.setData({
+            likeShow: false
+          })
+        }
+      } else {
         this.setData({
-          limitShow: setlimitShow
-        })
-      }
-      if (app.globalData.isFollow){
-        this.setData({
-          likeShow:true
-        })
-      }
-      if (!app.globalData.isFollow){
-        this.setData({
+          limitShow: 1,
           likeShow: false
         })
       }
-    }else{
-      this.setData({
-        limitShow: 1,
-        likeShow:false
-      })
+      if (app.globalData.switchStore) {
+        this.loadData()
+      }
     }
     this.setData({
       getFollw: authHandler.isLogin(),
-      disLike:false,
+      disLike: false,
     })
-    if (app.globalData.switchStore) {
-      if (!Api.getStoreId()) {
-        this.setData({
-          indexEmpty: false
-        })
-      } else {
-        this.closeShow()
-        app.pageRequest.pageDataIndex.pageNum = 1
-        app.pageRequest.pageData.pageNum = 0
-        getIdentity(this)
-        app.globalData.switchStore = false
-      }
-    }
   },
 
   /**

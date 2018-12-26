@@ -7,13 +7,11 @@ Component({
   },
   methods: {
     goRetailStore:function(){
-      var retailStoreId = app.globalData.retailStoreId
+      var retailStoreId = wx.getStorageSync("storeIdRetail")
       wx.navigateToMiniProgram({
         appId: 'wx4f385374765e4cbb', // 要跳转的小程序的appid
-        path: 'pages/page/home/home', // 跳转的目标页面
-        extarData: {
-          storeId: retailStoreId
-        },
+        path: 'pages/page/home/home?storeId='+retailStoreId, // 跳转的目标页面
+        envVersion: 'trial',//release
         success(res) {
           // 打开成功  
         }

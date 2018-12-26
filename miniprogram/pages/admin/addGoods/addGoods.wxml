@@ -4,7 +4,7 @@
   bind:sureSelectArea="sureSelectAreaListener"
 >
 <view>
-  <text>确定退出新建云享品？</text>
+  <text>确定退出新建云商品？</text>
   <button bindtap='confirmDetele'>确定</button>
 </view>
 </mes>

@@ -2,6 +2,9 @@
 <view hidden='{{indexEmpty}}'>
   <no></no>
 </view>
+<view hidden='{{goRetailStore}}'>
+  <retailStore></retailStore>
+</view>
 <login id="login"></login>
 
 <view class='u-title'>
