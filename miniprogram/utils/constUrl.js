@@ -122,3 +122,5 @@ export const copyGoodsUrl='/api/shop/goods/copy/{{originGoodsId}}'
 export const threeFloorListUrl = "/api/floor/threelevellist/{{mallCode}}"
 //订单详情
 export const orderDetailUrl = "/api/order/byordernumber/{{orderNumber}}";
+// 获取店铺性质
+export const getStoreNatureUrl = '/api/store/nature/{{storeId}}'

@@ -283,9 +283,6 @@ Page({
         var storeId = scene.split("store_")[1]
         wx.setStorageSync("storeId", storeId)
       }
-      if (options.query) {
-        wx.setStorageSync("storeId", options.query.storeId)
-      }
       if (options.storeId) {
         wx.setStorageSync("storeId", options.storeId)
       }

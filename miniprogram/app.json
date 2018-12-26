@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/admin/addGoods/addGoods",
     "pages/admin/status/status",
     "pages/businessFriend/index/index",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
@@ -21,7 +22,6 @@
     "pages/businessFriend/merchant/lookInfo/lookInfo",
     "pages/login/agreement/agreement",
     "pages/role/order/order",
-    "pages/admin/addGoods/addGoods",
     "pages/cloudOrder/cloudPay/cloudPay",
     "pages/businessFriend/mewWholesaler/mewWholesaler",
     "pages/businessFriend/wholesaler/wholesaler",

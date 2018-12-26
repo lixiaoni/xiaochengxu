@@ -114,6 +114,7 @@ import {
   tempSortUrl,
   threeFloorListUrl,
   orderDetailUrl,
+  getStoreNatureUrl
 } from './constUrl.js'
 
 const app = getApp()
@@ -147,6 +148,12 @@ function isFloorInfo(obj) {
   } else {
     return null
   }
+}
+/**
+ * 获取店铺性质
+ */
+function getStoreNature(data) {
+  return app.http.getRequest(getStoreNatureUrl, data);
 }
 /**用户身份判断**/
 function userIdentity(data) {
@@ -739,6 +746,7 @@ function getStoreId() {
   }
 }
 module.exports = {
+  getStoreNature,
   getOrderDetail,
   threeFloorList,
   copyGoods: copyGoods,
