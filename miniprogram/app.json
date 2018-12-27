@@ -2,8 +2,8 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
-    "pages/admin/addGoods/addGoods",
     "pages/admin/status/status",
+    "pages/admin/addGoods/addGoods",
     "pages/businessFriend/index/index",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/page/workIndex/workIndex",
