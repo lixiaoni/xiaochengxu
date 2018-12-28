@@ -82,7 +82,7 @@ Page({
   //倒计时
   startTimeout() {
     wx.showLoading({
-      title: '处理中',
+      title: this.data.loadText ? this.data.loadText : '加载中',
     })
     let sec = this.data.secTime;
     let timmer = setInterval(() => {
@@ -103,6 +103,17 @@ Page({
       }
     }, 1000)
   },
+  switchType() {
+    let obj = {};
+    switch (this.data.type) {
+      case "cloudXPL":
+      case "cloudXLS":
+        obj.btnText = '开启小云店之旅';
+        obj.loadText = "正在开启哦~";
+        break;
+    }
+    this.setData(obj)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -111,6 +122,7 @@ Page({
       type: options.type ? options.type : "",
       price: options.price ? options.price : false
     })
+    this.switchType();
     this.startTimeout();
   },
 
