@@ -77,7 +77,7 @@ Component({
       colorTrue: "#d4e6cd"
     },
     {
-      name: "休闲装",
+      name: "电子产品",
       checked: false,
       color: "#fff",
       colorTrue: "#cde6dc"
