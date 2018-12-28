@@ -15,9 +15,19 @@ Page({
    */
   onLoad: function (options) {
     Api.userInfor().then(res => {
-      let id = res.obj.id;
+      if (res.obj) {
+        let id = res.obj.id;
+        this.setData({
+          src: cloudUrl + "?user=" + id
+        })
+      } else {
+        this.setData({
+          src: cloudUrl
+        })
+      }
+    }).catch(e => {
       this.setData({
-        src: cloudUrl+"?user=" + id
+        src: cloudUrl
       })
     })
 

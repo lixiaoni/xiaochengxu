@@ -1,5 +1,6 @@
 import {
   baseUrl,
+  loginUrl,
   basicAuthorization
 } from './const.js'
 /**
@@ -10,7 +11,10 @@ class TokenHandler {
   constructor() {
     //初始化基础的认证常量
     this.basicAuthorization = basicAuthorization,
-      this.baseUrl = baseUrl;
+    this.defaultHeader = {
+      'content-type': 'application/json;charset=UTF-8'
+    },
+    this.baseUrl = loginUrl;
   }
   /**
    * 获取商户编号
@@ -254,6 +258,88 @@ class TokenHandler {
       key: key,
       data: value,
     })
+  }
+
+
+  /**
+   * GET类型的网络请求
+   */
+  getRequest(url, data, header) {
+    return this.requestAll(url, data, 'GET', header)
+  }
+  /**
+   * POST类型的网络请求
+   */
+  postRequest(url, data, header) {
+    return this.requestAll(url, data, 'POST', header)
+  }
+  requestAll(url, data, method, customHeader) {
+    wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: "正在加载",
+    })
+    return new Promise((resolve, reject) => {
+      var header = (customHeader === undefined || customHeader == null || customHeader == "") ? this.defaultHeader : customHeader;
+      this.getTokenOrRefresh().then(token => {
+        if (token) {
+          header['Authorization'] = token;
+        } else {
+          delete header['Authorization'];
+        }
+        wx.request({
+          url: this.baseUrl + url,
+          data: data,
+          header: header,
+          method: method,
+          success: (res => {
+            let pages = getCurrentPages()
+            let curPage = pages[pages.length - 1]
+            this.__page = curPage
+            if (res.statusCode === 200) {
+              if (res.data.code == 0) {
+                resolve(res.data);
+              } else if (res.data.code == 1) {
+                setTimeout(() => {
+                  wx.showToast({
+                    title: res.data.message,
+                    duration: 2000,
+                    icon: 'none'
+                  })
+                }, 0)
+                reject(res);
+              } else {
+                reject(res);
+              }
+            } else if (res.statusCode === 401) {
+              if (res.data && res.data.error_description
+                && res.data.error_description.indexOf("Access token expired") != -1) {
+                this.flushTokenInfo();
+              } else {
+                curPage.loginCom = curPage.selectComponent("#login");
+                curPage.loginCom.showPage();
+              }
+              reject(res)
+            } else {
+              //其它错误，提示用户错误信息
+              if (this._errorHandler != null) {
+                this._errorHandler(res)
+              }
+              reject(res)
+            }
+          }),
+          fail: (res => {
+            if (this._errorHandler != null) {
+              this._errorHandler(res)
+            }
+            reject(res)
+          }),
+          complete: function () {
+            wx.hideLoading()
+            wx.hideNavigationBarLoading()
+          }
+        })
+      })
+    });
   }
 
 }

@@ -66,22 +66,22 @@
   </view>
 </view>
 
+<view class='page_bd page_hd1' wx:if="{{(!payStore && hasUser) || !hasUser}}">
+  <view class='weui-back'>
+    <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/newCloud/newCloud'>
+      <image src='/image/applyStore.png' class='user-img'></image>
+      <view class='weui-cell__bd'>
+        我也要开小云店
+      </view>
+      <view class='weui-img'>
+        <image src="/image/icl.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
 
 <block wx:if="{{hasUser}}">
-  <!-- 没有付款订单 -->
-  <view class='page_bd page_hd1' wx:if="{{!payStore}}">
-    <view class='weui-back'>
-      <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/newCloud/newCloud'>
-        <image src='/image/applyStore.png' class='user-img'></image>
-        <view class='weui-cell__bd'>
-          我也要开小云店
-        </view>
-        <view class='weui-img'>
-          <image src="/image/icl.png"></image>
-        </view>
-      </navigator>
-    </view>
-  </view>
+  
 
   <block wx:if="{{limitShow==2}}">
     <view class='page_bd page_hd1'>
