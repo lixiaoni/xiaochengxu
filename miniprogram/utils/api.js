@@ -643,7 +643,7 @@ function cancelOrder(data){
 function addExpress(data){
   let expressCompany = data.expressCompany ? data.expressCompany:"";
   let expressNumber = data.expressNumber ? data.expressNumber:"";
-  return app.http.putRequest(addDxpressUrl + "?expressCompany=" + expressCompany + "&expressNumber=" + expressNumber, data)
+  return app.http.putRequest(addDxpressUrl + "?expressCompany=" + encodeURI(expressCompany) + "&expressNumber=" + encodeURI(expressNumber), data)
 }
 // 订单填写商家备注
 function addRemark(data){
