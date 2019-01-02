@@ -33,7 +33,6 @@ Page({
         if (toID) {
           wx.setStorageSync("storeId", toID)
           app.globalData.switchStore = true;
-          app.globalData.userShowTip = true;
           wx.switchTab({
             url: "../../page/user/user",
           })
