@@ -184,7 +184,7 @@ Page({
       app.globalData.userShowTip = false;
       wx.showModal({
         title: '',
-        content: '请登陆购买账号后，点击小云店工作台初始化店铺',
+        content: '请登录您的账号（购买时的手机号），开启您的小云店吧！',
         showCancel: false,
         complete: () => {
           if (!Api.getStoreId()) {
