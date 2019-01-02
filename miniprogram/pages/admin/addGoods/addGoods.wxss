@@ -53,7 +53,7 @@
 .write textarea.input-v{height:80rpx}
 .write textarea{height:200rpx;z-index: 1}
 .write .value{background:red;position:absolute}
-.write{position:relative;padding-right:80rpx;max-height:650rpx;overflow-y: auto}
+.write{position:relative;padding-right:80rpx;overflow-y: auto}
 .write-cont{background:#F9F9F9;width:60rpx;padding-bottom:0;position:fixed;z-index:1000;right:10rpx;top:450rpx}
 .write-cont image{width:50rpx;height:50rpx;margin-right:30rpx}
 .removeImg{position:relative;margin-bottom:20rpx;border:2rpx solid #ddd;height:200rpx;width:90%;margin-left:5%;padding:15rpx 0 15rpx 15rpx;height:auto;padding-bottom:60rpx;z-index: 1}
