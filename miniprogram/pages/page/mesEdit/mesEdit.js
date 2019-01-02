@@ -160,7 +160,6 @@ Page({
       if (url) {
         Api.uploadLogoImg(url)
           .then(res => {
-            app.globalData.switchStore = true
             wx.showToast({
               title: res.message,
               icon: 'none',
@@ -212,6 +211,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.globalData.switchStore = true
     this.getStoreMes()
   },
 

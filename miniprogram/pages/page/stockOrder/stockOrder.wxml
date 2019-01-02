@@ -111,7 +111,7 @@
       <view class='or-last' wx:if="{{item.orderStatus=='unpaid'}}">
         <button wx:if="{{hasPayImg}}" class='or-active' bindtap='showModal' data-index="{{index}}" data-type="payment">付款码</button>
         <button wx:if="{{!item.payVoucher}}" data-num="{{item.orderNumber}}" bindtap='uploadVoucher' class='or-active'> 上传付款凭证 </button>
-        <button wx:else data-num="{{item.orderNumber}}" bindtap='uploadVoucher' class='or-active'> 重新上传凭证 </button>
+        <button wx:else data-num="{{item.orderNumber}}" bindtap='uploadVoucher' class='or-active'> 再次上传凭证 </button>
         <button bindtap='showModal' data-type='cancel' data-num="{{item.orderNumber}}">取消进货单</button>
       </view>
 
