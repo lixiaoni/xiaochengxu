@@ -595,11 +595,11 @@ function adminAddUser(data) {
 }
 // 退出登录
 function quit(data){
-  return app.http.postRequest(quitUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(quitUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 // 修改密码
 function updataPwd(data){
-  return app.http.postRequest(updataPwdUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(updataPwdUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 // 修改头像
 function changeIcon(data){
@@ -615,15 +615,15 @@ function uploadVoucher(data){
 }
 /**重置密码**/
 function resetPassword(data) {
-  return app.http.postRequest(resetPasswordUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(resetPasswordUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 /**短信验证码**/
 function phoneMessage(data) {
-  return app.http.getRequest(phoneMessageUrl, data)
+  return app.authHandler.getRequest(phoneMessageUrl, data)
 }
 /**注册**/
 function register(data) {
-  return app.http.postRequest(registerUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(registerUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 /**注册短信验证码**/
 function registerPhoneMsg(data) {

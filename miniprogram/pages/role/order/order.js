@@ -286,17 +286,15 @@ Page({
         return
       }
     }
-    app.http.postRequest("/admin/order/orderpayment/{{orderNumber}}/confirm", { orderNumber: obj.orderNumber }).then((res) => {
-      if(res.success){
-        API.addExpress(obj).then((res) => {
-          this.afterOperation();
-          wx.showToast({
-            title: res.message,
-            icon: 'none'
-          })
-        })
-      }
+    
+    API.addExpress(obj).then((res) => {
+      this.afterOperation();
+      wx.showToast({
+        title: res.message,
+        icon: 'none'
+      })
     })
+    
   },
   //删除订单
   delOrder(e) {

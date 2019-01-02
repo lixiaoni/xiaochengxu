@@ -4,7 +4,7 @@
   <view class='title-box'>支付成功！</view>
   <view class="price"><block wx:if="{{price}}">订单金额：<text class='price-num'>￥{{filter.filterMoney(price)}}</text></block></view>
   <view>支付方式：<text class='gold-color'>微信支付</text></view>
-  <button bindtap='afterPay' class='success-btn'> 查看订单 </button>
+  <button bindtap='afterPay' class='success-btn'> {{btnText?btnText:'查看订单'}} </button>
   <view bindtap='toUser'>返回首页</view>
 </view>
 
