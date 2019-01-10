@@ -88,7 +88,7 @@ Page({
         })
         if (obj != null) {
           _this.setData({
-            address: storeMes.address,
+            address: storeMes.address == null ? '' : storeMes.address,
             servicePhone: storeMes.servicePhone,
             wechatNumber: storeMes.wechatNumber,
             businessScope: storeMes.businessScope,

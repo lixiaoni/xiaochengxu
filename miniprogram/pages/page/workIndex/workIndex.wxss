@@ -11,3 +11,4 @@
 .wk-title image{width:55rpx;position:absolute;right:20rpx;top:50rpx}
 .wx-bot-cont image{width:45rpx}
 .wx-bot-cont>view view:first-child{width:50rpx;height:50rpx;margin:0 auto;padding-bottom:10rpx}
+.isStoreOwer{position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: #F7F7F7;z-index:9999;}

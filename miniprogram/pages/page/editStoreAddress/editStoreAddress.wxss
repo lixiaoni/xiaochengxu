@@ -3,7 +3,7 @@
   color: #333;font-size:28rpx;position: relative;z-index: 100;min-width:400rpx;height:80rpx;line-height:87rpx;margin-left:20rpx;
 }
 .weui-cell__bd1{
-  height: 150rpx;position: relative
+  height: 180rpx;position: relative
 }
 .page__bd-n .weui-cell{
   padding-right: 0;
@@ -12,5 +12,5 @@
   position: absolute;top: 25rpx
 }
 .weui-cell__bd1 textarea{
-  padding-left:30rpx;height:150rpx;width:70%;position: absolute;top:18rpx;left: 147rpx;font-size:28rpx;
+  padding-left:30rpx;height:170rpx;width:70%;position: absolute;top:18rpx;left: 147rpx;font-size:28rpx;
 }

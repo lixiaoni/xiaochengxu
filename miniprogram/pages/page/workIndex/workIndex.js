@@ -1,5 +1,6 @@
 import Api from '../../../utils/api.js'
 import authHandler from '../../../utils/authHandler.js';
+import IsStoreOwner from '../../../utils/isStoreOwner.js';
 Page({
 
   /**
@@ -11,14 +12,11 @@ Page({
     todaySaleNum: 0,
     unshippedOrders: 0,
     verifyFriends:0,
+    isStoreOwerShow:false,
+    loadOnece:false,
     unshippedPurchaseOrders:0,
     payPurchaseOrders:0
   }, 
-  goHome: function () {
-    wx.switchTab({
-      url: '../../page/home/home'
-    })
-  },
   getStore() {
     Api.storeIdInfo().then(res => {
       let store = res.obj.store[0].store;
@@ -36,53 +34,52 @@ Page({
       }
     })
   },
+  // 页面跳转
+  goUser: function () {
+    wx.switchTab({
+      url: '../../page/user/user'
+    })
+    this.setData({
+      hidden: false
+    })
+  },
+  goHome: function () {
+    wx.switchTab({
+      url: '../../page/home/home'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.storeId) {
-      wx.setStorageSync("storeId", options.storeId)
-    }
-    let _this = this;
-    this.setData({
-      limitShow: 1
-    })
-    if (authHandler.isLogin()){
-      Api.userIdentity()
-        .then(res => {
-          var obj = res.obj
-          if (obj == "null" || obj == null) {
-            wx.switchTab({
-              url: '../../page/home/home'
+    var _this = this
+    if (options) {
+      if (options.storeId) {
+        this.setData({
+          isStoreOwerShow: true
+        })
+        // 身份判断
+        wx.setStorageSync("storeId", options.storeId)
+        let isStoreOwner = new IsStoreOwner();
+        isStoreOwner.enterIdentity().then(res => {
+          if (res.isStoreOwner) {
+            _this.getStore();
+            _this.getMes()
+            _this.setData({
+              isStoreOwerShow: false,
+              loadOnece: true
             })
           } else {
-            var isStoreOwner = obj.isStoreOwner
-            if (isStoreOwner) {
-              if (obj.storeNature == 2) {
-                wx.setStorageSync("admin", 2)
-                _this.setData({
-                  limitShow: 2
-                })
-              }
-              if (obj.storeNature == 1) {
-                wx.setStorageSync("admin", 1)
-                wx.switchTab({
-                  url: '../../page/user/user'
-                })  
-              }
-            }else{
-              wx.switchTab({
-                url: '../../page/user/user'
-              })   
-            }
+            _this.goUser()
           }
+        }).catch(res => {
+        });
+      }else{
+        this.setData({
+          loadOnece: true
         })
-    } else {
-      wx.switchTab({
-        url: '../../page/home/home'
-      })
+      }
     }
-    this.getMes()
   },
   goDerm:function(){
     wx.navigateTo({
@@ -116,7 +113,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getStore();
+    if (this.data.loadOnece){
+      this.getMes()
+      this.getStore()
+    }
   },
 
   /**

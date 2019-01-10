@@ -4,9 +4,11 @@
 .shop-cont>view view{top:0;font-size:30rpx}
 .shop-cont .s-title{font-size:30rpx}
 .shop-cont>view{padding-top:0;height:100rpx;line-height:100rpx;margin-left:0}
+.shop-cont>view.s-title {padding-top:0;min-height:100rpx;line-height:unset;margin-left:0;padding-left:80rpx;padding-top:20rpx;}
 .shop-cont>view view{display:inline-block;text-align:center;position:relative;width:49%;border:0}
 .shop-cont>view:last-child{border-bottom:0}
 .pal-class{color:#CCAA77}
 .shop-cont>view view:nth-child(2){border-left:2rpx solid #E5E5E5;color:#333;font-size:30rpx}
 .shop-cont>view view:nth-child(3){color:#333;font-size:30rpx}
 .shop-cont{margin-bottom:20rpx}
+.shop-cont .s-title image {position: absolute;top:23rpx;left: 0;}

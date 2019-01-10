@@ -16,13 +16,16 @@ Page({
       region: e.detail.value
     })
   },
-  watchInput:function(e){
-    var value=e.detail.value
+  watchInput: function (e) {
+    var value = e.detail.value,
+      num = value.length
+    if (num > 51) {
+      Api.showToast("超过最长数字限制")
+    }
     this.setData({
-      value:value
+      value: value.substring(0, 50),
     })
   },
- 
   /**
    * 生命周期函数--监听页面加载
    */

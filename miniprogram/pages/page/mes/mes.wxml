@@ -29,8 +29,8 @@
 </view>
 <view class="weui_cells">
     <view>
-      <image  src="/image/positionico.png"></image>
-      <text>{{storeMes.address}}</text>
+      <image style='position:absolute;top:35rpx' src="/image/positionico.png"></image>
+      <view  class='add-style'>{{storeMes.address==null?"":storeMes.address}}</view>
     </view>
     <view>
       <image  src="/image/lou.png"></image>

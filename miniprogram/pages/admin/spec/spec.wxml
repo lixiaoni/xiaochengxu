@@ -60,7 +60,7 @@
   </view>
 </view>
 <swiper current="{{currentTab}}" duration="300">
-    <swiper-item  catchtouchmove="stopTouchMove" wx:for='{{templateCont}}' wx:key='{{index}}' wx:for-item="cont">
+    <swiper-item   wx:for='{{templateCont}}' wx:key='{{index}}' wx:for-item="cont">
       <view class='sp-cont' wx:for='{{cont.specificationTemplateContentVOList}}' wx:for-item="list" wx:key='{{index}}'>
         <view class="sp-color">{{list.specName}}<image class='img' wx:if='{{index==1}}' data-id="{{list.id}}" bindtap='upTop'  src="/image/ups.png"></image><image src="/image/editSpec.png" data-name="{{list.specName}}" data-id="{{list.id}}"   bindtap='editName'></image></view>
         <view class='sp-button'  wx:if='{{index==0}}'>

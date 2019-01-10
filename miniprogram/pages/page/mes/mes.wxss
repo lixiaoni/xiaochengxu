@@ -42,3 +42,4 @@
 .weui-bottom .new-b-font{color:#666}
 .new-e image{width:50rpx;height:50rpx;margin-top:8rpx}
 .new-e{height:70rpx;width:70rpx;background:rgba(0,0,0,0.3);border-radius:50%;position:absolute;right:50rpx;top:70rpx;z-index:100;text-align:center}
+.add-style{text-align:justify;width:92%;margin-left:60rpx;line-height:45rpx;margin-top: 30rpx;min-height: 50rpx;word-wrap:break-word ;}

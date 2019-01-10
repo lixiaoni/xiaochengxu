@@ -1,51 +1,60 @@
 import Api from './api.js'
+import authHandler from './authHandler.js';
 const app = getApp();
+
 class IsStoreOwner {
   /**
-   * 获取token，如果token过期做强制刷新
+   * 判断身份
    */
-  enterIdentity(storeNature) {
-    console.log(storeNature)
+  enterIdentity(options) {
     return new Promise((resolve, reject) => {
-      Api.userIdentity().then(res => {
-        var obj = res.obj
-        console.log(obj)
-        if (obj == "null" || obj == null) {
-          resolve(false);
-          return;
-        } else {
-          var isStoreOwner = obj.isStoreOwner
-          if (isStoreOwner) {
-            if (obj.storeNature == 2) {
-            //   wx.setStorageSync("admin", 2)
-            //   _this.setData({
-            //     limitShow: 2
-            //   })
-              resolve(true);
-              return;
+      var data = {}
+      // 获取当前页面设置身份
+      var pages = getCurrentPages()
+      var currentPage = pages[pages.length - 1]
+      if (authHandler.isLogin()) {
+        Api.userIdentity().then(res => {
+          var obj = res.obj
+          if (Api.isNotEmpty(obj)) {
+            var isStoreOwner = obj.isStoreOwner
+            if (isStoreOwner) {
+              // 店主
+              wx.setStorageSync("admin", 2)
+              currentPage.setData({
+                limitShow: 2
+              })
+              data = { isStoreOwner: true}
+            } else {
+              wx.setStorageSync("admin", 1)
+              currentPage.setData({
+                limitShow: 1
+              })
+              data = { isStoreOwner: false}
             }
-            // if (obj.storeNature == 1) {
-            //   wx.setStorageSync("admin", 1)
-            //   wx.switchTab({
-            //     url: '../../page/user/user'
-            //   })
-            // }
           } else {
-            resolve(false);
-            return;
-            // wx.switchTab({
-            //   url: '../../page/user/user'
-            // })
+            wx.setStorageSync("admin", 1)
+            currentPage.setData({
+              limitShow: 1
+            })
+            data = { isStoreOwner: false}
           }
-        }
-        
-      }).catch(e => {
-        resolve(store);
+          resolve(data);
+          return;
+        }).catch(e => {
+          resolve("异常");
+          return;
+        });
+      } else {
+        wx.setStorageSync("admin", 1)
+        currentPage.setData({
+          limitShow: 1
+        })
+        data = { isStoreOwner: false}
+        resolve(data);
         return;
-      });
-    });
+      }
+    })
   }
-
 }
 
 export default IsStoreOwner

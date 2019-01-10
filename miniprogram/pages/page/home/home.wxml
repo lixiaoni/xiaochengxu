@@ -1,3 +1,5 @@
+<!-- 浮球 -->
+<!-- <icon class='post' type="success" size="50" bindtap="ballClickEvent" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent"/> -->
 <view wx:if="{{initOrder && limitShow == 2}}">
   <initstroe></initstroe>
 </view>

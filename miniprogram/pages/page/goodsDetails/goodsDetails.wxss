@@ -28,7 +28,7 @@
 .gd-details .weui_cells{border-bottom:2rpx solid #F5F5F5}
 .gd-title{font-size:34rpx;color:#333;padding:40rpx 40rpx 10rpx 40rpx}
 .gd-title view{margin-bottom:10rpx}
-.gd-title view:first-child{position:relative;padding-right:70rpx}
+.gd-title view:first-child{position:relative;padding-right:70rpx;word-wrap:break-word}
 .gd-title view:first-child image,.gd-title view:first-child button{width:38rpx;height:38rpx;position:absolute;right:10rpx;top:10rpx;border:0}
 .gd-title view:first-child button{width:60rpx;height:60rpx}
 .gd-title view.gd-font{font-size:30rpx;color:#C7945A}

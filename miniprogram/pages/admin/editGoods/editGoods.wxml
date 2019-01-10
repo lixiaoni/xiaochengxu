@@ -100,7 +100,7 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
         </view>
       </view>
       <!-- <view class='weui-input'>每个规格批发价<input bindinput='wholesalePrice' placeholder-class='pla-input' class="weui-input" type="text" placeholder="" value='{{wholesalePrice}}'></input><text>元</text></view> -->
-      <view class='weui-input'>每个规格零售价<input bindinput='sellPrice' placeholder-class='pla-input' class="weui-input" type="text" placeholder="不填写即不零售（选填）" value='{{sellPrice}}'></input><text>元</text></view>
+      <view class='weui-input'>每个规格零售价<input bindinput='sellPrice' placeholder-class='pla-input' class="weui-input" type="text" placeholder="" value='{{sellPrice}}'></input><text>元</text></view>
       <view class="weui-cell">
         <view class="weui-cell__hd"><image  src="/image/ic7.png"></image></view>
         <view class="weui-cell__bd">
