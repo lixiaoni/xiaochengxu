@@ -66,9 +66,20 @@ Page({
             Api.showToast("输入有效的库存数量!")
             skuListAll[j][name] = ''
           } else {
+            val = val.replace(/\b(0+)/gi, "")
             skuListAll[j][name] = val.substring(0, 9)
           }
         } else {
+          if (val.length == 2 && val.charAt(0) == '0') {
+            if (val != "0.") {
+              val=0
+              skuListAll[j][name] =0
+              this.setData({
+                skuListAll: skuListAll
+              })
+              return
+            }
+          }
           skuListAll[j][name] = (util.newVal(val)).substring(0, 9)
         }
       }

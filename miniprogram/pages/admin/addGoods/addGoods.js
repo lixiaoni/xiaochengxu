@@ -179,13 +179,12 @@ Page({
     len = index1 * index2
     if (num > 16) {
       Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        newConst: val.substring(0, 9),
-        allTotalNew: len * (val.substring(0, 9))
-      })
-    }
-
+    } 
+    val = val.replace(/\b(0+)/gi, "")
+    this.setData({
+      newConst: val.substring(0, 9),
+      allTotalNew: len * (val.substring(0, 9))
+    })
   },
   watchName: function (event) {
     var _this = this,
@@ -193,11 +192,10 @@ Page({
       num = val.length
     if (num > 56) {
       Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        name: val.substring(0, 55),
-      })
     }
+    this.setData({
+      name: val.substring(0, 55),
+    })
   },
   stockFun: function (e) {
     var _this = this,
@@ -219,23 +217,29 @@ Page({
       num = val.length
     if (num > 51) {
       Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        recommendDesc: val.substring(0, 50),
-      })
     }
+    this.setData({
+      recommendDesc: val.substring(0, 50),
+    })
   },
   sellPrice: function (event) {
     var _this = this,
       val = event.detail.value,
       num = val.length
+    if (num == 2 && val.charAt(0) == '0'){
+      if (val!="0."){
+        this.setData({
+          sellPrice:0
+        })
+        return
+      }
+    }
     if (num > 11) {
       Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        sellPrice: (util.newVal(val)).substring(0, 9)
-      })
-    }
+    } 
+    this.setData({
+      sellPrice: (util.newVal(val)).substring(0, 9)
+    })
   },
   skuNumTrue: function (event) {
     var _this = this,
@@ -244,11 +248,10 @@ Page({
       num = val.length
     if (num > 16) {
       Api.showToast("超过最长数字限制")
-    } else {
-      this.setData({
-        allTotalNew: val.substring(0, 9),
-      })
     }
+    this.setData({
+      allTotalNew: val.substring(0, 9),
+    })
   },
   /**
    * 生命周期函数--监听页面加载

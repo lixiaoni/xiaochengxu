@@ -1,4 +1,6 @@
 <view wx:if="{{initOrder && limitShow == 2}}"><initstroe></initstroe></view>
+<!-- 判断进来的身份 -->
+<view wx:if="{{isStoreOwerShow}}" class='isStoreOwer'></view>
 <login id="login"></login>
 <view class='wk-cont'>
   <view class='wk-title'>

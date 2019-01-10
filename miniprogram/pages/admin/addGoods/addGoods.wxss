@@ -37,7 +37,7 @@
 .page-weui{border-top:1rpx solid #EFEFEF;margin-left:15px}
 .page-weui-active{border-top:0}
 .page-weui .weui-cell{padding-left:0}
-.page-weui .add-size{margin-left:0}
+.page-weui .add-size{margin-left:0;word-break:break-word;}
 .ad-top{background:none;padding:0;color:#333;font-weight:bold;margin-bottom:20rpx}
 .ad-top  .ad-active,.ad-top view{background:#fff;border:0}
 .ad-active{color:#CCAA77}

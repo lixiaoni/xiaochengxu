@@ -11,6 +11,7 @@ Page({
     floorInfo:null,
     description:'',
     storeMes:'',
+    isShow: false,
     storeGoods:[],
     baseUrl: app.globalData.imageUrl,
     limitShow:'',
@@ -61,6 +62,9 @@ Page({
         limitShow: options.code
       },function(){
         _this.getMes()
+        _this.setData({
+          isShow:true
+        })
       })
     }
    
@@ -86,7 +90,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    if (this.data.isShow){
+      this.getMes()
+    }
   },
 
   /**

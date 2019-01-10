@@ -1,4 +1,4 @@
-.sp-cont{color:#333;padding:20rpx;background:#fff;border-radius:8rpx;margin:20rpx}
+.sp-cont{color:#333;padding:20rpx;background:#fff;border-radius:8rpx;margin:20rpx;}
 .sp-color image{width:40rpx;height:40rpx;position:absolute;right:0;top:6rpx}
 page{height:99%}
 .sp-color image.img{right:70rpx}
@@ -9,7 +9,7 @@ page{height:99%}
 .sp-button view image{width:30rpx;height:30rpx;position:absolute;top:-25rpx;left:50%;margin-left:-15rpx}
 .sp-button view.active{background:#CCAA77;width:70rpx;color:#fff;font-size:48rpx;line-height:43rpx;text-align:center}
 .sp-button view.act{background:#CCAA77;color:#fff}
-.sp-add{border:2rpx dashed #C7C7C7;height:90rpx;margin:20rpx 50rpx;font-size:30rpx;line-height:80rpx;text-align:center;position:relative}
+.sp-add{border:2rpx dashed #C7C7C7;height:90rpx;margin:20rpx 50rpx;font-size:30rpx;line-height:80rpx;text-align:center;position:relative;margin-bottom:50rpx;}
 .sp-add1{font-size:30rpx;color:#999}
 .sp-add image{width:50rpx;height:50rpx;vertical-align:middle;margin-top:-4rpx;margin-right:10rpx}
 .sp-add1 image{width:40rpx;height:40rpx}
@@ -25,3 +25,4 @@ page{height:99%}
 .spec-view-active{color:#fff;background:#CCAA77;border:2rpx solid #CCAA77}
 swiper{height:85%}
 .spec-title{font-size:46rpx;font-weight:bold;text-align:center;margin-bottom:80rpx;margin-top:40rpx}
+swiper-item{overflow:scroll}

@@ -166,6 +166,7 @@ function ramNum1() {
   }
   return c
 }
+//规格随机数
 function ramData(){
   return Date.parse(new Date()) + parseInt(89999 * Math.random() + 10000 + 1)
 }

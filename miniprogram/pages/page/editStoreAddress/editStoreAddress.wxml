@@ -6,7 +6,7 @@
            选择地区 
            <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
               <view class="picker">
-                {{region[0]}}<text wx:if='{{region.length>0}}'>、</text>{{region[1]}}<text wx:if='{{region.length>0}}'>、</text>{{region[2]}}
+                {{region[0]}}<text wx:if='{{region[0]}}'>、</text>{{region[1]}}<text wx:if='{{region[1]}}'>、</text>{{region[2]}}
               </view>
             </picker>
         </view>

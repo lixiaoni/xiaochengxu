@@ -10,7 +10,7 @@
 .shre_btn,.ym_sydtgzbtn .button-hover{position:absolute;width:150rpx;bottom:20rpx;height:80rpx;border:0;border-left:2rpx solid #eeeeee;background:unset;border-radius:0;height:90rpx;bottom:0}
 .ym_sydtlogo{width:80rpx;top:-100rpx;height:80rpx;position:absolute;margin-right:20rpx;left:45rpx}
 .ym_sydtlogo image{border-radius:10rpx;max-width:120rpx;border:2rpx solid #fff;max-height:120rpx}
-.ym_sydtdmgzs .store_name{font-size:30rpx;color:#333;font-weight:bold;margin-bottom:20rpx}
+.ym_sydtdmgzs .store_name{font-size:30rpx;color:#333;font-weight:bold;margin-bottom:20rpx;max-width:80%}
 .ym_sydtdmgzs text{font-size:26rpx;color:#666}
 .ym_sydtdmgzs image{width:24rpx;height:25rpx;vertical-align:middle;margin-right:10rpx;margin-top:-6rpx}
 .ym_sydtgzbtn{color:#CCAA77 !important;font-weight:normal !important;text-shadow:none !important;border:none;position:absolute;right:5rpx;width:155rpx;bottom:45rpx;padding:0;text-align:center;background:none;font-size:26rpx;z-index:13;border-radius:0;display:flex;align-items:center;justify-content:center}
@@ -56,3 +56,10 @@
 .nomore{margin-bottom:0rpx;margin-top:0rpx;text-align:center;background:#f7f7f7;padding:30rpx}
 .tip-v view{font-size: 28rpx;color: #999;font-weight: normal}
 .tip-v button{margin-bottom: 40rpx;margin-top: 40rpx}
+
+.post {
+   position: absolute;
+  bottom: 240px;
+  right: 100px;
+  z-index: 9000;
+}

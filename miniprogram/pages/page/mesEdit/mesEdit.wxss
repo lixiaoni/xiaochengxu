@@ -3,3 +3,4 @@
 .weui-time view:nth-child(2) .mes-tel image{
   width:24rpx;height:29rpx;
 }
+.add-style{width: 85%;}

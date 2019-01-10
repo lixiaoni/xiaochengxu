@@ -16,8 +16,8 @@
 </view>
 <view class="weui_cells">
     <navigator url='../editStoreAddress/editStoreAddress?address={{address}}&province={{province}}&city={{city}}&county={{county}}'>
-      <image  src="/image/positionico.png"></image>
-      <text>{{address}}</text>
+      <image style='position:absolute;top:35rpx' src="/image/positionico.png"></image>
+      <view class='add-style'>{{address}}</view>
       <view class='weui-view'>
       <image class='img' src="/image/icl.png"></image>
     </view>
