@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/cloudOrder/webInitStore/webInitStore",
     "pages/admin/addGoods/addGoods",
     "pages/page/isStoreOwner/isStoreOwner",
     "pages/admin/status/status",
