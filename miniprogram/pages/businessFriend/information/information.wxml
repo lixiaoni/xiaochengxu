@@ -41,7 +41,7 @@
    <text>所属商城</text><view wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}}</view>
   </view>
   <view class='in-cont'>
-   <text>楼层区域</text><view wx:if='{{floorInfo!=null}}'>{{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</view>
+   <text>楼座楼层</text><view wx:if='{{floorInfo!=null}}'>{{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</view>
   </view>
   <view class='in-cont'>
    <text>小云店</text>
