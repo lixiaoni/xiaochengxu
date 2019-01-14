@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/admin/success/success",
     "pages/admin/status/status",
     "pages/admin/addGoods/addGoods",
     "pages/admin/spec/spec",
@@ -37,7 +38,6 @@
     "pages/page/invoice/invoice",
     "pages/page/newAddress/newAddress",
     "pages/admin/editGoods/editGoods",
-    "pages/admin/success/success",
     "pages/page/goodsDetails/goodsDetails",
     "pages/admin/firstClass/firstClass",
     "pages/admin/shopClass/shopClass",
