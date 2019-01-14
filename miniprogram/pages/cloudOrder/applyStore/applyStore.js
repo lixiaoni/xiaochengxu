@@ -297,7 +297,7 @@ Component({
         floorObj.floorCode = cFloor.code;
       } else {
         wx.showToast({
-          title: '请选择楼层区域',
+          title: '请选择楼座楼层',
           icon: 'none'
         })
         return

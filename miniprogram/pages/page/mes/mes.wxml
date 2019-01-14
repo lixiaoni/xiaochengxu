@@ -41,7 +41,7 @@
     </view>
     <view>
       <image  src="/image/lou.png"></image>
-      <text> 楼层区域</text>
+      <text> 楼座楼层</text>
       <view class='new-left'  wx:if='{{floorInfo!=null}}'>
          {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}
       </view>

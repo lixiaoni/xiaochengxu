@@ -76,7 +76,7 @@
   <view class='item-box' bindtap='showModal' data-type='floor'>
     <view class="flex-center">
       <image class='floor' src='/image/lou.png'></image>
-      <text>楼层区域</text>
+      <text>楼座楼层</text>
     </view>
     <view class="show-item-box flex-center">
       <text>{{choseMall[floorChose[0]].name}}</text>
@@ -88,7 +88,7 @@
 
   <view class='item-box padding-left'>
     <text>门牌号</text>
-    <input bindinput='inputCode' value='{{shopCode}}' maxlength='50' class="{{!floorModal && !rangeModal && !modal && !mallModal?'':'hide'}}" style="text-align:right;" type='text'></input>
+    <input bindinput='inputCode' value='{{shopCode}}' maxlength='20' class="{{!floorModal && !rangeModal && !modal && !mallModal?'':'hide'}}" style="text-align:right;" type='text'></input>
   </view>
 </view>
 
@@ -96,7 +96,7 @@
 
 <view class='business' wx:if='{{floorModal}}'>
   <view class='picker-box'>
-    <view class='picker-title'>选择楼层区域</view>
+    <view class='picker-title'>选择楼座楼层</view>
     <picker-view value="{{beforeChose}}" class='picker' indicator-class="chosewola" bindchange="choseFloor">
       <picker-view-column>
         <view wx:for="{{choseMall}}" wx:key="{{index}}" class='overflow-text'>{{item.name}}</view>
