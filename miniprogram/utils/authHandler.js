@@ -1,6 +1,6 @@
 import {
   baseUrl,
-  loginUrl,
+  authUrl,
   basicAuthorization
 } from './const.js'
 /**
@@ -14,7 +14,7 @@ class TokenHandler {
     this.defaultHeader = {
       'content-type': 'application/json;charset=UTF-8'
     },
-    this.baseUrl = loginUrl;
+      this.baseUrl = authUrl;
   }
   /**
    * 获取商户编号
