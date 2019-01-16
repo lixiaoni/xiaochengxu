@@ -2,10 +2,16 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+<<<<<<< HEAD
     "pages/page/workIndex/workIndex",
     "pages/admin/status/status",
     "pages/admin/success/success",
     "pages/cloudOrder/webInitStore/webInitStore",
+=======
+    "pages/admin/success/success",
+    "pages/cloudOrder/webInitStore/webInitStore",
+    "pages/admin/status/status",
+>>>>>>> b4897d3f549864e101fc78d9d6ab60da0c46512d
     "pages/admin/addGoods/addGoods",
     "pages/admin/spec/spec",
     "pages/businessFriend/index/index",
