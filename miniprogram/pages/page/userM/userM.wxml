@@ -46,9 +46,9 @@
         </view>
     </view>
 </view>
-
+<view class='goHome' bindtap='goHome'><view><image src="/image/home.png"></image></view>回首页</view>
 <view class='bottom_M'>
   <navigator open-type='redirect' url='../workIndex/workIndex'><image  src="/image/ww1.png"></image><view>工作台</view></navigator>
   <navigator open-type='redirect' url='../../businessFriend/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
-  <navigator><image  src="/image/w12.png"></image><view   class='active'>我的</view></navigator>
+  <view><image  src="/image/w12.png"></image><view   class='active'>我的</view></view>
 </view>

@@ -1,7 +1,7 @@
 <view class='su-cont'>
   <image  src="/image/sus.png"  mode="widthFix"></image>
   <view class='f-view'>太棒了！您已成功创建云商品</view>
-  <navigator url='../status/status'  class='go-list' bindtap='goStatus' open-type="redirect">完成</navigator>
+  <view class='go-list' bindtap='goStatus'>完成</view>
 </view>
 <view class='su-icon'><image  src="/image/more.png"  mode="widthFix"></image>更多商品设置</view>
 <view class='shop-cont'>

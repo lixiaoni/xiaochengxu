@@ -108,9 +108,10 @@
     </view>
   </view>
 </scroll-view>
+<view class='goHome' bindtap='goWork'><view><image src="/image/ad5.png"></image></view>工作台</view>
 <view class='st-bottom st-bottom1'>
-    <view><navigator open-type="redirect" url="../addGoods/addGoods">添加商品</navigator></view>
-    <view><navigator open-type="redirect" url="../batch/batch">批量管理</navigator></view>
+    <view><navigator  url="../addGoods/addGoods">添加商品</navigator></view>
+    <view><navigator  url="../batch/batch">批量管理</navigator></view>
     <!-- <view><navigator url="../batchSet/batchSet">起批设置</navigator></view> -->
-    <view><navigator open-type="redirect" url="../class/class">本店分类</navigator></view>
+    <view><navigator  url="../class/class">本店分类</navigator></view>
 </view>

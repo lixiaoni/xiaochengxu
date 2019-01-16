@@ -58,7 +58,11 @@ Page({
       detailList: data
     })
   },
- 
+  goWork:function(){
+    wx.reLaunch({
+      url: '/pages/page/workIndex/workIndex',
+    })
+  },
   //删除事件
   del: function (e) {
     var indexDel = e.currentTarget.dataset.index,
