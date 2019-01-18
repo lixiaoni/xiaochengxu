@@ -117,3 +117,5 @@ export const getPaymentImgUrl = "/admin/store/receiptcode/{{storeId}}"
 export const putPaymentImgUrl = "/admin/store/{{storeId}}/receiptcode"
 // 一键入库
 export const copyGoodsUrl='/api/shop/goods/copy/{{originGoodsId}}'
+// 楼层三级
+export const threeFloorListUrl = "/api/floor/threelevellist/{{mallCode}}"

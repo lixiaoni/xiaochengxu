@@ -110,7 +110,8 @@ import {
   putPaymentImgUrl,
   recentGoodsUrl,
   copyGoodsUrl,
-  tempSortUrl
+  tempSortUrl,
+  threeFloorListUrl
 } from './constUrl.js'
 
 const app = getApp()
@@ -172,6 +173,10 @@ function adminGoodsList(data){
 function recentGoods(data) {
   data = initStoreId(data);
   return app.pageRequest.pageGet(recentGoodsUrl, data)
+}
+// 楼层三级联动
+function threeFloorList(data) {
+  return app.http.getRequest(threeFloorListUrl, data)
 }
 /**商品 删除**/
 function adminGoodsDelete(data) {
@@ -843,5 +848,6 @@ module.exports = {
   changeIcon: changeIcon,
   showPurchaser: showPurchaser,
   showMerchant: showMerchant,
-  recentGoods: recentGoods
+  recentGoods: recentGoods,
+  threeFloorList: threeFloorList
 }
