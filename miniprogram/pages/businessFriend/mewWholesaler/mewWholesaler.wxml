@@ -8,7 +8,7 @@
 <view class='bf-cont' wx:if='{{detailList.length>0}}' >
   <view class='bf-weui'>
   <scroll-view scroll-y="true" style="height:100%;">
-    <navigator class="weui_cells" wx:for='{{detailList}}'  wx:if='{{item.status!=2}}' wx:key='{{index}}' url="../information/information?status={{item.status}}&send={{item.send}}&accept={{item.accept}}&remark={{item.remark}}&name={{item.storeName}}&logo={{item.storeLogo}}">
+    <navigator class="weui_cells" wx:for='{{detailList}}'  wx:if='{{item.status!=2}}' wx:key='{{index}}' url="../information/information?status={{item.status}}&send={{item.send}}&accept={{item.accept}}&remark={{item.remark}}&name={{item.storeName}}&logo={{item.storeLogo}}&greet={{item.greet}}">
      <view class='bf-img'><image  mode="aspectFill" src="{{baseUrl}}{{item.storeLogo}}?x-oss-process=style/logo"></image></view>
       <text  wx:if='{{item.status!=3}}'>{{item.remark==""?item.storeName:item.remark}}</text>
       <text  wx:if='{{item.status==3}}'>{{item.storeName}}</text>

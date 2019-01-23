@@ -30,11 +30,12 @@
 .order-all text{color:#CCAA77;font-weight:600}
 .order-all view{font-size:24rpx;color:#666}
 .bot-back{width:100%;height:10rpx;background:#fff;position:fixed;bottom:0;z-index:1000}
-.cc-coun-new{position:absolute;right:30rpx;width:150rpx;height:47rpx;background:#fff;border-radius:4rpx;line-height:1;color:#999;font-size:34rpx;bottom:43rpx;border:2rpx solid #ECECEC}
-.cc-coun-new view{width:46rpx;display:inline-block;height:100%;text-align:center;line-height:43rpx}
-.cc-coun-new  .cc-add{font-size:26rpx;width:55rpx;border-left:2rpx solid #ECECEC;border-right:2rpx solid #ECECEC}
+.cc-coun-new{position:absolute;right:30rpx;width:150rpx;height:53rpx;background:#fff;border-radius:4rpx;line-height:1;color:#999;font-size:34rpx;bottom:41rpx;border:2rpx solid #ECECEC}
+.cc-coun-new view,.cc-coun-new input{width:46rpx;float: left;height:100%;text-align:center;line-height:50rpx}
+.cc-coun-new  .cc-add{font-size:26rpx;width:55rpx;border-left:2rpx solid #ECECEC;border-right:2rpx solid #ECECEC;line-height: 10rpx}
 .cart-pro-name1{background:#F4F4F4;overflow:hidden;white-space:nowrap;position:relative;max-width:220rpx;text-overflow:ellipsis}
 .cart-list .cart-pro-name1{padding-right:35rpx;padding-left:10rpx}
+.cc-coun-new .classFont,.cc-coun-new .classFontAdd{color:#E0E0E0}
 .record .cart-list{width:100%}
 .cart-list{height:auto}
 .record{display:flex;flex-direction:row;align-items:center;width:100%;height:230rpx;position:absolute;justify-content:space-between;background-color:#fff}

@@ -1,6 +1,9 @@
 // pages/page/stockOrder/stockOrder.js
 const app = getApp();
+let searchTimer;
 import API from "../../../utils/api.js";
+var seeImg = false;
+
 Page({
 
   /**
@@ -16,11 +19,11 @@ Page({
       title: "待付款",
       state: 'unpaid'
     }, {
-      title: "已付款",
-      state: "paid"
+      title: "待发货",
+      state: "wait_deliver"
     }, {
       title: "待收货",
-      state: "shipped"
+      state: "delivered"
     }, {
       title: "已完成",
       state: "finish"
@@ -28,27 +31,29 @@ Page({
     navindex: 0,
     whitch: 'all', //切换
     //理由
-    reason: [{
-      title: "无法联系上买家",
-      selected: true
-    }, {
-      title: "买家误拍或重拍",
-      selected: false
-    }, {
-      title: "买家无诚意完成交易",
-      selected: false
-    }, {
-      title: "缺货无法交易",
-      selected: false
-    }, {
-      title: "其他",
-      selected: false
-    }],
+    reason: [{ title: "我不想买了", selected: true }, { title: "信息填写错误，重新拍", selected: false }, { title: "卖家缺货", selected: false }, { title: "同城见面交易", selected: false }, { title: "其他", selected: false }],
     cancelIndex: 0,
 
 
   },
 
+  //查看凭证
+  seeVoucher(e) {
+    let num = e.currentTarget.dataset.num;
+    API.seeVoucher({ orderNumber: num }).then((res) => {
+      if (res.obj.payVoucher) {
+        seeImg = true;
+        wx.previewImage({
+          urls: [this.data.baseUrl + res.obj.payVoucher]
+        })
+      } else {
+        wx.showToast({
+          title: '未上传付款凭证',
+          icon: 'none'
+        })
+      }
+    })
+  },
 
   showModal(e) {
     let type = e.currentTarget.dataset.type,
@@ -87,13 +92,13 @@ Page({
         obj = {
           afterModal: true,
           afterTel: e.currentTarget.dataset.tel
-        };break;
+        }; break;
       case "payment":
         let i = e.currentTarget.dataset.index;
         obj = {
           paymentModal: true,
           paymentItem: this.data.showList[i]
-        }; break;  
+        }; break;
     }
     this.setData(obj)
   },
@@ -167,7 +172,7 @@ Page({
           icon: 'none'
         })
         //删除成功剔除
-        if (res.success ) {
+        if (res.success) {
           // list.splice(del.index, 1);
           // this.setData({
           //   showList: list
@@ -195,9 +200,14 @@ Page({
     this.getList(true);
   },
   searchBtn(e) {
+    clearTimeout(searchTimer);
     this.setData({
       style: true,
+      keyword: e.detail.value
     })
+    searchTimer = setTimeout(() => {
+      this.getList(true);
+    }, 1000)
   },
 
   //跳转
@@ -236,14 +246,13 @@ Page({
       })
     }
     app.pageRequest.pageGet("/admin/order/store/" + this.data.storeId + "/orderstatus/" + this.data.whitch + "/purchaseorder", {
-      //pageNum:1,
-      //pageSize:100
+      keyWords: this.data.keyword ? this.data.keyword : ""
     }).then((res) => {
       //this.resetData(res.obj.result);
       //this.resetData(this.data.orderList.obj.result)
       if (res.obj && res.obj.result) {
         this.setData({
-          showList: res.obj.result
+          showList: this.data.showList.concat(res.obj.result)
         })
       }
     })
@@ -261,7 +270,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       storeId: API.getThisStoreId(),   //列表请求
       baseUrl: app.globalData.imageUrl      //图片
@@ -278,42 +287,46 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
+    if (seeImg) {
+      seeImg = false;
+      return;
+    }
     this.getList(true);
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     this.getList();
   },
 

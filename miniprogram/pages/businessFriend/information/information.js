@@ -13,6 +13,7 @@ Page({
     status: '',
     success: false,
     oneGreet: false,
+    greet:[],
     aginGreet: false,
     accept: '',
     logo: '',
@@ -69,6 +70,14 @@ Page({
           goodsList = store.goodsList,
           storeMes = store.store,
           floor = Api.isFloorInfo(obj.floor)
+        if(this.data.value==''){
+          if (obj.merchantRemark){
+            _this.setData({
+              value: obj.merchantRemark,
+              remarkName: obj.merchantRemark,
+            })
+          }
+        }
         if (goodsList != null) {
           _this.setData({
             goodsList: goodsList
@@ -97,6 +106,11 @@ Page({
       logo = options.logo,
       name = options.name,
       remark = options.remark
+    if (options.greet){
+      this.setData({
+        greet:options.greet
+      })
+    }
     this.setData({
       send: send
     })
@@ -106,10 +120,17 @@ Page({
         remarkName: '',
       })
     } else {
-      this.setData({
-        value: remark,
-        remarkName: remark,
-      })
+      if (status == 3) {
+        this.setData({
+          value: '',
+          remarkName: '',
+        })
+      }else{
+        this.setData({
+          value: remark,
+          remarkName: remark,
+        })
+      }
     }
     this.setData({
       status: status,
@@ -178,7 +199,7 @@ Page({
     _this.setData({
       remarkName: remark
     })
-    if (Api.isEmpty(remark)) {
+    if (Api.isNotEmpty(remark)) {
       this.cancel()
       if (this.data.status == 2) {
         Api.setName({ remark: remark, storeId: purchaserUserId })
@@ -195,12 +216,12 @@ Page({
 
   },
   invitation: function () {
-    if (!Api.isEmpty(wx.getStorageSync("access_token"))) {
+    if (!Api.isNotEmpty(wx.getStorageSync("access_token"))) {
       this.showLogo()
       return
     }
     var floorInfo = this.data.floorInfo
-    if (Api.isEmpty(floorInfo)) {
+    if (Api.isNotEmpty(floorInfo)) {
       wx.navigateTo({
         url: '../invitation/invitation?accept=' + this.data.accept + "&remark=" + this.data.remarkName + "&name=" + this.data.name + "&logo=" + this.data.logo + "&send=" + this.data.send + "&mallName=" + floorInfo.mallName + "&mallLogo=" + floorInfo.mallLogo,
       })
@@ -234,7 +255,7 @@ Page({
     var send = this.data.send,
       accept = this.data.accept,
       remark = this.data.remarkName
-    Api.acceptmerchant({ accept: accept, send: send, remark: remark })
+    Api.acceptmerchant({ accept: accept, send: send, otherSideRemark: remark })
       .then(res => {
         wx.showToast({
           title: '添加成功',

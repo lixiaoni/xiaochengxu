@@ -19,11 +19,11 @@ Page({
       title: "待付款",
       state: 'unpaid'
     }, {
-      title: "已付款",
-      state: "paid"
+      title: "待发货",
+      state: "wait_deliver"
     }, {
       title: "待收货",
-      state: "shipped"
+      state: "delivered"
     }, {
       title: "已完成",
       state: "finish"
@@ -65,7 +65,7 @@ Page({
     let list = this.data.nav;
     let currentIndex = 2;
     list.forEach((i, index) => {
-      if (i == type) {
+      if (i.state == type) {
         currentIndex = index
       }
     })
@@ -98,7 +98,7 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '未上传支付凭证',
+          title: '未上传付款凭证',
           icon: 'none'
         })
       }
@@ -286,17 +286,15 @@ Page({
         return
       }
     }
-    app.http.postRequest("/admin/order/orderpayment/{{orderNumber}}/confirm", { orderNumber: obj.orderNumber }).then((res) => {
-      if(res.success){
-        API.addExpress(obj).then((res) => {
-          this.afterOperation();
-          wx.showToast({
-            title: res.message,
-            icon: 'none'
-          })
-        })
-      }
+    
+    API.addExpress(obj).then((res) => {
+      this.afterOperation();
+      wx.showToast({
+        title: res.message,
+        icon: 'none'
+      })
     })
+    
   },
   //删除订单
   delOrder(e) {
@@ -420,23 +418,23 @@ Page({
   resetData(data) {
     let arr = [];
     for (let i = 0; i < data.length; i++) { // 循环订单
-      let oldGoods = data[i].goodsInfos, //商品数组
+      let oldGoods = data[i].goodsInfoList, //商品数组
         newGoods = [];
       for (let j = 0; j < oldGoods.length; j++) { //货品循环
 
-        let type = oldGoods[j].orderDetails; //规格数组
+        let type = oldGoods[j].goodsSkuInfoVOList; //规格数组
 
         for (let k = 0; k < type.length; k++) {
           //当前货物,类型变为对象
           let nowGood = {};
           Object.assign(nowGood, oldGoods[j]);
-          nowGood.orderDetails = type[k];
+          nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
       }
       //编辑新订单数组
       let newOrder = data[i];
-      newOrder.goodsInfos = newGoods;
+      newOrder.goodsInfoList = newGoods;
       arr.push(newOrder)
     }
     this.setData({

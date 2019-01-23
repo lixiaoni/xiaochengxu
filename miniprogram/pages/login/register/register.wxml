@@ -36,7 +36,12 @@
         <image class='pass-img' src='{{see}}' bindtap='showHide'></image>
       </view>
       
-      <view class='tip-text'>{{tip}}</view>
+      <!-- <view class='tip-text'>{{tip}}</view> -->
+
+      <view class='chose-input padding-top-box'>
+        <image src='/image/checked.png' bindtap='attentionStore' class='la-checkbox' wx:if="{{attention}}"></image>
+        <image src='/image/nocheck.png' bindtap='attentionStore' class='la-checkbox' wx:else></image> 同时关注该小店
+      </view>
 
       <view class='btn {{btnID}} register-btn'  bindtap='register'>立即注册</view>
 

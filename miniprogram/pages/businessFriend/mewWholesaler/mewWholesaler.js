@@ -38,7 +38,8 @@ Page({
         if (detailList!=null){
           for (var i = 0; i < detailList.length; i++) {
             if (detailList[i].greet != null){
-              var greet = (detailList[i].greet).split("#;#")[0]
+              var arr = (detailList[i].greet).split("#;#")
+              var greet = arr[arr.length-1]
             }else{
               var greet =""
             }
@@ -55,6 +56,8 @@ Page({
       })
   },
   searchBtn:function(e){
+    var val = this.data.value
+    if (!val) { return }
     this.initData()
   },
   onLoad: function (options) {
@@ -93,6 +96,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
     this.initData()
   },
 

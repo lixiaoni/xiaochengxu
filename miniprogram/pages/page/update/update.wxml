@@ -1,3 +1,3 @@
-<input class="search-input" value="{{value}}" auto-focus='ture'   bindinput="searchInput" />
+<input placeholder='{{placeholder}}' class="search-input" value="{{value}}" auto-focus='ture'   bindinput="searchInput" />
 <image class="up-em" bindtap='emptyInput' src="/image/clo.png"></image>
-<view class='up-save' bindtap='save'><text>保存</text></view>
+<view class='up-save' bindtap='save'>保存</view>

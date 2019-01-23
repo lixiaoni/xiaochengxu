@@ -1,0 +1,9 @@
+@import '../indexEmpty/indexEmpty';
+.cart-no-data .miniDetails{
+  background: #CCAA77;color: #fff;
+  font-size: 30rpx;
+  width: 340rpx;margin:0 auto;
+  height: 70rpx;border-radius: 10rpx;
+  line-height: 70rpx;
+  margin-top: 50rpx;
+}

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "工作台",
   "usingComponents": {
-    "login": "../../login/login/login"
+    "login": "../../login/login/login",
+    "initstroe": "../../cloudOrder/applyStore/applyStore"
   }
 }

@@ -1,4 +1,7 @@
 /* pages/login/agreement/agreement.wxss */
+page{
+  font-size: 26rpx;
+}
 .login-box{
   padding: 0 50rpx;
 }
@@ -13,4 +16,24 @@
 }
 .com-font{
   font-size: 26rpx;
+}
+
+.part-title{
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.mid-title{
+  text-align: center;
+}
+.right-title{
+  text-align: right;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+}
+.bold{
+  font-weight: 600;
+}
+.s-title{
+  font-size: 30rpx;
 }

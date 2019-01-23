@@ -2,6 +2,7 @@
 const app = getApp();
 const util = require('../../../utils/util.js');
 import API from "../../../utils/api.js";
+var seeImg = false;
 Page({
 
   /**
@@ -11,8 +12,26 @@ Page({
     //取消订单
     reason: [{ title: "我不想买了", selected: true }, { title: "信息填写错误，重新拍", selected: false }, { title: "卖家缺货", selected: false }, { title: "同城见面交易", selected: false }, { title: "其他", selected: false }],
     cancelIndex: 0,
-    orderName:"订单",
+    orderName: "订单",
     timeOnce: true
+  },
+
+  //查看凭证
+  seeVoucher(e) {
+    let num = this.data.num;
+    API.seeVoucher({ orderNumber: num }).then((res) => {
+      if (res.obj.payVoucher) {
+        seeImg = true;
+        wx.previewImage({
+          urls: [this.data.baseUrl + res.obj.payVoucher]
+        })
+      } else {
+        wx.showToast({
+          title: '未上传付款凭证',
+          icon: 'none'
+        })
+      }
+    })
   },
 
   toHome() {
@@ -22,7 +41,7 @@ Page({
   copyCode() {
     wx.setClipboardData({
       data: this.data.order.orderNumber,
-      success: () =>{
+      success: () => {
         wx.showToast({
           title: '复制' + this.data.orderName + '号成功',
           icon: "none"
@@ -32,7 +51,7 @@ Page({
   },
   //复制运单号
   copyKdCode() {
-    if (this.data.order.expressNumber){
+    if (this.data.order.expressNumber) {
       wx.setClipboardData({
         data: this.data.order.expressNumber,
         success: () => {
@@ -43,7 +62,7 @@ Page({
         }
       })
     }
-    
+
   },
 
   showModal(e) {
@@ -54,33 +73,33 @@ Page({
       case 'get':
         obj = {
           sureModal: true,
-          getNum: e.currentTarget.dataset.num
+          // getNum: e.currentTarget.dataset.num
         }; break;
       case 'del':
         let index = e.currentTarget.dataset.index;
         obj = {
           delModal: true,
-          delNum: { num: num, index: index }
+          // delNum: { num: num, index: index }
         }; break;
       case 'cancel':
         obj = {
           cancelModal: true,
-          cancelNum: num
+          // cancelNum: num
         }; break;
       case 'after':
         obj = {
           afterModal: true,
           afterTel: e.currentTarget.dataset.tel
-        };break;
+        }; break;
       case "goodCode":
         obj = {
           codeModal: true,
-          testNum: num,
-        }; break;  
+          // testNum: num,
+        }; break;
       case "payment":
         obj = {
           paymentModal: true
-        } ;break; 
+        }; break;
     }
     this.setData(obj)
   },
@@ -168,13 +187,13 @@ Page({
   },
 
   getData() {
-    app.http.getRequest("/api/order/byordernumber/" + this.data.num).then((res) => {
+    API.getOrderDetail({ orderNumber: this.data.num }).then((res) => {
       try {
         res.obj.createDate = util.formatTime(new Date(res.obj.createDate));
         res.obj.payDate = util.formatTime(new Date(res.obj.payDate));
         res.obj.deliverDate = util.formatTime(new Date(res.obj.deliverDate));
         res.obj.finishDate = util.formatTime(new Date(res.obj.finishDate));
-
+        res.obj.cancelDate = util.formatTime(new Date(res.obj.cancelDate));
       } catch (e) { }
 
       this.setData({
@@ -182,14 +201,14 @@ Page({
         status: res.obj.orderStatus  //状态
       })
       //订单
-      if(this.data.orderType == 'order'){
+      if (this.data.orderType == 'order') {
         this.resetData([this.data.order]);
       }
 
       //倒计时
       let timm = this.data.timeOnce;
       if (timm) {
-        util.count_down(this, res.obj.timeoutExpressSecond ? res.obj.timeoutExpressSecond*1000:"")
+        util.count_down(this, res.obj.timeoutExpressSecond ? res.obj.timeoutExpressSecond * 1000 : "")
         this.setData({ timeOnce: false })
       }
     })
@@ -197,27 +216,27 @@ Page({
   resetData(data) {
     let arr = [];
     for (let i = 0; i < data.length; i++) { // 循环订单
-      let oldGoods = data[i].goodsInfos,  //商品数组
+      let oldGoods = data[i].goodsInfoList,  //商品数组
         newGoods = [];
       for (let j = 0; j < oldGoods.length; j++) { //货品循环
 
-        let type = oldGoods[j].orderDetails;  //规格数组
+        let type = oldGoods[j].goodsSkuInfoVOList;  //规格数组
 
         for (let k = 0; k < type.length; k++) {
           //当前货物,类型变为对象
           let nowGood = {};
           Object.assign(nowGood, oldGoods[j]);
-          nowGood.orderDetails = type[k];
+          nowGood.goodsSkuInfoVOList = type[k];
           newGoods.push(nowGood);
         }
       }
       //编辑新订单数组
       let newOrder = data[i];
-      newOrder.goodsInfos = newGoods;
+      newOrder.goodsInfoList = newGoods;
       arr.push(newOrder)
     }
     this.setData({
-      showList: arr[0].goodsInfos
+      showList: arr[0].goodsInfoList
     })
   },
   //电话
@@ -227,7 +246,7 @@ Page({
       wx.makePhoneCall({
         phoneNumber: tel,
       })
-    }else{
+    } else {
       wx.showToast({
         title: '卖家未设置电话号码',
         icon: "none"
@@ -238,12 +257,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.type =='list'){
+    if (options.type == 'list') {
       wx.setNavigationBarTitle({
         title: "进货单详情"
       })
       this.setData({
-        orderName:'进货单'
+        orderName: '进货单'
       })
     }
     this.setData({
@@ -262,7 +281,7 @@ Page({
       }
     })
   },
- 
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -274,6 +293,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (seeImg) {
+      seeImg = false;
+      return;
+    }
     this.getData();
   },
 

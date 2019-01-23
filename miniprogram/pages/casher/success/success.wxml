@@ -1,0 +1,23 @@
+<wxs src="../../../public/filter.wxs" module="filter" />
+<view style='text-align:center;'>
+  <image src='/image/pay-succss.png' class='success-img'></image>
+  <view class='title-box'>支付成功！</view>
+  <view class="price"><block wx:if="{{price}}">订单金额：<text class='price-num'>￥{{filter.filterMoney(price)}}</text></block></view>
+  <view>支付方式：<text class='gold-color'>微信支付</text></view>
+  <button bindtap='afterPay' class='success-btn'> {{btnText?btnText:'查看订单'}} </button>
+  <view bindtap='toUser'>返回首页</view>
+</view>
+
+
+<!-- 返回我的小云店 -->
+<mes show="{{returnModal}}">
+  <view>
+    <text>是否跳转至您的小云店？</text>
+    <navigator wx:if='{{toStatus=="xpl"}}' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/user/user?storeId={{storeId}}&layerText=请登陆购买账号后，点击小云店工作台初始化账户" extra-data="" version="trial" bindcomplete="toUser">
+      <button>确定</button>
+    </navigator>
+     <navigator wx:if='{{toStatus=="xls"}}' target="miniProgram" open-type="navigate" app-id="wx1a7532a2abdd1698" path="pages/page/user/user?storeId={{storeId}}&layerText=请登陆购买账号后，点击小云店工作台初始化账户" extra-data="" version="trial" bindcomplete="toUser">
+      <button>确定</button>
+    </navigator>
+  </view>
+</mes>

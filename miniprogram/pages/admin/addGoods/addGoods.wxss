@@ -18,7 +18,7 @@
 .weui-input text{position:absolute;right:0rpx;top:3rpx;font-size:28rpx}
 .weui-input .pla-input{font-weight:normal;font-size:28rpx;color:#999}
 .weui-input .weui-input{position:absolute;top:-4rpx;right:60rpx;text-align:right;font-size:36rpx;font-weight:600}
-.add-cont{margin-bottom:220rpx}
+.add-cont{margin-bottom:130rpx}
 .weui-uploader__input-box{margin-bottom:30rpx;border-radius:6rpx}
 .weui-uploader__img{border-radius:6rpx}
 .weui-upload{padding-top:30rpx}
@@ -37,7 +37,7 @@
 .page-weui{border-top:1rpx solid #EFEFEF;margin-left:15px}
 .page-weui-active{border-top:0}
 .page-weui .weui-cell{padding-left:0}
-.page-weui .add-size{margin-left:0}
+.page-weui .add-size{margin-left:0;word-break:break-word;}
 .ad-top{background:none;padding:0;color:#333;font-weight:bold;margin-bottom:20rpx}
 .ad-top  .ad-active,.ad-top view{background:#fff;border:0}
 .ad-active{color:#CCAA77}
@@ -49,18 +49,19 @@
 .sendmessage button{border:2rpx solid white;width:18%;height:80rpx;background:#fff;color:#000;line-height:80rpx;font-size:28rpx}
 .weui-plac{color:#999;font-size:24rpx}
 .write .value,.write textarea,.write input{font-size:28rpx;word-wrap:break-word;word-break:normal}
-.write input{font-size:32rpx;height:120rpx}
+.write input{font-size:32rpx;height:80rpx;padding-right:10rpx}
 .write textarea.input-v{height:80rpx}
-.write textarea{height:200rpx}
+.write textarea{height:200rpx;z-index: 1}
 .write .value{background:red;position:absolute}
-.write{margin-bottom:200rpx;position:relative;padding-right:70rpx}
+.write{position:relative;padding-right:80rpx;overflow-y: auto}
 .write-cont{background:#F9F9F9;width:60rpx;padding-bottom:0;position:fixed;z-index:1000;right:10rpx;top:450rpx}
 .write-cont image{width:50rpx;height:50rpx;margin-right:30rpx}
-.removeImg{position:relative;margin-bottom:20rpx;border:2rpx solid #ddd;height:200rpx;width:90%;margin-left:5%;padding:15rpx 0 15rpx 15rpx;height:auto;padding-bottom:60rpx}
+.removeImg{position:relative;margin-bottom:20rpx;border:2rpx solid #ddd;height:200rpx;width:90%;margin-left:5%;padding:15rpx 0 15rpx 15rpx;height:auto;padding-bottom:60rpx;z-index: 1}
 .removeImg>view{position:absolute;bottom:0rpx;z-index:9;background:#F0F0F0;height:55rpx;width:auto;right:0;font-size:28rpx;line-height:50rpx}
-.removeImg>view view{display:inline-block;width:130rpx;color:#666;text-align:center}
-.removeImg>view image{width:35rpx;height:35rpx;vertical-align:middle;margin-top:-2rpx;margin-right:10rpx;margin-left:0}
+.removeImg>view view{display:inline-block;width:130rpx;color:#666;text-align:center;position: relative}
+.removeImg>view view text{padding: 0 25rpx;z-index: 1000;position: relative}
+.removeImg>view image{width:35rpx;height:35rpx;vertical-align:middle;position:absolute;left:-10rpx;top:9rpx;z-index: 100}
 .removeImg>view  view:first-child image{width:30rpx;height:30rpx}
-.add-bottom{z-index:20}
+.add-bottom{z-index:9999}
 .page{overflow-x:hidden}
 .re_img{width:40rpx;height:40rpx;position:absolute;top:5rpx;margin-left:120rpx;z-index:100}

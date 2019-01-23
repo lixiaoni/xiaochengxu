@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "小云店分类",
   "usingComponents": {
-    "no": "../indexEmpty/indexEmpty"
+    "no": "../indexEmpty/indexEmpty",
+    "retailStore": "../retailStore/retailStore"
   }
 }

@@ -10,6 +10,7 @@
 .st-cont .not{color:#fff;background:rgba(0,0,0,0.5);font-size:24rpx;position:absolute;width:180rpx;height:75rpx;z-index:10;padding:15rpx 20rpx 0rpx 20rpx;border-radius:10rpx;text-align:center;top:36rpx;left:190rpx;line-height:30rpx}
 .triangle_border_up{width:0;height:0;border-width:0rpx 15rpx 25rpx;border-style:solid;float:left;margin-left:-38rpx;border-color:transparent transparent #858585;position:relative;transform:rotate(-90deg);margin-top:25rpx}
 .st-bottom view button,.button-hover{background:#fff;position:absolute;margin-top:0;border:0;color:#666;width:200rpx;font-size:28rpx;top:18rpx}
+.list-view{margin-top: 55rpx;}
 .touch-item{display:flex;position:relative;justify-content:space-between;background:#fff;border-radius:10rpx;overflow:hidden;margin:20rpx}
 .content{padding-top:45rpx;padding-bottom:10rpx;padding-left:20rpx;line-height:50rpx;margin-right:0;-webkit-transition:all 0.4s;transition:all 0.4s;-webkit-transform:translateX(130rpx);transform:translateX(130rpx);margin-left:-130rpx}
 page{height:unset !important}

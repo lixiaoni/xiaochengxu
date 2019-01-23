@@ -1,6 +1,9 @@
 <view hidden='{{indexEmpty}}'>
   <no></no>
 </view>
+<view hidden='{{goRetailStore}}'>
+  <retailStore></retailStore>
+</view>
 <view class='page'>
 <view class='my-top-line'></view>
    <view class='page__hd page__hd1' style='margin:20rpx 30rpx;border-radius:10rpx'>

@@ -17,6 +17,21 @@ Page({
       value: options.name,
       type: options.type
     })
+    if (options.type == "wx") {
+      wx.setNavigationBarTitle({
+        title: '修改微信',
+      })
+      this.setData({
+        placeholder: '请输入微信号'
+      })
+    } else if (options.type == 'name') {
+      wx.setNavigationBarTitle({
+        title: '修改昵称',
+      })
+      this.setData({
+        placeholder: '请输入昵称'
+      })
+    }
   },
   // 清空input的内容
   emptyInput(e) {
@@ -37,16 +52,30 @@ Page({
     let obj = {};
     if (text == '') {
       wx.showToast({
-        title: '请填写',
+        title: '请填写完整',
         icon: "none"
       })
       return
     }
 
     if (type == 'name') {
+      if (text.length > 10) {
+        wx.showToast({
+          title: '最多10位字符',
+          icon: 'none'
+        })
+        return
+      }
       url = "/api/user/nickname/{{nickName}}";
       obj = { nickName: text };
     } else if (type == 'wx') {
+      if (text.length > 50) {
+        wx.showToast({
+          title: '最多50位字符',
+          icon: 'none'
+        })
+        return
+      }
       url = "/api/user/weixinNumber/{{weixinNumber}}";
       obj = { weixinNumber: text };
     }

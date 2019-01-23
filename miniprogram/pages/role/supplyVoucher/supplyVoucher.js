@@ -70,7 +70,7 @@ Page({
       
     }else{
       wx.showToast({
-        title: '请上传支付凭证',
+        title: '请上传付款凭证',
         icon:'none'
       })
     }

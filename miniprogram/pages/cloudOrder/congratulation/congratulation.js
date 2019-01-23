@@ -1,4 +1,5 @@
 // pages/cloudOrder/congratulation/congratulation.js
+const Api = require("../../../utils/api.js");
 Page({
 
   /**
@@ -7,12 +8,25 @@ Page({
   data: {
 
   },
+  getStore() {
+    Api.storeIdInfo().then(res => {
+      this.setData({
+        cName: res.obj.store[0].store.name
+      })
+    })
+  },
+  toStore() {
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var store = wx.getStorageSync('storeId');
+    this.setData({
+      storeID: store
+    })
+    this.getStore();
   },
 
   /**

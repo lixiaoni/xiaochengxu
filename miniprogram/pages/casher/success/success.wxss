@@ -1,0 +1,36 @@
+page{
+  background: #fff;
+  font-size: 30rpx;
+  color:#333;
+}
+view{
+  line-height: 1;
+}
+.title-box{
+  font-size: 36rpx;
+  text-align: center;
+}
+.success-img{
+  width: 188rpx;
+  height: 188rpx;
+  margin: 65rpx auto 60rpx;
+}
+.price{
+  margin: 65rpx 0 30rpx;
+  font-weight: 600;   
+}
+.price-num{
+  color: #ca7;
+  font-size: 36rpx;
+}
+.gold-color{
+  color: #ca7
+}
+.success-btn{
+  width: 600rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 90rpx auto 35rpx;
+  background: #ccaa77;
+  color: #fff;
+}

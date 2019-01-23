@@ -10,6 +10,7 @@ export const salebatchamountUrl='/admin/config/store/salebatchamount'
 export const saleBatchUrl='/admin/config/store/salebatch'
 export const addGoodsUrl = '/admin/shop/shop/goods/'
 export const getStoreNameUrl='/api/store/{{storeId}}'
+export const updateClassUrl = '/admin/shop/customcategory/update'
 export const cusNewDetailsUrl='/admin/shop/storecustomer/{{storeId}}/{{userId}}/count'
 export const userInforUrl ='/api/user/byuserid'
 export const newUserInforUrl ='/api/user/{{userId}}'
@@ -99,9 +100,9 @@ export const updataPwdUrl = "/oauth/authentication/changepassword"
 export const changeIconUrl = "/api/user/headpic"
 export const testGoodCodeUrl = "/admin/order/{{orderNumber}}/claim"
 export const uploadPayVoucherUrl = "/api/order/orderpayment/{{orderNumber}}/uploadpayvoucher"
-export const resetPasswordUrl = "/api/user/resetpassword"
+export const resetPasswordUrl = "/oauth/user/resetpassword"
 export const phoneMessageUrl = "/oauth/code/sms"
-export const registerUrl = "/api/user/register"
+export const registerUrl = "/oauth/user/register"
 export const registerPhoneMsgUrl = "/api/smsCode"
 export const closedOrderUrl = "/admin/order/{{orderNumber}}/closed"
 export const cancelOrderUrl = "/api/order/{{orderNumber}}/cancel"
@@ -119,3 +120,7 @@ export const putPaymentImgUrl = "/admin/store/{{storeId}}/receiptcode"
 export const copyGoodsUrl='/api/shop/goods/copy/{{originGoodsId}}'
 // 楼层三级
 export const threeFloorListUrl = "/api/floor/threelevellist/{{mallCode}}"
+//订单详情
+export const orderDetailUrl = "/api/order/byordernumber/{{orderNumber}}";
+// 获取店铺性质
+export const getStoreNatureUrl = '/api/store/nature/{{storeId}}'

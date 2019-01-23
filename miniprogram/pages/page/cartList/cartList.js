@@ -2,52 +2,18 @@ const app = getApp();
 var that
 import Api from '../../../utils/api.js'
 import authHandler from '../../../utils/authHandler.js';
+import IsStoreOwner from '../../../utils/isStoreOwner.js';
 function getIdentity(_this) {
-  if (authHandler.isLogin()) {
-    Api.userIdentity()
-      .then(res => {
-        var obj = res.obj
-        if (obj == "null" || obj == null) {
-          wx.setStorageSync("admin", 1)
-          _this.setData({
-            limitShow: 1
-          })
-        }else{
-          var isStoreOwner = obj.isStoreOwner,
-            isPurchaser = obj.isPurchaser
-          if (isStoreOwner) {
-            if (obj.storeNature == 2) {
-              wx.setStorageSync("admin", 2)
-              _this.setData({
-                limitShow: 2
-              })
-            }
-            if (obj.storeNature == 1) {
-              wx.setStorageSync("admin", 1)
-              _this.setData({
-                limitShow: 1
-              })
-            }
-          }else{
-            wx.setStorageSync("admin", 1)
-            _this.setData({
-              limitShow: 1
-            })
-          }
-        }
-        _this.getList(_this)
-      })
-  } else {
+  let isStoreOwner = new IsStoreOwner();
+  isStoreOwner.enterIdentity().then(res => {
     _this.getList(_this)
-    wx.setStorageSync("admin", 1)
-    _this.setData({
-      limitShow: 1
-    })
-  }
+  }).catch(res => {
+  });
 }
 Page({
   data: {
     indexEmpty: true,
+    goRetailStore: true,
     enjoyCost:false,
     detailList:[],
     detailList1:[],
@@ -104,6 +70,12 @@ Page({
       })
     }
   },
+  lookDetails: function (e) {
+    var goodsId = e.target.dataset.id
+    wx.navigateTo({
+      url: '../goodsDetails/goodsDetails?goodsId=' + goodsId,
+    })
+  },
   //选择规格属性
   changeButton: function (e) {
     var that = this;
@@ -126,13 +98,81 @@ Page({
         numbers: num
       })
     }
-  },
+  }, 
   addCount1: function () {
     var num = this.data.numbers
-    num = num + 1
+    num = parseInt(num) + 1
     this.setData({
       numbers: num
     })
+  },
+  blurInput: function (e) {
+    var num = e.detail.value
+    if (num == '') {
+      num = 1
+    }
+    const index = e.currentTarget.dataset.index;
+    let detailList = this.data.detailList;
+    let storeId = this.data.storeId
+    detailList[index].shoppingCartSkuList[0].num = num;
+    detailList[index].num = num
+    var arr = this.updatePrice(num, index)
+    detailList[index].allGoodsAmount = arr[0]
+    detailList[index].allGoodsPf = arr[1]
+    var data = detailList[index].shoppingCartSkuList
+    var dataArr = []
+    dataArr.push({ goodsId: data[0]["goodsId"], num: parseInt(num), skuCode: data[0]["skuCode"], storeId: storeId })
+    this.addCart(data[0]["goodsId"], JSON.stringify(dataArr))
+    this.setData({
+      detailList: detailList
+    });
+    this.getTotalPrice();
+  },
+  blurInput1: function (e) {
+    var num = e.detail.value
+    if (num == '') {
+      num = 1
+    }
+    const index = e.currentTarget.dataset.index;
+    let detailList = this.data.detailList;
+    let storeId = this.data.storeId
+    detailList[index].num = num
+    detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
+    detailList[index].allGoodsAmount = num * detailList[index].sellPrice
+    var dataArr = []
+    dataArr.push({ goodsId: detailList[index]["goodsId"], num: parseInt(num), skuCode: 0, storeId: storeId })
+    this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
+    this.setData({
+      detailList: detailList
+    }, function () {
+      this.getTotalPrice();
+    });
+  },
+  changeNum1: function (e) {
+    var num = e.detail.value
+    const index = e.currentTarget.dataset.index;
+    let detailList = this.data.detailList;
+    if (num == '') { return }
+    num = num.replace(/\b(0+)/gi, "")
+    if (num == 0) {
+      num = 1
+    }
+    let storeId = this.data.storeId
+    let stockNum = detailList[index].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
+    detailList[index].num = num
+    detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
+    detailList[index].allGoodsAmount = num * detailList[index].sellPrice
+    var dataArr = []
+    dataArr.push({ goodsId: detailList[index]["goodsId"], num: parseInt(num), skuCode: 0, storeId: storeId })
+    this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
+    this.setData({
+      detailList: detailList
+    }, function () {
+      this.getTotalPrice();
+    });
   },
   weghtSwi: function (e) {
     var that = this;
@@ -143,6 +183,11 @@ Page({
         currentTab: e.target.dataset.current,
       })
     }
+  },
+  urlHome: function () {
+    wx.switchTab({
+      url: '../home/home'
+    })
   },
   //关闭弹框
   closeAlert: function () {
@@ -233,7 +278,7 @@ Page({
           for (var i = 0; i < effectiveList.length; i++) {
             effectiveList[i].selected = true
             var newSkvArr = effectiveList[i].shoppingCartSkuList
-            if (Api.isEmpty(newSkvArr)) {
+            if (Api.isNotEmpty(newSkvArr)) {
               var num = 0;
               var allGoodsAmount = 0
               var allGoodsPf = 0
@@ -269,7 +314,7 @@ Page({
         }
         var saleBatchNum = 0
         var saleBatchAmount=0
-        if (Api.isEmpty(store)){
+        if (Api.isNotEmpty(store)){
           if (store.saleBatchAmount == null){
             saleBatchAmount=0
           }else{
@@ -305,7 +350,13 @@ Page({
         indexEmpty: false
       })
     } else {
-      getIdentity(this)
+      if (app.globalData.storeIdRetail) {
+        this.setData({
+          goRetailStore: false
+        })
+      } else {
+        getIdentity(this)
+      }
     }
     
   },
@@ -399,11 +450,43 @@ Page({
       .then(res => {
       })
   },
+  changeNum: function (e) {
+    var num = e.detail.value
+    if (num == '') { return }
+    num = num.replace(/\b(0+)/gi, "")
+    if (num == 0) {
+      num = 1
+    }
+    const index = e.currentTarget.dataset.index;
+    let detailList = this.data.detailList;
+    let storeId = this.data.storeId
+    let stockNum = detailList[index].shoppingCartSkuList[0].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
+    detailList[index].shoppingCartSkuList[0].num = num;
+    detailList[index].num = num
+    var arr = this.updatePrice(num, index)
+    detailList[index].allGoodsAmount = arr[0]
+    detailList[index].allGoodsPf = arr[1]
+    var data = detailList[index].shoppingCartSkuList
+    var dataArr = []
+    dataArr.push({ goodsId: data[0]["goodsId"], num: parseInt(num), skuCode: data[0]["skuCode"], storeId: storeId })
+    this.addCart(data[0]["goodsId"], JSON.stringify(dataArr))
+    this.setData({
+      detailList: detailList
+    });
+    this.getTotalPrice();
+  },
   addCount(e) {
     const index = e.currentTarget.dataset.index;
     let detailList = this.data.detailList;
     let num = detailList[index].shoppingCartSkuList[0].num;
-    num = num + 1;
+    num = parseInt(num) + 1;
+    let stockNum = detailList[index].shoppingCartSkuList[0].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     let storeId = this.data.storeId
     detailList[index].shoppingCartSkuList[0].num = num;
     detailList[index].num = num
@@ -412,7 +495,7 @@ Page({
     detailList[index].allGoodsPf = arr[1]
     var data = detailList[index].shoppingCartSkuList
     var dataArr=[]
-    dataArr.push({ goodsId: data[0]["goodsId"], num: num, skuCode: data[0]["skuCode"], storeId:storeId})
+    dataArr.push({ goodsId: data[0]["goodsId"], num: parseInt(num), skuCode: data[0]["skuCode"], storeId:storeId})
     this.addCart(data[0]["goodsId"],JSON.stringify(dataArr))
     this.setData({
       detailList: detailList
@@ -438,7 +521,7 @@ Page({
     detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
     detailList[index].allGoodsAmount = num * detailList[index].sellPrice
     var dataArr = []
-    dataArr.push({ goodsId:detailList[index]["goodsId"], num: num, skuCode:0, storeId: storeId })
+    dataArr.push({ goodsId: detailList[index]["goodsId"], num: parseInt(num), skuCode:0, storeId: storeId })
     this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
     this.setData({
       detailList: detailList
@@ -451,13 +534,17 @@ Page({
     const index = e.currentTarget.dataset.index;
     let detailList = this.data.detailList;
     let num = detailList[index].num;
-    num = num + 1;
+    num = parseInt(num) + 1;
+    let stockNum = detailList[index].stockNum
+    if (num > stockNum) {
+      num = stockNum
+    }
     let storeId = this.data.storeId
     detailList[index].num = num
     detailList[index].allGoodsPf = num * detailList[index].wholesalePrice
     detailList[index].allGoodsAmount = num * detailList[index].sellPrice
     var dataArr = []
-    dataArr.push({ goodsId: detailList[index]["goodsId"], num: num, skuCode: 0, storeId: storeId })
+    dataArr.push({ goodsId: detailList[index]["goodsId"], num: parseInt(num), skuCode: 0, storeId: storeId })
     this.addCart(detailList[index]["goodsId"], JSON.stringify(dataArr))
     this.setData({
       detailList: detailList
@@ -469,7 +556,7 @@ Page({
   updatePrice:function(num,index){
     var effectiveList = this.data.detailList[index],
       shoppingCartSkuList = effectiveList.shoppingCartSkuList
-    if (Api.isEmpty(shoppingCartSkuList)){
+    if (Api.isNotEmpty(shoppingCartSkuList)){
       var arr = []
       arr.push(shoppingCartSkuList[0].sellPrice * num)
       arr.push(shoppingCartSkuList[0].wholesalePrice * num)
@@ -498,7 +585,7 @@ Page({
     detailList[index].allGoodsPf = arr[1]
     var data = detailList[index].shoppingCartSkuList
     var dataArr = []
-    dataArr.push({ goodsId: data[0]["goodsId"], num: num, skuCode: data[0]["skuCode"], storeId: storeId })
+    dataArr.push({ goodsId: data[0]["goodsId"], num: parseInt(num), skuCode: data[0]["skuCode"], storeId: storeId })
     this.addCart(data[0]["goodsId"], JSON.stringify(dataArr))
     this.setData({
       detailList: detailList
@@ -541,10 +628,10 @@ Page({
         var dataArr = data[i].shoppingCartSkuList
         if (dataArr!=null){
           for (var j = 0; j < dataArr.length; j++) {
-            model.push({ goodsId: data[i].goodsId, num: dataArr[j].num, skuCode: dataArr[j].skuCode })
+            model.push({ goodsId: data[i].goodsId, num: parseInt(dataArr[j].num), skuCode: dataArr[j].skuCode })
           }
         }else{
-          model.push({ goodsId: data[i].goodsId, num: data[i].num, skuCode:0})
+          model.push({ goodsId: data[i].goodsId, num: parseInt(data[i].num), skuCode:0})
         }
       }
     }

@@ -4,7 +4,7 @@
   bind:sureSelectArea="sureSelectAreaListener"
 >
 <view>
-  <text>确定退出新建云享品？</text>
+  <text>确定退出新建云商品？</text>
   <button bindtap='confirmDetele'>确定</button>
 </view>
 </mes>
@@ -66,25 +66,29 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
     </view>
     <view class="page__category-content">
       <view class='weui-title'>商品类目</view>
-      <navigator class="weui-cell1"  url='../firstClass/firstClass'>
+      <navigator   url='../firstClass/firstClass'>
+        <view class="weui-cell1">
         <view class="weui-cell__hd"><image  src="/image/ic3.png"></image></view>
         <view class="weui-cell__bd">
           <text>类目</text>
         </view>
         <view class="weui-cell__ft1"><image  src="/image/icl.png"></image></view>
-      </navigator>
+      </view>
       <input class="weui-input" type="text" value='{{codeName}}' disabled='disabled' placeholder="未选择"></input>
-      <navigator class="weui-cell" url="../shopClass/shopClass?categoryCustomCode={{categoryCustomCode}}">
+      </navigator>
+      <navigator  url="../shopClass/shopClass?categoryCustomCode={{categoryCustomCode}}">
+        <view class="weui-cell">
         <view class="weui-cell__hd"><image  src="/image/ic4.png"></image></view>
         <view class="weui-cell__bd">
           <text>本店分类</text>
         </view>
         <view class="weui-cell__ft1"><image  src="/image/icl.png"></image></view>
-      </navigator>
+      </view>
       <input class="weui-input" disabled='disabled'  type="text" value='{{strName}}' placeholder="未设置（选填）"></input>
+      </navigator>
     </view>
-    <view class="page__category-content">
-      <navigator url='../spec/spec?model={{modelPageAll}}' class='weui-title'>商品规格<view>{{pageall.length>0?'已设置':'未设置'}}<image  src="/image/icl.png"></image></view></navigator>
+    <navigator class="page__category-content" url='../spec/spec?model={{modelPageAll}}'>
+      <view  class='weui-title'>商品规格<view>{{pageall.length>0?'已设置':'未设置'}}<image  src="/image/icl.png"></image></view></view>
       <view class='page-weui {{index==0?"page-weui-active":""}}' wx:for="{{pageall}}" wx:key="index">
           <view class="weui-cell">
             <view class="weui-cell__hd"><image  src="/image/ic5.png"></image></view>
@@ -95,7 +99,7 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
           <view class='add-size'><text wx:for="{{item.goodsSpecificationValueVOList}}" wx:key="index">{{item.specValueName}}</text></view>
       </view>
       <input  wx:if="{{pageall.length<1}}" style='text-align:center;margin-top:20rpx;' class="weui-input" type="text" disabled='disabled'  placeholder="不设置即仅一个规格（选填）"></input>
-    </view>
+    </navigator>
     <view class="page__category-content" hidden='{{clickSpecShow}}'>
       <view class='weui-title'>商品价格库存</view>
       <view class="weui-cell1">
@@ -127,6 +131,16 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
       </view>
       <view class='weui-input'>总库存<input placeholder-class='pla-input'  class="weui-input" disabled='disabled' value='{{skuNum}}' type="text" placeholder=""></input><text>件</text></view>
     </view>
+    <!-- <view class="page__category-content" wx:if='{{!stockHide}}'>
+      <view class='weui-title'>其他设置</view>
+      <view class="weui-cell1">
+        <view class="weui-cell__bd">
+          <text>起批量</text>
+        </view>
+        <input class="stock" type="number" bindinput='stockFun' value='{{stock}}'></input>
+        <view class="weui-cell__ft" bindtap='clearInput'><image  src="/image/clo.png"></image></view>
+      </view>
+    </view> -->
   </view>
   <view hidden='{{hiddenSend}}'>
     <view class='write'>
@@ -134,30 +148,30 @@ bindtouchend="moveend" data-index="{{index+1}}" data-main="{{mainx}}" class="weu
       <view class='removeImg' wx:if='{{item.input}}'>
         <!-- <input bindinput='watchInput' value='{{item.value}}' data-index='{{index}}' placeholder='请输入标题'></input>
          -->
-         <textarea bindinput='watchInput' class='input-v' value='{{item.value}}' data-index='{{index}}' placeholder='请输入标题'></textarea>
+         <input bindinput='watchInput' class='input-v' value='{{item.value}}' data-index='{{index}}' placeholder='请输入标题'></input>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image  src="/image/remove.png" ></image><text data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image  src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData'>插入</text></view>
+            <view  wx:if='{{index!=0}}'><image src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image data-index='{{index}}'  bindtap='upData' src="/image/up1.png" ></image><text data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
       <view class='removeImg' wx:if='{{item.textInput}}'>
-        <textarea  data-index='{{index}}' value='{{item.value}}'  placeholder-class='weui-plac' bindinput='watchDec' placeholder='请输入商品描述内容...'></textarea>
+        <input  data-index='{{index}}' value='{{item.value}}'   class='input-v' bindinput='watchDec' placeholder='请输入商品描述内容...'></input>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image src="/image/remove.png" ></image><text  data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData'>插入</text></view>
+            <view wx:if='{{index!=0}}'><image src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image  src="/image/up1.png" ></image><text data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
        <view class='removeImg'  wx:if='{{item.img}}' >
         <image mode='widthFix'  data-index='{{index}}' src="{{item.img}}"></image>
         <view>
-            <view data-index='{{index}}' bindtap='removeImage'><image  src="/image/remove.png" ></image>删除</view>
-            <view data-index='{{index}}' bindtap='insertData'><image  src="/image/add.png" ></image>插入</view>
-            <view data-index='{{index}}' wx:if='{{index!=0}}' bindtap='topData'><image  src="/image/top1.png" ></image>上移</view>
-            <view data-index='{{index}}' wx:if='{{index!=addGoodsDetails.length-1}}' bindtap='upData'><image  src="/image/up1.png" ></image>下移</view>
+            <view><image src="/image/remove.png" ></image><text  data-index='{{index}}' bindtap='removeImage'>删除</text></view>
+            <view><image src="/image/add.png" ></image><text data-index='{{index}}' bindtap='insertData' >插入</text></view>
+            <view wx:if='{{index!=0}}'><image  src="/image/top1.png" ></image><text data-index='{{index}}' bindtap='topData'>上移</text></view>
+            <view wx:if='{{index!=addGoodsDetails.length-1}}'><image  src="/image/up1.png" ></image><text  data-index='{{index}}'  bindtap='upData'>下移</text></view>
         </view>
       </view>
       </view>

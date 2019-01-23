@@ -1,6 +1,7 @@
 const app = getApp();
 import Api from '../../../utils/api.js'
 import util from '../../../utils/util.js'
+import arr from './arr.js'
 var getTempList = function (that) {
   Api.template()
     .then(res => {
@@ -51,10 +52,10 @@ Page({
     show1: false,
     tempNewArr: [],
     tempNewId: '',
-    longTap: [{ selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }],
-    longTap1: [{ selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }, { selected: true }],
-    arrIndex: [{ selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }],
-    arrIndex1: [{ selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }, { selected: false }]
+    longTap: arr.longTap(),
+    longTap1: arr.longTap1(),
+    arrIndex: arr.arrIndex(),
+    arrIndex1: arr.arrIndex1()
 
   },
   stopTouchMove: function () {
@@ -126,7 +127,7 @@ Page({
       editShowModel = this.data.editShowModel,
       templateId = this.data.templateId
     if (editShowModel) {
-      if (Api.isEmpty(templateId)) {
+      if (Api.isNotEmpty(templateId)) {
         for (var i = 0; i < goodsListData.length; i++) {
           var data = goodsListData[i].goodsSpecificationValueVOList
           for (var j = 0; j < data.length; j++) {
@@ -225,7 +226,12 @@ Page({
         })
       } else {
         for (var i = 0; i < model.length; i++) {
-          specificationTemplateContentVOList.push({ specCode: model[i].specCode, specName: model[i].specName, specValueList: [] })
+          if (i == 0) {
+            specificationTemplateContentVOList.push({ id: '010', specCode: model[i].specCode, specName: model[i].specName, specValueList: [] })
+
+          } else {
+            specificationTemplateContentVOList.push({ id: '012', specCode: model[i].specCode, specName: model[i].specName, specValueList: [] })
+          }
           var arrChild = model[i].goodsSpecificationValueVOList
           for (var j = 0; j < arrChild.length; j++) {
             arrChild[j].selected = true
@@ -281,7 +287,7 @@ Page({
       editDataModel = this.data.editDataModel,
       arrIndex1 = this.data.arrIndex1
     if (editShowModel) {
-      if (Api.isEmpty(templateId)) {
+      if (Api.isNotEmpty(templateId)) {
         arrIndex = that.checkedFunc(arrIndex, false)
         arrIndex1 = that.checkedFunc(arrIndex1, false)
       } else {
@@ -344,6 +350,7 @@ Page({
   watchInput: function (event) {
     var value = event.detail.value,
       num = value.length
+    value = value.replace(/\s+/g, "")
     if (value == '') {
       this.setData({
         watchInput: false,
@@ -360,14 +367,25 @@ Page({
           value: value.substring(0, 15),
         })
       } else {
-        if (num > 10) {
-          Api.showToast("超过最长数字限制")
+        if (this.data.addSpecAttc || this.data.updateSpec) {
+          if (num > 7) {
+            Api.showToast("超过最长数字限制")
+          }
+          this.setData({
+            watchInput: true,
+            value: value.substring(0, 6),
+            valueEdit: value.substring(0, 6)
+          })
+        } else {
+          if (num > 10) {
+            Api.showToast("超过最长数字限制")
+          }
+          this.setData({
+            watchInput: true,
+            value: value.substring(0, 9),
+            valueEdit: value.substring(0, 9)
+          })
         }
-        this.setData({
-          watchInput: true,
-          value: value.substring(0, 9),
-          valueEdit: value.substring(0, 9)
-        })
       }
     }
   },
@@ -416,6 +434,14 @@ Page({
       specArr.push(specName)
       tempArr[specNameIndex].specValueList = specArr
     } else {
+      if((tempArr[specNameIndex].specValueList).length==100){
+        Api.showToast("超过规格最大长度！")
+        return
+      }
+      if ((tempArr[specNameIndex].specValueList).indexOf(specName) != -1) {
+        Api.showToast("此规格名称已存在！")
+        return
+      }
       for (var j = 0; j < tempArr[specNameIndex].specValueList.length; j++) {
         str += tempArr[specNameIndex].specValueList[j] + ",";
       }
@@ -432,12 +458,7 @@ Page({
     Api.addTempCont(templateContentId, str)
       .then(res => {
         const code = res.code
-        wx.showToast({
-          title: '新建成功',
-          icon: 'none',
-          duration: 1000,
-          mask: true
-        })
+        Api.showToast("新建成功!")
       })
   },
   saveTemplate: function (e) {
@@ -480,13 +501,23 @@ Page({
     var tempArr = { specName: "specName", templateId: id, specValueList: valData }
     var templateContentId = id
     var specName = str
-    longTap[index].selected = true
-    arrIndex[index].selected = false
+    longTap.splice(index, 1);
+    longTap.push({ selected: true })
+    arrIndex.splice(index, 1);
+    arrIndex.push({ selected: false })
+    // let index_s = parseInt(index) + 1
+    // longTap[index].selected = true
+    // if (arrIndex[index_s].selected) {
+    //   arrIndex[index].selected = true
+    // } else {
+    //   arrIndex[index].selected = false
+    // }
+    // arrIndex[valData.length].selected = false
     this.setData({
       longTap: longTap,
       arrIndex: arrIndex,
     })
-    if (!Api.isEmpty(pId)) {
+    if (!Api.isNotEmpty(pId)) {
       Api.showToast("删除成功")
       _this.setData({
         lock: false,
@@ -535,13 +566,23 @@ Page({
     var tempArr = { specName: "specName", templateId: id, specValueList: valData }
     var templateContentId = id
     var specName = str
-    longTap1[index].selected = true
-    arrIndex1[index].selected = false
+    longTap1.splice(index, 1);
+    longTap1.push({ selected: true })
+    arrIndex1.splice(index, 1);
+    arrIndex1.push({ selected: false })
+    // longTap1[index].selected = true
+    // let index_s = parseInt(index) + 1
+    // if (arrIndex1[index_s].selected) {
+    //   arrIndex1[index].selected = true
+    // } else {
+    //   arrIndex1[index].selected = false
+    // }
+    // arrIndex1[valData.length].selected = false
     this.setData({
       longTap1: longTap1,
       arrIndex1: arrIndex1,
     })
-    if (!Api.isEmpty(pId)) {
+    if (!Api.isNotEmpty(pId)) {
       Api.showToast("删除成功")
       _this.setData({
         lock: false,
@@ -575,7 +616,7 @@ Page({
       Api.showToast("请输入模板名称！")
       return
     }
-    if (templateContLen > 7) {
+    if (templateContLen > 6) {
       Api.showToast("规格模板最多只能创建6个！")
     } else {
       Api.addTemplate(tempArr)
@@ -592,7 +633,23 @@ Page({
       templateContentId = e.target.dataset.id,
       templateCont = _this.data.templateCont,
       newArr = [],
-      index = ''
+      arrIndex = this.data.arrIndex,
+      arrIndex1 = this.data.arrIndex1,
+      index = '',
+      goodsListData = this.data.goodsListData,
+      editShowModel = this.data.editShowModel,
+      editDataModel = this.data.editDataModel
+    if (editShowModel){
+      if (editDataModel.length==2){
+        this.setData({
+          editDataModel: (editDataModel).reverse()
+        })
+      }
+    }else{
+      this.setData({
+        goodsListData: (goodsListData).reverse()
+      })
+    }
     for (var i = 0; i < templateCont.length; i++) {
       if (templateCont[i].id == templateId) {
         var specList = templateCont[i].specificationTemplateContentVOList
@@ -601,7 +658,9 @@ Page({
       }
     }
     _this.setData({
-      templateCont: templateCont
+      templateCont: templateCont,
+      arrIndex: arrIndex1,
+      arrIndex1: arrIndex,
     })
     if (index != 0) {
       Api.tempSort({ templateContentId: templateContentId })
@@ -657,7 +716,7 @@ Page({
       codeTd = this.data.templateId,
       num = '',
       arrIndex = []
-    if (pId == undefined || pId == '') {
+    if (pId == undefined || pId == '' || pId == 'undefined') {
       pId = '002'
     }
     if (switchi == 0) {
@@ -689,7 +748,11 @@ Page({
         arrIndex1: arrIndex
       })
     }
-    if (editShowModel && !Api.isEmpty(pIdNew)) {
+    var ifEdit=false
+    if (pIdNew == "010" || pIdNew == "012" || pIdNew == undefined){
+      ifEdit=true
+    }
+    if (editShowModel && ifEdit) {
       if (switchi == 0) {
         if (arrIndex[current].selected) {
           if (current >= editDataModel[switchi].goodsSpecificationValueVOList.length) {
@@ -699,7 +762,8 @@ Page({
             editDataModel[switchi].goodsSpecificationValueVOList[current].selected = true
           }
         } else {
-          editDataModel[switchi].goodsSpecificationValueVOList[current].selected = false
+          // editDataModel[switchi].goodsSpecificationValueVOList[current].selected = false
+          (editDataModel[switchi].goodsSpecificationValueVOList).splice(current, 1);
         }
       }
       if (switchi == 1) {
@@ -786,7 +850,7 @@ Page({
         wx.showToast({
           title: '删除成功',
           icon: 'none',
-          duration: 1000,
+          duration: 2000,
           mask: true,
           success: function () {
             getTempList(_this);
@@ -853,7 +917,7 @@ Page({
       }
       editDataModel[0].goodsSpecificationValueVOList = specEditNew
     }
-    if (Api.isEmpty(templateId)) {
+    if (Api.isNotEmpty(templateId)) {
       Api.deleteTemplate(templateContentId)
         .then(res => {
           wx.showToast({
@@ -898,7 +962,7 @@ Page({
         wx.showToast({
           title: '更新成功',
           icon: 'none',
-          duration: 1000,
+          duration: 2000,
           mask: true
         })
         _this.cancel()
@@ -958,24 +1022,14 @@ Page({
     }
     Api.updateSpecName(templateContentId, specName)
       .then(res => {
-        wx.showToast({
-          title: '更新成功',
-          icon: 'none',
-          duration: 1000,
-          mask: true
-        })
+        Api.showToast("更新成功！")
         _this.cancel()
       })
 
   },
   checkName: function () {
     if (this.data.value == '') {
-      wx.showToast({
-        title: '请输入文字！',
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
+      Api.showToast("请输入文字！")
     }
   },
   /**

@@ -1,3 +1,6 @@
+<view wx:if="{{initOrder && limitShow == 2}}"><initstroe></initstroe></view>
+<!-- 判断进来的身份 -->
+<view wx:if="{{isStoreOwerShow}}" class='isStoreOwer'></view>
 <login id="login"></login>
 <view class='wk-cont'>
   <view class='wk-title'>
@@ -8,14 +11,16 @@
   <!-- ../follow/follow -->
   <view class='wk-bot'>
     <navigator url='../../businessFriend/merchant/follow/follow'>{{followNum==null?0:followNum}}<view>关注人数</view></navigator>
-    <navigator  url='../../role/order/order?navType=paid'>{{payOrders==null?0:payOrders}}<view>付款订单</view><view class='wk-xian'></view></navigator>
+    <navigator  url='../../role/order/order?navType=wait_deliver'>{{payOrders==null?0:payOrders}}<view>付款订单</view><view class='wk-xian'></view></navigator>
     <navigator class='wk-fg'></navigator>
-    <navigator   url='../../role/order/order?navType=paid'>{{unshippedOrders==null?0:unshippedOrders}}<view>待发货订单</view><view class='wk-xian'></view></navigator>
+    <navigator   url='../../role/order/order?navType=wait_deliver'>{{unshippedOrders==null?0:unshippedOrders}}<view>待发货订单</view><view class='wk-xian'></view></navigator>
+      <navigator class='wk-fg'></navigator>
+    <navigator url='/pages/businessFriend/mewWholesaler/mewWholesaler'>{{verifyFriends==null?0:verifyFriends}}<view>待验证商友</view></navigator>
   </view>
 </view>
 <view class='wk-cont wk-cont'>
   <view class='wx-bot-cont'>
-    <navigator   url='../stockOrder/stockOrder'><view><image mode='widthFix' src='/image/ad1.png'></image></view><view>进货单</view></navigator>
+    <navigator   url='../stockOrder/stockOrder'><view><image mode='widthFix' src='/image/nav-sorder-gold.png'></image></view><view>进货单</view></navigator>
     <navigator   url='../../role/order/order'><view><image mode='widthFix' src='/image/ad2.png'></image></view><view>订单管理</view></navigator>
     <navigator   url='../../admin/status/status'><view><image mode='widthFix' src='/image/ad3.png'></image></view><view>云商品</view></navigator>
     <navigator   url='../../businessFriend/index/index'><view><image mode='widthFix' src='/image/ad4.png' style='width:50rpx;'></image></view><view>商友录</view></navigator>
@@ -24,7 +29,7 @@
 </view>
 <view class='goHome' bindtap='goHome'><view><image src="/image/home.png"></image></view>回首页</view>
 <view class='bottom_M'>
-  <navigator><image  src="/image/ww.png"></image><view  class='active'>工作台</view></navigator>
+  <view><image  src="/image/ww.png"></image><view  class='active'>工作台</view></view>
   <navigator  open-type='redirect'  url='../../businessFriend/index/index'><image  src="/image/admin2.png"></image><view>商友录</view></navigator>
   <navigator  open-type='redirect'  url='../userM/userM'><image  src="/image/w11.png"></image><view>我的</view></navigator>
 </view>

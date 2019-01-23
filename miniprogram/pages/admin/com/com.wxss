@@ -1,5 +1,5 @@
 .goods-ser{height:80rpx;position:relative;background:#fff}
-.goods-ser input{color:#999;font-size:28rpx;height:70rpx;padding-left:85rpx}
+.goods-ser input{color:#999;font-size:28rpx;height:70rpx;padding-left:85rpx;width:65%}
 .home-ser{height:40rpx;width:40rpx;position:absolute;left:25rpx;top:17rpx}
 .home-img{height:70rpx;width:70rpx;position:absolute;right:40rpx;top:-10rpx;text-align:center;z-index:10;padding-top:0rpx;font-size:30rpx;color:#C79359}
 .st-title{color:#333;font-size:28rpx;text-align:center;background:#fff;position:relative}

@@ -6,6 +6,7 @@ import {
   adminGoodsDownUrl,
   adminShopCateUrl,
   adminGoodsStatusUrl,
+  updateClassUrl,
   saleBatchNumUrl,
   isFriendUrl,
   newGoodsSearchListUrl,
@@ -111,12 +112,14 @@ import {
   recentGoodsUrl,
   copyGoodsUrl,
   tempSortUrl,
-  threeFloorListUrl
+  threeFloorListUrl,
+  orderDetailUrl,
+  getStoreNatureUrl
 } from './constUrl.js'
 
 const app = getApp()
 /**判断是否为空**/
-function isEmpty(str) {
+function isNotEmpty(str) {
   if (str == '' || str == undefined || str == null){
     return false
   }else{
@@ -133,7 +136,7 @@ function showToast(message) {
 }
 /**判断楼座是否为空**/
 function isFloorInfo(obj) {
-  if (isEmpty(obj)) {
+  if (isNotEmpty(obj)) {
     var floor = obj
       floor.mallName = floor.mallName == null ? '' : floor.mallName,
       floor.areaName = floor.areaName == null ? '' : floor.areaName,
@@ -145,6 +148,12 @@ function isFloorInfo(obj) {
   } else {
     return null
   }
+}
+/**
+ * 获取店铺性质
+ */
+function getStoreNature(data) {
+  return app.http.getRequest(getStoreNatureUrl, data);
 }
 /**用户身份判断**/
 function userIdentity(data) {
@@ -168,6 +177,11 @@ function getStoreInfo() {
 function adminGoodsList(data){
   data = initStoreId(data);
   return app.pageRequest.pageGet(adminGoodsListUrl, data)
+}
+/**修改店内分类**/
+function updateClass(data) {
+  data = initStoreId(data);
+  return app.http.putRequest(updateClassUrl, data)
 }
 /**首页新品**/
 function recentGoods(data) {
@@ -585,11 +599,11 @@ function adminAddUser(data) {
 }
 // 退出登录
 function quit(data){
-  return app.http.postRequest(quitUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(quitUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 // 修改密码
 function updataPwd(data){
-  return app.http.postRequest(updataPwdUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(updataPwdUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 // 修改头像
 function changeIcon(data){
@@ -605,15 +619,15 @@ function uploadVoucher(data){
 }
 /**重置密码**/
 function resetPassword(data) {
-  return app.http.postRequest(resetPasswordUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(resetPasswordUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 /**短信验证码**/
 function phoneMessage(data) {
-  return app.http.getRequest(phoneMessageUrl, data)
+  return app.authHandler.getRequest(phoneMessageUrl, data)
 }
 /**注册**/
 function register(data) {
-  return app.http.postRequest(registerUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
+  return app.authHandler.postRequest(registerUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
 /**注册短信验证码**/
 function registerPhoneMsg(data) {
@@ -621,17 +635,19 @@ function registerPhoneMsg(data) {
 }
 // 关闭订单
 function closeOrder(data){
-  return app.http.putRequest(closedOrderUrl+"?reason="+data.reason, data)
+  let url = closedOrderUrl + "?reason=" + encodeURI(data.reason)
+  return app.http.putRequest(url, data)
 }
 // 取消订单
 function cancelOrder(data){
-  return app.http.putRequest(cancelOrderUrl + "?reason=" + data.reason, data)
+  let url = cancelOrderUrl + "?reason=" + encodeURI(data.reason)
+  return app.http.putRequest(url, data)
 }
 // 添加快递
 function addExpress(data){
   let expressCompany = data.expressCompany ? data.expressCompany:"";
   let expressNumber = data.expressNumber ? data.expressNumber:"";
-  return app.http.putRequest(addDxpressUrl + "?expressCompany=" + expressCompany + "&expressNumber=" + expressNumber, data)
+  return app.http.putRequest(addDxpressUrl + "?expressCompany=" + encodeURI(expressCompany) + "&expressNumber=" + encodeURI(expressNumber), data)
 }
 // 订单填写商家备注
 function addRemark(data){
@@ -680,6 +696,14 @@ function putPaymentImg(data) {
   data = initStoreId(data);
   return app.http.putRequest(putPaymentImgUrl, data, { 'content-type': 'application/x-www-form-urlencoded' })
 }
+// 楼层三级联动
+function threeFloorList(data) {
+  return app.http.getRequest(threeFloorListUrl, data)
+}
+//订单详情
+function getOrderDetail(data) {
+  return app.http.getRequest(orderDetailUrl, data);
+}
 /**
  * 获取formId
  */
@@ -726,6 +750,9 @@ function getStoreId() {
   }
 }
 module.exports = {
+  getStoreNature,
+  getOrderDetail,
+  threeFloorList,
   copyGoods: copyGoods,
   getFormId: getFormId,
   tempSort: tempSort,
@@ -749,7 +776,7 @@ module.exports = {
   registerPhoneMsg: registerPhoneMsg,
   uploadVoucher: uploadVoucher,
   testGoodCode: testGoodCode,
-  isEmpty: isEmpty,
+  isNotEmpty: isNotEmpty,
   showToast: showToast,
   classListApi: classListApi,
   adminGoodsList: adminGoodsList,
@@ -846,6 +873,7 @@ module.exports = {
   goodsApiSearchList: goodsApiSearchList,
   updataPwd: updataPwd,
   changeIcon: changeIcon,
+  updateClass: updateClass,
   showPurchaser: showPurchaser,
   showMerchant: showMerchant,
   recentGoods: recentGoods,

@@ -24,7 +24,7 @@
       <image  mode="widthFix" src="{{baseUrl}}{{item.storeLogo}}?x-oss-process=style/logo"></image>
       <text>{{item.remark==null?item.storeName:item.remark}}</text>
       <view class='weui-view'>
-        <image  mode="widthFix" src="/image/11.png"></image>
+        <image  mode="widthFix" src="/image/ww.png"></image>
       </view>
     </navigator>
   </view>

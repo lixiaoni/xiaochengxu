@@ -22,7 +22,14 @@ Page({
     ifhide: true,
     //密码图片src
     see: '/image/pass-hide.png',
-    tip: ""
+    tip: "",
+    attention: true
+  },
+  // 自动关注
+  attentionStore() {
+    this.setData({
+      attention: !this.data.attention
+    })
   },
   register() {
     if (!this.testTel()) {
@@ -61,6 +68,10 @@ Page({
 
       //登录
       app.authHandler.loginByUser(obj.mobile, obj.password).then(res => {
+        //关注
+        if (this.data.attention) {
+          API.likeStore();
+        }
         //获取上一页
         let pages = getCurrentPages();
         let curPage = pages[pages.length - 2];
@@ -76,7 +87,7 @@ Page({
       })
     }).catch(e => {
       wx.showToast({
-        title: e.message,
+        title: e.data.message,
         icon: 'none'
       })
     })

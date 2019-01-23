@@ -26,7 +26,7 @@ Page({
    
   },
   goStatus:function(){
-    wx.navigateTo({
+    wx.reLaunch({
       url: '../status/status',
     })
   },

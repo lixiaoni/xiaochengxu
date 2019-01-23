@@ -35,6 +35,8 @@ Page({
     })
   },
   searchBtn: function (e) {
+    var val = this.data.value
+    if(!val){return}
     app.pageRequest.pageData.pageNum = 0
     this.setData({
       detailList: []

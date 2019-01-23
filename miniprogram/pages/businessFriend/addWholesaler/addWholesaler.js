@@ -14,21 +14,29 @@ Page({
     var show;
     wx.scanCode({
       success: (res) => {
-       var userId=res.result
-        if (userId != "*") {
-          var userId = userId.split("user_")[1]
-          if (Api.isEmpty(userId)){
+        var qrUrl=res.result
+        if (qrUrl.indexOf("&userId") == -1) {
+          Api.showToast("未获取信息！")
+          return
+        }
+        let type = qrUrl.match(/type=(\S*)&/)[1];
+        if (type == "user") {
+          let userId = qrUrl.match(/userId=(\S*)/)[1];
+          if (Api.isNotEmpty(userId)){
             Api.showPurchaser({ userId: userId })
               .then(res => {
                 var obj = res.obj,
                   status = obj.status
                 if (status) {
                   if (status == 3) {
-                    status == 0
+                    wx.navigateTo({
+                      url: '../information/information?status=0&send=&accept=' + obj.storeId_ + '&remark=&name=&logo=',
+                    })
+                  }else{
+                    wx.navigateTo({
+                      url: '../information/information?status=' + status + '&send=&accept=' + obj.storeId_ + '&remark=&name=&logo=',
+                    })
                   }
-                  wx.navigateTo({
-                    url: '../information/information?status=' + status + '&send=&accept=' + obj.storeId_ + '&remark= &name=&logo=',
-                  })
                 }
               })
               .catch(res => {

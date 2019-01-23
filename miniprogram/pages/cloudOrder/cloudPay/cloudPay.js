@@ -25,7 +25,7 @@ Page({
   },
   getOpenid(code) {
     wx.request({
-      url: 'https://pay.youlife.me/api/pay',
+      url: app.globalData.payUrl,
       method: 'POST',
       data: {
         "channel": "wx_pay",
@@ -37,7 +37,7 @@ Page({
         "tradeType": "JSAPI"
       },
       header: {
-        "appNumber": "APP002",
+        "platAppId": app.globalData.payNum,
       },
       success: (res) => {
         if (res.data.code == 0) {

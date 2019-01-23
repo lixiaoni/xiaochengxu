@@ -154,16 +154,19 @@ Page({
     var _this = this
     app.http.onlyUploadImg(url, "STORE_IMAGE").then(res => {
       var url = JSON.parse(res).obj
+      // _this.setData({
+      //   logo: url
+      // })
       if (url) {
         Api.uploadLogoImg(url)
           .then(res => {
-            app.globalData.switchStore = true
             wx.showToast({
               title: res.message,
               icon: 'none',
               duration: 1000,
               mask: true,
               success: function () {
+                // _this.closeShow()
                 _this.getStoreMes()
               }
             })
@@ -178,7 +181,7 @@ Page({
   onReady: function () {
 
   },
-  getStoreMes: function () {
+  getStoreMes:function(){
     var _this = this
     Api.storeIdInfo()
       .then(res => {

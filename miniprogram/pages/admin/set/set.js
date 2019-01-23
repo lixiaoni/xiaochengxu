@@ -66,10 +66,21 @@ Page({
             Api.showToast("输入有效的库存数量!")
             skuListAll[j][name] = ''
           } else {
-            skuListAll[j][name] = parseInt(val)
+            val = val.replace(/\b(0+)/gi, "")
+            skuListAll[j][name] = val.substring(0, 9)
           }
         } else {
-          skuListAll[j][name] = (util.newVal(val)).substring(0, 10)
+          if (val.length == 2 && val.charAt(0) == '0') {
+            if (val != "0.") {
+              val=0
+              skuListAll[j][name] =0
+              this.setData({
+                skuListAll: skuListAll
+              })
+              return
+            }
+          }
+          skuListAll[j][name] = (util.newVal(val)).substring(0, 9)
         }
       }
     }
@@ -86,7 +97,7 @@ Page({
     })
   },
   isEmpty: function (val, mes) {
-    if (Api.isEmpty(val)) {
+    if (Api.isNotEmpty(val)) {
       return true
     } else {
       Api.showToast(mes)
@@ -103,9 +114,6 @@ Page({
       // delete skuListAll[i].specValueName
       delete skuListAll[i].id
       // delete skuListAll[i].specValueCode
-      if (!this.isEmpty(skuListAll[i].wholesalePrice, "批发价不能为空!")) {
-        return
-      }
       if (isNaN(skuListAll[i].stockNum)) {
         Api.showToast("库存不能为空!")
         return

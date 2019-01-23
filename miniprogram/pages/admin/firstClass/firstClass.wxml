@@ -1,5 +1,5 @@
 <view class='shop-cont'  wx:if='{{currentTab==0}}'>
-    <view class='shop-size'>请选择的类目</view>
+    <view class='shop-size'>请选择类目</view>
     <view wx:for='{{dataList}}' wx:key='{{index}}' bindtap='twoClass' data-id='{{item.categoryCode}}' data-name='{{item.name}}'>
       {{item.name}}
     </view>

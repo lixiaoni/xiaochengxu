@@ -3,44 +3,14 @@ import Api from '../../../utils/api.js'
 var WxParse = require('../../../wxParse/wxParse.js');
 import authHandler from '../../../utils/authHandler.js';
 const util = require('../../../utils/util.js')
-function getIdentity(_this,goodsId,isTrue) {
-  if (authHandler.isLogin()) {
-    Api.userIdentity()
-      .then(res => {
-        var obj = res.obj
-        if (obj == "null" || obj == null) {
-          wx.setStorageSync("admin", 1)
-          _this.setData({
-            limitShow: 1
-          })
-        }else{
-          var isStoreOwner = obj.isStoreOwner,
-            isPurchaser = obj.isPurchaser
-          if (isStoreOwner) {
-            if (obj.storeNature == 2) {
-              wx.setStorageSync("admin", 2)
-              _this.setData({
-                limitShow: 2
-              })
-            }
-            if (obj.storeNature == 1) {
-              wx.setStorageSync("admin", 1)
-              _this.setData({
-                limitShow: 1
-              })
-            }
-          }else{
-            wx.setStorageSync("admin", 1)
-            _this.setData({
-              limitShow: 1
-            })
-          }
-        }
-        _this.getDetails(goodsId,isTrue)
-      })
-  }else{
+import IsStoreOwner from '../../../utils/isStoreOwner.js';
+// 身份判断
+function getIdentity(_this, goodsId, isTrue) {
+  let isStoreOwner = new IsStoreOwner();
+  isStoreOwner.enterIdentity().then(res => {
     _this.getDetails(goodsId, isTrue)
-  }
+  }).catch(res => {
+  });
 }
 Page({
 
@@ -221,25 +191,34 @@ Page({
       dataList = _this.data.goodsSkuVOList
      for (var i = 0; i < dataList.length; i++) {
        if (dataList[i].specValueCodeList.indexOf(code) != -1) {
-        if(index==0){
-          if (dataList[i].specValueCodeList.indexOf(swichNavCode) != -1) {
-            _this.setData({
-              wholesale: dataList[i].wholesalePrice,
-              stockNum: dataList[i].stockNum,
-              sell: dataList[i].sellPrice
-            })
-            break
-          }
-        }else{
-          if (dataList[i].specValueCodeList.indexOf(changeButtonCode) != -1){
-            _this.setData({
-              wholesale: dataList[i].wholesalePrice,
-              stockNum: dataList[i].stockNum,
-              sell: dataList[i].sellPrice
-            })
-            break
-          }
-        }
+         if (dataList[i].specValueCodeList.length == 2) {
+           if (index == 0) {
+             if (dataList[i].specValueCodeList.indexOf(swichNavCode) != -1) {
+               _this.setData({
+                 wholesale: dataList[i].wholesalePrice,
+                 stockNum: dataList[i].stockNum,
+                 sell: dataList[i].sellPrice
+               })
+               break
+             }
+           } else {
+             if (dataList[i].specValueCodeList.indexOf(changeButtonCode) != -1) {
+               _this.setData({
+                 wholesale: dataList[i].wholesalePrice,
+                 stockNum: dataList[i].stockNum,
+                 sell: dataList[i].sellPrice
+               })
+               break
+             }
+           }
+         }else{
+           _this.setData({
+             wholesale: dataList[i].wholesalePrice,
+             stockNum: dataList[i].stockNum,
+             sell: dataList[i].sellPrice
+           })
+           break
+         }
        }
      }
     if (!this.data.showCartOne) { this.getTotalPrice();}
@@ -285,6 +264,8 @@ Page({
   },
   getSpecDetails:function(index,code){
     var that = this,
+      swichNavCode = this.data.swichNavCode,
+      changeButton = this.data.changeButton,
       swichNavCode = index,
       code = code,
       skuArrTwo = this.data.skuArrTwo,
@@ -517,7 +498,7 @@ Page({
     }else{
       skuCode=0
     }
-    if (!Api.isEmpty(wx.getStorageSync("access_token"))){
+    if (!Api.isNotEmpty(wx.getStorageSync("access_token"))){
       _this.showLogo()
       return
     }
@@ -739,7 +720,8 @@ Page({
   },
   addCount:function(){
     let num=this.data.numbers
-    var stockNum = this.data.stockNum
+    var stockNum = this.data.stockNum,
+      swichNavCode = this.data.swichNavCode
     if (num >= stockNum){
       Api.showToast("库存不足！")
       return 
@@ -755,8 +737,10 @@ Page({
     if (this.data.editOneName){
       var newSkuArrTwo = this.data.newSkuArrTwo
       for (var i = 0; i < newSkuArrTwo.length;i++){
-        if (newSkuArrTwo[i].num>0){
+        if ((newSkuArrTwo[i].specValueCodeList).indexOf(swichNavCode)!=-1){
           newSkuArrTwo[i].num = num
+        }else{
+          newSkuArrTwo[i].num=0
         }
       }
       this.setData({
@@ -1033,7 +1017,7 @@ Page({
           name = ''
         var that = this;
         var article = '<div>'+ obj.description+'</div>'
-        if (Api.isEmpty(obj.description)){
+        if (Api.isNotEmpty(obj.description)){
           _this.setData({
             description:true
           })
@@ -1054,7 +1038,7 @@ Page({
             likeShow: false
           })
         }
-        if (Api.isEmpty(obj.goodsSpecificationVOList)){
+        if (Api.isNotEmpty(obj.goodsSpecificationVOList)){
           if (obj.goodsSpecificationVOList.length > 1) {
             skuArrTwo.push(obj.goodsSpecificationVOList[1])
             name = obj.goodsSpecificationVOList[1].specName
@@ -1067,7 +1051,7 @@ Page({
             _this.getTotalPriceNew(1)
           })
         } 
-        if (!Api.isEmpty(obj.goodsSkuVOList)){
+        if (!Api.isNotEmpty(obj.goodsSkuVOList)){
           obj.goodsSkuVOList=[]
         }
         var favoriteNum=0

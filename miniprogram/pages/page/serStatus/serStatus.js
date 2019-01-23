@@ -59,12 +59,13 @@ Page({
       })
   },
   searchBtn(e) {
+    var value = this.data.value
+    if (!value){return}
     app.pageRequest.pageData.pageNum = 0
     this.setData({
       result: []
     })
-    var value = this.data.value
-    if (Api.isEmpty(value)) {
+    if (Api.isNotEmpty(value)) {
       this.historyHandle(value)
     }
     this.getList(value)
@@ -132,12 +133,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    var value = this.data.value
+    wx.stopPullDownRefresh();
+    if (!value) { return }
     app.pageRequest.pageData.pageNum = 0
     this.setData({
       result: [],
     })
     this.getList(this.data.value)
-    wx.stopPullDownRefresh();
   },
   onShareAppMessage: (res) => {
     var img = '',
@@ -247,6 +250,7 @@ Page({
    */
   onReachBottom: function () {
     var value = this.data.value
+    if (!value) { return }
     this.getList(value)
   }
 })

@@ -1,4 +1,5 @@
 import Api from '../../../utils/api.js'
+const app = getApp();
 Page({
 
   /**
@@ -7,6 +8,7 @@ Page({
   data: {
     list: [],
     indexEmpty: true,
+    goRetailStore: true,
   },
 
   /**
@@ -33,16 +35,23 @@ Page({
       })
     } else {
       var _this = this
-      Api.classListApi()
-        .then(res => {
-          const obj = res.obj
-          for (var i = 0; i < obj.length; i++) {
-            obj[i].selected = false
-          }
-          _this.setData({
-            list: obj
-          })
+      if (app.globalData.storeIdRetail) {
+        _this.setData({
+          goRetailStore: false
         })
+      } else {
+        Api.classListApi()
+          .then(res => {
+            const obj = res.obj
+            for (var i = 0; i < obj.length; i++) {
+              obj[i].selected = false
+            }
+            _this.setData({
+              list: obj
+            })
+          })
+      }
+      
     }
     
   },

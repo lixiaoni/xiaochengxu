@@ -1,14 +1,23 @@
 import http from './utils/http.js'
 import pageRequest from './utils/pageRequest.js'
 import AuthHandler from './utils/authHandler.js'
-import { imageUrl } from './utils/const.js'
+import { imageUrl, payUrl } from './utils/const.js'
 import touch from './utils/touch.js'
 App({
+  // 监听错误
+  onError: function (err) {
+    wx.showToast({
+      title: err,
+      icon: 'none',
+      duration: 4000,
+    })
+  },
   onLaunch: function (options) {
     if (options.query && options.query.storeId) {
       wx.setStorageSync("storeId", options.query.storeId)
     }
     // wx.setStorageSync("storeId", "S001")
+    // wx.setStorageSync("storeId", "S1000119")
     // 获取小程序更新机制兼容
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -49,7 +58,13 @@ App({
     skin: "normal",
     imageUrl: imageUrl,
     switchStore: false,
-    isFollow: null
+    isFollow: null,
+    projectType: "xls",
+    userShowTip: false,
+    payUrl:payUrl,
+    payAppNum:"APP003",
+    userShowTip: false,
+    storeIdRetail: false,
   },
   http: new http(),
   pageRequest: new pageRequest(),

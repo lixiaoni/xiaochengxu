@@ -98,21 +98,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    // if (!this.data.user.qrcode){
-    //   return 
-    // }
-    // var img = this.data.baseUrl + this.data.user.qrcode + "?x-oss-process=style/qrcode",
-    //   storeId = wx.getStorageSync('storeId'),
-    //   name = this.data.name
-    // return {
-    //   title: name,
-    //   path: 'pages/page/derm/derm',
-    //   imageUrl: img,
-    //   success: (res) => {
-    //   },
-    //   fail: (res) => {
-    //   }
-    // }
-
+    let id = wx.getStorageSync('storeId');
+    if(id){
+      return {
+        path: "pages/page/home/home?storeId=" + id
+      }
+    }else{
+      wx.showToast({
+        title: '请进入店铺，再分享给好友',
+      })
+    }
   }
 })

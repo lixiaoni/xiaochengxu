@@ -149,7 +149,7 @@
   color:#CCAA77;margin-left: 20rpx;
 }
 .os-title image{
-  width: 410rpx;height:40rpx;margin-top: 30rpx;
+  width: 410rpx;height:30rpx;margin-top: 30rpx;
 }
 .os-title .self-img{
   width:288rpx;height: 38rpx;

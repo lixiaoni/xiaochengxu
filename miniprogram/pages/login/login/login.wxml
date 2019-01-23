@@ -79,9 +79,16 @@
         <image class='pass-img' src='{{see}}' bindtap='showHide'></image>
       </view>
 
-      <view class='flex-box login-register'>
+      <view class='flex-box login-register' wx:if="{{loginType=='pass'}}">
         <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator>
-        <text bindtap='forgetPass' wx:if="{{loginType=='pass'}}" style='color: #8c8c8c;'>忘记密码</text>
+        <text bindtap='forgetPass' style='color: #8c8c8c;'>忘记密码</text>
+      </view>
+      <view class='flex-box login-register' wx:if="{{loginType=='code'}}">
+        <view class='chose-input'>
+          <image src='/image/checked.png' bindtap='attentionStore' class='la-checkbox' wx:if="{{attention}}"></image>
+          <image src='/image/nocheck.png' bindtap='attentionStore' class='la-checkbox' wx:else></image> 同时关注该小店
+        </view>
+        <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator>
       </view>
       
       <view class='btn {{btnID}}' bindtap='login'>登录</view>
