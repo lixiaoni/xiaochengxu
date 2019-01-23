@@ -57,6 +57,13 @@ Component({
         })
       }, 300)
     },
+    scrollPage(e) {
+      let pages = getCurrentPages();
+      let curPage = pages[pages.length - 1];
+      if (curPage.myPageScroll) {
+        curPage.myPageScroll(e)
+      }
+    }
   },
   pageLifetimes: {
     show() {

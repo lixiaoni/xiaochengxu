@@ -542,20 +542,7 @@ Page({
       wx.pageScrollTo({
         scrollTop: 0,
       })
-      wx.stopPullDownRefresh({
-        complete() {
-         
-          // wx.getSystemInfo({
-          //   success(res) {
-          //     if (res.platform == "android") {
-          //       wx.pageScrollTo({
-          //         scrollTop: 0,
-          //       })
-          //     }
-          //   }
-          // })
-        }
-      });
+      wx.stopPullDownRefresh();
 
     })
 
@@ -608,8 +595,8 @@ Page({
       }
     }
   },
-  onPageScroll: function(e) {
-    var top = e.scrollTop,
+  myPageScroll(e) {
+    var top = e.detail.scrollTop,
       result = this.data.result,
       goodsHeight = this.data.goodsHeight,
       totalCount = this.data.totalCount,

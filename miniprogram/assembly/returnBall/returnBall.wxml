@@ -1,6 +1,8 @@
 
   <movable-area class='fixed-area'>
+    <scroll-view style='height:100%;' scroll-y='true' bindscroll="scrollPage">
     <slot/>
+    </scroll-view>
     <movable-view  wx:if="{{movableBlo}}" direction='all' x="{{x}}" y="{{y}}" class='ball' bindtouchstart='touchStart' bindtouchend='end' bindtap='returnMini' animation="{{animate}}" bindchange='change'>
       <image src='/image/return.png' class='return-icon'></image>
       <text class='return-text'>逛商城</text>
