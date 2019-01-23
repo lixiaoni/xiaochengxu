@@ -1,0 +1,12 @@
+
+  <movable-area class='fixed-area'>
+    <slot/>
+    <movable-view  wx:if="{{movableBlo}}" direction='all' x="{{x}}" y="{{y}}" class='ball' bindtouchstart='touchStart' bindtouchend='end' bindtap='returnMini' animation="{{animate}}" bindchange='change'>
+      <image src='/image/return.png' class='return-icon'></image>
+      <text class='return-text'>逛商城</text>
+    </movable-view>
+    <view class='close-area {{alreadyClose?"big":""}}' hidden="{{!closeArea}}" wx:if="{{movableBlo}}">
+      <image src='/image/close-ball.png' class='close-icon'></image>
+      <text class='close-text'>取消浮窗</text>
+    </view>
+  </movable-area>

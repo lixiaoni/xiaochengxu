@@ -62,11 +62,11 @@
             </view>
             <view class="ym_goodsstoreop"  hidden='{{likeShow}}'>
                 <view class="ui-link"   bindtap='likeStore'><text class="ym_qzjoin_add1">+</text>关注</view>
-                <view class="ui-link ui-link1" bindtap='urlHome'>小云店</view>
+                <view class="ui-link ui-link1" bindtap='urlHome'>{{globalData.projectName}}</view>
             </view>
               <view class="ym_goodsstoreop"  hidden='{{!likeShow}}'>
                 <view class="ui-link"    bindtap='deteleLikeStore'><text class="ym_qzjoin_add1" ></text>已关注</view>
-                <view class="ui-link ui-link1" bindtap='urlHome'>小云店</view>
+                <view class="ui-link ui-link1" bindtap='urlHome'>{{globalData.projectName}}</view>
             </view>
         </view>
   <view class='gd_readCont'  wx:if='{{description}}'>
@@ -87,11 +87,14 @@
 <view class='gd_bottom'>
     <view class='gd_b_left'>
         <view>
-          <view><navigator class='mesImage' target="miniProgram" open-type="navigate" app-id="wx6241529c7dc70d51" path="pages/mall/newest/newest" extra-data="" version="trial"><image src="/image/home.png"></image></navigator>逛商城</view>
+          <view bindtap='call'>
+            <view><image src="/image/tel-blob.png"></image></view>
+            联系我们
+          </view>
         </view>
         <view>
         <view bindtap='urlHome'><image src="/image/ad5.png"></image></view>
-          小云店
+          {{globalData.projectName}}
         </view>
         <view  wx:if='{{limitShow!=3}}'>
         <view bindtap='urlCart'><image src="/image/i33.png"></image></view>

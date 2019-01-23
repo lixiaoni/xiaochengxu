@@ -12,12 +12,8 @@
 <!-- 返回我的小云店 -->
 <mes show="{{returnModal}}">
   <view>
-    <text>是否跳转至您的小云店？</text>
-    <navigator wx:if='{{toStatus=="xpl"}}' target="miniProgram" open-type="navigate" app-id="wx4f385374765e4cbb" path="pages/page/user/user?storeId={{storeId}}&layerText=请登陆购买账号后，点击小云店工作台初始化账户" extra-data="" version="trial" bindcomplete="toUser">
-      <button>确定</button>
-    </navigator>
-     <navigator wx:if='{{toStatus=="xls"}}' target="miniProgram" open-type="navigate" app-id="wx1a7532a2abdd1698" path="pages/page/user/user?storeId={{storeId}}&layerText=请登陆购买账号后，点击小云店工作台初始化账户" extra-data="" version="trial" bindcomplete="toUser">
-      <button>确定</button>
-    </navigator>
+    <text>是否跳转至您的{{globalData.projectName}}？</text>
+      <button wx:if='{{toStatus=="xpl"}}' bindtap='toMyStoreXPl'>确定</button>
+      <button wx:if='{{toStatus=="xls"}}' bindtap='toMyStoreXLS'>确定</button>
   </view>
 </mes>

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "小云店工作台",
+  "navigationBarTitleText": "初始化店铺",
   "usingComponents": {
     "spec": "../../../../assembly/specifications/spec",
     "mes": "../../../../assembly/tips/tips"

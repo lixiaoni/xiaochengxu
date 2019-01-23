@@ -16,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     indexEmpty: true,
     show: false,
     goRetailStore: true,
@@ -218,7 +219,7 @@ Page({
       .then(res => {
         var obj = res.obj
         wx.setNavigationBarTitle({
-          title: obj.store.storeName == null ? "小云店" : obj.store.storeName
+          title: obj.store.storeName == null ? app.globalData.projectName : obj.store.storeName
         })
         app.globalData.isFollow = obj.isFollow
         var result = obj.goods.result
@@ -276,41 +277,8 @@ Page({
       app.globalData.switchStore = false
     }
   },
-  // 浮矿
-  // ballMoveEvent: function (e) {
-  //   console.log('我被拖动了....')
-  //   var touchs = e.touches[0];
-  //   var pageX = touchs.pageX;
-  //   var pageY = touchs.pageY;
-  //   console.log('pageX: ' + pageX)
-  //   console.log('pageY: ' + pageY)
-  //   //防止坐标越界,view宽高的一般
-  //   if (pageX < 30) return;
-  //   if (pageX > this.data.screenWidth - 30) return;
-  //   if (this.data.screenHeight - pageY <= 30) return;
-  //   if (pageY <= 30) return;
-  //   //这里用right和bottom.所以需要将pageX pageY转换
-  //   var x = this.data.screenWidth - pageX - 30;
-  //   var y = this.data.screenHeight - pageY - 30;
-  //   console.log('x: ' + x)
-  //   console.log('y: ' + y)
-  //   this.setData({
-  //     ballBottom: y,
-  //     ballRight: x
-  //   });
-  // },
+
   onLoad: function(options) {
-    // 浮矿
-    // var _this = this;
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     _this.setData({
-    //       screenHeight: res.windowHeight,
-    //       screenWidth: res.windowWidth,
-    //     });
-    //   }
-    // });
-    // 浮矿
     var _this = this
     if (options != undefined) {
       let enEnterStoreHandler = new EnterStoreHandler("2");
@@ -571,8 +539,27 @@ Page({
       } else {
         this.emptyArr()
       }
-      wx.stopPullDownRefresh();
+      wx.pageScrollTo({
+        scrollTop: 0,
+      })
+      wx.stopPullDownRefresh({
+        complete() {
+         
+          // wx.getSystemInfo({
+          //   success(res) {
+          //     if (res.platform == "android") {
+          //       wx.pageScrollTo({
+          //         scrollTop: 0,
+          //       })
+          //     }
+          //   }
+          // })
+        }
+      });
+
     })
+
+    
   },
 
 

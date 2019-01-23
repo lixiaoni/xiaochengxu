@@ -1,5 +1,6 @@
-<!-- 浮球 -->
-<!-- <icon class='post' type="success" size="50" bindtap="ballClickEvent" style="bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent"/> -->
+<!-- 悬浮球 -->
+<returnBall>
+
 <view wx:if="{{initOrder && limitShow == 2}}">
   <initstroe></initstroe>
 </view>
@@ -18,6 +19,8 @@
     <button bindtap='confirmDown'>确定</button>
   </view>
 </mes>
+
+
 <view class="goods-ser">
   <navigator url="../../page/serStatus/serStatus" style='width:80%'>
     <input placeholder="搜索店铺内商品" placeholder-class='pre-input' disabled='disabled' bindconfirm="searchBtn" value="{{value}}" />
@@ -39,11 +42,11 @@
       </navigator>
     </view>
     <view class="ym_sydtdmgzs">
-      <view class="store_name">{{store.storeName?store.storeName:"小云店"}}
+      <view class="store_name">{{store.storeName?store.storeName:globalData.projectName}}
         <view>{{store.storeNature=="1"?"新批零":"新零售"}}</view>
         <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit.png" />
       </view>
-      <image class='logoimg' wx:if='{{floorInfo.mallLogo!=""}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
+      <image class='logoimg' wx:if='{{floorInfo.mallLogo}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
       <text wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
     </view>
   </view>
@@ -139,7 +142,7 @@
 </view>
 <!-- <view class='showHide' hidden='{{showDp}}'>
   <view class='sh-cont'>
-    <view class='sh-title'>更换小云店封面</view>
+    <view class='sh-title'>更换{{globalData.projectName}}封面</view>
     <view bindtap="chooseImage">拍照</view>
     <view bindtap="chooseImage">从手机相册选取</view>
     <view bindtap='closeShow'>取消</view>
@@ -148,6 +151,9 @@
 <view hidden='{{indexEmpty}}'>
   <no></no>
 </view>
+
 <view hidden='{{goRetailStore}}'>
   <retailStore></retailStore>
 </view>
+
+</returnBall>

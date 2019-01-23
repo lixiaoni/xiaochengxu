@@ -1,7 +1,8 @@
 {
-  "navigationBarTitleText": "小云店分类",
+  "navigationBarTitleText": "分类",
   "usingComponents": {
     "no": "../indexEmpty/indexEmpty",
-    "retailStore": "../retailStore/retailStore"
+    "retailStore": "../retailStore/retailStore",
+    "returnBall": "../../../assembly/returnBall/returnBall"
   }
 }

@@ -58,7 +58,7 @@
 .tip-v button{margin-bottom: 40rpx;margin-top: 40rpx}
 
 .post {
-   position: absolute;
+   position: fixed;
   bottom: 240px;
   right: 100px;
   z-index: 9000;

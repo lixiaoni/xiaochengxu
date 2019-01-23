@@ -18,15 +18,19 @@
     <view class='new-view'><view>{{countData.goodsNew}}</view>30天上新</view>
     <view class='new-view'><view>{{countData.saleNum}}</view>30天销量</view>
 </view>
-<view class="weui_cells">
+
+<block  wx:if='{{floorInfo!=null}}'>
+  <view class="weui_cells">
     <image  src="/image/labelico.png"></image>
-    <text class="store-address">小云店认证 </text>
+    <text class="store-address">{{globalData.projectName}}认证 </text>
     <view class='weui-xian weui-xian1'></view>
-</view>
-<view class='weui-time wt-font'>
-  <view wx:if='{{floorInfo!=null}}'><image   src=" {{baseUrl}}{{floorInfo.mallLogo}}"></image> {{floorInfo.mallName}}</view>
-  <view>该商家已通过北京百荣世贸商城认证</view>
-</view>
+  </view>
+  <view class='weui-time wt-font'>
+    <view><image   src=" {{baseUrl}}{{floorInfo.mallLogo}}"></image> {{floorInfo.mallName}}</view>
+    <view>该商家已通过{{floorInfo.mallName}}商城认证</view>
+  </view>
+</block>
+
 <view class="weui_cells">
     <view>
       <image style='position:absolute;top:35rpx' src="/image/positionico.png"></image>
@@ -49,7 +53,7 @@
 </view>
 <view class="weui_cells" bindtap='urlHome'>
     <image  src="/image/12.png"></image>
-    <text class="store-address">小云店 </text>
+    <text class="store-address">{{globalData.projectName}} </text>
     <view class='weui-view'>
       <image class='img' src="/image/icl.png"></image>
     </view>

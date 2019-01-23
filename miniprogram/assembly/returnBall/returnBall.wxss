@@ -1,0 +1,65 @@
+/* assembly/returnBall/returnBall.wxss */
+page{
+  height: 100%;
+}
+.fixed-area{
+  width: 100%;
+  height: 100%;
+  overflow-y:scroll; 
+  -webkit-overflow-scrolling : touch;
+}
+.ball{
+  position: fixed;
+  background: #fff;
+  box-shadow: 0 0 5px #ddd; 
+  border: #eee;
+  width:100rpx;
+  height:100rpx;
+  text-align: center;
+  z-index: 1002;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.close-area{
+  position: fixed;
+  width: 500rpx;
+  height: 500rpx;
+  right: -250rpx;
+  bottom: -250rpx;
+  background: #eb5352;
+  border-radius: 50%;
+  z-index: 1001;
+}
+.big{
+  right: -230rpx;
+  bottom: -230rpx;
+}
+
+.close-icon{
+  height: 70rpx;
+  width: 70rpx;
+  position: absolute;
+  top: 90rpx;
+  left: 110rpx;
+}
+.close-text{
+  position: absolute;
+  top: 185rpx;
+  left: 98rpx;
+  font-size: 24rpx;
+  color: #fff;
+}
+.return-icon{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin-bottom: 3rpx;
+}
+.return-text{
+  color: #ca7;
+  font-size: 18rpx;
+  display: block;
+}

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     showHide:true,
     countData:'',
     floorInfo:null,
@@ -67,6 +68,10 @@ Page({
         })
       })
     }
+
+    wx.setNavigationBarTitle({
+      title: app.globalData.projectName +'信息'
+    })
    
   },
   editFun: function () {

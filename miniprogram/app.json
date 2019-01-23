@@ -2,22 +2,18 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
-<<<<<<< HEAD
+    "pages/businessFriend/wholesaler/wholesaler",
+    "pages/casher/success/success",
     "pages/page/workIndex/workIndex",
-    "pages/admin/status/status",
-    "pages/admin/success/success",
-    "pages/cloudOrder/webInitStore/webInitStore",
-=======
+    "assembly/returnBall/returnBall",
     "pages/admin/success/success",
     "pages/cloudOrder/webInitStore/webInitStore",
     "pages/admin/status/status",
->>>>>>> b4897d3f549864e101fc78d9d6ab60da0c46512d
     "pages/admin/addGoods/addGoods",
     "pages/admin/spec/spec",
     "pages/businessFriend/index/index",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/page/user/user",
-    "pages/casher/success/success",
     "pages/casher/casher/casher",
     "pages/cloudOrder/myOrder/myOrder",
     "pages/login/register/register",
@@ -33,7 +29,6 @@
     "pages/role/order/order",
     "pages/cloudOrder/cloudPay/cloudPay",
     "pages/businessFriend/mewWholesaler/mewWholesaler",
-    "pages/businessFriend/wholesaler/wholesaler",
     "pages/businessFriend/setUp/setUp",
     "pages/businessFriend/serList/serList",
     "pages/businessFriend/data/data",
@@ -143,6 +138,7 @@
   },
   "navigateToMiniProgramAppIdList": [
     "wx4f385374765e4cbb",
-    "wx6241529c7dc70d51"
+    "wx6241529c7dc70d51",
+    "wx5e0828787c26f235"
   ]
 }

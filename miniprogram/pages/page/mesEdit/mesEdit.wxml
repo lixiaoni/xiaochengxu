@@ -3,14 +3,14 @@
   <view class="ym_jpstorelogo">
      <image  bindtap='editFun'  wx:if='{{storeMes!=""}}'  class="store-logo" src="{{baseUrl}}{{logo}}?x-oss-process=style/logo" ></image>
     </view>
-    <view url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types=小云店名称'>{{storeMes.name}}</view>
+    <view url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types={{globalData.projectName}}名称'>{{storeMes.name}}</view>
     <!-- <image class='xyd' src="/image/edit2.png"></image> -->
-    <!-- <navigator url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types=小云店名称'><text> 店铺号 {{storeMes.id}}</text></navigator> -->
+    <!-- <navigator url='../updateMes/updateMes?name=name&value={{storeMes.name}}&types={{globalData.projectName}}名称'><text> 店铺号 {{storeMes.id}}</text></navigator> -->
   </view>
-  <navigator  wx:if='{{storeMes.description!=null}}' url='../updateMes/updateMes?name=description&value={{storeMes.description}}&types=小云店简介' class="ym_jpstoredesc">
+  <navigator  wx:if='{{storeMes.description!=null}}' url='../updateMes/updateMes?name=description&value={{storeMes.description}}&types={{globalData.projectName}}简介' class="ym_jpstoredesc">
     <text class="leftyh">“</text>{{storeMes.description}}<text class="rightyh">”</text>
   </navigator>
-  <navigator  wx:if='{{storeMes.description==null}}' url='../updateMes/updateMes?name=description&value=&types=小云店简介' class="ym_jpstoredesc">
+  <navigator  wx:if='{{storeMes.description==null}}' url='../updateMes/updateMes?name=description&value=&types={{globalData.projectName}}简介' class="ym_jpstoredesc">
     <text class="leftyh">“</text> <text class="rightyh">”</text>
   </navigator>
 </view>
@@ -75,7 +75,7 @@
 </view>
 <navigator class="weui_cells"  url="../storeIcon/storeIcon">
     <image  src="/image/mes12.png"></image>
-    <text class="store-address">小云店信息 </text>
+    <text class="store-address">{{globalData.projectName}}信息 </text>
     <view class='weui-view'>
       <image class='m-img' src="/image/xcx.png"></image><image class='img' src="/image/icl.png"></image>
     </view>
@@ -99,7 +99,7 @@
 </view>
   <!-- <view class='showHide' hidden='{{showHide}}'>
     <view class='sh-cont'>
-      <view class='sh-title'>更换小云店logo</view>
+      <view class='sh-title'>更换{{globalData.projectName}}logo</view>
       <view  bindtap="chooseImage">拍照</view>
       <view  bindtap="chooseImage">从手机相册选取</view>
       <view bindtap='closeShow'>取消</view>

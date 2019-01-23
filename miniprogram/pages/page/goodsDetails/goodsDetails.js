@@ -18,6 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     limitShow:1,
     storeId: wx.getStorageSync('storeId'),
     imgUrls: [],
@@ -82,6 +83,15 @@ Page({
   /**
   * 生命周期函数--监听页面加载
   */
+  call() {
+    if (this.data.store.servicePhone) {
+      wx.makePhoneCall({
+        phoneNumber: this.data.store.servicePhone
+      })
+    } else {
+      Api.showToast("该商户暂无客服电话哦~")
+    }
+  },
   showLogo:function(){
     this.selectComponent("#login").showPage();
   },

@@ -5,7 +5,7 @@
     <view class='order-box'>
       <view class='order-title'>
         <view>
-          <text class='store-name'>小云店·{{item.yunStoreGoodsSnapshot.classifyName}}</text>
+          <text class='store-name'>{{globalData.projectName}}·{{item.yunStoreGoodsSnapshot.classifyName}}</text>
         </view>
         <text wx:if='{{item.orderStatus=="unpaid"}}' class='youyou'>待付款</text>
         <text wx:if='{{item.orderStatus=="paid"}}' class='youyou'>已付款</text>
