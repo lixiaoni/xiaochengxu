@@ -1,6 +1,6 @@
 // pages/cloudOrder/newCloud/newCloud.js
 const Api = require("../../../utils/api.js");
-import { cloudUrl } from "../../../utils/const.js";
+import { indexUrl } from "../../../utils/const.js";
 Page({
 
   /**
@@ -17,7 +17,7 @@ Page({
     let token = wx.getStorageSync('access_token')
     if (token){
       this.setData({
-        src: cloudUrl + "/initStore.html?user=" + token
+        src: indexUrl + "/initStore.html?user=" + token
       })
     }else{
       wx.navigateBack()

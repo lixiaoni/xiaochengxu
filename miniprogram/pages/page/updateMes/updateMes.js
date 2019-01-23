@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    palceName:"小云店名称",
+    palceName:"名称",
     value:'',
     emptyVal:0,
     num:0,
@@ -175,6 +175,7 @@ Page({
     wx.setNavigationBarTitle({
       title: types
     })
+
   },
 
   /**

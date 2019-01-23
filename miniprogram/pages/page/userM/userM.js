@@ -36,7 +36,7 @@ Page({
   //打电话
   tel: function () {
     wx.makePhoneCall({
-      phoneNumber: '01053361798',
+      phoneNumber: app.globalData.servesPhone,
     })
   },
   /**

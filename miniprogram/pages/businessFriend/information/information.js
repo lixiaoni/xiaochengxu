@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     watchInput: false,
     value: '',
     addSpec: false,
@@ -31,6 +32,19 @@ Page({
     remarkName: '',
     mallLogo: '',
     floorInfo: null
+  },
+  navigateTo(){
+    let storeId = "";
+    if(this.data.oneGreet){
+      storeId = this.data.send;
+    }else{
+      storeId = this.data.accept;
+    }
+    app.navigate.toProgramStore(app.globalData.navigateToAppID.xpl, storeId)
+  },
+  toStore(){
+    let storeId = this.data.accept;
+    app.navigate.toProgramStore(app.globalData.navigateToAppID.xpl, storeId)
   },
   showLogo: function () {
     this.selectComponent("#login").showPage();
@@ -240,7 +254,7 @@ Page({
   // urlHome: function () {
   //   var storeId = this.data.accept
   //   wx.navigateToMiniProgram({
-  //     appId: 'wx4f385374765e4cbb',
+  //     appId: app.globalData.navigateToAppID.xpl,
   //     path: 'page/index/index?storeId=' + storeId,
   //     extraData: {
   //       foo: 'bar'

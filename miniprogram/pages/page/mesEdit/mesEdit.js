@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     showHide: true,
     countData: '',
     storeId: '',
@@ -132,6 +133,10 @@ Page({
   },
   onLoad: function (options) {
     this.getMallList();
+
+    wx.setNavigationBarTitle({
+      title: app.globalData.projectName + '信息'
+    })
   },
   // editFun: function () {
   //   this.setData({

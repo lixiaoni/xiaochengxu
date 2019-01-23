@@ -1,12 +1,14 @@
 // pages/cloudOrder/congratulation/congratulation.js
 const Api = require("../../../utils/api.js");
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    globalData: app.globalData,
   },
   getStore() {
     Api.storeIdInfo().then(res => {

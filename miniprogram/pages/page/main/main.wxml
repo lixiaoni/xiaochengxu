@@ -1,7 +1,7 @@
 <view class='m-cont'>
   <view class='m-title'>
     <view>选择主营范围</view>
-    <view>让顾客发现您的小云店</view>
+    <view>让顾客发现您的{{globalData.projectName}}</view>
     <text>根据顾客感兴趣的类目，可快速找到您的店铺</text>
   </view>
   <view class='m-body'>

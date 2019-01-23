@@ -1,6 +1,6 @@
 // pages/cloudOrder/newCloud/newCloud.js
 const Api = require("../../../utils/api.js");
-import { cloudUrl } from "../../../utils/const.js";
+import { indexUrl } from "../../../utils/const.js";
 Page({
 
   /**
@@ -18,16 +18,16 @@ Page({
       if (res.obj) {
         let id = res.obj.id;
         this.setData({
-          src: cloudUrl + "?user=" + id
+          src: indexUrl + "?user=" + id
         })
       } else {
         this.setData({
-          src: cloudUrl
+          src: indexUrl
         })
       }
     }).catch(e => {
       this.setData({
-        src: cloudUrl
+        src: indexUrl
       })
     })
 

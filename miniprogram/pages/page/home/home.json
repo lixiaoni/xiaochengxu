@@ -1,11 +1,12 @@
 {
-  "navigationBarTitleText": "小云店",
+  "navigationBarTitleText": "",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "mes": "../../../../assembly/tips/tips",
     "login": "../../login/login/login",
     "retailStore": "../retailStore/retailStore",
     "no": "../indexEmpty/indexEmpty",
-    "initstroe": "../../cloudOrder/applyStore/applyStore"
+    "initstroe": "../../cloudOrder/applyStore/applyStore",
+    "returnBall":"../../../assembly/returnBall/returnBall"
   }
 }

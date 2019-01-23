@@ -558,17 +558,17 @@ function storeIdInfo(data) {
 function uploadImage(types) {
   return app.http.chooseImageUpload(types)
 }
-/**更换小云店封面**/
+/**更换店封面**/
 function updateCover(url,data) {
   data = initStoreId(data);
   return app.http.putRequest(updateCoverUrl +'?coverUrl='+url,data)
 }
-/**更换小云店名称**/
+/**更换店名称**/
 function updateMes(data) {
   data = initStoreId(data);
   return app.http.putRequest(updateMesUrl, data)
 }
-/**更换小云店logo**/
+/**更换店logo**/
 function uploadLogoImg(url,data) {
   data = initStoreId(data);
   return app.http.putRequest(uploadLogoImgUrl+'?logo='+url, data)

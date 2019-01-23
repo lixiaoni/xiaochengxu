@@ -13,7 +13,7 @@
       <view class='bf-img'><image  mode="aspectFill" src="/image/wytjimg.png"></image></view>
       <text>戴俪名珠宝</text><text>（战略合作）</text>
       <view class='nbf-font'><image  mode="widthFix" src="/image/dp.png"></image>百荣世贸</view>
-      <view class='nbf-font'>小云店名称：戴俪名珠宝店</view>
+      <view class='nbf-font'>{{globalData.projectName}}名称：戴俪名珠宝店</view>
     </view>
   </view>
   <!-- <view class='data-cont'>
@@ -45,7 +45,7 @@
    <text>楼座楼层</text><view>二期 F5 B区 5210 </view>
   </view>
   <view class='in-cont'>
-   <text>小云店</text>
+   <text>{{globalData.projectName}}</text>
    <view>
     <view class='in-more-img'><image  mode="widthFix" src="/image/userphoto.png"></image></view>
     <view class='in-more-img'><image  mode="widthFix" src="/image/userphoto.png"></image></view>

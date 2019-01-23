@@ -2,7 +2,10 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
+    "pages/businessFriend/wholesaler/wholesaler",
+    "pages/casher/success/success",
     "pages/page/workIndex/workIndex",
+    "assembly/returnBall/returnBall",
     "pages/admin/success/success",
     "pages/cloudOrder/webInitStore/webInitStore",
     "pages/admin/status/status",
@@ -11,7 +14,6 @@
     "pages/businessFriend/index/index",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",
     "pages/page/user/user",
-    "pages/casher/success/success",
     "pages/casher/casher/casher",
     "pages/cloudOrder/myOrder/myOrder",
     "pages/login/register/register",
@@ -27,7 +29,6 @@
     "pages/role/order/order",
     "pages/cloudOrder/cloudPay/cloudPay",
     "pages/businessFriend/mewWholesaler/mewWholesaler",
-    "pages/businessFriend/wholesaler/wholesaler",
     "pages/businessFriend/setUp/setUp",
     "pages/businessFriend/serList/serList",
     "pages/businessFriend/data/data",
@@ -137,6 +138,7 @@
   },
   "navigateToMiniProgramAppIdList": [
     "wx4f385374765e4cbb",
-    "wx6241529c7dc70d51"
+    "wx6241529c7dc70d51",
+    "wx5e0828787c26f235"
   ]
 }

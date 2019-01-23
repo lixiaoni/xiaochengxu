@@ -7,7 +7,7 @@
         <text class='login-title-text'>注册</text>
       </view>
 
-      <view class='text-sm login-tip-box'>欢迎您来到小云店</view>
+      <view class='text-sm login-tip-box'>欢迎您来到{{globalData.projectName}}</view>
 
       <view class='login-box'>
         <view class='flex-box'>

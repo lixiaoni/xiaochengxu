@@ -4,6 +4,7 @@
   "usingComponents": {
     "login": "../../login/login/login",
     "no": "../indexEmpty/indexEmpty",
-    "retailStore": "../retailStore/retailStore"
+    "retailStore": "../retailStore/retailStore",
+    "returnBall": "../../../assembly/returnBall/returnBall"
   }
 }

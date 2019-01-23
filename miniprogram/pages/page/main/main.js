@@ -1,10 +1,13 @@
 import Api from '../../../utils/api.js'
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     id: Api.getThisStoreId(),
     data: [{
         name: "服饰内衣",

@@ -17,10 +17,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     hasUser: false,
     limitShow: 1,
     indexEmpty: true,
     goRetailStore: true,
+  },
+  navigateToMyStore(){
+    app.navigate.toMyStore(app.globalData.navigateToAppID.xpl, this.data.user.storeId)
   },
   toMyStore() {
     let toID = this.data.user.storeId;
@@ -141,7 +145,7 @@ Page({
       app.globalData.userShowTip = false;
       wx.showModal({
         title: '',
-        content: '请登录您的账号（购买时的手机号），开启您的小云店吧！',
+        content: '请登录您的账号（购买时的手机号），开启您的' + app.globalData.projectName +'吧！',
         showCancel: false,
         complete: () => {
           if (!Api.getStoreId()) {

@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    token: ""
+    token: "",
+    closeBall: app.globalData.returnBall.show
   },
 
   quit() {
@@ -26,6 +27,17 @@ Page({
       }, 800)
     })
    
+  },
+  switchBallChange(){
+    let now = app.globalData.returnBall.show;
+    this.setData({
+      closeBall: !now 
+    })   
+    app.globalData.returnBall.show = !now
+    if(!now == true){
+      app.globalData.returnBall.x = 1000;
+      app.globalData.returnBall.y = 50;
+    }
   },
 
   /**
@@ -51,7 +63,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.setData({
+      closeBall: app.globalData.returnBall.show
+    })
   },
 
   /**

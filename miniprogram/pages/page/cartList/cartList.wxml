@@ -1,3 +1,5 @@
+<returnBall>
+
 <login id="login"></login>
 <view class="main" bindtap='rightList'>
   <view class='cf-cont' wx:if="{{hasList}}" wx:if='{{allEmpty}}'>
@@ -193,3 +195,5 @@
     <button bindtap='urlHome'>去逛逛</button>
   </view>
 </view>
+
+</returnBall>

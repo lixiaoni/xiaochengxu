@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     //登录按钮样式class
     btnID: "loginBtnDis",
     //获取验证码按钮

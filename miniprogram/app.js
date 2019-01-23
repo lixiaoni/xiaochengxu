@@ -1,8 +1,10 @@
 import http from './utils/http.js'
 import pageRequest from './utils/pageRequest.js'
 import AuthHandler from './utils/authHandler.js'
-import { imageUrl, payUrl } from './utils/const.js'
+import { imageUrl, payUrl, projectName, payAppNum, projectType, servesPhone, navigateToAppID} from './utils/const.js'
 import touch from './utils/touch.js'
+import Navigate from "./utils/navigate.js"
+
 App({
   // 监听错误
   onError: function (err) {
@@ -16,7 +18,7 @@ App({
     if (options.query && options.query.storeId) {
       wx.setStorageSync("storeId", options.query.storeId)
     }
-    // wx.setStorageSync("storeId", "S001")
+    wx.setStorageSync("storeId", "S001")
     // wx.setStorageSync("storeId", "S1000119")
     // 获取小程序更新机制兼容
     if (wx.canIUse('getUpdateManager')) {
@@ -52,6 +54,13 @@ App({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
+
+ 
+
+  },
+  onShow(options) {
+    //跳转进入的入口
+    this.navigate.parseExtraDataOnShow(options)
   },
   globalData: {
     userInfo: null,
@@ -59,17 +68,26 @@ App({
     imageUrl: imageUrl,
     switchStore: false,
     isFollow: null,
-    projectType: "xls",
+    projectType,
     userShowTip: false,
     payUrl:payUrl,
-    payAppNum:"APP003",
+    payAppNum,
     userShowTip: false,
     storeIdRetail: false,
+    projectName,
+    servesPhone,
+    navigateToAppID,
+    returnBall:{
+      x:10000,
+      y:50,
+      show:true
+    },
   },
   http: new http(),
   pageRequest: new pageRequest(),
   authHandler: new AuthHandler(),
-  touch: new touch()
+  touch: new touch(),
+  navigate: new Navigate()
 });
 
 

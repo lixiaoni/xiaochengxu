@@ -1,5 +1,5 @@
 <view class="goods-ser">
-    <input placeholder="输入小云店名、手机号、备注名" bindinput='changeValue'  bindconfirm="searchBtn"   value="{{value}}"/>
+    <input placeholder="输入{{globalData.projectName}}名、手机号、备注名" bindinput='changeValue'  bindconfirm="searchBtn"   value="{{value}}"/>
     <image class="home-ser"  src="/image/search1.png"></image>
     <view class='home-img' bindtap='searchBtn' >
         搜索

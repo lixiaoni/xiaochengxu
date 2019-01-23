@@ -3,7 +3,7 @@
     <view class='nocar'>
       <image src="/image/svg.png"></image>
     </view>
-    <view>请登录小云店家查看</view>
-    <view class='miniDetails' bindtap='goRetailStore'>去小云店家</view>
+    <view>请登录{{globalData.projectName}}家查看</view>
+    <view class='miniDetails' bindtap='goRetailStore'>去{{globalData.projectName}}家</view>
   </view>
 </view>

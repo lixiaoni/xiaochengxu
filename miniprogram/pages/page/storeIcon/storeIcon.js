@@ -35,6 +35,10 @@ Page({
     if (options.storeId) {
       wx.setStorageSync("storeId", options.storeId)
     }
+
+    wx.setNavigationBarTitle({
+      title: app.globalData.projectName + '小程序码'
+    })
   },
 
   /**

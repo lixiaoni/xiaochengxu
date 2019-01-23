@@ -8,6 +8,7 @@ Component({
    * 页面的初始数据
    */
   data: {
+    globalData: App.globalData,
     // 筛选器
     beforeChose: [0, 0, 0],
     floorChose: "",

@@ -1,12 +1,14 @@
 import Api from '../../../utils/api.js'
 import authHandler from '../../../utils/authHandler.js';
 import IsStoreOwner from '../../../utils/isStoreOwner.js';
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    globalData: app.globalData,
     followNum: 0,
     payOrders: 0,
     todaySaleNum: 0,

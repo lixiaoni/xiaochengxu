@@ -24,7 +24,7 @@
     <navigator   url='../../role/order/order'><view><image mode='widthFix' src='/image/ad2.png'></image></view><view>订单管理</view></navigator>
     <navigator   url='../../admin/status/status'><view><image mode='widthFix' src='/image/ad3.png'></image></view><view>云商品</view></navigator>
     <navigator   url='../../businessFriend/index/index'><view><image mode='widthFix' src='/image/ad4.png' style='width:50rpx;'></image></view><view>商友录</view></navigator>
-    <navigator   url='../../page/mesEdit/mesEdit'><view><image mode='widthFix' src='/image/ad5.png'></image></view><view>小云店</view></navigator>
+    <navigator   url='../../page/mesEdit/mesEdit'><view><image mode='widthFix' src='/image/ad5.png'></image></view><view>{{globalData.projectName}}</view></navigator>
   </view>
 </view>
 <view class='goHome' bindtap='goHome'><view><image src="/image/home.png"></image></view>回首页</view>

@@ -58,3 +58,4 @@
 .tip-v button{margin-bottom: 40rpx;margin-top: 40rpx}
 .ym_sydtdmgzs text{position: absolute;height: auto;width:500rpx;word-wrap:break-word}
 .post {position: absolute;bottom: 240px;right: 100px;z-index: 9000;}
+.post {position: fixed;bottom: 240px;right: 100px;z-index: 9000;}
