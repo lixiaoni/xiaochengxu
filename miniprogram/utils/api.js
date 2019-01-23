@@ -188,6 +188,10 @@ function recentGoods(data) {
   data = initStoreId(data);
   return app.pageRequest.pageGet(recentGoodsUrl, data)
 }
+// 楼层三级联动
+function threeFloorList(data) {
+  return app.http.getRequest(threeFloorListUrl, data)
+}
 /**商品 删除**/
 function adminGoodsDelete(data) {
   return app.http.deleteRequest(adminGoodsDeleteUrl, data)
@@ -872,5 +876,6 @@ module.exports = {
   updateClass: updateClass,
   showPurchaser: showPurchaser,
   showMerchant: showMerchant,
-  recentGoods: recentGoods
+  recentGoods: recentGoods,
+  threeFloorList: threeFloorList
 }

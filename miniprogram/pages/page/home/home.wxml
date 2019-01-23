@@ -44,7 +44,7 @@
         <image wx:if='{{limitShow==2}}' bindtap='editDpMes' src="/image/edit.png" />
       </view>
       <image class='logoimg' wx:if='{{floorInfo.mallLogo!=""}}' src="{{baseUrl}}{{floorInfo.mallLogo}}" />
-      <text wx:if='{{floorInfo!=null}}'>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
+      <text>{{floorInfo.mallName}} {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}</text>
     </view>
   </view>
   <view class="ym_sydtgzbtn share-v" wx:if='{{limitShow==2}}' style='color:#666 !important'>

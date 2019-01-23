@@ -43,8 +43,12 @@
       <image  src="/image/lou.png"></image>
       <text> 楼座楼层</text>
       <view class='new-left'  wx:if='{{floorInfo!=null}}'>
-         {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}} {{floorInfo.storeDoorNum}}
+         {{floorInfo.balconyName}} {{floorInfo.floorName}} {{floorInfo.areaName}}
       </view>
+    </view>
+    <view style='padding-left:60rpx'>
+        门牌号
+        <view class='new-left'>{{floorInfo.storeDoorNum==null?'':floorInfo.storeDoorNum}}</view>
     </view>
 </view>
 <view class="weui_cells" bindtap='urlHome'>

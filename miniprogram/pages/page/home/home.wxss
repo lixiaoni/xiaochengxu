@@ -5,7 +5,7 @@
 .slide-image{width:100%;display:inherit}
 .sh-cont view{position:relative}
 .sh-cont view button.shre_btns{position:absolute;background:#fff;width:100%;border:0;opacity:0}
-.ym_sydtdmgzs{font-size:28rpx;text-shadow:none !important;margin-left:45rpx;color:#fff;line-height:40rpx;margin-bottom:10rpx}
+.ym_sydtdmgzs{font-size:28rpx;text-shadow:none !important;margin-left:45rpx;color:#fff;line-height:40rpx;margin-bottom:10rpx;padding-bottom: 20rpx}
 .ym_sydtstore{left:0;background:#fff;bottom:10rpx;position:relative;padding-bottom:40rpx;padding-top:60rpx;z-index:12}
 .shre_btn,.ym_sydtgzbtn .button-hover{position:absolute;width:150rpx;bottom:20rpx;height:80rpx;border:0;border-left:2rpx solid #eeeeee;background:unset;border-radius:0;height:90rpx;bottom:0}
 .ym_sydtlogo{width:80rpx;top:-100rpx;height:80rpx;position:absolute;margin-right:20rpx;left:45rpx}
@@ -56,10 +56,5 @@
 .nomore{margin-bottom:0rpx;margin-top:0rpx;text-align:center;background:#f7f7f7;padding:30rpx}
 .tip-v view{font-size: 28rpx;color: #999;font-weight: normal}
 .tip-v button{margin-bottom: 40rpx;margin-top: 40rpx}
-
-.post {
-   position: absolute;
-  bottom: 240px;
-  right: 100px;
-  z-index: 9000;
-}
+.ym_sydtdmgzs text{position: absolute;height: auto;width:500rpx;word-wrap:break-word}
+.post {position: absolute;bottom: 240px;right: 100px;z-index: 9000;}
