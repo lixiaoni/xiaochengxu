@@ -13,6 +13,7 @@ class IsStoreOwner {
       var pages = getCurrentPages()
       var currentPage = pages[pages.length - 1]
       if (authHandler.isLogin()) {
+        currentPage.selectComponent("#login").closePage()
         Api.userIdentity().then(res => {
           var obj = res.obj
           if (Api.isNotEmpty(obj)) {

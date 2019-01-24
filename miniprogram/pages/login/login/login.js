@@ -24,7 +24,7 @@ Component({
     //密码
     password: '',
     //切换登录方式 code pass
-    loginType: 'code',
+    loginType: 'pass',
     //密码是否可见
     ifhide: true,
     //密码图片src
@@ -329,7 +329,6 @@ Component({
         telephone: "",
         password: "",
         verificationCode: "",
-        loginType: 'code'
       })
     },
     showPage() {

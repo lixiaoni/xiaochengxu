@@ -2,6 +2,7 @@
   "navigationBarTitleText": "分类",
   "usingComponents": {
     "no": "../indexEmpty/indexEmpty",
+    "login": "../../login/login/login",
     "retailStore": "../retailStore/retailStore",
     "returnBall": "../../../assembly/returnBall/returnBall"
   }

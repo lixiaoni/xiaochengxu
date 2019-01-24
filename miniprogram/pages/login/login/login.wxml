@@ -47,8 +47,8 @@
       <view class='login-title-box'>
         <text wx:if="{{loginType=='code'}}" class='login-title-text'>快捷登录</text>
         <text wx:else class='login-title-text'>账号登录</text>
-        <text wx:if="{{loginType=='code'}}" class='text-yellow text-underline' bindtap='changeLoginType'>账号登录</text>
-        <text wx:else class='text-yellow text-underline' bindtap='changeLoginType'>快捷登录</text>
+        <!-- <text wx:if="{{loginType=='code'}}" class='text-yellow text-underline' bindtap='changeLoginType'>账号登录</text>
+        <text wx:else class='text-yellow text-underline' bindtap='changeLoginType'>快捷登录</text> -->
       </view>
 
       <view class='text-sm login-tip-box'>成为进货商即可享受批发价</view>
@@ -80,7 +80,7 @@
       </view>
 
       <view class='flex-box login-register' wx:if="{{loginType=='pass'}}">
-        <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator>
+        <!-- <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator> -->
         <text bindtap='forgetPass' style='color: #8c8c8c;'>忘记密码</text>
       </view>
       <view class='flex-box login-register' wx:if="{{loginType=='code'}}">
@@ -88,18 +88,18 @@
           <image src='/image/checked.png' bindtap='attentionStore' class='la-checkbox' wx:if="{{attention}}"></image>
           <image src='/image/nocheck.png' bindtap='attentionStore' class='la-checkbox' wx:else></image> 同时关注该小店
         </view>
-        <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator>
+        <!-- <navigator class='text-yellow ' url="/pages/login/register/register"  hover-class="navigator-hover">注册账户</navigator> -->
       </view>
       
       <view class='btn {{btnID}}' bindtap='login'>登录</view>
 
-      <view class='text-sm user-agreement flex-box' style="justify-content:center;">登录后即完成阅读并同意<navigator class='text-yellow text-underline' url="/pages/login/agreement/agreement"     hover-class="navigator-hover">《用户协议》 </navigator>
-      </view>
+      <!-- <view class='text-sm user-agreement flex-box' style="justify-content:center;">登录后即完成阅读并同意<navigator class='text-yellow text-underline' url="/pages/login/agreement/agreement"     hover-class="navigator-hover">《用户协议》 </navigator>
+      </view> -->
     
     
   
   </block>
 
-  <image src='/image/login-close.png' class='close-btn' bindtap='closePage'></image>
+  <!-- <image src='/image/login-close.png' class='close-btn' bindtap='closePage'></image> -->
   </view>
 </view>
