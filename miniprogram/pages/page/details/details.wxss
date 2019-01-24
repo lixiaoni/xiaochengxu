@@ -43,3 +43,9 @@
   right:70rpx;
   top:33rpx;
 }
+.result-null{
+  position: absolute;
+  top: 100rpx;
+  width: 100%;
+  text-align: center
+}
