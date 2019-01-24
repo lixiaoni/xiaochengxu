@@ -10,7 +10,7 @@
 	},
 	"appid": "wxa05b2bddbfdbc377",
 	"projectname": "retail-store-mini",
-	"libVersion": "2.5.0",
+	"libVersion": "2.5.1",
 	"condition": {
 		"search": {
 			"current": -1,

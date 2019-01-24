@@ -38,12 +38,6 @@
     <image src='/image/order.png'></image>
     <view>我的订单</view>
   </navigator>
-  <!-- <block wx:if='{{limitShow==2}}'>
-    <navigator class='u-o-div' url='../stockOrder/stockOrder'>
-      <image src='/image/supplyOrder.png'></image>
-      <view>进货单</view>
-    </navigator>
-  </block> -->
 </view>
 <view class='page_bd'>
   <view class='weui-back'>
@@ -68,7 +62,7 @@
   </view>
 </view>
 
-<view class='page_bd page_hd1' wx:if="{{(!payStore && hasUser) || !hasUser}}">
+<!-- <view class='page_bd page_hd1' wx:if="{{(!payStore && hasUser) || !hasUser}}">
   <view class='weui-back'>
     <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/newCloud/newCloud'>
       <image src='/image/applyStore.png' class='user-img'></image>
@@ -80,11 +74,8 @@
       </view>
     </navigator>
   </view>
-</view>
-
+</view> -->
 <block wx:if="{{hasUser}}">
-  
-
   <block wx:if="{{limitShow==2}}">
     <view class='page_bd page_hd1'>
       <view class='weui-back'>
@@ -101,7 +92,6 @@
       </view>
     </view>
   </block>
-
   <view bindtap='toMyStore' class='page_bd page_hd1' wx:if="{{isStoreOwner && limitShow !=2}}">
     <view class='weui-back'>
       <view class='weui-cell weui-cell_access'>
@@ -131,28 +121,10 @@
       </view>
     </view>
   </view>
-
- 
-
-  <!-- <view class='page_bd page_hd1' wx:if="{{hasYunStoreOrder && limitShow==2 && !payStore}}">
-    <view class='weui-back'>
-      <navigator class='weui-cell weui-cell_access' url='../../cloudOrder/myOrder/myOrder'>
-        <image src='/image/orderStoreList.png' class='user-img'></image>
-        <view class='weui-cell__bd'>
-          云产品订单
-        </view>
-        <view class='weui-img'>
-          <image src="/image/icl.png"></image>
-        </view>
-      </navigator>
-    </view>
-  </view> -->
-
 </block>
  <!-- 客服 -->
   <button open-type="contact" class='service-btn'>
     <image src='/image/chat.png'></image>
     <text>技术支持</text>
   </button>
-
 </returnBall>

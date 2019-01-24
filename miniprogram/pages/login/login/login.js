@@ -129,9 +129,9 @@ Component({
         return;
       }
       //校验
-      if (!this.testTel()) {
+      if (!this.data.telephone) {
         wx.showToast({
-          title: '请输入正确手机号码',
+          title: '请输入账号',
           icon: 'none',
         })
         return;
