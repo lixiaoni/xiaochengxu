@@ -1,5 +1,12 @@
 import Api from '../../../utils/api.js'
 const app = getApp();
+// 身份判断
+function getIdentity(_this) {
+  let isStoreOwner = new IsStoreOwner();
+  isStoreOwner.enterIdentity().then(res => {
+  }).catch(res => {
+  });
+}
 Page({
 
   /**
