@@ -1,12 +1,6 @@
 import Api from '../../../utils/api.js'
+import authHandler from '../../../utils/authHandler.js';
 const app = getApp();
-// 身份判断
-function getIdentity(_this) {
-  let isStoreOwner = new IsStoreOwner();
-  isStoreOwner.enterIdentity().then(res => {
-  }).catch(res => {
-  });
-}
 Page({
 
   /**
@@ -36,6 +30,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (authHandler.isLogin()){
+      this.selectComponent("#login").closePage()
+    }
     if (!Api.getStoreId()) {
       this.setData({
         indexEmpty: false

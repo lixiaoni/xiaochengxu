@@ -329,6 +329,7 @@ Component({
         telephone: "",
         password: "",
         verificationCode: "",
+        btnID: 'loginBtnDis'
       })
     },
     showPage() {

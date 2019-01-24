@@ -56,7 +56,7 @@
       <view class='login-box'>
         <view class='flex-box'>
           <image src='/image/telephone.png' class='login-icon'></image>
-          <input type='number' value='{{telephone}}' placeholder='请输入手机号' bindinput='savePhone'></input>
+          <input type='number' value='{{telephone}}' placeholder='请输入账号' bindinput='savePhone'></input>
         </view>
         <!-- <text class='text-yellow'>自动获取</text> -->
       </view>
