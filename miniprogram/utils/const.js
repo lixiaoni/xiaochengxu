@@ -1,19 +1,19 @@
-export const baseUrl = 'https://dev-store.youlife.me'
-export const imageUrl = 'https://dev-image.youlife.me/'
-export const basicAuthorization = 'Basic QmVpSmluZ0JhaVJvbmdTaGlNYW9DbGllbnQ6ZTU2YThmMWZkOWJlMmMzMzNmYjdiZTcyNjVkMjRhYTM=';
-export const uploadImg = 'https://dev-store.youlife.me/base/image'
-export const payUrl = "https://dev-pay.youlife.me/api/pay"
-export const indexUrl = "https://dev-www.youlife.me"
-export const authUrl = "https://dev-accounts.youlife.me"
-
-
-// export const indexUrl = "https://www.youlife.me"
-// export const payUrl = "https://pay.youlife.me/api/pay"
-// export const baseUrl = 'https://store.youlife.me'
-// export const imageUrl = 'https://image.youlife.me/'
+// export const baseUrl = 'https://dev-store.youlife.me'
+// export const imageUrl = 'https://dev-image.youlife.me/'
 // export const basicAuthorization = 'Basic QmVpSmluZ0JhaVJvbmdTaGlNYW9DbGllbnQ6ZTU2YThmMWZkOWJlMmMzMzNmYjdiZTcyNjVkMjRhYTM=';
-// export const uploadImg = 'https://store.youlife.me/base/image'
-// export const authUrl = "https://accounts.youlife.me"
+// export const uploadImg = 'https://dev-store.youlife.me/base/image'
+// export const payUrl = "https://dev-pay.youlife.me/api/pay"
+// export const indexUrl = "https://dev-www.youlife.me"
+// export const authUrl = "https://dev-accounts.youlife.me"
+
+
+export const indexUrl = "https://www.youlife.me"
+export const payUrl = "https://pay.youlife.me/api/pay"
+export const baseUrl = 'https://store.youlife.me'
+export const imageUrl = 'https://image.youlife.me/'
+export const basicAuthorization = 'Basic QmVpSmluZ0JhaVJvbmdTaGlNYW9DbGllbnQ6ZTU2YThmMWZkOWJlMmMzMzNmYjdiZTcyNjVkMjRhYTM=';
+export const uploadImg = 'https://store.youlife.me/base/image'
+export const authUrl = "https://accounts.youlife.me"
 
 export const projectName = "小云店"
 export const payAppNum = "APP003"
