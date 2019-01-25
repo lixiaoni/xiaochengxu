@@ -1,5 +1,5 @@
 <view class='box'>
-  <textarea bindinput='input' class='textarea' placeholder="请输入凭证描述..."></textarea>
+  <textarea bindinput='input' class='textarea' placeholder="请输入凭证描述..." maxlength='50'></textarea>
   
   <view class='add-voucher' wx:if='{{url}}'>
     <image bindtap='showImg' data-url="{{base+url}}" class='user-img' mode='aspectFit' src='{{base+url}}'></image>

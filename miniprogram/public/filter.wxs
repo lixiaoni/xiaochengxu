@@ -37,9 +37,17 @@ var filterNull = function (val) {
   return str
 }
 
+var my_slice = function (str, a) {
+  if (str.length > a) {
+    return str.slice(0, a) + "...";
+  }
+  return str;
+}
+
 module.exports = {
   filterMoney: filterMoney,
   plusNum: plusNum,
   filterTime: filterTime,
   filterNull: filterNull,
+  my_slice: my_slice
 }

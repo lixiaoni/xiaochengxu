@@ -68,7 +68,7 @@ page{height:auto!important;margin-bottom:100rpx;padding-bottom:30rpx}
 .info-cont{padding:0}
 .in-cont{min-height:70rpx;color:#666;font-size:30rpx;padding-top:30rpx;position:relative;overflow:hidden}
 .in-cont text{position:absolute;left:30rpx}
-.in-cont>view{color:#333;border-bottom:2rpx solid #F8F8F8;margin-left:180rpx;padding-bottom:30rpx;width:75%}
+.in-cont>view{color:#333;border-bottom:2rpx solid #F8F8F8;margin-left:180rpx;padding-bottom:30rpx;width:75%;min-height:32rpx;}
 .in-cont .in-img{position:absolute;right:30rpx;width:30rpx}
 .in-img image{width:30rpx}
 .in-cont-img image{width:50rpx}
