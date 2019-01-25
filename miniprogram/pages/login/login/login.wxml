@@ -8,7 +8,6 @@
       <view class='login-title-box'>
         <text class='login-title-text'>忘记密码</text>
       </view>
-      
 
       <view class='login-box'>
         <view class='flex-box'>
