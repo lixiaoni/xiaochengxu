@@ -651,7 +651,7 @@ function addExpress(data){
 }
 // 订单填写商家备注
 function addRemark(data){
-  return app.http.putRequest(addRemarkUrl +"?remark=" + data.remark, data)
+  return app.http.putRequest(addRemarkUrl + "?remark=" + encodeURI(data.remark), data)
 }  
 // 查看凭证
 function seeVoucher(data){
