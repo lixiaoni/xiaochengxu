@@ -170,7 +170,7 @@
     <view>收货人：{{order.consigneeInfo.userName}}</view>
     <view class='address-box' style='padding:0;'>
       <view class='address-title'>收货地址：</view>
-      <view class='address-inner'>{{order.consigneeInfo.detailAddress}}</view>
+      <view class='address-inner'>{{order.consigneeInfo.province}} {{order.consigneeInfo.city}} {{order.consigneeInfo.county}} {{order.consigneeInfo.detailAddress}}</view>
     </view>
   </view>
 
