@@ -2,16 +2,14 @@
   "cloud": true,
   "pages": [
     "pages/page/home/home",
-    
+    "pages/admin/status/status",
     "pages/admin/addGoods/addGoods",
-    
     "pages/businessFriend/wholesaler/wholesaler",
     "pages/casher/success/success",
     "pages/page/workIndex/workIndex",
     "assembly/returnBall/returnBall",
     "pages/admin/success/success",
     "pages/cloudOrder/webInitStore/webInitStore",
-    "pages/admin/status/status",
     "pages/admin/spec/spec",
     "pages/businessFriend/index/index",
     "pages/businessFriend/merchant/dealUserDetails/dealUserDetails",

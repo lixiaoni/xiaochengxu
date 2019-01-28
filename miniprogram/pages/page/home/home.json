@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "",
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "mes": "../../../../assembly/tips/tips",
     "login": "../../login/login/login",

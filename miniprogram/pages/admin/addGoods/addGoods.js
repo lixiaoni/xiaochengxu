@@ -160,9 +160,9 @@ Page({
         })
       })
   },
-  newConst: function (event) {
+  // 计算总价
+  getCount(val){
     var _this = this,
-      val = event.detail.value,
       pageall = this.data.pageall,
       num = val.length,
       index1 = 1,
@@ -179,12 +179,16 @@ Page({
     len = index1 * index2
     if (num > 16) {
       Api.showToast("超过最长数字限制")
-    } 
+    }
     val = val.replace(/\b(0+)/gi, "")
     this.setData({
       newConst: val.substring(0, 9),
       allTotalNew: len * (val.substring(0, 9))
     })
+  },
+  newConst: function (event) {
+    var val = event.detail.value
+    this.getCount(val)
   },
   watchName: function (event) {
     var _this = this,
@@ -572,12 +576,12 @@ Page({
     if (currPage.data.isEmptySku != 1) {
       that.setData({
         skuListAll: [],
-        skuNum: '',
-        sellPrice: '',
+        // skuNum: '',
+        // sellPrice: '',
         isEmptySku: true,
         pageShow: false,
-        newConst: '',
-        allTotalNew: '',
+        // newConst: '',
+        // allTotalNew: '',
         clickSpecShow: false,
       })
     }
@@ -585,6 +589,10 @@ Page({
       that.setData({
         pageall: currPage.data.mydata,
         modelPageAll: JSON.stringify(currPage.data.mydata),
+      }, function () {
+        if (that.data.newConst) {
+          that.getCount(this.data.newConst)
+        }
       })
     }
   },

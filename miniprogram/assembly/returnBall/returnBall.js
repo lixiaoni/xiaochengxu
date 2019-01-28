@@ -63,6 +63,13 @@ Component({
       if (curPage.myPageScroll) {
         curPage.myPageScroll(e)
       }
+    },
+    toBottom() {
+      let pages = getCurrentPages();
+      let curPage = pages[pages.length - 1];
+      if (curPage.toBottom) {
+        curPage.toBottom()
+      }
     }
   },
   pageLifetimes: {
